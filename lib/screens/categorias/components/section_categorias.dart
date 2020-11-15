@@ -14,12 +14,13 @@ class SectionCategorias extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: categorias,
       child: Container(
+        color: Colors.transparent,
         margin: const EdgeInsets.symmetric(vertical: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: 32,
+              height: 28,
               child: Consumer<Categorias>(
                 builder: (_, categorias, __) {
                   return ListView.builder(
@@ -35,7 +36,7 @@ class SectionCategorias extends StatelessWidget {
                             Container(
                               width: 50,
                               child: Icon(
-                                Icons.person, size: 30,
+                                Icons.person, size: 25,
                               ),
                             ),
                             Expanded(
@@ -46,7 +47,7 @@ class SectionCategorias extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(categorias.name, style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                       ),
                                     ],
@@ -57,7 +58,7 @@ class SectionCategorias extends StatelessWidget {
                             Container(
                               width: 50,
                               child: Icon(
-                                Icons.arrow_forward_ios, size: 20,
+                                Icons.arrow_forward_ios, size: 16,
                                 color: Theme.of(context).primaryColor,
                               ),
                             ),

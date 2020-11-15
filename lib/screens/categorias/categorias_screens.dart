@@ -7,6 +7,7 @@ class CategoriasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -31,30 +32,12 @@ class CategoriasScreen extends StatelessWidget {
                           color: Theme.of(context).secondaryHeaderColor,
                           child: Text(
                             'Manaus',
-                            style: TextStyle(color: Colors.white, fontSize: 22),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(
                                   bottomLeft: Radius.circular(20),
                                   topRight: Radius.circular(20)))),
-                    ),
-                    SizedBox(
-                      width: 130,
-                      child: RaisedButton(
-                        color: Theme.of(context).primaryColor,
-                        onPressed: () {},
-                        child: Text(
-                          'Categorias',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(10),
-                                right: Radius.circular(10))),
-                      ),
                     ),
                     Row(
                       children: [

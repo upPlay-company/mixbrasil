@@ -15,7 +15,7 @@ class SectionAtCategorias extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: section,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[

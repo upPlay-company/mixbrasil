@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
             flexibleSpace: Padding(
               padding: const EdgeInsets.only(top: 27),
               child: Container(
-                padding: EdgeInsets.only(left: 20),
+                padding: EdgeInsets.only(left: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                                   topRight: Radius.circular(20)))),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.only(right: 10),
                       child: SizedBox(
                         width: 55,
                         child: RaisedButton(

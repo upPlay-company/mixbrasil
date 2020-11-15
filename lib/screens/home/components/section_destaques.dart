@@ -13,7 +13,7 @@ class SectionDestaques extends StatelessWidget {
     return ChangeNotifierProvider.value(
       value: section2,
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -34,7 +34,7 @@ class SectionDestaques extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 10),
                                   child: SizedBox(
-                                    width: 140,
+                                    width: 130,
                                     height: 100,
                                     child: AspectRatio(
                                       aspectRatio: 1,
@@ -56,7 +56,7 @@ class SectionDestaques extends StatelessWidget {
                                       Text(
                                         section2.name,
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w800),
                                       ),
                                       SizedBox(height: 5,),
@@ -73,14 +73,14 @@ class SectionDestaques extends StatelessWidget {
                                           Text(
                                             'A partir de',
                                             style: TextStyle(
-                                                fontSize: 16,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w800,
                                                 color: Colors.black),
                                           ),
                                           Text(
                                             ' R\$${section2.price.toStringAsFixed(2)}',
                                             style: TextStyle(
-                                                fontSize: 16,
+                                                fontSize: 14,
                                                 fontWeight: FontWeight.w800,
                                                 color: Theme.of(context).primaryColor
                                             ),

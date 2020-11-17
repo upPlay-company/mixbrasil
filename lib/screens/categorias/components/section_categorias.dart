@@ -24,7 +24,7 @@ class SectionCategorias extends StatelessWidget {
               child: Consumer<Categorias>(
                 builder: (_, categorias, __) {
                   return ListView.builder(
-                    itemCount: categorias.name.length,
+                    itemCount: categorias.img.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (_, index) {
                       return GestureDetector(
@@ -35,8 +35,12 @@ class SectionCategorias extends StatelessWidget {
                           children: <Widget>[
                             Container(
                               width: 50,
-                              child: Icon(
-                                Icons.person, size: 25,
+                              height: 28,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(categorias.img),
+                                  fit: BoxFit.contain
+                                )
                               ),
                             ),
                             Expanded(

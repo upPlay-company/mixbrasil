@@ -6,11 +6,13 @@ class Categorias extends ChangeNotifier {
 
   Categorias({this.name}){
     name = name ?? [];
+    img = img ?? [];
   }
 
   Categorias.fromDocument(DocumentSnapshot document){
     id = document.documentID;
     name = document.data['name'] as String;
+    img = document.data['image'] as String;
   }
 
   final Firestore firestore = Firestore.instance;
@@ -21,4 +23,5 @@ class Categorias extends ChangeNotifier {
 
   String name;
   String id;
+  String img;
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/screens/categorias/categorias_screens.dart';
+import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:mix_brasil/screens/home/home_screen.dart';
 
 class BaseScreen extends StatefulWidget {
@@ -17,7 +18,7 @@ class _BaseScreenState extends State<BaseScreen> {
   static List<Widget> _widgetOptions = <Widget>[
     HomeScreen(),
     CategoriasScreen(),
-    Container(),
+    DesapegoScreen(),
     Container(),
   ];
   @override

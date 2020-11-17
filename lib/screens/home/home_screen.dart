@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                           child: Text(
                             //TODO: COLOCAR CIDADE
                             'Manaus',
-                            style: TextStyle(color: Colors.white, fontSize: 22),
+                            style: TextStyle(color: Colors.white, fontSize: 20),
                           ),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.only(

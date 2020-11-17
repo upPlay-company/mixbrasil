@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
+import 'package:mix_brasil/model/desapego/desapego_manager.dart';
 import 'package:mix_brasil/model/home/destaque_manager.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:provider/provider.dart';
@@ -25,6 +26,10 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => CategoriasManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DesapegoManager(),
           lazy: false,
         ),
       ],

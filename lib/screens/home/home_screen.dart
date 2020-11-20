@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/home/destaque_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
+import 'package:mix_brasil/model/lojas/lojas_manager.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
 import 'components/section_at_categorias.dart';
@@ -98,9 +98,9 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-          Consumer<HomeDestaques>(
-            builder: (_, HomeDestaques, __){
-              if(HomeDestaques.loading){
+          Consumer<LojasManager>(
+            builder: (_, lojaManager, __){
+              if(lojaManager.loading){
                 return SliverToBoxAdapter(
                   child: LinearProgressIndicator(
                     valueColor: AlwaysStoppedAnimation(Colors.black),
@@ -109,7 +109,7 @@ class HomeScreen extends StatelessWidget {
                 );
               }
 
-              final List<Widget> children = HomeDestaques.sections
+              final List<Widget> children = lojaManager.lojas
                   .map<Widget>((section) {
                     return SectionDestaques(section);
                 }).toList();

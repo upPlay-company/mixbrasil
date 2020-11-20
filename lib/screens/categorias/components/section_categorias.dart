@@ -29,7 +29,7 @@ class SectionCategorias extends StatelessWidget {
                     itemBuilder: (_, index) {
                       return GestureDetector(
                         onTap: (){
-
+                          Navigator.of(context).pushNamed('/lojas', arguments: categorias);
                         },
                         child: Row(
                           children: <Widget>[

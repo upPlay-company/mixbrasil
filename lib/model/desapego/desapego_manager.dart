@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/desapego/atalho_cat_desapego.dart';
 
@@ -15,12 +16,12 @@ class DesapegoManager extends ChangeNotifier {
   bool editing = false;
   bool loading = false;
 
-  final Firestore firestore = Firestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> _loadDesapego() async {
     firestore.collection('desapego').orderBy('pos').snapshots().listen((snapshot) {
       _atalhoCatDesapego.clear();
-      for(final DocumentSnapshot document in snapshot.documents){
+      for(final DocumentSnapshot document in snapshot.docs){
         _atalhoCatDesapego.add(AtalhoCatDesapego.fromDocument(document));
       }
       notifyListeners();

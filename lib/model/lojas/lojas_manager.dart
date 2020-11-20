@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mix_brasil/model/home/section.dart';
+import 'package:mix_brasil/model/lojas/loja.dart';
 
 
-class HomeManager extends ChangeNotifier {
+class LojasManager extends ChangeNotifier {
 
-  HomeManager(){
+  LojasManager(){
     _loadSections();
   }
 
-  final List<Section> _sections = [];
+  final List<Lojas> _loja = [];
 
 
   bool editing = false;
@@ -18,17 +18,16 @@ class HomeManager extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> _loadSections() async {
-    firestore.collection('home').orderBy('pos').snapshots().listen((snapshot) {
-      _sections.clear();
+    firestore.collection('lojas').orderBy('pos').snapshots().listen((snapshot) {
+      _loja.clear();
       for(final DocumentSnapshot document in snapshot.docs){
-        _sections.add(Section.fromDocument(document));
+        _loja.add(Lojas.fromDocument(document));
       }
       notifyListeners();
     });
   }
 
-  List<Section> get sections {
-      return _sections;
+  List<Lojas> get lojas {
+    return _loja;
   }
-
 }

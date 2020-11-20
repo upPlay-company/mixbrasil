@@ -5,15 +5,15 @@ import 'package:flutter/cupertino.dart';
 class AtalhoCatDesapego extends ChangeNotifier {
 
   AtalhoCatDesapego.fromDocument(DocumentSnapshot document){
-    id = document.documentID;
-    name = document.data['name'] as String;
+    id = document.id;
+    name = document.data()['name'] as String;
   }
 
-  final Firestore firestore = Firestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  DocumentReference get firestoreRef => firestore.document('desapego/$id');
-  StorageReference get storageRef => storage.ref().child('desapego/$id');
+  DocumentReference get firestoreRef => firestore.doc('desapego/$id');
+  //StorageReference get storageRef => storage.ref().child('desapego/$id');
 
   String id;
   String name;

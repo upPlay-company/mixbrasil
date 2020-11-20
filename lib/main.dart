@@ -1,14 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/desapego_manager.dart';
-import 'package:mix_brasil/model/home/destaque_manager.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
+import 'model/lojas/lojas_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
-
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +23,7 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         ChangeNotifierProvider(
-          create: (_) => HomeDestaques(),
+          create: (_) => LojasManager(),
           lazy: false,
         ),
         ChangeNotifierProvider(

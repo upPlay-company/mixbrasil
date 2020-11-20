@@ -2,30 +2,30 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 
-class Section extends ChangeNotifier {
+class Lojas extends ChangeNotifier {
 
-  Section({this.img}){
+  Lojas({this.img}){
     img = img ?? [];
   }
 
-  Section.fromDocument(DocumentSnapshot document){
+  Lojas.fromDocument(DocumentSnapshot document){
     id = document.id;
     name = document.data()['name'] as String;
-    type = document.data()['type'] as String;
+    titulo = document.data()['subtitulo'] as String;
+    price = document.data()['price'] as num;
     img = List<String>.from(document.data()['img'] as List<dynamic>);
-    titulo = List<String>.from(document.data()['titulo'] as List<dynamic>);
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  DocumentReference get firestoreRef => firestore.doc('home/$id');
-  // get storageRef => storage.ref().child('home/$id');
+  DocumentReference get firestoreRef => firestore.doc('lojas/$id');
+  //StorageReference get storageRef => storage.ref().child('lojas/$id');
 
   String name;
   String id;
-  String type;
+  String titulo;
+  num price;
   List<String> img;
-  List<String> titulo;
 
 }

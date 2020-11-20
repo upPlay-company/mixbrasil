@@ -1,17 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/home/section_destaque.dart';
+import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
-  SectionDestaques(this.section2);
+  SectionDestaques(this.lojas);
 
-  final Section2 section2;
+  final Lojas lojas;
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
-      value: section2,
+      value: lojas,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
         child: Column(
@@ -19,10 +19,10 @@ class SectionDestaques extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               height: 120,
-              child: Consumer<Section2>(
-                builder: (_, section2, __) {
+              child: Consumer<Lojas>(
+                builder: (_, Lojas, __) {
                   return ListView.builder(
-                    itemCount: section2.img.length,
+                    itemCount: Lojas.img.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (_, index) {
                       return Container(
@@ -39,7 +39,7 @@ class SectionDestaques extends StatelessWidget {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.network(
-                                        section2.img.first,
+                                        Lojas.img.first,
                                         fit: BoxFit.contain,
                                       ),
                                     ),
@@ -54,14 +54,14 @@ class SectionDestaques extends StatelessWidget {
                                     children: <Widget>[
                                       SizedBox(height: 10,),
                                       Text(
-                                        section2.name,
+                                        Lojas.name,
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w800),
                                       ),
                                       SizedBox(height: 5,),
                                       Text(
-                                        section2.titulo,
+                                        Lojas.titulo,
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
@@ -78,7 +78,7 @@ class SectionDestaques extends StatelessWidget {
                                                 color: Colors.black),
                                           ),
                                           Text(
-                                            ' R\$${section2.price.toStringAsFixed(2)}',
+                                            ' R\$${Lojas.price.toStringAsFixed(2)}',
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w800,

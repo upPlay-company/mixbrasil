@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/categorias/categorias.dart';
 
@@ -9,22 +10,30 @@ class CategoriasManager extends ChangeNotifier {
     _loadCat();
   }
 
-  final List<Categorias> _categorias = [];
+  List<Categorias> _categorias = [];
 
 
   bool editing = false;
   bool loading = false;
 
-  final Firestore firestore = Firestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   Future<void> _loadCat() async {
-    firestore.collection('categorias').orderBy('pos').snapshots().listen((snapshot) {
-      _categorias.clear();
-      for(final DocumentSnapshot document in snapshot.documents){
-        _categorias.add(Categorias.fromDocument(document));
-      }
-      notifyListeners();
-    });
+    final QuerySnapshot snapCategorias =
+        await firestore.collection('categorias').get();
+
+    _categorias = snapCategorias.docs.map(
+        (c) => Categorias.fromDocument(c)).toList();
+
+    notifyListeners();
+  }
+
+  Categorias findCategoriasById(String id) {
+    try{
+      return _categorias.firstWhere((c) => c.id == id);
+    } catch (e){
+      return null;
+    }
   }
 
   List<Categorias> get categorias {

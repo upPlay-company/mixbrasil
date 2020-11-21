@@ -20,9 +20,9 @@ class SectionDestaques extends StatelessWidget {
             SizedBox(
               height: 120,
               child: Consumer<Lojas>(
-                builder: (_, Lojas, __) {
+                builder: (_, lojas, __) {
                   return ListView.builder(
-                    itemCount: Lojas.img.length,
+                    itemCount: lojas.img.length,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (_, index) {
                       return Container(
@@ -39,7 +39,7 @@ class SectionDestaques extends StatelessWidget {
                                     child: AspectRatio(
                                       aspectRatio: 1,
                                       child: Image.network(
-                                        Lojas.img.first,
+                                        lojas.img.first,
                                         fit: BoxFit.contain,
                                       ),
                                     ),
@@ -54,14 +54,14 @@ class SectionDestaques extends StatelessWidget {
                                     children: <Widget>[
                                       SizedBox(height: 10,),
                                       Text(
-                                        Lojas.name,
+                                        lojas.name,
                                         style: TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w800),
                                       ),
                                       SizedBox(height: 5,),
                                       Text(
-                                        Lojas.titulo,
+                                        lojas.titulo,
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
@@ -78,7 +78,7 @@ class SectionDestaques extends StatelessWidget {
                                                 color: Colors.black),
                                           ),
                                           Text(
-                                            ' R\$${Lojas.price.toStringAsFixed(2)}',
+                                            ' R\$${lojas.price.toStringAsFixed(2)}',
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w800,

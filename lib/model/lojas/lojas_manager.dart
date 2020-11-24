@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/categorias/categorias.dart';
+import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 
 
@@ -12,9 +12,9 @@ class LojasManager extends ChangeNotifier {
     _loadlojas();
   }
 
-  final List<Lojas> _loja = [];
-
   Categorias categorias;
+
+  final List<Lojas> _loja = [];
 
   StreamSubscription _subscription;
 
@@ -23,7 +23,7 @@ class LojasManager extends ChangeNotifier {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  void updateLoja(Categorias categorias){
+  void updateCategorias(CategoriasManager categoriasManager){
     this.categorias = categorias;
     lojas.clear();
 
@@ -34,13 +34,7 @@ class LojasManager extends ChangeNotifier {
   }
 
   Future<void> _loadlojas() async {
-    firestore.collection('lojas').orderBy('category').snapshots().listen((snapshot) {
-      _loja.clear();
-      for(final DocumentSnapshot document in snapshot.docs){
-        _loja.add(Lojas.fromDocument(document));
-      }
-      notifyListeners();
-    });
+
   }
 
   List<Lojas> get lojas {

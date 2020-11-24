@@ -9,7 +9,6 @@ class SectionCategorias extends StatelessWidget {
 
   final Categorias categorias;
 
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider.value(
@@ -30,7 +29,7 @@ class SectionCategorias extends StatelessWidget {
                     itemBuilder: (_, index) {
                       return GestureDetector(
                         onTap: (){
-                          //TODO: LISTAR CATEDORIAS
+                          Navigator.of(context).pushNamed('lojas_categorias', arguments: categorias);
                         },
                         child: Row(
                           children: <Widget>[

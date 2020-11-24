@@ -34,4 +34,8 @@ class Lojas extends ChangeNotifier {
   num price;
   List<String> img;
 
+  @override
+  String toString() {
+    return 'Lojas{categorias: $categorias, id: $id, name: $name, categoriaId: $categoriaId, titulo: $titulo, price: $price, img: $img}';
+  }
 }

@@ -19,7 +19,7 @@ class CategoriasManager extends ChangeNotifier {
 
   Future<void> _loadCat() async {
     final QuerySnapshot snapCategorias =
-        await firestore.collection('categorias').get();
+        await firestore.collection('categorias').orderBy('pos').get();
 
     _categorias = snapCategorias.docs.map(
         (c) => Categorias.fromDocument(c)).toList();

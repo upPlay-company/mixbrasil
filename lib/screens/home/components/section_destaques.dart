@@ -4,6 +4,7 @@ import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
+
   SectionDestaques(this.lojas);
 
   final Lojas lojas;

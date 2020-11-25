@@ -13,9 +13,8 @@ class Lojas extends ChangeNotifier {
 
   Lojas.fromDocument(DocumentSnapshot document){
     id = document.id;
-    categoriaId = document.data()['category'] as String;
     name = document.data()['name'] as String;
-    titulo = document.data()['subtitulo'] as String;
+    titulo = document.data()['descricao'] as String;
     price = document.data()['price'] as num;
     img = List<String>.from(document.data()['img'] as List<dynamic>);
   }
@@ -29,13 +28,12 @@ class Lojas extends ChangeNotifier {
 
   String id;
   String name;
-  String categoriaId;
   String titulo;
   num price;
   List<String> img;
 
   @override
   String toString() {
-    return 'Lojas{categorias: $categorias, id: $id, name: $name, categoriaId: $categoriaId, titulo: $titulo, price: $price, img: $img}';
+    return 'Lojas{id: $id, name: $name, titulo: $titulo, price: $price, img: $img}';
   }
 }

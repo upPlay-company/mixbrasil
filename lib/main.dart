@@ -36,12 +36,6 @@ class MyApp extends StatelessWidget {
           create: (_) => DesapegoManager(),
           lazy: false,
         ),
-        ChangeNotifierProxyProvider<CategoriasManager, LojasManager>(
-            create: (_) => LojasManager(),
-            lazy: false,
-            update: (_, categoriasManager, lojaManager) =>
-                lojaManager..updateCategorias(categoriasManager)
-        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

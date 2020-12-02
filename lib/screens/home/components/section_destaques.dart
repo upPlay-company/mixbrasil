@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/lojas/loja.dart';
-import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
 
-  SectionDestaques(this.lojas);
-
-  final Lojas lojas;
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
+    return Container();/*ChangeNotifierProvider.value(
       value: lojas,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -102,6 +97,6 @@ class SectionDestaques extends StatelessWidget {
           ],
         ),
       ),
-    );
+    );*/
   }
 }

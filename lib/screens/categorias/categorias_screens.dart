@@ -1,7 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/screens/categorias/components/section_categorias.dart';
-import 'package:provider/provider.dart';
 
 class CategoriasScreen extends StatelessWidget {
   @override
@@ -84,21 +83,22 @@ class CategoriasScreen extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<CategoriasManager>(
-            builder: (_, categoriasManager, __){
-              if(categoriasManager.loading){
+          FutureBuilder<QuerySnapshot>(
+            future: FirebaseFirestore.instance.collection('categorias').orderBy('pos').get(),
+            builder: (context, snapshot){
+              if(!snapshot.hasData){
                 return SliverToBoxAdapter(
                   child: LinearProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.black),
+                    valueColor: AlwaysStoppedAnimation(Colors.cyan),
                     backgroundColor: Colors.transparent,
                   ),
                 );
               }
 
-              final List<Widget> children = categoriasManager.categorias
-                  .map<Widget>((categorias) {
-                    return SectionCategorias(categorias);
-                }).toList();
+              final List<Widget> children = snapshot.data.docs
+                  .map<Widget>((doc) {
+                return CategoryTile(doc);
+              }).toList();
               return SliverList(
                 delegate: SliverChildListDelegate(children),
               );

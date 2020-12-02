@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
-import 'package:mix_brasil/model/lojas/lojas_manager.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
 import 'components/section_at_categorias.dart';
 import 'components/section_banner.dart';
-import 'components/section_destaques.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -98,7 +96,7 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
-          Consumer<LojasManager>(
+          /*Consumer<LojasManager>(
             builder: (_, lojaManager, __){
               if(lojaManager.loading){
                 return SliverToBoxAdapter(
@@ -117,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                 delegate: SliverChildListDelegate(children),
               );
             },
-          )
+          )*/
         ],
       ),
     );

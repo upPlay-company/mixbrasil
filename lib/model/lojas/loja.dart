@@ -1,39 +1,43 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:mix_brasil/model/categorias/categorias.dart';
 
-class Lojas extends ChangeNotifier {
+class LojasData extends ChangeNotifier {
 
-  Lojas({this.img}){
-    img = img ?? [];
-  }
-
-  Categorias categorias;
-
-  Lojas.fromDocument(DocumentSnapshot document){
-    id = document.id;
-    name = document.data()['name'] as String;
-    titulo = document.data()['descricao'] as String;
-    price = document.data()['price'] as num;
-    img = List<String>.from(document.data()['img'] as List<dynamic>);
-  }
-
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  final FirebaseStorage storage = FirebaseStorage.instance;
-
-  DocumentReference get firestoreRef => firestore.doc('lojas/$id');
-  //StorageReference get storageRef => storage.ref().child('lojas/$id');
-
-
+  String descricao;
   String id;
+  String category;
   String name;
-  String titulo;
-  num price;
-  List<String> img;
+  double price;
+  bool destaque;
+  List img;
+  int pos;
+  String promocao;
+
+  LojasData.fromDocument(DocumentSnapshot snapshot) {
+    id = snapshot.id;
+    descricao = snapshot.data()["descricao"];
+    name = snapshot.data()["name"];
+    price = snapshot.data()["price"] + 0.0;
+    img = snapshot.data()["img"];
+    destaque = snapshot.data()["destaque"];
+    promocao = snapshot.data()["promocao"];
+    pos = snapshot.data()["pos"];
+  }
+
+  Map<String, dynamic> toResumedMap() {
+    return {
+      "descricao": descricao,
+      "name": name,
+      "price": price,
+      "img": img,
+      "destaque": destaque,
+      "promocao": promocao,
+      "pos": pos,
+    };
+  }
 
   @override
   String toString() {
-    return 'Lojas{id: $id, name: $name, titulo: $titulo, price: $price, img: $img}';
+    return 'LojasData{descricao: $descricao, id: $id, category: $category, name: $name, price: $price, destaque: $destaque, img: $img, pos: $pos, promocao: $promocao}';
   }
 }

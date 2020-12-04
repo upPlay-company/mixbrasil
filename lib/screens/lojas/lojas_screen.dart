@@ -60,18 +60,15 @@ class _ProductScreenState extends State<ProductScreen> {
             width: MediaQuery.of(context).size.width,
             color: Colors.amber,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    children: <Widget>[
-                      story("Ofertas"),
-                      story("Eletros"),
-                      story("Cupons"),
-                      story("Trabalhe"),
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    story("Ofertas"),
+                    story("Eletros"),
+                    story("Cupons"),
+                    story("Trabalhe"),
+                  ],
                 ),
               ],
             ),
@@ -86,7 +83,7 @@ class _ProductScreenState extends State<ProductScreen> {
       child: Container(
         height: this.imageSize,
         width: this.imageSize,
-        margin: EdgeInsets.all(8.0),
+        margin: EdgeInsets.only(top: 15, left: 18, right: 18),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: SweepGradient(

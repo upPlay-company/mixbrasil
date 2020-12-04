@@ -14,7 +14,7 @@ class LojasTile extends StatelessWidget {
     return InkWell(
         onTap: (){
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context)=>ProductScreen(lojas))
+              MaterialPageRoute(builder: (context)=>ProductScreen(lojas)),
           );
         },
         child: Container(

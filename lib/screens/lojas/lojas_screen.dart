@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 
@@ -29,6 +30,9 @@ class _ProductScreenState extends State<ProductScreen> {
       children: [
         Scaffold(
           appBar: AppBar(
+            toolbarHeight: 0.0,
+            toolbarOpacity: 0.0,
+            bottomOpacity: 0.0,
             backgroundColor: Colors.transparent,
           ),
           body: ListView(
@@ -52,32 +56,32 @@ class _ProductScreenState extends State<ProductScreen> {
         Positioned(
           top: 240,
           child: Container(
-            height: 300,
-            width: 330,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             color: Colors.amber,
             child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      children: <Widget>[
-                        story(),
-                        story(),
-                        story(),
-                        story(),
-                      ],
-                    ),
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: <Widget>[
+                      story("Ofertas"),
+                      story("Eletros"),
+                      story("Cupons"),
+                      story("Trabalhe"),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
     );
   }
 
-  Widget story(){
+  Widget story(String title) {
     return GestureDetector(
       child: Container(
         height: this.imageSize,
@@ -122,7 +126,4 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
     );
   }
-
 }
-
-

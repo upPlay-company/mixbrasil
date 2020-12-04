@@ -13,6 +13,7 @@ class Categorias extends ChangeNotifier {
     id = document.id;
     name = document.data()['name'] as String;
     img = document.data()['image'] as String;
+
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -21,7 +22,7 @@ class Categorias extends ChangeNotifier {
   DocumentReference get firestoreRef => firestore.doc('home/$id');
   //StorageReference get storageRef => storage.ref().child('home/$id');
 
-
+  List<Categorias> lojas1;
   String name;
   String id;
   String img;

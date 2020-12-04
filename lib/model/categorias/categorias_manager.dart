@@ -23,7 +23,6 @@ class CategoriasManager extends ChangeNotifier {
 
     _categorias = snapCategorias.docs.map(
         (c) => Categorias.fromDocument(c)).toList();
-
     notifyListeners();
   }
 

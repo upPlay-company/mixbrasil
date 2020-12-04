@@ -28,12 +28,6 @@ class _ProductScreenState extends State<ProductScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            toolbarHeight: 0.0,
-            toolbarOpacity: 0.0,
-            bottomOpacity: 0.0,
-            backgroundColor: Colors.transparent,
-          ),
           body: ListView(
             children: <Widget>[
               AspectRatio(
@@ -51,13 +45,25 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ],
           ),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.arrow_back),
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         ),
         Positioned(
           top: 240,
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            color: Colors.amber,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+            ),
             child: Expanded(
               child: Column(
                 children: [

@@ -1,17 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
+import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:mix_brasil/screens/categorias/components/lojas_tile.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
 import 'components/section_at_categorias.dart';
 import 'components/section_banner.dart';
+import 'components/section_destaques.dart';
 
 class HomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: CustomScrollView(
-        slivers: [
+        backgroundColor: Colors.white,
+        body: CustomScrollView(slivers: [
           SliverAppBar(
             expandedHeight: 80,
             snap: true,
@@ -67,8 +71,8 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           Consumer<HomeManager>(
-            builder: (_, homeManager, __){
-              if(homeManager.loading){
+            builder: (_, homeManager, __) {
+              if (homeManager.loading) {
                 return SliverToBoxAdapter(
                   child: LinearProgressIndicator(
                     valueColor: AlwaysStoppedAnimation(Colors.black),
@@ -77,14 +81,14 @@ class HomeScreen extends StatelessWidget {
                 );
               }
 
-              final List<Widget> children = homeManager.sections
-                  .map<Widget>((section) {
-                switch(section.type){
-                  case 'at_categorias' :
+              final List<Widget> children =
+                  homeManager.sections.map<Widget>((section) {
+                switch (section.type) {
+                  case 'at_categorias':
                     return SectionAtCategorias(section);
-                  case 'banners' :
+                  case 'banners':
                     return SectionBanner(section);
-                  case 'titulo_destaques' :
+                  case 'titulo_destaques':
                     return SectionHeader(section);
                   default:
                     return Container();
@@ -106,7 +110,6 @@ class HomeScreen extends StatelessWidget {
                   ),
                 );
               }
-
               final List<Widget> children = lojaManager.lojas
                   .map<Widget>((section) {
                     return SectionDestaques(section);
@@ -116,8 +119,6 @@ class HomeScreen extends StatelessWidget {
               );
             },
           )*/
-        ],
-      ),
-    );
+        ]));
   }
 }

@@ -6,6 +6,7 @@ import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:mix_brasil/screens/home/home_screen.dart';
 
 class BaseScreen extends StatefulWidget {
+
   @override
   _BaseScreenState createState() => _BaseScreenState();
 }

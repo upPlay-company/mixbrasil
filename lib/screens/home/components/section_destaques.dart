@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
 
+  SectionDestaques(this.lojas);
+
+  final LojasData lojas;
 
   @override
   Widget build(BuildContext context) {
-    return Container();/*ChangeNotifierProvider.value(
+    return ChangeNotifierProvider.value(
       value: lojas,
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
@@ -15,7 +20,7 @@ class SectionDestaques extends StatelessWidget {
           children: <Widget>[
             SizedBox(
               height: 120,
-              child: Consumer<Lojas>(
+              child: Consumer<LojasData>(
                 builder: (_, lojas, __) {
                   return ListView.builder(
                     itemCount: lojas.img.length,
@@ -57,7 +62,7 @@ class SectionDestaques extends StatelessWidget {
                                       ),
                                       SizedBox(height: 5,),
                                       Text(
-                                        lojas.titulo,
+                                        lojas.descricao,
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700,
@@ -97,6 +102,6 @@ class SectionDestaques extends StatelessWidget {
           ],
         ),
       ),
-    );*/
+    );
   }
 }

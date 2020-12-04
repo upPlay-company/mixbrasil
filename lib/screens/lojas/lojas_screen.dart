@@ -18,7 +18,6 @@ class _ProductScreenState extends State<ProductScreen> {
   _ProductScreenState(this.lojas);
 
   String image;
-  double imageSize = 60.0;
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
 
@@ -63,7 +62,7 @@ class _ProductScreenState extends State<ProductScreen> {
               child: Column(
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       story("Ofertas"),
                       story("Eletros"),
@@ -83,8 +82,9 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget story(String title) {
     return GestureDetector(
       child: Container(
-        height: this.imageSize,
-        width: this.imageSize,
+        height: 70,
+        width: 70,
+        margin: EdgeInsets.only(top: 15),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           gradient: SweepGradient(

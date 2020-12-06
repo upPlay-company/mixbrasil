@@ -19,6 +19,7 @@ class LojasTile extends StatelessWidget {
         },
         child: Container(
             height: 120,
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Card(
               color: Colors.cyan[50],
               child: Row(

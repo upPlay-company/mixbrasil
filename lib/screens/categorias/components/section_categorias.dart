@@ -7,7 +7,7 @@ class CategoryTile extends StatelessWidget {
 
   final DocumentSnapshot snapshot;
 
-  CategoryTile(this.snapshot);
+  CategoryTile({this.snapshot});
 
   @override
   Widget build(BuildContext context) {

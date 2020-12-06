@@ -1,62 +1,48 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/home/section.dart';
-import 'package:provider/provider.dart';
+import 'package:mix_brasil/screens/categorias/categorias_lojas_screen.dart';
 
 class SectionAtCategorias extends StatelessWidget {
 
-  SectionAtCategorias(this.section);
+  final DocumentSnapshot snapshot;
 
-  final Section section;
+  SectionAtCategorias({this.snapshot});
 
   @override
   Widget build(BuildContext context) {
-
-    return ChangeNotifierProvider.value(
-      value: section,
+    return InkWell(
+      onTap: (){
+        Navigator.of(context).push(
+            MaterialPageRoute(builder:
+                (context)=>CategoryScreen(snapshot))
+        );
+      },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: 200,
-              child: Consumer<Section>(
-                builder: (_, section, __){
-                  return ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: section.img.length,
-                    itemBuilder: (_, index){
-                      return Padding(
-                        padding: const EdgeInsets.only(top: 15, right: 5),
-                        child: Container(
-                          height: 100,
-                          width: 150,
-                          child: Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                    height: 100,
-                                    width: 100,
-                                    child: Image.network(
-                                      section.img[index],
-                                      fit: BoxFit.cover,)),
-                                SizedBox(height: 10,),
-                                Text(section.titulo[index],
-                                      style: TextStyle(fontSize: 18,
-                                          fontWeight: FontWeight.w600),)
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
+        width: 200,
+        child: Card(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: Image.network(
+                    snapshot.data()['image'],
+                    fit: BoxFit.cover,)),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    snapshot.data()['name'],
+                    style: TextStyle(fontSize: 18,
+                        fontWeight: FontWeight.w600),),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

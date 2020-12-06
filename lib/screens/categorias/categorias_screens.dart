@@ -97,7 +97,7 @@ class CategoriasScreen extends StatelessWidget {
 
               final List<Widget> children = snapshot.data.docs
                   .map<Widget>((doc) {
-                return CategoryTile(doc);
+                return CategoryTile(snapshot: doc,);
               }).toList();
               return SliverList(
                 delegate: SliverChildListDelegate(children),

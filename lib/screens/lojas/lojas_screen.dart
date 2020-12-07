@@ -23,42 +23,53 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme.of(context).primaryColor;
+    final Color primaryColor = Theme
+        .of(context)
+        .primaryColor;
 
     return Stack(
       children: [
         Scaffold(
-          body: ListView(
-            children: <Widget>[
-              AspectRatio(
-                aspectRatio: 1.3,
-                child: Carousel(
-                  images: lojas.img.map((url) {
-                    return NetworkImage(url);
-                  }).toList(),
-                  dotSize: 4.0,
-                  dotSpacing: 15.0,
-                  dotBgColor: Colors.transparent,
-                  dotColor: primaryColor,
-                  autoplay: false,
-                ),
-              ),
-            ],
+          body: AspectRatio(
+            aspectRatio: 1.3,
+            child: Carousel(
+              images: lojas.img.map((url) {
+                return NetworkImage(url);
+              }).toList(),
+              dotSize: 4.0,
+              dotSpacing: 15.0,
+              dotBgColor: Colors.transparent,
+              dotColor: primaryColor,
+              autoplay: false,
+            ),
           ),
-          floatingActionButton: FloatingActionButton(
+        ),
+        Positioned(
+          top: 5,
+          left: 5,
+          child: FloatingActionButton(
             child: Icon(Icons.arrow_back),
-            backgroundColor: Theme.of(context).primaryColor,
+            backgroundColor: Theme
+                .of(context)
+                .primaryColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16.0))),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
-          floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
         ),
         Positioned(
           top: 240,
           child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
+            height: MediaQuery
+                .of(context)
+                .size
+                .height,
+            width: MediaQuery
+                .of(context)
+                .size
+                .width,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -70,12 +81,13 @@ class _ProductScreenState extends State<ProductScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      story("Ofertas"),
-                      story("Eletros"),
-                      story("Cupons"),
-                      story("Trabalhe"),
+                      story("\nOfertas"),
+                      story("\nEletros"),
+                      story("\nCupons"),
+                      story("Trabalhe conosco"),
                     ],
                   ),
+
                 ],
               ),
             ),
@@ -122,6 +134,11 @@ class _ProductScreenState extends State<ProductScreen> {
                 // borderRadius: BorderRadius.circular(50.0),
                 shape: BoxShape.circle,
               ),
+              child: Text(
+                title,
+                style: TextStyle(fontSize: 5),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
           // Image container
@@ -130,4 +147,34 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
     );
   }
+
+  Widget CardPromo() {
+    return InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => ProductScreen(lojas)),
+          );
+        },
+        child: Container(
+            height: 100,
+            child: Card(
+              color: Colors.cyan[50],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: SizedBox(
+                  width: 50,
+                  height: 50,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.network(
+                      lojas.img.first,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+              ),
+            ))
+    );
+  }
 }
+

@@ -25,10 +25,20 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;
-    return Stack(
-      children: [
-        Scaffold(
-          body: AspectRatio(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_back),
+        backgroundColor: Theme.of(context).primaryColor,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(16.0))),
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+      body: ListView(
+        children: [
+          AspectRatio(
             aspectRatio: 1.3,
             child: Carousel(
               images: lojas.img.map((url) {
@@ -41,67 +51,54 @@ class _ProductScreenState extends State<ProductScreen> {
               autoplay: false,
             ),
           ),
-        ),
-        Positioned(
-          top: 5,
-          left: 5,
-          child: FloatingActionButton(
-            child: Icon(Icons.arrow_back),
-            backgroundColor: Theme.of(context).primaryColor,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(16.0))),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          ),
-        ),
-        Positioned(
-          top: 240,
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-            ),
-            child: Expanded(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      story("\nOfertas"),
-                      story("\nEletros"),
-                      story("\nCupons"),
-                      story("Trabalhe conosco"),
-                    ],
-                  ),
-                  styleButton(),
-                  CardOfertas(),
-                ],
+          Positioned(
+            top: 240,
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20)),
+              ),
+              child: Expanded(
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        story("\nOfertas", ProductScreen(lojas)),
+                        story("\nEletros", ProductScreen(lojas)),
+                        story("\nCupons", ProductScreen(lojas)),
+                        story("Trabalhe conosco", ProductScreen(lojas)),
+                      ],
+                    ),
+                    styleButton(),
+                    cardOfertas(),
+                  ],
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
-  Widget CardOfertas() {
-    return Card(
-      semanticContainer: true,
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image.network(
-        url,
-        fit: BoxFit.fill,
-      ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0)
-      ),
-      elevation: 5,
-      margin: EdgeInsets.all(10),
-    );
+  Widget cardOfertas() {
+    return  Card(
+        semanticContainer: true,
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: Image.network(
+          url,
+          fit: BoxFit.fill,
+        ),
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+        elevation: 5,
+        margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),
+      );
   }
 
   Widget styleButton() {
@@ -127,9 +124,13 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  Widget story(String title) {
+  Widget story(String title, Widget rota) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => rota),
+        );
+      },
       child: Container(
         height: 70,
         width: 70,
@@ -174,33 +175,6 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
           // Image container
           //
-        ),
-      ),
-    );
-  }
-
-  Widget CardPromo() {
-    return InkWell(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => ProductScreen(lojas)),
-        );
-      },
-      child: Container(
-        height: 100,
-        child: Card(
-          color: Colors.cyan[50],
-          child: SizedBox(
-            width: 25,
-            height: 25,
-            child: AspectRatio(
-              aspectRatio: 1,
-              child: Image.network(
-                lojas.img.first,
-                fit: BoxFit.contain,
-              ),
-            ),
-          ),
         ),
       ),
     );

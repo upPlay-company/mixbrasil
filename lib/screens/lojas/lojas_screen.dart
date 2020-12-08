@@ -17,16 +17,14 @@ class _ProductScreenState extends State<ProductScreen> {
 
   _ProductScreenState(this.lojas);
 
-  String image;
+  String url =
+      "https://st.depositphotos.com/1186248/2240/i/950/depositphotos_22400321-stock-photo-100-percent-rubber-stamp.jpg";
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
 
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme
-        .of(context)
-        .primaryColor;
-
+    final Color primaryColor = Theme.of(context).primaryColor;
     return Stack(
       children: [
         Scaffold(
@@ -49,9 +47,7 @@ class _ProductScreenState extends State<ProductScreen> {
           left: 5,
           child: FloatingActionButton(
             child: Icon(Icons.arrow_back),
-            backgroundColor: Theme
-                .of(context)
-                .primaryColor,
+            backgroundColor: Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(16.0))),
             onPressed: () {
@@ -62,14 +58,8 @@ class _ProductScreenState extends State<ProductScreen> {
         Positioned(
           top: 240,
           child: Container(
-            height: MediaQuery
-                .of(context)
-                .size
-                .height,
-            width: MediaQuery
-                .of(context)
-                .size
-                .width,
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
@@ -87,7 +77,8 @@ class _ProductScreenState extends State<ProductScreen> {
                       story("Trabalhe conosco"),
                     ],
                   ),
-
+                  styleButton(),
+                  CardOfertas(),
                 ],
               ),
             ),
@@ -97,8 +88,48 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+  Widget CardOfertas() {
+    return Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Image.network(
+        url,
+        fit: BoxFit.fill,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0)
+      ),
+      elevation: 5,
+      margin: EdgeInsets.all(10),
+    );
+  }
+
+  Widget styleButton() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: SizedBox(
+        width: 120,
+        height: 40,
+        child: RaisedButton(
+          onPressed: () {},
+          color: Theme.of(context).secondaryHeaderColor,
+          child: Text(
+            "Ofertas",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          )),
+        ),
+      ),
+    );
+  }
+
   Widget story(String title) {
     return GestureDetector(
+      onTap: () {},
       child: Container(
         height: 70,
         width: 70,
@@ -150,31 +181,28 @@ class _ProductScreenState extends State<ProductScreen> {
 
   Widget CardPromo() {
     return InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProductScreen(lojas)),
-          );
-        },
-        child: Container(
-            height: 100,
-            child: Card(
-              color: Colors.cyan[50],
-              child: Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: SizedBox(
-                  width: 50,
-                  height: 50,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child: Image.network(
-                      lojas.img.first,
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => ProductScreen(lojas)),
+        );
+      },
+      child: Container(
+        height: 100,
+        child: Card(
+          color: Colors.cyan[50],
+          child: SizedBox(
+            width: 25,
+            height: 25,
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: Image.network(
+                lojas.img.first,
+                fit: BoxFit.contain,
               ),
-            ))
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
-

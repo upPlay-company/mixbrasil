@@ -108,18 +108,23 @@ class _ProductScreenState extends State<ProductScreen> {
       child: SizedBox(
         width: 120,
         height: 40,
-        child: RaisedButton(
-          onPressed: () {},
-          color: Theme.of(context).secondaryHeaderColor,
-          child: Text(
-            "Ofertas",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        child: Container(
+          child: Center(
+            child: Text(
+              "Ofertas",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          )),
+          decoration: BoxDecoration(
+            color: Theme.of(context).secondaryHeaderColor,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20),
+              bottomLeft: Radius.circular(20),
+            ),
+          ),
         ),
       ),
     );

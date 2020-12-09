@@ -36,32 +36,31 @@ class _ProductScreenState extends State<ProductScreen> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: ListView(
-        children: [
-          AspectRatio(
-            aspectRatio: 1.3,
-            child: Carousel(
-              images: lojas.img.map((url) {
-                return NetworkImage(url);
-              }).toList(),
-              dotSize: 4.0,
-              dotSpacing: 15.0,
-              dotBgColor: Colors.transparent,
-              dotColor: primaryColor,
-              autoplay: false,
-            ),
-          ),
-          Positioned(
-            top: 240,
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20)),
+      body: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        ),
+        child: ListView(
+          children: [
+            AspectRatio(
+              aspectRatio: 1.3,
+              child: Carousel(
+                images: lojas.img.map((url) {
+                  return NetworkImage(url);
+                }).toList(),
+                dotSize: 4.0,
+                dotSpacing: 15.0,
+                dotBgColor: Colors.transparent,
+                dotColor: primaryColor,
+                autoplay: false,
               ),
+            ),
+            Positioned(
+              top: 240,
               child: Expanded(
                 child: Column(
                   children: [
@@ -80,25 +79,24 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 
   Widget cardOfertas() {
-    return  Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        child: Image.network(
-          url,
-          fit: BoxFit.fill,
-        ),
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        elevation: 5,
-        margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),
-      );
+    return Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      child: Image.network(
+        url,
+        fit: BoxFit.fill,
+      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      elevation: 5,
+      margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),
+    );
   }
 
   Widget styleButton() {

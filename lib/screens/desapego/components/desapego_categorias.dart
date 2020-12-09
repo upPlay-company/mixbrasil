@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_tile.dart';
 
 class DesapegoCategorias extends StatelessWidget {
-
+  //inicio
   @override
   Widget build(BuildContext context) {
     return Scaffold(

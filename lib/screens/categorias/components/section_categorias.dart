@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../categorias_lojas_screen.dart';
 
 class CategoryTile extends StatelessWidget {
-
+  //variaveis
   final DocumentSnapshot snapshot;
 
   CategoryTile({this.snapshot});

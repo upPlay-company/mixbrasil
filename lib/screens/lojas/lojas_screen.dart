@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 
 class ProductScreen extends StatefulWidget {
+  //variaveis
   final LojasData lojas;
 
   ProductScreen(this.lojas);

@@ -36,51 +36,44 @@ class _ProductScreenState extends State<ProductScreen> {
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        ),
-        child: ListView(
-          children: [
-            AspectRatio(
-              aspectRatio: 1.3,
-              child: Carousel(
-                images: lojas.img.map((url) {
-                  return NetworkImage(url);
-                }).toList(),
-                dotSize: 4.0,
-                dotSpacing: 15.0,
-                dotBgColor: Colors.transparent,
-                dotColor: primaryColor,
-                autoplay: false,
+      body: ListView(
+        children: [
+          AspectRatio(
+            aspectRatio: 1.3,
+            child: Carousel(
+              images: lojas.img.map((url) {
+                return NetworkImage(url);
+              }).toList(),
+              dotSize: 4.0,
+              dotSpacing: 15.0,
+              dotBgColor: Colors.transparent,
+              dotColor: primaryColor,
+              autoplay: false,
+            ),
+          ),
+          Positioned(
+            top: 240,
+            child: Expanded(
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      story("\nOfertas", ProductScreen(lojas)),
+                      story("\nEletros", ProductScreen(lojas)),
+                      story("\nCupons", ProductScreen(lojas)),
+                      story("Trabalhe conosco", ProductScreen(lojas)),
+                    ],
+                  ),
+                  styleButton(),
+                  cardOfertas(),
+                  cardOfertas(),
+                  cardOfertas(),
+                ],
               ),
             ),
-            Positioned(
-              top: 240,
-              child: Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        story("\nOfertas", ProductScreen(lojas)),
-                        story("\nEletros", ProductScreen(lojas)),
-                        story("\nCupons", ProductScreen(lojas)),
-                        story("Trabalhe conosco", ProductScreen(lojas)),
-                      ],
-                    ),
-                    styleButton(),
-                    cardOfertas(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

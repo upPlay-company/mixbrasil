@@ -26,14 +26,17 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_back),
-        backgroundColor: Theme.of(context).primaryColor,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0))),
-        onPressed: () {
-          Navigator.of(context).pop();
-        },
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: FloatingActionButton(
+          child: Icon(Icons.arrow_back),
+          backgroundColor: Theme.of(context).primaryColor,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0))),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: ListView(
@@ -48,11 +51,17 @@ class _ProductScreenState extends State<ProductScreen> {
               dotSpacing: 15.0,
               dotBgColor: Colors.transparent,
               dotColor: primaryColor,
-              autoplay: false,
+              autoplay: true,
             ),
           ),
-          Positioned(
-            top: 240,
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                topRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
+              ),
+            ),
             child: Expanded(
               child: Column(
                 children: [
@@ -78,6 +87,7 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+  //Declarações de funções
   Widget cardOfertas() {
     return Card(
       semanticContainer: true,

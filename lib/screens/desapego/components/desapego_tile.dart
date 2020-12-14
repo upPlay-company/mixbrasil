@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import 'desapego_card_tile.dart';
+
 class DesapegoTile extends StatelessWidget {
 
   final DocumentSnapshot snapshot;

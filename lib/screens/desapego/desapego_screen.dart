@@ -13,11 +13,12 @@ class DesapegoScreen extends StatelessWidget {
             snap: true,
             floating: true,
             elevation: 0,
-            title: Text('DESAPEGOS', style: TextStyle(
-                color: Colors.black,
-                fontSize: 22,
-                fontWeight: FontWeight.bold
-              ),
+            title: Text(
+              'DESAPEGOS',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
@@ -34,8 +35,7 @@ class DesapegoScreen extends StatelessWidget {
                       child: RaisedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => DesapegoCategorias()
-                          ));
+                              builder: (context) => DesapegoCategorias()));
                         },
                         color: Theme.of(context).primaryColor,
                         child: Text(
@@ -45,7 +45,8 @@ class DesapegoScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.horizontal(
                                 left: Radius.circular(10),
-                                right: Radius.circular(10))),),
+                                right: Radius.circular(10))),
+                      ),
                     ),
                     Row(
                       children: [
@@ -65,7 +66,9 @@ class DesapegoScreen extends StatelessWidget {
                                     right: Radius.circular(10))),
                           ),
                         ),
-                        SizedBox(width: 5,),
+                        SizedBox(
+                          width: 5,
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(right: 10),
                           child: SizedBox(
@@ -100,7 +103,7 @@ class DesapegoScreen extends StatelessWidget {
               childAspectRatio: 4.0,
             ),
             delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
+              (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: RaisedButton(
@@ -118,7 +121,7 @@ class DesapegoScreen extends StatelessWidget {
               },
               childCount: 4,
             ),
-          )
+          ),
         ],
       ),
     );

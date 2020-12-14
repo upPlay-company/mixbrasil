@@ -42,17 +42,19 @@ class _ProductScreenState extends State<ProductScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: ListView(
         children: [
-          AspectRatio(
-            aspectRatio: 1.3,
-            child: Carousel(
-              images: lojas.img.map((url) {
-                return NetworkImage(url);
-              }).toList(),
-              dotSize: 4.0,
-              dotSpacing: 15.0,
-              dotBgColor: Colors.transparent,
-              dotColor: primaryColor,
-              autoplay: true,
+          Container(
+            child: AspectRatio(
+              aspectRatio: 1.3,
+              child: Carousel(
+                images: lojas.img.map((url) {
+                  return NetworkImage(url);
+                }).toList(),
+                dotSize: 4.0,
+                dotSpacing: 15.0,
+                dotBgColor: Colors.transparent,
+                dotColor: primaryColor,
+                autoplay: true,
+              ),
             ),
           ),
           Container(

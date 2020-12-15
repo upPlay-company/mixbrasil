@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/Testes/cards.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';

@@ -23,7 +23,6 @@ class LojasDestaqueManager extends ChangeNotifier {
     _lojasDestaque = snapDestaques.docs.map(
             (c) => DestaqueLoja.fromDocument(c)).toList();
 
-    print(_lojasDestaque);
     notifyListeners();
   }
 

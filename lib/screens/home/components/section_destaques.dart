@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
+import 'package:mix_brasil/screens/home/components/lojas_destaques_screen.dart';
 import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
@@ -19,7 +20,7 @@ class SectionDestaques extends StatelessWidget {
             final product = context.read<LojasDestaqueManager>().findProductByID(lojasDestaque.id);
             if(product !=  null){
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context)=>Container()),
+                MaterialPageRoute(builder: (context)=>LojasDestaqueScreen(lojasDestaque)),
               );
             }
           }

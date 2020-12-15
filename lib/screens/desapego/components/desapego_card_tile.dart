@@ -5,9 +5,10 @@ import 'itens_desapegos_screen.dart';
 
 class DesapegoCardTile extends StatelessWidget {
 
+  final String type;
   final DesapegoData desapego;
 
-  DesapegoCardTile(this.desapego);
+  DesapegoCardTile(this.type, this.desapego);
 
   @override
   Widget build(BuildContext context) {

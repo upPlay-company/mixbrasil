@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:mix_brasil/model/desapego/desapego.dart';
+import 'desapego_card_tile.dart';
 
-import 'components/lojas_tile.dart';
-
-class CategoryScreen extends StatelessWidget {
+class DesapegoLojaScreen extends StatelessWidget {
   final DocumentSnapshot snapshot;
 
-  CategoryScreen(this.snapshot);
+  DesapegoLojaScreen(this.snapshot);
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +52,9 @@ class CategoryScreen extends StatelessWidget {
         ),
         body: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance
-              .collection("categorias")
+              .collection("desapego")
               .doc(snapshot.id)
-              .collection("lojas")
+              .collection("desapegos")
               .get(),
           builder: (context, snapshot) {
             if (!snapshot.hasData)
@@ -67,10 +66,10 @@ class CategoryScreen extends StatelessWidget {
                   padding: EdgeInsets.all(4.0),
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
-                    LojasData data =
-                        LojasData.fromDocument(snapshot.data.docs[index]);
+                    DesapegoData data =
+                    DesapegoData.fromDocument(snapshot.data.docs[index]);
                     data.category = this.snapshot.id;
-                    return LojasTile("list", data);
+                    return DesapegoCardTile("list", data);
                   });
           },
         ));

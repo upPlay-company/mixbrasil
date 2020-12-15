@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import 'desapego_card_tile.dart';
+import 'desapego_lojas_screen.dart';
 
 class DesapegoTile extends StatelessWidget {
 
@@ -30,7 +29,7 @@ class DesapegoTile extends StatelessWidget {
       onTap: (){
         Navigator.of(context).push(
             MaterialPageRoute(builder:
-                (context)=>Container())
+                (context)=>DesapegoLojaScreen(snapshot))
         );
       },
     );

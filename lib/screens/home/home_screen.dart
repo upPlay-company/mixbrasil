@@ -33,37 +33,22 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset('images/Logo mix.png'),
-                    SizedBox(
-                      width: 140,
-                      child: RaisedButton(
-                          onPressed: () {},
-                          color: Theme.of(context).secondaryHeaderColor,
-                          child: Text(
-                            //TODO: COLOCAR CIDADE
-                            'Manaus',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)))),
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 10),
+                      padding: const EdgeInsets.only(right: 20),
                       child: SizedBox(
-                        width: 55,
+                        width: 140,
                         child: RaisedButton(
-                          color: Theme.of(context).primaryColor,
-                          onPressed: () {},
-                          child: Icon(
-                            Icons.search,
-                            color: Colors.white,
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.horizontal(
-                                  left: Radius.circular(10),
-                                  right: Radius.circular(10))),
-                        ),
+                            onPressed: () {},
+                            color: Theme.of(context).secondaryHeaderColor,
+                            child: Text(
+                              //TODO: COLOCAR CIDADE
+                              'Manaus',
+                              style: TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20)))),
                       ),
                     ),
                   ],

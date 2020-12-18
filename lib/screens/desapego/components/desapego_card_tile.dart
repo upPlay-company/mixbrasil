@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 
 import 'itens_desapegos_screen.dart';
 
 class DesapegoCardTile extends StatelessWidget {
-
   final String type;
   final DesapegoData desapego;
 
@@ -13,9 +13,10 @@ class DesapegoCardTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: (){
+        onTap: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context)=>ItensDesapegoScreen(desapego)),
+            MaterialPageRoute(
+                builder: (context) => ItensDesapegoScreen(desapego)),
           );
         },
         child: Container(
@@ -46,47 +47,58 @@ class DesapegoCardTile extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        SizedBox(height: 10,),
-                        Text(
-                          desapego.name,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w800),
+                        SizedBox(
+                          height: 10,
                         ),
-                        SizedBox(height: 5,),
-                        Text(
-                          desapego.descricao,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey[700]),
-                        ),
-                        SizedBox(height: 20,),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'A partir de',
+                              desapego.name,
                               style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.black),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w900,
+                              ),
+                            ),
+                            Icon(
+                              LineIcons.bookmark,
+                              color: Colors.black,
+                              size: 15,
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              size: 15,
+                              color: Colors.grey[700],
                             ),
                             Text(
-                              ' R\$${desapego.price.toStringAsFixed(2)}',
+                              "Concessonária FORD",
                               style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context).primaryColor
-                              ),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.grey[700]),
                             ),
                           ],
                         ),
+                        Text(
+                           "DESTACADO",
+                           style: TextStyle(
+                             fontWeight: FontWeight.bold,
+                             backgroundColor: Colors.black,
+                             color: Colors.white,
+                           ),
+                         ),
                       ],
                     ),
                   )
                 ],
               ),
-            ))
-    );
+            )));
   }
 }

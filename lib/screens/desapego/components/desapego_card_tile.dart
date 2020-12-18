@@ -56,14 +56,14 @@ class DesapegoCardTile extends StatelessWidget {
                             Text(
                               desapego.name,
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                                 fontWeight: FontWeight.w900,
                               ),
                             ),
                             Icon(
                               LineIcons.bookmark,
                               color: Colors.black,
-                              size: 15,
+                              size: 20,
                             )
                           ],
                         ),
@@ -86,14 +86,30 @@ class DesapegoCardTile extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Text(
-                           "DESTACADO",
-                           style: TextStyle(
-                             fontWeight: FontWeight.bold,
-                             backgroundColor: Colors.black,
-                             color: Colors.white,
-                           ),
-                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 18, right: 10,),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Container(
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                     "DESTACADO",
+                                     style: TextStyle(
+                                       fontWeight: FontWeight.bold,
+                                       color: Colors.white,
+                                     ),
+                                   ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   )

@@ -19,11 +19,21 @@ class CategoriasScreen extends StatelessWidget {
             flexibleSpace: Padding(
               padding: const EdgeInsets.only(top: 27),
               child: Container(
-                padding: EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Text(
+                        'Todas as categorias',
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       width: 120,
                       child: RaisedButton(
@@ -38,46 +48,6 @@ class CategoriasScreen extends StatelessWidget {
                                   bottomLeft: Radius.circular(20),
                                   topRight: Radius.circular(20)))),
                     ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 55,
-                          height: 100,
-                          child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            onPressed: () {},
-                            child: Icon(
-                              Icons.filter_list_rounded,
-                              color: Colors.white,
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(10),
-                                    right: Radius.circular(10))),
-                          ),
-                        ),
-                        SizedBox(width: 5,),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: SizedBox(
-                            width: 55,
-                            height: 100,
-                            child: RaisedButton(
-                              color: Theme.of(context).primaryColor,
-                              onPressed: () {},
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.white,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.horizontal(
-                                      left: Radius.circular(10),
-                                      right: Radius.circular(10))),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )
                   ],
                 ),
               ),

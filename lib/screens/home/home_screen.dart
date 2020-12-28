@@ -11,7 +11,6 @@ import 'components/section_banner.dart';
 import 'components/section_destaques.dart';
 
 class HomeScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,17 +37,20 @@ class HomeScreen extends StatelessWidget {
                       child: SizedBox(
                         width: 140,
                         child: RaisedButton(
-                            onPressed: () {},
-                            color: Theme.of(context).secondaryHeaderColor,
-                            child: Text(
-                              //TODO: COLOCAR CIDADE
-                              'Manaus',
-                              style: TextStyle(color: Colors.white, fontSize: 20),
+                          onPressed: () {},
+                          color: Theme.of(context).secondaryHeaderColor,
+                          child: Text(
+                            //TODO: COLOCAR CIDADE
+                            'Manaus',
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                              topRight: Radius.circular(20),
                             ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20)))),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -87,17 +89,24 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.only(top: 20),
               height: 200.0,
               child: FutureBuilder<QuerySnapshot>(
-                future: FirebaseFirestore.instance.collection("categorias").orderBy('pos').get(),
-                builder: (context, snapshot){
-                  if(!snapshot.hasData)
-                    return Center(child: CircularProgressIndicator(),);
+                future: FirebaseFirestore.instance
+                    .collection("categorias")
+                    .orderBy('pos')
+                    .get(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData)
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
                   else
                     return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.all(4.0),
                         itemCount: 4,
                         itemBuilder: (context, index) {
-                          return SectionAtCategorias(snapshot: snapshot.data.docs[index],);
+                          return SectionAtCategorias(
+                            snapshot: snapshot.data.docs[index],
+                          );
                         });
                 },
               ),

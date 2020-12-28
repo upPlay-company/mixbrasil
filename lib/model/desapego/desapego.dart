@@ -12,6 +12,7 @@ class DesapegoData extends ChangeNotifier {
   List img;
   int pos;
   String promocao;
+  String number;
 
   DesapegoData.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;
@@ -22,6 +23,7 @@ class DesapegoData extends ChangeNotifier {
     destaque = snapshot.data()["destaque"];
     promocao = snapshot.data()["promocao"];
     pos = snapshot.data()["pos"];
+    number = snapshot.data()["number"];
   }
 
   Map<String, dynamic> toResumedMap() {

@@ -23,7 +23,7 @@ class DesapegoCardTile extends StatelessWidget {
             height: 120,
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Card(
-              color: Colors.cyan[50],
+              color: Colors.white,
               child: Row(
                 children: <Widget>[
                   Padding(
@@ -53,22 +53,24 @@ class DesapegoCardTile extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              desapego.name,
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 3.0),
+                                child: Text(
+                                  desapego.name,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
                               ),
                             ),
                             Icon(
                               LineIcons.bookmark,
                               color: Colors.black,
-                              size: 20,
+                              size: 25,
                             )
                           ],
-                        ),
-                        SizedBox(
-                          height: 15,
                         ),
                         Row(
                           children: [
@@ -89,24 +91,15 @@ class DesapegoCardTile extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 18, right: 10,),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              Container(
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                     "DESTACADO",
-                                     style: TextStyle(
-                                       fontWeight: FontWeight.bold,
-                                       color: Colors.white,
-                                     ),
-                                   ),
-                                ),
-                              ),
+                              Text(
+                                 'R\$${desapego.price.toStringAsFixed(2)}',
+                                textScaleFactor: 1.2,
+                                 style: TextStyle(
+                                   fontWeight: FontWeight.bold,
+                                   color: Theme.of(context).primaryColor,
+                                 ),
+                               ),
                             ],
                           ),
                         ),

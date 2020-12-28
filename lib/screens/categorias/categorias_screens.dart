@@ -27,26 +27,12 @@ class CategoriasScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 12),
                       child: Text(
-                        'Todas as categorias',
+                        'Categorias',
                         style: TextStyle(
-                          fontSize: 22,
+                          fontSize: 25,
                           fontWeight: FontWeight.bold
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      width: 120,
-                      child: RaisedButton(
-                          onPressed: () {},
-                          color: Theme.of(context).secondaryHeaderColor,
-                          child: Text(
-                            'Manaus',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)))),
                     ),
                   ],
                 ),

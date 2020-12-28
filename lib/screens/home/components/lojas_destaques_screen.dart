@@ -72,7 +72,6 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       story("\nOfertas", LojasDestaqueScreen(lojasDestaque)),
-                      story("\nEletros", LojasDestaqueScreen(lojasDestaque)),
                       story("\nCupons", LojasDestaqueScreen(lojasDestaque)),
                       story("Trabalhe conosco", LojasDestaqueScreen(lojasDestaque)),
                     ],

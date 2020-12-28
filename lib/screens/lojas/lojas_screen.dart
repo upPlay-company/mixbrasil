@@ -72,7 +72,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       story("\nOfertas", ProductScreen(lojas)),
-                      story("\nEletros", ProductScreen(lojas)),
                       story("\nCupons", ProductScreen(lojas)),
                       story("Trabalhe conosco", ProductScreen(lojas)),
                     ],

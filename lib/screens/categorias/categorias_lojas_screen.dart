@@ -23,7 +23,9 @@ class CategoryScreen extends StatelessWidget {
                   width: 55,
                   height: 100,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // TODO: FILTRO LOJAS
+                    },
                     child: Icon(
                       Icons.filter_list_rounded,
                       color: Colors.white,
@@ -39,7 +41,9 @@ class CategoryScreen extends StatelessWidget {
                     width: 55,
                     height: 100,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // TODO: SEARCH LOJAS
+                      },
                       child: Icon(
                         Icons.search,
                         color: Colors.white,

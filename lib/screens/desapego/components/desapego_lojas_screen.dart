@@ -22,7 +22,9 @@ class DesapegoLojaScreen extends StatelessWidget {
                   width: 55,
                   height: 100,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      // TODO: FILTRO DESAPEGO
+                    },
                     child: Icon(
                       Icons.filter_list_rounded,
                       color: Colors.white,
@@ -38,7 +40,9 @@ class DesapegoLojaScreen extends StatelessWidget {
                     width: 55,
                     height: 100,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        // TODO: SEARCH DESAPEGO
+                      },
                       child: Icon(
                         Icons.search,
                         color: Colors.white,

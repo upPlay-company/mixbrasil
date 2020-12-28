@@ -11,7 +11,7 @@ class DesapegoCategorias extends StatelessWidget {
         title: Text('Todas as categorias', style: TextStyle(
             color: Colors.white,
             fontSize: 22,
-        ),
+          ),
         ),
       ),
       body: FutureBuilder<QuerySnapshot>(

@@ -1,23 +1,25 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
 
-class ItensDesapegoScreen extends StatefulWidget {
-  final DesapegoData desapego;
+class ItensDestaqueDesapego extends StatefulWidget {
 
-  ItensDesapegoScreen(this.desapego);
+  final DesapegoDestaque desapegoDestaque;
+
+  ItensDestaqueDesapego(this.desapegoDestaque);
 
   @override
-  _ItensDesapegoScreenState createState() =>
-      _ItensDesapegoScreenState(desapego);
+  _ItensDestaqueDesapegoState createState() =>
+      _ItensDestaqueDesapegoState(desapegoDestaque);
 }
 
-class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
-  final DesapegoData desapego;
+class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
+
+  final DesapegoDestaque desapegoDestaque;
   String nameAnuciante = "mauricio";
 
-  _ItensDesapegoScreenState(this.desapego);
+  _ItensDestaqueDesapegoState(this.desapegoDestaque);
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                 height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
                 child: Carousel(
-                  images: widget.desapego.img.map((url) {
+                  images: widget.desapegoDestaque.img.map((url) {
                     return NetworkImage(url);
                   }).toList(),
                   dotSize: 4.0,
@@ -80,7 +82,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                             Container(
                               width: 125,
                               child: Text(
-                                desapego.name.toUpperCase(),
+                                desapegoDestaque.name.toUpperCase(),
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 20,
@@ -88,7 +90,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                               ),
                             ),
                             Text(
-                              'R\$${desapego.price.toStringAsFixed(2)}',
+                              'R\$${desapegoDestaque.price.toStringAsFixed(2)}',
                               textScaleFactor: 1.4,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -129,7 +131,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     text: "\n",
                                   ),
                                   TextSpan(
-                                    text: desapego.descricao + "\n\n",
+                                    text: desapegoDestaque.descricao + "\n\n",
                                     style: TextStyle(
                                       fontSize: 15,
                                     ),
@@ -144,7 +146,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
                                   child: Text(
-                                    desapego.number,
+                                    desapegoDestaque.number,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 22),
                                   ),
@@ -189,45 +191,3 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
     );
   }
 }
-/*
-ListView(
-          children: [
-            Container(
-              child: AspectRatio(
-                aspectRatio: 1.3,
-                child: Carousel(
-                  images: widget.desapego.img.map((url) {
-                    return NetworkImage(url);
-                  }).toList(),
-                  dotSize: 4.0,
-                  dotSpacing: 15.0,
-                  dotBgColor: Colors.transparent,
-                  dotColor: primaryColor,
-                  autoplay: true,
-                ),
-              ),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  topLeft: Radius.circular(30),
-                ),
-              ),
-              child: Expanded(
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-
-                      ],
-                    ),
-                    styleDescription(),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),*/

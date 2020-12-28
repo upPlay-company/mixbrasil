@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class ItemCardWidget extends StatelessWidget {
   String urlImagem ="https://concursos.rhsconsult.com.br/logo/1606161749_produtodeteste95120200210124955.png";
   Widget description;

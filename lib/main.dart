@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
-import 'package:mix_brasil/model/desapego/desapego_manager.dart';
+import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:provider/provider.dart';
@@ -27,11 +27,11 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         ChangeNotifierProvider(
-          create: (_) => DesapegoManager(),
+          create: (_) => LojasDestaqueManager(),
           lazy: false,
         ),
         ChangeNotifierProvider(
-          create: (_) => LojasDestaqueManager(),
+          create: (_) => DestaqueDesapegoManager(),
           lazy: false,
         ),
       ],

@@ -13,6 +13,8 @@ class LojasData extends ChangeNotifier {
   int pos;
   String promocao;
 
+  //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
+
   LojasData.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;
     descricao = snapshot.data()["descricao"];

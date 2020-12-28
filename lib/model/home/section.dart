@@ -20,7 +20,7 @@ class Section extends ChangeNotifier {
   final FirebaseStorage storage = FirebaseStorage.instance;
 
   DocumentReference get firestoreRef => firestore.doc('home/$id');
-  // get storageRef => storage.ref().child('home/$id');
+  get storageRef => storage.ref().child('home/$id');
 
   String name;
   String id;

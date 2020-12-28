@@ -15,7 +15,6 @@ class SectionDestaques extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
         onTap: (){
-          // TODO: RETORNA AS LOJAS EM DESTAQUES
           if(lojasDestaque.id != null){
             final product = context.read<LojasDestaqueManager>().findProductByID(lojasDestaque.id);
             if(product !=  null){

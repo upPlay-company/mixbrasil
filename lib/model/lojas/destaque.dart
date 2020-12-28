@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -11,6 +12,8 @@ class DestaqueLoja extends ChangeNotifier {
   String lid;
   List img;
   int pos;
+
+  //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
 
   DestaqueLoja.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;

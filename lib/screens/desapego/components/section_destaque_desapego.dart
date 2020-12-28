@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/desapego/desapego.dart';
-import 'itens_desapegos_screen.dart';
+import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
+import 'package:mix_brasil/screens/desapego/components/itens_desapego_destaque.dart';
 
-class DesapegoCardTile extends StatelessWidget {
-  final String type;
-  final DesapegoData desapego;
 
-  DesapegoCardTile(this.type, this.desapego);
+class SectionDestaquesDesapego extends StatelessWidget {
+
+  SectionDestaquesDesapego(this.desapegoDestaque);
+
+  final DesapegoDestaque desapegoDestaque;
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +15,12 @@ class DesapegoCardTile extends StatelessWidget {
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => ItensDesapegoScreen(desapego)),
+                builder: (context) => ItensDestaqueDesapego(desapegoDestaque)),
           );
         },
         child: Container(
             height: 120,
+            padding: EdgeInsets.only(top: 15),
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Card(
               color: Colors.white,
@@ -32,7 +34,7 @@ class DesapegoCardTile extends StatelessWidget {
                       child: AspectRatio(
                         aspectRatio: 1,
                         child: Image.network(
-                          desapego.img.first,
+                          desapegoDestaque.img.first,
                           fit: BoxFit.contain,
                         ),
                       ),
@@ -56,7 +58,7 @@ class DesapegoCardTile extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 3.0),
                                 child: Text(
-                                  desapego.name,
+                                  desapegoDestaque.name,
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w900,
@@ -87,13 +89,13 @@ class DesapegoCardTile extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                 'R\$${desapego.price.toStringAsFixed(2)}',
+                                'R\$${desapegoDestaque.price.toStringAsFixed(2)}',
                                 textScaleFactor: 1.2,
-                                 style: TextStyle(
-                                   fontWeight: FontWeight.bold,
-                                   color: Theme.of(context).primaryColor,
-                                 ),
-                               ),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ),
                             ],
                           ),
                         ),

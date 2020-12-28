@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_categorias.dart';
+import 'package:provider/provider.dart';
+
+import 'components/section_destaque_desapego.dart';
 
 class DesapegoScreen extends StatelessWidget {
   @override
@@ -55,7 +59,9 @@ class DesapegoScreen extends StatelessWidget {
                           height: 100,
                           child: RaisedButton(
                             color: Theme.of(context).primaryColor,
-                            onPressed: () {},
+                            onPressed: () {
+                              // TODO: FILTRO DESAPEGO DESTAQUE
+                            },
                             child: Icon(
                               Icons.filter_list_rounded,
                               color: Colors.white,
@@ -76,7 +82,9 @@ class DesapegoScreen extends StatelessWidget {
                             height: 100,
                             child: RaisedButton(
                               color: Theme.of(context).primaryColor,
-                              onPressed: () {},
+                              onPressed: () {
+                                // TODO: SEARCH DESAPEGO DESTAQUE
+                              },
                               child: Icon(
                                 Icons.search,
                                 color: Colors.white,
@@ -121,6 +129,25 @@ class DesapegoScreen extends StatelessWidget {
               },
               childCount: 4,
             ),
+          ),
+          Consumer<DestaqueDesapegoManager>(
+            builder: (_, destaqueDesapego, __) {
+              if (destaqueDesapego.loading) {
+                return SliverToBoxAdapter(
+                  child: LinearProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.black),
+                    backgroundColor: Colors.transparent,
+                  ),
+                );
+              }
+              final List<Widget> children =
+              destaqueDesapego.desapegoDestaque.map<Widget>((destaqueDesapego) {
+                return SectionDestaquesDesapego(destaqueDesapego);
+              }).toList();
+              return SliverList(
+                delegate: SliverChildListDelegate(children),
+              );
+            },
           ),
         ],
       ),

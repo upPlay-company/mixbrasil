@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 
 import 'itens_desapegos_screen.dart';
@@ -65,11 +64,6 @@ class DesapegoCardTile extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Icon(
-                              LineIcons.bookmark,
-                              color: Colors.black,
-                              size: 25,
-                            )
                           ],
                         ),
                         Row(

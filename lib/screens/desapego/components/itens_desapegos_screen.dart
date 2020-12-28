@@ -106,7 +106,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                           left: 20,
                         ),
                         child: Text(
-                          "concessonária Ford \n\n",
+                          "concessonária Ford \n",
                           style: TextStyle(
                             fontSize: 18,
                           ),
@@ -165,14 +165,16 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: Container(
+                          height: 70,
                           width: MediaQuery.of(context).size.width,
                           color: Theme.of(context).secondaryHeaderColor,
                           child: Center(
                             child: Text(
                               "ANUCIANTE: " + nameAnuciante.toUpperCase(),
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 20,
                                 color: Colors.white,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ),

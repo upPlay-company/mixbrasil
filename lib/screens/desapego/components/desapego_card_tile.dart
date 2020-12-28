@@ -40,6 +40,7 @@ class DesapegoCardTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
+                    //teste
                     width: 10,
                   ),
                   Expanded(

@@ -42,52 +42,72 @@ class _ProductScreenState extends State<ProductScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: ListView(
         children: [
-          Container(
-            child: AspectRatio(
-              aspectRatio: 1.3,
-              child: Carousel(
-                images: lojas.img.map((url) {
-                  return NetworkImage(url);
-                }).toList(),
-                dotSize: 4.0,
-                dotSpacing: 15.0,
-                dotBgColor: Colors.transparent,
-                dotColor: primaryColor,
-                autoplay: true,
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width,
+                child: Carousel(
+                  images: widget.lojas.img.map((url) {
+                    return NetworkImage(url);
+                  }).toList(),
+                  dotSize: 4.0,
+                  dotSpacing: 15.0,
+                  dotBgColor: Colors.transparent,
+                  dotColor: primaryColor,
+                ),
               ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-              ),
-            ),
-            child: Expanded(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 280,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      story("\nOfertas", ProductScreen(lojas)),
-                      story("\nCupons", ProductScreen(lojas)),
-                      story("Trabalhe conosco", ProductScreen(lojas)),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 20.0,
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  story("\nOfertas", ProductScreen(lojas)),
+                                  story("\nCupons", ProductScreen(lojas)),
+                                  story("Trabalhe conosco", ProductScreen(lojas)),
+                                ],
+                              ),
+                              styleButton(),
+                              cardOfertas(),
+                              cardOfertas(),
+                              cardOfertas(),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  styleButton(),
-                  cardOfertas(),
-                  cardOfertas(),
-                  cardOfertas(),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
     );
   }
+
 
   //Declarações de funções
   Widget cardOfertas() {

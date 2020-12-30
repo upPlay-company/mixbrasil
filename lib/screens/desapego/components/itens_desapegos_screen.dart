@@ -23,6 +23,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
+      backgroundColor: Colors.white,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: FloatingActionButton(
@@ -165,28 +166,27 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                         ],
                       ),
                     ),
-
-                    Container(
-                      height: 70,
-                      width: MediaQuery.of(context).size.width,
-                      color: Theme.of(context).secondaryHeaderColor,
-                      child: Center(
-                        child: Text(
-                          "ANUCIANTE: " + nameAnuciante.toUpperCase(),
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),
             ],
           ),
         ],
+      ),
+      bottomNavigationBar: Container(
+        height: 70,
+        width: MediaQuery.of(context).size.width,
+        color: Theme.of(context).secondaryHeaderColor,
+        child: Center(
+          child: Text(
+            "ANUCIANTE: " + nameAnuciante.toUpperCase(),
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
     );
   }

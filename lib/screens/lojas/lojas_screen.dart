@@ -131,11 +131,11 @@ class _ProductScreenState extends State<ProductScreen> {
       padding: const EdgeInsets.only(top: 8.0),
       child: SizedBox(
         width: 120,
-        height: 40,
+        height: 50,
         child: Container(
           child: Center(
             child: Text(
-              "Ofertas",
+              "OFERTAS",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

@@ -51,6 +51,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   images: widget.lojas.img.map((url) {
                     return NetworkImage(url);
                   }).toList(),
+                  boxFit: BoxFit.cover,
                   dotSize: 4.0,
                   dotSpacing: 15.0,
                   dotBgColor: Colors.transparent,

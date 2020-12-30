@@ -28,12 +28,12 @@ class LojasTile extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 10),
                     child: SizedBox(
                       width: 130,
-                      height: 100,
+                      height: 90,
                       child: AspectRatio(
                         aspectRatio: 1,
                         child: Image.network(
                           lojas.img.first,
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),

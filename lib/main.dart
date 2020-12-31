@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
-import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
+//import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
+import 'package:mix_brasil/screens/perfil/perfil.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
             case '/inicial':
             default:
               return MaterialPageRoute(
-                builder: (_) => InicialScreen()
+                builder: (_) => Perfil(),
               );
           }
         },

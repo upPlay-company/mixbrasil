@@ -42,52 +42,74 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: ListView(
         children: [
-          Container(
-            child: AspectRatio(
-              aspectRatio: 1.3,
-              child: Carousel(
-                images: lojasDestaque.img.map((url) {
-                  return NetworkImage(url);
-                }).toList(),
-                dotSize: 4.0,
-                dotSpacing: 15.0,
-                dotBgColor: Colors.transparent,
-                dotColor: primaryColor,
-                autoplay: true,
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width,
+                child: Carousel(
+                  images: widget.lojasDestaque.img.map((url) {
+                    return NetworkImage(url);
+                  }).toList(),
+                  boxFit: BoxFit.cover,
+                  dotSize: 4.0,
+                  dotSpacing: 15.0,
+                  dotBgColor: Colors.transparent,
+                  dotColor: primaryColor,
+                ),
               ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-              ),
-            ),
-            child: Expanded(
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 280,
+                ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      story("\nOfertas", LojasDestaqueScreen(lojasDestaque)),
-                      story("\nCupons", LojasDestaqueScreen(lojasDestaque)),
-                      story("Trabalhe conosco", LojasDestaqueScreen(lojasDestaque)),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 20.0,
+                          left: 20,
+                          right: 20,
+                        ),
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                //pronto
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  story("\nOfertas",),
+                                  story("\nCupons",),
+                                  story("Trabalhe conosco",),
+                                ],
+                              ),
+                              styleButton(),
+                              cardOfertas(),
+                              cardOfertas(),
+                              cardOfertas(),
+                            ],
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                  styleButton(),
-                  cardOfertas(),
-                  cardOfertas(),
-                  cardOfertas(),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ],
       ),
     );
   }
+
 
   //Declarações de funções
   Widget cardOfertas() {
@@ -109,11 +131,11 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
       padding: const EdgeInsets.only(top: 8.0),
       child: SizedBox(
         width: 120,
-        height: 40,
+        height: 50,
         child: Container(
           child: Center(
             child: Text(
-              "Ofertas",
+              "OFERTAS",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -132,7 +154,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
     );
   }
 
-  Widget story(String title, Widget rota) {
+  Widget story(String title, {Widget rota}) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:line_icons/line_icons.dart';
 
 class Perfil extends StatelessWidget {
   @override
@@ -13,14 +12,14 @@ class Perfil extends StatelessWidget {
           Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(bottom: 20,),
+                padding: const EdgeInsets.only(bottom: 50,),
                 child: Text(
                   "PERFIL",
                   style: TextStyle(
                     decoration: TextDecoration.none,
                     color: Colors.black,
                     fontWeight: FontWeight.w900,
-                    fontSize: 30,
+                    fontSize: 25,
                   ),
                 ),
               ),
@@ -41,7 +40,7 @@ class Perfil extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 125),
+                            padding: const EdgeInsets.only(top: 130),
                             child: Column(
                               children: [
                                 Text(
@@ -50,7 +49,7 @@ class Perfil extends StatelessWidget {
                                     decoration: TextDecoration.none,
                                     color: Colors.black,
                                     fontWeight: FontWeight.w900,
-                                    fontSize: 24,
+                                    fontSize: 22,
                                   ),
                                 ),
                                 Text(
@@ -58,7 +57,7 @@ class Perfil extends StatelessWidget {
                                   style: TextStyle(
                                     decoration: TextDecoration.none,
                                     color: Colors.black,
-                                    fontSize: 16,
+                                    fontSize: 13,
                                     fontWeight: FontWeight.w100,
                                   ),
                                 ),
@@ -158,9 +157,10 @@ class Perfil extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     decoration: TextDecoration.none,
                     color: Colors.black,
+                    fontWeight: FontWeight.normal
                   ),
                 ),
               ),

@@ -33,7 +33,7 @@ class Perfil extends StatelessWidget {
                     ),
                     child: Center(
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.28,
+                        height: MediaQuery.of(context).size.height * 0.25,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
@@ -41,7 +41,7 @@ class Perfil extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 95),
+                            padding: const EdgeInsets.only(top: 125),
                             child: Column(
                               children: [
                                 Text(
@@ -59,6 +59,7 @@ class Perfil extends StatelessWidget {
                                     decoration: TextDecoration.none,
                                     color: Colors.black,
                                     fontSize: 16,
+                                    fontWeight: FontWeight.w100,
                                   ),
                                 ),
                               ],
@@ -77,7 +78,7 @@ class Perfil extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(5),
                         child: GFAvatar(
-                          size: 82,
+                          size: 84,
                           backgroundImage: NetworkImage(
                               "https://scontent.fbsb13-1.fna.fbcdn.net/v/t31.0-8/19025169_1686185865011035_6264956930674587635_o.jpg?_nc_cat=109&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGHKzEPSTrPpIelfOylTw26CDz5-Gw7MegIPPn4bDsx6LaIERqzP-BDn5-u6VXqXX6_qBemL9-BJRGo0xttFz7J&_nc_ohc=y8z79LW0tiIAX_y8sR8&_nc_ht=scontent.fbsb13-1.fna&oh=3f64dbb097c3b22bb9116d23e8806437&oe=601379A6"),
                         ),
@@ -89,7 +90,7 @@ class Perfil extends StatelessWidget {
               GestureDetector(
                 child: rowsColumns(
                   "Meus Anúncios",
-                  LineIcons.package,
+                  Icons.card_giftcard,
                   Icons.arrow_forward_ios,
                 ),
               ),
@@ -103,21 +104,21 @@ class Perfil extends StatelessWidget {
               GestureDetector(
                 child: rowsColumns(
                   "Plano Profissional",
-                 LineIcons.coin,
+                 Icons.monetization_on_rounded,
                   Icons.arrow_forward_ios,
                 ),
               ),
               GestureDetector(
                 child: rowsColumns(
                   "Perfil",
-                  Icons.eighteen_mp,
+                  Icons.account_circle,
                   Icons.arrow_forward_ios,
                 ),
               ),
               GestureDetector(
                 child: rowsColumns(
                   "Segurança e privacidade",
-                  Icons.eighteen_mp,
+                  Icons.vpn_key,
                   Icons.arrow_forward_ios,
                 ),
               ),
@@ -132,20 +133,26 @@ class Perfil extends StatelessWidget {
   Widget rowsColumns(String title, IconData iconLeft, IconData iconRight) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 15,
+        left: 15, top: 8,
       ),
       child: Column(
         children: <Widget>[
           Row(
             children: <Widget>[
-              Expanded(
-                flex: 1,
+              Container(
+                height: 40,
+                width: 40,
                 child: Icon(
                   iconLeft,
-                  size: 40,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
                   color: Color(0xFF3CA59D),
                 ),
               ),
+              SizedBox(width: 10,),
               Expanded(
                 flex: 5,
                 child: Text(

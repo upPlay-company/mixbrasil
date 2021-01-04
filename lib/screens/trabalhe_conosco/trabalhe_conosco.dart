@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+
 class TrabalheConosco extends StatelessWidget {
-  dynamic title = "Trabalhe Conosco";
+  final dynamic title = "Trabalhe Conosco";
 
   @override
   Widget build(BuildContext context) {

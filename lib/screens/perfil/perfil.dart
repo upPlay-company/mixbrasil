@@ -117,7 +117,7 @@ class Perfil extends StatelessWidget {
                               child: GFAvatar(
                                 size: 84,
                                 backgroundImage: NetworkImage(
-                                    'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png'
+                                    'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
                                 ),
                               ),
                             ),

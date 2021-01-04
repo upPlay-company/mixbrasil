@@ -9,17 +9,17 @@ class UserUser {
     name = document.data()['name'] as String;
     email = document.data()['email'] as String;
     phone = document.data()['phone'] as String;
-    passwordConfirm = document.data()['passwordConfirm'] as String;
+    img = document.data()['img'] as String;
   }
 
   String id;
   String name;
   String email;
+  String img;
   String password;
-  String passwordConfirm;
+  String confirmPassword;
   String phone;
 
-  String confirmPassword;
 
   DocumentReference get firestoreRef =>
       FirebaseFirestore.instance.doc('users/$id');

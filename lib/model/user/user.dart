@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 
 class UserUser {
 
@@ -32,7 +33,8 @@ class UserUser {
     return {
       'name': name,
       'email': email,
-      'phone' : phone
+      'phone' : phone,
+      'img': img
     };
   }
 

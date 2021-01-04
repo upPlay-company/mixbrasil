@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatelessWidget {
 
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passConfirmController = TextEditingController();
-  final TextEditingController passController = TextEditingController();
+  static final _UsNumberTextInputFormatter _numberTextInputFormatter = new _UsNumberTextInputFormatter();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  final UserUser user = UserUser();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,6 @@ class SignUpScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
-                                    controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     enabled: !userManager.loading,
                                     autocorrect: false,
@@ -74,6 +73,7 @@ class SignUpScreen extends StatelessWidget {
                                       }
                                       return null;
                                     },
+                                    onSaved: (name) => user.name = name,
                                     decoration:
                                     InputDecoration(
                                         border: InputBorder.none,
@@ -106,6 +106,7 @@ class SignUpScreen extends StatelessWidget {
                                       }
                                       return null;
                                     },
+                                    onSaved: (email) => user.email = email,
                                     decoration:
                                     InputDecoration(
                                         border: InputBorder.none,
@@ -134,10 +135,17 @@ class SignUpScreen extends StatelessWidget {
                                     ),
                                       validator: (phone){
                                         if(phone.isEmpty){
-                                          return 'Digite seu nome';
+                                          return 'Digite seu telefone';
                                         }
                                         return null;
                                       },
+                                    inputFormatters: <TextInputFormatter>[
+                                      LengthLimitingTextInputFormatter(15),
+                                      // ignore: deprecated_member_use
+                                      WhitelistingTextInputFormatter.digitsOnly,
+                                      _numberTextInputFormatter
+                                    ],
+                                    onSaved: (phone) => user.phone = phone,
                                     decoration:
                                     InputDecoration(
                                         border: InputBorder.none,
@@ -158,7 +166,6 @@ class SignUpScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
-                                    controller: passController,
                                     autocorrect: false,
                                     obscureText: true,
                                     enabled: !userManager.loading,
@@ -171,6 +178,7 @@ class SignUpScreen extends StatelessWidget {
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
+                                    onSaved: (pass) => user.password = pass,
                                     decoration:
                                     InputDecoration(
                                         border: InputBorder.none,
@@ -191,53 +199,64 @@ class SignUpScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
-                                    controller: passConfirmController,
                                     autocorrect: false,
                                     obscureText: true,
                                     enabled: !userManager.loading,
                                     validator: (pass) {
-                                      if(passController.text != passConfirmController.text){
-                                        return 'Senha não corresponde';
-                                      }
+                                      if(pass.isEmpty)
+                                        return 'Campo obrigatório';
+                                      else if(pass.length < 6)
+                                        return 'Senha muito curta';
                                       return null;
                                     },
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
+                                    onSaved: (pass) => user.confirmPassword = pass,
                                     decoration:
                                     InputDecoration(
                                         border: InputBorder.none,
                                         icon: Icon(Icons.highlight),
-                                        hintText: 'Confirme a senha'
+                                        hintText: 'Confirma a senha'
                                     ),
                                   ),
                                 ),
                               )
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
                             child: SizedBox(
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
                                 onPressed: userManager.loading ? null : (){
                                   if(formKey.currentState.validate()){
-                                    userManager.signIn(
-                                        user: UserUser(
-                                            confirmPassword: passConfirmController.text,
+                                    formKey.currentState.save();
+                                    if(user.password != user.confirmPassword){
+                                      scaffoldKey.currentState.showSnackBar(
+                                        SnackBar(
+                                          content: const Text('Senhas não coincidem!',
+                                            style: TextStyle(fontSize: 16, color: Colors.red),
+                                          ),
+                                          backgroundColor: Colors.black,
                                         ),
+                                      );
+                                      return;
+                                    }
+                                    userManager.signUp(
+                                        user: user,
+                                        onSuccess: (){
+                                          Navigator.of(context).pushNamed('/base');
+                                        },
                                         onFail: (e){
                                           scaffoldKey.currentState.showSnackBar(
                                               SnackBar(
-                                                content: Text('Falha ao entrar: $e'),
-                                                backgroundColor: Colors.red,
+                                                content: Text('Falha ao cadastrar: $e',
+                                                  style: TextStyle(fontSize: 16, color: Colors.red),
+                                                ),
+                                                backgroundColor: Colors.black,
                                               )
                                           );
-                                        },
-                                        onSuccess: (){
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                              builder: (_) => BaseScreen()
-                                          ));
                                         }
                                     );
                                   }
@@ -263,6 +282,28 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ),
                           ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: (){
+                                  Navigator.of(context).pushNamed('/login');
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                                  child: Text(
+                                    'Voltar',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: 'Principal'
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -276,3 +317,45 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
+
+class _UsNumberTextInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue,
+      TextEditingValue newValue
+      ) {
+    final int newTextLength = newValue.text.length;
+    int selectionIndex = newValue.selection.end;
+    int usedSubstringIndex = 0;
+    final StringBuffer newText = StringBuffer();
+    if (newTextLength >= 1) {
+      newText.write('(');
+      if (newValue.selection.end >= 1)
+        selectionIndex++;
+    }
+    if (newTextLength >= 4) {
+      newText.write(newValue.text.substring(0, usedSubstringIndex = 2) + ') ');
+      if (newValue.selection.end >= 2)
+        selectionIndex += 2;
+    }
+    if (newTextLength >= 7) {
+      newText.write(newValue.text.substring(2, usedSubstringIndex = 7) + '-');
+      if (newValue.selection.end >= 7)
+        selectionIndex++;
+    }
+    if (newTextLength >= 11) {
+      newText.write(newValue.text.substring(7, usedSubstringIndex = 11) + ' ');
+      if (newValue.selection.end >= 15)
+        selectionIndex++;
+    }
+    // Dump the rest.
+    if (newTextLength >= usedSubstringIndex)
+      newText.write(newValue.text.substring(usedSubstringIndex));
+    return TextEditingValue(
+      text: newText.toString(),
+      selection: TextSelection.collapsed(offset: selectionIndex),
+    );
+  }
+}
+
+

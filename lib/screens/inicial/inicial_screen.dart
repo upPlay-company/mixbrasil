@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/login/login_screen.dart';
 
 class InicialScreen extends StatefulWidget {
   @override

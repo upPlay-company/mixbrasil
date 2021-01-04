@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
-//import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
-import 'package:mix_brasil/screens/perfil/perfil.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
+import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 
@@ -35,6 +37,10 @@ class MyApp extends StatelessWidget {
           create: (_) => DestaqueDesapegoManager(),
           lazy: false,
         ),
+        ChangeNotifierProvider(
+          create: (_) => UserManager(),
+          lazy: false,
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -47,10 +53,18 @@ class MyApp extends StatelessWidget {
         initialRoute: 'inicial',
         onGenerateRoute: (settings){
           switch(settings.name){
+            case '/login':
+              return MaterialPageRoute(
+                builder: (_) => LoginScreen(),
+              );
+            case '/base':
+              return MaterialPageRoute(
+                builder: (_) => BaseScreen(),
+              );
             case '/inicial':
             default:
               return MaterialPageRoute(
-                builder: (_) => Perfil(),
+                builder: (_) => InicialScreen(),
               );
           }
         },

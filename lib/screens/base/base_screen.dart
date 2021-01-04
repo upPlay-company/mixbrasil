@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/screens/categorias/categorias_screens.dart';
 import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:mix_brasil/screens/home/home_screen.dart';
+import 'package:mix_brasil/screens/perfil/perfil.dart';
 
 class BaseScreen extends StatefulWidget {
 
@@ -21,7 +22,7 @@ class _BaseScreenState extends State<BaseScreen> {
     HomeScreen(),
     CategoriasScreen(),
     DesapegoScreen(),
-    Container(),
+    Perfil(),
   ];
   @override
   Widget build(BuildContext context) {

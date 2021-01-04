@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:line_icons/line_icons.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:provider/provider.dart';
 
 class Perfil extends StatelessWidget {
   @override
@@ -13,13 +14,13 @@ class Perfil extends StatelessWidget {
           Column(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(bottom: 20,),
+                padding: const EdgeInsets.only(bottom: 20, top: 10),
                 child: Text(
                   "PERFIL",
                   style: TextStyle(
                     decoration: TextDecoration.none,
                     color: Colors.black,
-                    fontWeight: FontWeight.w900,
+                    fontWeight: FontWeight.w800,
                     fontSize: 30,
                   ),
                 ),
@@ -33,7 +34,7 @@ class Perfil extends StatelessWidget {
                     ),
                     child: Center(
                       child: Container(
-                        height: MediaQuery.of(context).size.height * 0.25,
+                        height: MediaQuery.of(context).size.height * 0.22,
                         width: MediaQuery.of(context).size.width * 0.9,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(40),
@@ -41,29 +42,46 @@ class Perfil extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 125),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "João Mason fred",
-                                  style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 24,
-                                  ),
-                                ),
-                                Text(
-                                  "UI/UX Designer",
-                                  style: TextStyle(
-                                    decoration: TextDecoration.none,
-                                    color: Colors.black,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w100,
-                                  ),
-                                ),
-                              ],
-                            ),
+                            padding: const EdgeInsets.only(top: 100),
+                            child: Consumer<UserManager>(
+                              builder: (_, userManager, __){
+                                return Column(
+                                  children: [
+                                    Text(
+                                      '${userManager.user?.name ?? 'Olá Convidado'}',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.none,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                    SizedBox(height: 10,),
+                                    GestureDetector(
+                                      onTap: (){
+                                        if(userManager.isLoggedIn){
+                                          userManager.signOut();
+                                          Navigator.of(context).pushNamed('/base');
+                                        } else {
+                                          Navigator.of(context).pushNamed('/login');
+                                        }
+                                      },
+                                      child: Text(
+                                        userManager.isLoggedIn
+                                            ? 'Sair'
+                                            : 'Entre Agora',
+                                        style: TextStyle(
+                                          decoration: TextDecoration.none,
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              },
+                            )
                           ),
                         ),
                       ),

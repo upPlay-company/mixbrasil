@@ -44,7 +44,7 @@ class DesapegoScreen extends StatelessWidget {
                         color: Theme.of(context).primaryColor,
                         child: Text(
                           'Todas as categorias',
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.horizontal(

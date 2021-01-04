@@ -103,7 +103,8 @@ class DesapegoScreen extends StatelessWidget {
               ),
             ),
           ),
-          SliverGrid(
+          // TODO: MOSTRAR SEM, PARA APROVAÇÃO
+          /*SliverGrid(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,
               mainAxisSpacing: 20.0,
@@ -129,7 +130,7 @@ class DesapegoScreen extends StatelessWidget {
               },
               childCount: 4,
             ),
-          ),
+          ),*/
           Consumer<DestaqueDesapegoManager>(
             builder: (_, destaqueDesapego, __) {
               if (destaqueDesapego.loading) {

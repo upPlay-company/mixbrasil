@@ -88,21 +88,43 @@ class Perfil extends StatelessWidget {
                     ),
                   ),
                   Center(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(5),
-                        child: GFAvatar(
-                          size: 84,
-                          backgroundImage: NetworkImage(
-                              "https://scontent.fbsb13-1.fna.fbcdn.net/v/t31.0-8/19025169_1686185865011035_6264956930674587635_o.jpg?_nc_cat=109&ccb=2&_nc_sid=09cbfe&_nc_eui2=AeGHKzEPSTrPpIelfOylTw26CDz5-Gw7MegIPPn4bDsx6LaIERqzP-BDn5-u6VXqXX6_qBemL9-BJRGo0xttFz7J&_nc_ohc=y8z79LW0tiIAX_y8sR8&_nc_ht=scontent.fbsb13-1.fna&oh=3f64dbb097c3b22bb9116d23e8806437&oe=601379A6"),
-                        ),
-                      ),
+                    child: Consumer<UserManager>(
+                      builder: (_, userManager, __){
+                        if(userManager.isLoggedIn)
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: GFAvatar(
+                                size: 84,
+                                backgroundImage: NetworkImage(
+                                    userManager.user.img
+                                ),
+                              ),
+                            ),
+                          );
+                        else
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: GFAvatar(
+                                size: 84,
+                                backgroundImage: NetworkImage(
+                                    'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png'
+                                ),
+                              ),
+                            ),
+                          );
+                      },
                     ),
-                  ),
+                  )
                 ],
               ),
               GestureDetector(

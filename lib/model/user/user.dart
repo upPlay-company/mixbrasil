@@ -9,12 +9,14 @@ class UserUser {
     name = document.data()['name'] as String;
     email = document.data()['email'] as String;
     phone = document.data()['phone'] as String;
+    img = document.data()['img'] as String;
   }
 
   String id;
   String name;
   String email;
   String password;
+  String img;
   String phone;
 
   String confirmPassword;

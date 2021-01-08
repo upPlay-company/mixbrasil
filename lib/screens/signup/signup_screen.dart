@@ -229,7 +229,7 @@ class SignUpScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: userManager.loading ? null : (){
+                                onPressed: userManager.loading ? null : () async {
                                   if(formKey.currentState.validate()){
                                     formKey.currentState.save();
                                     if(user.password != user.confirmPassword){

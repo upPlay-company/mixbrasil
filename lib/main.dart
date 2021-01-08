@@ -7,7 +7,6 @@ import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
-import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 

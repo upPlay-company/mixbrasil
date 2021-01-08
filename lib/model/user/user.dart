@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:mix_brasil/model/cep/address.dart';
 
 class UserUser {
 
@@ -11,7 +11,12 @@ class UserUser {
     email = document.data()['email'] as String;
     phone = document.data()['phone'] as String;
     img = document.data()['img'] as String;
+    if(document.data().containsKey('address')){
+      address = Address.fromMap(document.data()['address'] as Map<String, dynamic>);
+    }
   }
+
+  Address address;
 
   String id;
   String name;
@@ -34,8 +39,16 @@ class UserUser {
       'name': name,
       'email': email,
       'phone' : phone,
-      'img': img
+      'img': img,
+      if(address != null)
+        'address': address.toMap(),
     };
+  }
+
+  void setAddress(Address address){
+    this.address = address;
+    saveData();
+    print(address);
   }
 
 }

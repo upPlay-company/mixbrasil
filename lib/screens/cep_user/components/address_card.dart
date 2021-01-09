@@ -16,23 +16,26 @@ class AddressCard extends StatelessWidget {
           child: Consumer<UserManager>(
             builder: (_, userManager, __){
               final address = userManager.address ?? Address();
-              print(address);
-              return Form(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Endereço de Entrega',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600
+              if(userManager.isLoggedIn)
+                return Form(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Sua localização',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600
+                        ),
                       ),
-                    ),
-                    CepInputField(address),
-                    AddressInputField(address),
-                  ],
-                ),
-              );
+                      CepInputField(address),
+                      AddressInputField(address),
+                    ],
+                  ),
+                );
+              else
+                // TODO: FAZER LOGIN
+                return Container(child: Text('Faça seu login'),);
             },
           )
       ),

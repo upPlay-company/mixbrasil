@@ -11,6 +11,8 @@ class LojasDestaqueManager extends ChangeNotifier {
 
   List<DestaqueLoja> _lojasDestaque = [];
 
+  DestaqueLoja lojasDestaques;
+
   bool editing = false;
   bool loading = false;
 
@@ -24,6 +26,7 @@ class LojasDestaqueManager extends ChangeNotifier {
             (c) => DestaqueLoja.fromDocument(c)).toList();
 
     notifyListeners();
+    print(_lojasDestaque);
   }
 
   List<DestaqueLoja> get lojasDestaque {

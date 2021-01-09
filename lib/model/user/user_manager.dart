@@ -34,7 +34,7 @@ class UserManager extends ChangeNotifier {
       await _loadCurrentUser(firebaseUser: result.user);
 
       onSuccess();
-    } on PlatformException catch (e){
+    } on FirebaseAuthException catch (e){
       onFail(getErrorString(e.code));
     }
 
@@ -54,7 +54,7 @@ class UserManager extends ChangeNotifier {
       await user.saveData();
 
       onSuccess();
-    } on PlatformException catch (e){
+    } on FirebaseAuthException catch (e){
       onFail(getErrorString(e.code));
     }
     loading = false;

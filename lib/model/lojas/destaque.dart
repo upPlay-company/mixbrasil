@@ -12,6 +12,7 @@ class DestaqueLoja extends ChangeNotifier {
   String lid;
   List img;
   int pos;
+  String state;
 
   //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
 
@@ -24,6 +25,7 @@ class DestaqueLoja extends ChangeNotifier {
     lid = snapshot.data()["lid"];
     cid = snapshot.data()["cid"];
     pos = snapshot.data()["pos"];
+    state = snapshot.data()['state'];
   }
 
   Map<String, dynamic> toResumedMap() {
@@ -35,11 +37,12 @@ class DestaqueLoja extends ChangeNotifier {
       "lid": lid,
       "cid": cid,
       "pos": pos,
+      "state": state
     };
   }
 
   @override
   String toString() {
-    return 'DestaqueLoja{descricao: $descricao, id: $id, cid: $cid, name: $name, price: $price, lid: $lid, img: $img, pos: $pos}';
+    return 'DestaqueLoja{descricao: $descricao, id: $id, cid: $cid, name: $name, price: $price, lid: $lid, img: $img, pos: $pos, state: $state}';
   }
 }

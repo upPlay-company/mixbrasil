@@ -5,7 +5,6 @@ import 'package:flutter/rendering.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +12,7 @@ import 'components/section_banner.dart';
 import 'components/section_destaques.dart';
 
 class HomeScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                                         style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
                                       Text(
-                                        userManager.user.address.city,
+                                        '${userManager.user?.address?.city ?? 'Manaus'}',
                                         style: TextStyle(color: Colors.white, fontSize: 20),
                                       ),
                                     ],
@@ -187,7 +187,7 @@ class HomeScreen extends StatelessWidget {
           ),
           Consumer<LojasDestaqueManager>(
             builder: (_, lojadestaqueManager, __) {
-              if (lojadestaqueManager.loading) {
+              if(lojadestaqueManager.loading) {
                 return SliverToBoxAdapter(
                   child: LinearProgressIndicator(
                     valueColor: AlwaysStoppedAnimation(Colors.black),
@@ -197,7 +197,7 @@ class HomeScreen extends StatelessWidget {
               }
               final List<Widget> children =
                   lojadestaqueManager.lojasDestaque.map<Widget>((section) {
-                return SectionDestaques(section);
+                    return SectionDestaques(section);
               }).toList();
               return SliverList(
                 delegate: SliverChildListDelegate(children),

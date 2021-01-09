@@ -23,53 +23,6 @@ class AddressInputField extends StatelessWidget {
         children: [
           TextFormField(
             enabled: !userManager.loading,
-            initialValue: address.street,
-            decoration: const InputDecoration(
-              isDense: true,
-              labelText: 'Rua/Avenida',
-              hintText: 'Av. Brasil',
-            ),
-            validator: emptyValidator,
-            onSaved: (t) => address.street = t,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextFormField(
-                  enabled: !userManager.loading,
-                  initialValue: address.number,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    labelText: 'Número',
-                    hintText: '123',
-                  ),
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                  ],
-                  keyboardType: TextInputType.number,
-                  validator: emptyValidator,
-                  onSaved: (t) => address.number = t,
-                ),
-              ),
-              const SizedBox(
-                width: 16,
-              ),
-              Expanded(
-                child: TextFormField(
-                  enabled: !userManager.loading,
-                  initialValue: address.complement,
-                  decoration: InputDecoration(
-                    isDense: true,
-                    labelText: 'Complemento',
-                    hintText: 'Opcional',
-                  ),
-                  onSaved: (t) => address.complement = t,
-                ),
-              ),
-            ],
-          ),
-          TextFormField(
-            enabled: !userManager.loading,
             initialValue: address.district,
             decoration: const InputDecoration(
               isDense: true,
@@ -125,12 +78,16 @@ class AddressInputField extends StatelessWidget {
           const SizedBox(height: 8,),
           if(userManager.loading)
             LinearProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(Colors.black),
+              valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
               backgroundColor: Colors.transparent,
             ),
           RaisedButton(
-            color: Colors.black,
-            disabledColor: Colors.black.withAlpha(100),
+            color: Theme.of(context).primaryColor,
+            disabledColor: Theme.of(context).primaryColor.withAlpha(100),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+            ),
             textColor: Colors.white,
             onPressed: !userManager.loading ? () async {
               if(Form.of(context).validate()){
@@ -161,7 +118,7 @@ class AddressInputField extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Text(
-          '${userManager.user.address.street}, ${userManager.user.address.number}\n${userManager.user.address.district}\n'
+          '${userManager.user.address.district}\n'
               '${userManager.user.address.city} - ${userManager.user.address.state}',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),

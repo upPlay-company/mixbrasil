@@ -52,7 +52,7 @@ class _CepInputFieldState extends State<CepInputField> {
           ),
           if(userManager.loading)
             LinearProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(Colors.black),
+              valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
               backgroundColor: Colors.transparent,
             ),
           RaisedButton(
@@ -76,8 +76,12 @@ class _CepInputFieldState extends State<CepInputField> {
                 }
               }
             }: null,
-            color: Colors.black,
+            color: Theme.of(context).primaryColor,
             disabledColor: Colors.black.withAlpha(100),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+            ),
             child: const Text('Buscar CEP',
               style: TextStyle(color: Colors.white, fontSize: 16),
             ),

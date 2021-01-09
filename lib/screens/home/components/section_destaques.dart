@@ -104,8 +104,8 @@ class SectionDestaques extends StatelessWidget {
                 ),
               ))
       );
-    else if(teste())
-      return Container(child: Text("teste"),);
+    else if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
+      return Container();
     else
       return InkWell(
           onTap: (){
@@ -188,5 +188,6 @@ class SectionDestaques extends StatelessWidget {
                 ),
               ))
       );
+    // TODO: CORRIGIR ERRO QUANDO O ESTADO DO USUARIO É NULL
   }
 }

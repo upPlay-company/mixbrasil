@@ -22,6 +22,7 @@ class _CepInputFieldState extends State<CepInputField> {
 
   @override
   Widget build(BuildContext context) {
+
     final userManager = context.watch<UserManager>();
 
     if(widget.address.zipCode == null)
@@ -62,8 +63,14 @@ class _CepInputFieldState extends State<CepInputField> {
                 } catch (e){
                   Scaffold.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('$e', style: TextStyle(color: Colors.redAccent, fontSize: 16),),
-                        backgroundColor: Colors.black,
+                        content: Text('$e',
+                          style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.all(16),
+                        duration: Duration(seconds: 2),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                       )
                   );
                 }

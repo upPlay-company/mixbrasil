@@ -156,8 +156,14 @@ class LoginScreen extends StatelessWidget {
                                         onFail: (e){
                                           scaffoldKey.currentState.showSnackBar(
                                               SnackBar(
-                                                content: Text('Falha ao entrar: $e'),
-                                                backgroundColor: Colors.red,
+                                                content: Text('Falha no login: $e',
+                                                  style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                                                ),
+                                                backgroundColor: Theme.of(context).primaryColor,
+                                                behavior: SnackBarBehavior.floating,
+                                                margin: EdgeInsets.all(16),
+                                                duration: Duration(seconds: 2),
+                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                                               )
                                           );
                                         },
@@ -216,7 +222,9 @@ class LoginScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  // TODO: LOGIN PELO FACEBOOK
+                                },
                                 color: Theme.of(context).primaryColor,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

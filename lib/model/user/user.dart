@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 
-class UserUser {
+class UserUser extends ChangeNotifier {
 
   UserUser({this.email, this.password, this.name, this.confirmPassword, this.id, this.phone});
 

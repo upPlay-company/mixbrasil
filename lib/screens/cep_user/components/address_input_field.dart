@@ -17,7 +17,7 @@ class AddressInputField extends StatelessWidget {
     String emptyValidator(String text) =>
         text.isEmpty ? 'Campo obrigatório' : null;
 
-    if(userManager.user.address == null && address.zipCode != null)
+    if(userManager.isLoggedIn && userManager.user.address == null && address.zipCode != null)
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -140,8 +140,14 @@ class AddressInputField extends StatelessWidget {
                 } catch (e){
                   Scaffold.of(context).showSnackBar(
                       SnackBar(
-                        content: Text('$e', style: TextStyle(color: Colors.redAccent, fontSize: 16),),
-                        backgroundColor: Colors.black,
+                        content: Text('$e',
+                          style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        backgroundColor: Theme.of(context).primaryColor,
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.all(16),
+                        duration: Duration(seconds: 2),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                       )
                   );
                 }
@@ -151,7 +157,7 @@ class AddressInputField extends StatelessWidget {
           )
         ],
       );
-    else if(userManager.user.address != null && address.zipCode != null)
+    else if(userManager.isLoggedIn && userManager.user.address != null && address.zipCode != null)
       return Padding(
         padding: const EdgeInsets.only(bottom: 16),
         child: Text(

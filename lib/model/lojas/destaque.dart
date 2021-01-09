@@ -18,26 +18,26 @@ class DestaqueLoja extends ChangeNotifier {
 
   DestaqueLoja.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;
-    descricao = snapshot.data()["descricao"];
+    descricao = snapshot.data()["promocao"];
     name = snapshot.data()["name"];
     price = snapshot.data()["price"] + 0.0;
     img = snapshot.data()["img"];
     lid = snapshot.data()["lid"];
     cid = snapshot.data()["cid"];
     pos = snapshot.data()["pos"];
-    state = snapshot.data()['state'];
+    state = snapshot.data()['estado'];
   }
 
   Map<String, dynamic> toResumedMap() {
     return {
-      "descricao": descricao,
+      "promocao": descricao,
       "name": name,
       "price": price,
       "img": img,
       "lid": lid,
       "cid": cid,
       "pos": pos,
-      "state": state
+      "estado": state
     };
   }
 

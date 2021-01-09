@@ -20,7 +20,7 @@ class LojasDestaqueManager extends ChangeNotifier {
 
   Future<void> _loadDestaques() async {
     final QuerySnapshot snapDestaques =
-    await firestore.collection('destaques_home').orderBy('pos').get();
+    await firestore.collection('destaque_home').orderBy('pos').get();
 
     _lojasDestaque = snapDestaques.docs.map(
             (c) => DestaqueLoja.fromDocument(c)).toList();

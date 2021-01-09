@@ -17,6 +17,12 @@ class SectionDestaques extends StatelessWidget {
 
     final userManager = context.watch<UserManager>();
 
+    bool teste(){
+      if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
+        // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
+        return true;
+    }
+
     if(userManager.isLoggedIn && userManager.user.address.state == lojasDestaque.state)
       return InkWell(
           onTap: (){
@@ -99,9 +105,8 @@ class SectionDestaques extends StatelessWidget {
                 ),
               ))
       );
-    else if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
-      // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
-      return Container();
+    else if(teste())
+      return Container(child: Text("teste"),);
     else
       return InkWell(
           onTap: (){

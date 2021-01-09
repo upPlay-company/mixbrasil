@@ -72,7 +72,7 @@ class UserManager extends ChangeNotifier {
   }
 
   Future<void> _loadCurrentUser({User firebaseUser}) async{
-    final User currentUser = firebaseUser ?? await auth.currentUser;
+    final User currentUser = firebaseUser ?? auth.currentUser;
     if(currentUser != null){
       final DocumentSnapshot docUser = await firestore.collection('users').
       doc(currentUser.uid).get();
@@ -80,6 +80,24 @@ class UserManager extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void updateUser(UserManager userManager){
+    user = userManager.user;
+    removeAddress();
+
+    if(user != null){
+      _loadUserAddress();
+    }
+  }
+
+  Future<void> _loadUserAddress() async {
+    if(user.address != null){
+      address = user.address;
+      notifyListeners();
+    }
+  }
+
+  bool get isAddressValid => address != null;
 
   Future<void> getAddress(String cep) async {
     loading = true;

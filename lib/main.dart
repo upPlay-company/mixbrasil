@@ -5,6 +5,7 @@ import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:provider/provider.dart';
@@ -53,6 +54,10 @@ class MyApp extends StatelessWidget {
         initialRoute: 'inicial',
         onGenerateRoute: (settings){
           switch(settings.name){
+            case '/cep':
+              return MaterialPageRoute(
+                builder: (_) => CepUserScreen(),
+              );
             case '/login':
               return MaterialPageRoute(
                 builder: (_) => LoginScreen(),

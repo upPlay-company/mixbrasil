@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
@@ -36,21 +38,66 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20),
                       child: SizedBox(
                         width: 140,
-                        child: RaisedButton(
-                          onPressed: () {},
-                          color: Theme.of(context).secondaryHeaderColor,
-                          child: Text(
-                            //TODO: COLOCAR CIDADE
-                            'Manaus',
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              topRight: Radius.circular(20),
-                            ),
-                          ),
-                        ),
+                        child: Consumer<UserManager>(
+                          builder: (_, userManager, __){
+                            if(userManager.isLoggedIn)
+                              return RaisedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed('/cep');
+                                },
+                                color: Theme.of(context).secondaryHeaderColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top:5),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Você está em:',
+                                        style: TextStyle(color: Colors.white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        userManager.user.address.city,
+                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                ),
+                              );
+                            else
+                              return RaisedButton(
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed('/cep');
+                                },
+                                color: Theme.of(context).secondaryHeaderColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top:5),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        'Você está em:',
+                                        style: TextStyle(color: Colors.white, fontSize: 14),
+                                      ),
+                                      Text(
+                                        'Manaus',
+                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20),
+                                  ),
+                                ),
+                              );
+                          },
+                        )
                       ),
                     ),
                   ],

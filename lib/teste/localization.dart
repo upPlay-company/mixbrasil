@@ -1,3 +1,4 @@
+/*
 import 'dart:async';
 import 'package:location/location.dart';
 import 'package:flutter/material.dart';
@@ -143,4 +144,4 @@ class _LocalizationState extends State<Localization> {
       ),
     );
   }
-}
+}*/

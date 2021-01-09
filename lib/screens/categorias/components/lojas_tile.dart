@@ -15,6 +15,10 @@ class LojasTile extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final userManager = context.watch<UserManager>();
+    bool teste(){
+      if(userManager.isLoggedIn &&  userManager.user.address.state != lojas.state)
+        return true;
+    }
 
     if(userManager.isLoggedIn && userManager.user.address.state == lojas.state)
       return InkWell(
@@ -93,9 +97,11 @@ class LojasTile extends StatelessWidget {
                 ),
               ))
       );
-    else if(userManager.isLoggedIn && userManager.user.address.state != lojas.state)
+    else if(teste())
       // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
-      return Container();
+      return Container(
+        child: Text("Olá mundo"),
+      );
     else
       return InkWell(
           onTap: (){

@@ -19,7 +19,6 @@ class SectionDestaques extends StatelessWidget {
 
     bool teste(){
       if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
-        // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
         return true;
     }
 

@@ -73,7 +73,7 @@ class DesapegoCardTile extends StatelessWidget {
                               color: Colors.grey[700],
                             ),
                             Text(
-                              "Concessonária FORD",
+                              desapego.cidade,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,

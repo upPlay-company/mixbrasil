@@ -15,7 +15,6 @@ class ItensDesapegoScreen extends StatefulWidget {
 
 class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
   final DesapegoData desapego;
-  String nameAnuciante = "mauricio";
 
   _ItensDesapegoScreenState(this.desapego);
 
@@ -107,7 +106,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                               left: 20,
                             ),
                             child: Text(
-                              "concessonária Ford \n",
+                              "${desapego.cidade} \n",
                               style: TextStyle(
                                 fontSize: 18,
                               ),
@@ -179,7 +178,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
         color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
-            "ANUCIANTE: " + nameAnuciante.toUpperCase(),
+            "ANUCIANTE: " + desapego.anunciante.toUpperCase(),
             style: TextStyle(
               fontSize: 20,
               color: Colors.white,

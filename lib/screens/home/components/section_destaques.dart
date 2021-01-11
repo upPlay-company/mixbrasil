@@ -6,30 +6,33 @@ import 'package:mix_brasil/screens/home/components/lojas_destaques_screen.dart';
 import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
-
   final DestaqueLoja lojasDestaque;
-
 
   SectionDestaques(this.lojasDestaque);
 
   @override
   Widget build(BuildContext context) {
-
     final userManager = context.watch<UserManager>();
 
-    bool teste(){
-      if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
-        return true;
+    int teste() {
+      if (userManager.isLoggedIn &&
+          userManager.user.address.state != lojasDestaque.state) return 0;
     }
 
-    if(userManager.isLoggedIn && userManager.user.address.state == lojasDestaque.state)
+    int x = teste();
+
+    if (userManager.isLoggedIn &&
+        userManager.user.address.state == lojasDestaque.state)
       return InkWell(
-          onTap: (){
-            if(lojasDestaque.id != null){
-              final product = context.read<LojasDestaqueManager>().findProductByID(lojasDestaque.id);
-              if(product !=  null){
+          onTap: () {
+            if (lojasDestaque.id != null) {
+              final product = context
+                  .read<LojasDestaqueManager>()
+                  .findProductByID(lojasDestaque.id);
+              if (product != null) {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context)=>LojasDestaqueScreen(lojasDestaque)),
+                  MaterialPageRoute(
+                      builder: (context) => LojasDestaqueScreen(lojasDestaque)),
                 );
               }
             }
@@ -62,14 +65,17 @@ class SectionDestaques extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text(
                             lojasDestaque.name,
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800),
+                                fontSize: 18, fontWeight: FontWeight.w800),
                           ),
-                          SizedBox(height: 5,),
+                          SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             lojasDestaque.descricao,
                             style: TextStyle(
@@ -77,7 +83,9 @@ class SectionDestaques extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.grey[700]),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -92,8 +100,7 @@ class SectionDestaques extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w800,
-                                    color: Theme.of(context).primaryColor
-                                ),
+                                    color: Theme.of(context).primaryColor),
                               ),
                             ],
                           ),
@@ -102,18 +109,21 @@ class SectionDestaques extends StatelessWidget {
                     )
                   ],
                 ),
-              ))
-      );
-    else if(userManager.isLoggedIn &&  userManager.user.address.state != lojasDestaque.state)
+              )));
+    else if (x == 0)
+      // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
       return Container();
     else
       return InkWell(
-          onTap: (){
-            if(lojasDestaque.id != null){
-              final product = context.read<LojasDestaqueManager>().findProductByID(lojasDestaque.id);
-              if(product !=  null){
+          onTap: () {
+            if (lojasDestaque.id != null) {
+              final product = context
+                  .read<LojasDestaqueManager>()
+                  .findProductByID(lojasDestaque.id);
+              if (product != null) {
                 Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context)=>LojasDestaqueScreen(lojasDestaque)),
+                  MaterialPageRoute(
+                      builder: (context) => LojasDestaqueScreen(lojasDestaque)),
                 );
               }
             }
@@ -146,14 +156,17 @@ class SectionDestaques extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Text(
                             lojasDestaque.name,
                             style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w800),
+                                fontSize: 18, fontWeight: FontWeight.w800),
                           ),
-                          SizedBox(height: 5,),
+                          SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             lojasDestaque.descricao,
                             style: TextStyle(
@@ -161,7 +174,9 @@ class SectionDestaques extends StatelessWidget {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.grey[700]),
                           ),
-                          SizedBox(height: 20,),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Row(
                             children: [
                               Text(
@@ -176,8 +191,7 @@ class SectionDestaques extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w800,
-                                    color: Theme.of(context).primaryColor
-                                ),
+                                    color: Theme.of(context).primaryColor),
                               ),
                             ],
                           ),
@@ -186,8 +200,7 @@ class SectionDestaques extends StatelessWidget {
                     )
                   ],
                 ),
-              ))
-      );
+              )));
     // TODO: CORRIGIR ERRO QUANDO O ESTADO DO USUARIO É NULL
   }
 }

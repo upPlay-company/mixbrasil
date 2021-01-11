@@ -9,6 +9,7 @@ class LojasDestaqueManager extends ChangeNotifier {
     _loadDestaques();
   }
 
+
   List<DestaqueLoja> _lojasDestaque = [];
 
   DestaqueLoja lojasDestaques;

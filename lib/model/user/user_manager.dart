@@ -7,8 +7,7 @@ import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/services/cep_aberto_services.dart';
 
 class UserManager extends ChangeNotifier {
-
-  UserManager(){
+  UserManager() {
     _loadCurrentUser();
   }
 
@@ -19,33 +18,36 @@ class UserManager extends ChangeNotifier {
   Address address;
 
   bool _loading = false;
+
   bool get loading => _loading;
 
   bool get isLoggedIn => user != null;
 
-  Future<void> signIn({UserUser user, Function onFail, Function onSuccess}) async {
+  Future<void> signIn(
+      {UserUser user, Function onFail, Function onSuccess}) async {
     loading = true;
     try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
-        email: user.email, password: user.password,
+        email: user.email,
+        password: user.password,
       );
 
       await _loadCurrentUser(firebaseUser: result.user);
 
       onSuccess();
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
     }
 
     loading = false;
   }
 
-  Future<void> signUp({UserUser user, Function onFail, Function onSuccess}) async {
+  Future<void> signUp(
+      {UserUser user, Function onFail, Function onSuccess}) async {
     loading = true;
     try {
       final UserCredential result = await auth.createUserWithEmailAndPassword(
-          email: user.email,
-          password: user.password);
+          email: user.email, password: user.password);
 
       user.id = result.user.uid;
       this.user = user;
@@ -53,44 +55,47 @@ class UserManager extends ChangeNotifier {
       await user.saveData();
 
       onSuccess();
-    } on FirebaseAuthException catch (e){
+    } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
     }
     loading = false;
   }
 
-  void signOut(){
+  void signOut() {
     auth.signOut();
     user = null;
     notifyListeners();
   }
 
-  set loading(bool value){
+  set loading(bool value) {
     _loading = value;
     notifyListeners();
   }
 
-  Future<void> _loadCurrentUser({User firebaseUser}) async{
+  //TODO: Implementar a função de recuperação de senha
+  void recoverPass(String email) {}
+
+  Future<void> _loadCurrentUser({User firebaseUser}) async {
     final User currentUser = firebaseUser ?? auth.currentUser;
-    if(currentUser != null){
-      final DocumentSnapshot docUser = await firestore.collection('users').
-      doc(currentUser.uid).get();
+    if (currentUser != null) {
+      final DocumentSnapshot docUser =
+          await firestore.collection('users').doc(currentUser.uid).get();
       user = UserUser.fromDocument(docUser);
       notifyListeners();
     }
   }
 
-  void updateUser(UserManager userManager){
+  void updateUser(UserManager userManager) {
     user = userManager.user;
     removeAddress();
 
-    if(user != null){
+    if (user != null) {
       _loadUserAddress();
     }
   }
 
   Future<void> _loadUserAddress() async {
-    if(user.address != null){
+    if (user.address != null) {
       address = user.address;
       notifyListeners();
     }
@@ -105,7 +110,7 @@ class UserManager extends ChangeNotifier {
     try {
       final cepAbertoAddress = await cepAbertoService.getAddressFromCep(cep);
 
-      if(cepAbertoAddress != null){
+      if (cepAbertoAddress != null) {
         address = Address(
             street: cepAbertoAddress.logradouro,
             district: cepAbertoAddress.bairro,
@@ -113,8 +118,7 @@ class UserManager extends ChangeNotifier {
             city: cepAbertoAddress.cidade.nome,
             state: cepAbertoAddress.estado.sigla,
             lat: cepAbertoAddress.latitude,
-            long: cepAbertoAddress.longitude
-        );
+            long: cepAbertoAddress.longitude);
       }
 
       loading = false;
@@ -130,12 +134,12 @@ class UserManager extends ChangeNotifier {
     try {
       user.setAddress(address);
       loading = false;
-    } catch (e){
+    } catch (e) {
       return Future.error('Endereço não localizado');
-      }
     }
+  }
 
-  void removeAddress(){
+  void removeAddress() {
     address = null;
     notifyListeners();
   }

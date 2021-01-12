@@ -54,9 +54,14 @@ class HomeScreen extends StatelessWidget {
                                         'Você está em:',
                                         style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
-                                      Text(
-                                        '${userManager.user?.address?.city ?? 'Manaus'}',
-                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                      Flexible(
+                                        child: Container(
+                                          child: Text(
+                                            '${userManager.user?.address?.city ?? 'Manaus'}',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(color: Colors.white, fontSize: 18),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),

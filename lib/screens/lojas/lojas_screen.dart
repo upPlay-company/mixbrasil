@@ -22,7 +22,7 @@ class _ProductScreenState extends State<ProductScreen> {
       "https://st.depositphotos.com/1186248/2240/i/950/depositphotos_22400321-stock-photo-100-percent-rubber-stamp.jpg";
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
-//TODO: Refatorar Codigo
+//TODO: Ainda existe coisas static, é pra criar um array de imagens de oferta, ou a variavel promocao vai ter as imagens do carde de ofertas
   @override
   Widget build(BuildContext context) {
     final Color primaryColor = Theme.of(context).primaryColor;

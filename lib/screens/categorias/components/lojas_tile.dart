@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/categorias/components/section_categorias.dart';
 import 'package:mix_brasil/screens/lojas/lojas_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -13,12 +14,9 @@ class LojasTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userManager = context.watch<UserManager>();
-    bool teste() {
-      if (userManager.isLoggedIn &&
-          userManager.user.address.state != lojas.state) return true;
-    }
 
-    Widget lojaTile(){
+    //Declarações de funções
+    Widget lojaTile() {
       return InkWell(
         onTap: () {
           Navigator.of(context).push(
@@ -101,14 +99,19 @@ class LojasTile extends StatelessWidget {
         ),
       );
     }
-
+    //Fim da Declarações de funções
 
     if (userManager.isLoggedIn && userManager.user.address.state == lojas.state)
       return lojaTile();
-    else if (teste())
+    else if (!userManager.isLoggedIn)
       // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
-      return Text("Olá mundo");
-    else
       return lojaTile();
+    /*Navigator.of(context).push(
+        MaterialPageRoute(
+            builder: (context) => ReplaceNotLoja()),
+        // retorna pra mesma pagina sem informação
+      );*/
+    else
+      return Container();
   }
 }

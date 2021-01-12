@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:provider/provider.dart';

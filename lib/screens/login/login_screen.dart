@@ -16,6 +16,24 @@ class LoginScreen extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+
+  //Declarações de funções
+  Widget _snackBarRecover(String msgRecovery, dynamic scaffoldKey){
+    return scaffoldKey.currentState.showSnackBar(
+        SnackBar(
+          content: Text(msgRecovery,
+            style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: Color(0xff078c9f),
+          behavior: SnackBarBehavior.floating,
+          margin: EdgeInsets.all(16),
+          duration: Duration(seconds: 2),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        )
+    );
+  }
+  //Fim Declarações de funções
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -124,6 +142,10 @@ class LoginScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: (){
                                   // TODO: IMPLEMENTAR ESQUECEU SENHA
+                                  if(emailController.text.isEmpty)
+                                    _snackBarRecover("Insira seu e-mail para recuperação!", scaffoldKey);
+                                  else
+                                    _snackBarRecover("Verifique seu e-mail", scaffoldKey);
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),

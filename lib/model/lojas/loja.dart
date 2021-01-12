@@ -3,16 +3,11 @@ import 'package:flutter/cupertino.dart';
 
 class LojasData extends ChangeNotifier {
 
-  String descricao;
-  String id;
-  String category;
-  String name;
+  String descricao, id, category, name, promocao, state;
   double price;
   bool destaque;
   List img;
   int pos;
-  String promocao;
-  String state;
 
   //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
 

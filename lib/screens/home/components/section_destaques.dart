@@ -122,9 +122,10 @@ class SectionDestaques extends StatelessWidget {
       // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
     else if(!userManager.isLoggedIn || userManager.user == null)
       return _sectionDestaque();
-    else if (userManager.isLoggedIn && _checkEqualCity())
+    else if (userManager.isLoggedIn && _checkEqualCity()){
       _checkEqualCity();
-      /*return Text("Não a loja na sua cidade");*/
+      return Text("Não a loja na sua cidade");
+    }
     else
       return Container();
     // TODO: CORRIGIR ERRO QUANDO O ESTADO DO USUARIO É NULL -> Resolvido

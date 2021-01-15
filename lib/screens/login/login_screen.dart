@@ -225,7 +225,6 @@ class LoginScreen extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                                 child: Container(
                                   height: 0.8,
-                                  width: 130,
                                   color: Theme.of(context).primaryColor,),
                               ),
                               Text('OU', style: TextStyle(fontWeight: FontWeight.bold),),
@@ -233,7 +232,6 @@ class LoginScreen extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                                 child: Container(
                                   height: 0.8,
-                                  width: 130,
                                   color: Theme.of(context).primaryColor,),
                               ),
                             ],

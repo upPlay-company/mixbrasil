@@ -29,6 +29,8 @@ class _InicialScreenState extends State<InicialScreen> {
       ),
       child: Center(
         child: Container(
+          height: 200,
+          width: 200,
           decoration: BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('images/Logo mix.png'),

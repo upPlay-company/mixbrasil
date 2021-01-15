@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
+import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_categorias.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,38 @@ class DesapegoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+              width: 160,
+              height: 44,
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => CriarAnuncioScreen()
+                  ));
+                },
+                color: Theme.of(context).secondaryHeaderColor,
+                child: Flexible(
+                  child: Container(
+                    child: Text(
+                      'Criar Anúncio',
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    topRight: Radius.circular(20),
+                  ),
+                ),
+              )
+          ),
+        ],
+      ),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

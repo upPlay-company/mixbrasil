@@ -42,7 +42,7 @@ class Perfil extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 100),
+                            padding: const EdgeInsets.only(top: 75),
                             child: Consumer<UserManager>(
                               builder: (_, userManager, __){
                                 return Column(

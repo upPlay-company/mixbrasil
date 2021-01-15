@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -127,7 +126,7 @@ class SectionDestaques extends StatelessWidget {
       return Text("Não a loja na sua cidade");
     }
     else
-      return Container();
+      return Container(child: Text('não a lojas!!!'),);
     // TODO: CORRIGIR ERRO QUANDO O ESTADO DO USUARIO É NULL -> Resolvido
   }
 }

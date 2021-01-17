@@ -13,11 +13,9 @@ import 'package:provider/provider.dart';
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
-  String _message = 'Faça login / logout pressionando os botões abaixo.';
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-  UserManager user123;
 
   //Declarações de funções
   Widget _snackBarRecover(String msgRecovery, dynamic scaffoldKey) {
@@ -34,44 +32,7 @@ class LoginScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     ));
   }
-  //Função para fazer login com o facebook
-  Future<Null> _loginFacebook() async {
-    final FacebookLoginResult result =
-    await facebookSignIn.logIn(['email']);
 
-    //switch para verificar status do login, conforme for,
-    // ele trás mensagem avisando sobre o estado atual
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        _showMessageFacebook('''
-         Logado!
-         
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        _showMessageFacebook('Login cancelado pelo usuário.');
-        break;
-      case FacebookLoginStatus.error:
-        _showMessageFacebook('Algo deu errado com o processo de login.\n'
-            'Aqui está o erro que o Facebook nos deu: ${result.errorMessage}');
-        break;
-    }
-  }
-  //Função para deslogar do facebook
-  Future<Null> _logOutFacebook() async {
-    await facebookSignIn.logOut();
-    _showMessageFacebook('Desconectado.');
-  }
-  void _showMessageFacebook(String message) {
-    user123.notifyListeners();
-    _message = message;
-  }
 
   //Fim Declarações de funções
 
@@ -299,7 +260,7 @@ class LoginScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: _loginFacebook,
+                                onPressed: userManager.loginFacebook,
                                 color: Theme.of(context).primaryColor,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

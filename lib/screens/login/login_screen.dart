@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user.dart';
@@ -8,54 +9,90 @@ import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
 
+class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-
+  static final FacebookLogin facebookSignIn = new FacebookLogin();
+  String _message = 'Faça login / logout pressionando os botões abaixo.';
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
-
+  UserManager user123;
 
   //Declarações de funções
-  Widget _snackBarRecover(String msgRecovery, dynamic scaffoldKey){
-    return scaffoldKey.currentState.showSnackBar(
-        SnackBar(
-          content: Text(msgRecovery,
-            style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-          backgroundColor: Color(0xff078c9f),
-          behavior: SnackBarBehavior.floating,
-          margin: EdgeInsets.all(16),
-          duration: Duration(seconds: 2),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-        )
-    );
+  Widget _snackBarRecover(String msgRecovery, dynamic scaffoldKey) {
+    return scaffoldKey.currentState.showSnackBar(SnackBar(
+      content: Text(
+        msgRecovery,
+        style: TextStyle(
+            fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+      ),
+      backgroundColor: Color(0xff078c9f),
+      behavior: SnackBarBehavior.floating,
+      margin: EdgeInsets.all(16),
+      duration: Duration(seconds: 2),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+    ));
   }
+  //Função para fazer login com o facebook
+  Future<Null> _loginFacebook() async {
+    final FacebookLoginResult result =
+    await facebookSignIn.logIn(['email']);
+
+    //switch para verificar status do login, conforme for,
+    // ele trás mensagem avisando sobre o estado atual
+    switch (result.status) {
+      case FacebookLoginStatus.loggedIn:
+        final FacebookAccessToken accessToken = result.accessToken;
+        _showMessageFacebook('''
+         Logado!
+         
+         Token: ${accessToken.token}
+         User id: ${accessToken.userId}
+         Expires: ${accessToken.expires}
+         Permissions: ${accessToken.permissions}
+         Declined permissions: ${accessToken.declinedPermissions}
+         ''');
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        _showMessageFacebook('Login cancelado pelo usuário.');
+        break;
+      case FacebookLoginStatus.error:
+        _showMessageFacebook('Algo deu errado com o processo de login.\n'
+            'Aqui está o erro que o Facebook nos deu: ${result.errorMessage}');
+        break;
+    }
+  }
+  //Função para deslogar do facebook
+  Future<Null> _logOutFacebook() async {
+    await facebookSignIn.logOut();
+    _showMessageFacebook('Desconectado.');
+  }
+  void _showMessageFacebook(String message) {
+    user123.notifyListeners();
+    _message = message;
+  }
+
   //Fim Declarações de funções
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/Fundo_mix.png'),
-          fit: BoxFit.cover
-        )
-      ),
+          image: DecorationImage(
+              image: AssetImage('images/Fundo_mix.png'), fit: BoxFit.cover)),
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: Colors.transparent,
         body: Center(
           child: SingleChildScrollView(
             child: Consumer<UserManager>(
-              builder: (_, userManager, __){
+              builder: (_, userManager, __) {
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)
-                    ),
+                        borderRadius: BorderRadius.circular(20)),
                     child: Form(
                       key: formKey,
                       child: Column(
@@ -63,53 +100,51 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 10),
-                            child: Text('Entre',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold
-                              ),
+                            child: Text(
+                              'Entre',
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor.withAlpha(50),
-                                borderRadius: BorderRadius.circular(10)
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextFormField(
-                                  controller: emailController,
-                                  keyboardType: TextInputType.emailAddress,
-                                  enabled: !userManager.loading,
-                                  autocorrect: false,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  validator: (email){
-                                    if(!emailValid(email)){
-                                      return 'Email inválido';
-                                    }
-                                    return null;
-                                  },
-                                  decoration:
-                                  InputDecoration(
-                                      border: InputBorder.none,
-                                      icon: Icon(Icons.email),
-                                      hintText: 'Email'
+                              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withAlpha(50),
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextFormField(
+                                    controller: emailController,
+                                    keyboardType: TextInputType.emailAddress,
+                                    enabled: !userManager.loading,
+                                    autocorrect: false,
+                                    style: TextStyle(
+                                      color: Colors.black,
                                     ),
+                                    validator: (email) {
+                                      if (!emailValid(email)) {
+                                        return 'Email inválido';
+                                      }
+                                      return null;
+                                    },
+                                    decoration: InputDecoration(
+                                        border: InputBorder.none,
+                                        icon: Icon(Icons.email),
+                                        hintText: 'Email'),
                                   ),
-                              ),
-                            )
-                            ),
+                                ),
+                              )),
                           Padding(
                               padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                               child: Container(
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).primaryColor.withAlpha(50),
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
+                                    color: Theme.of(context)
+                                        .primaryColor
+                                        .withAlpha(50),
+                                    borderRadius: BorderRadius.circular(10)),
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: TextFormField(
@@ -118,7 +153,7 @@ class LoginScreen extends StatelessWidget {
                                     obscureText: true,
                                     enabled: !userManager.loading,
                                     validator: (pass) {
-                                      if(pass.isEmpty || pass.length < 6){
+                                      if (pass.isEmpty || pass.length < 6) {
                                         return 'Senha inválida';
                                       }
                                       return null;
@@ -126,26 +161,29 @@ class LoginScreen extends StatelessWidget {
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
-                                    decoration:
-                                    InputDecoration(
+                                    decoration: InputDecoration(
                                         border: InputBorder.none,
                                         icon: Icon(Icons.lock),
-                                        hintText: 'Senha'
-                                    ),
+                                        hintText: 'Senha'),
                                   ),
                                 ),
-                              )
-                          ),
+                              )),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              GestureDetector(
-                                onTap: (){
-                                  // TODO: IMPLEMENTAR ESQUECEU SENHA
-                                  if(emailController.text.isEmpty)
-                                    _snackBarRecover("Insira seu e-mail para recuperação!", scaffoldKey);
-                                  else
-                                    _snackBarRecover("Verifique seu e-mail", scaffoldKey);
+                              FlatButton(
+                                onPressed: () {
+                                  // TODO: IMPLEMENTAR ESQUECEU SENHA -> Resolvido
+                                  if (emailController.text.isEmpty)
+                                    _snackBarRecover(
+                                        "Insira seu e-mail para recuperação!",
+                                        scaffoldKey);
+                                  else {
+                                    print(emailController.text);
+                                    userManager.recoverPass(emailController.text);
+                                    _snackBarRecover(
+                                        "Verifique seu e-mail", scaffoldKey);
+                                  }
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -155,8 +193,7 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.grey,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Principal'
-                                    ),
+                                        fontFamily: 'Principal'),
                                   ),
                                 ),
                               ),
@@ -168,53 +205,68 @@ class LoginScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: userManager.loading ? null : (){
-                                  if(formKey.currentState.validate()){
-                                    userManager.signIn(
-                                        user: UserUser(
-                                            email: emailController.text,
-                                            password: passController.text
-                                        ),
-                                        onFail: (e){
-                                          scaffoldKey.currentState.showSnackBar(
-                                              SnackBar(
-                                                content: Text('Falha no login: $e',
-                                                  style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
-                                                ),
-                                                backgroundColor: Theme.of(context).primaryColor,
-                                                behavior: SnackBarBehavior.floating,
-                                                margin: EdgeInsets.all(16),
-                                                duration: Duration(seconds: 2),
-                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-                                              )
-                                          );
-                                        },
-                                        onSuccess: (){
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (_) => BaseScreen()
-                                          ));
+                                onPressed: userManager.loading
+                                    ? null
+                                    : () {
+                                        if (formKey.currentState.validate()) {
+                                          userManager.signIn(
+                                              user: UserUser(
+                                                  email: emailController.text,
+                                                  password:
+                                                      passController.text),
+                                              onFail: (e) {
+                                                scaffoldKey.currentState
+                                                    .showSnackBar(SnackBar(
+                                                  content: Text(
+                                                    'Falha no login: $e',
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .primaryColor,
+                                                  behavior:
+                                                      SnackBarBehavior.floating,
+                                                  margin: EdgeInsets.all(16),
+                                                  duration:
+                                                      Duration(seconds: 2),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100)),
+                                                ));
+                                              },
+                                              onSuccess: () {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (_) =>
+                                                            BaseScreen()));
+                                              });
                                         }
-                                    );
-                                  }
-                                },
+                                      },
                                 color: Theme.of(context).primaryColor,
-                                child: userManager.loading ?
-                                const CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(Colors.white),
-                                ) : Text(
-                                  'Entre',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20,
-                                      fontFamily: 'Principal'
-                                  ),
-                                ),
-                                disabledColor: Theme.of(context).primaryColor.withAlpha(100),
+                                child: userManager.loading
+                                    ? const CircularProgressIndicator(
+                                        valueColor: AlwaysStoppedAnimation(
+                                            Colors.white),
+                                      )
+                                    : Text(
+                                        'Entre',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            fontFamily: 'Principal'),
+                                      ),
+                                disabledColor: Theme.of(context)
+                                    .primaryColor
+                                    .withAlpha(100),
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
+                                    borderRadius: BorderRadius.circular(10)),
                               ),
                             ),
                           ),
@@ -225,14 +277,19 @@ class LoginScreen extends StatelessWidget {
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                                 child: Container(
                                   height: 0.8,
-                                  color: Theme.of(context).primaryColor,),
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
-                              Text('OU', style: TextStyle(fontWeight: FontWeight.bold),),
+                              Text(
+                                'OU',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                                 child: Container(
                                   height: 0.8,
-                                  color: Theme.of(context).primaryColor,),
+                                  color: Theme.of(context).primaryColor,
+                                ),
                               ),
                             ],
                           ),
@@ -242,9 +299,7 @@ class LoginScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: () {
-                                  // TODO: LOGIN PELO FACEBOOK
-                                },
+                                onPressed: _loginFacebook,
                                 color: Theme.of(context).primaryColor,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -260,23 +315,20 @@ class LoginScreen extends StatelessWidget {
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700,
                                           fontSize: 18,
-                                          fontFamily: 'Principal'
-                                      ),
+                                          fontFamily: 'Principal'),
                                     ),
                                   ],
                                 ),
                                 elevation: 0,
                                 shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10)
-                                ),
+                                    borderRadius: BorderRadius.circular(10)),
                               ),
                             ),
                           ),
                           GestureDetector(
-                            onTap: (){
+                            onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => SignUpScreen()
-                              ));
+                                  builder: (context) => SignUpScreen()));
                             },
                             child: Padding(
                               padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
@@ -289,8 +341,7 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.black,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Principal'
-                                    ),
+                                        fontFamily: 'Principal'),
                                   ),
                                   Text(
                                     'Clique aqui',
@@ -298,8 +349,7 @@ class LoginScreen extends StatelessWidget {
                                         color: Theme.of(context).primaryColor,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Principal'
-                                    ),
+                                        fontFamily: 'Principal'),
                                   )
                                 ],
                               ),
@@ -309,7 +359,7 @@ class LoginScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   Navigator.of(context).pushNamed('/base');
                                 },
                                 child: Padding(
@@ -320,8 +370,7 @@ class LoginScreen extends StatelessWidget {
                                         color: Colors.grey,
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Principal'
-                                    ),
+                                        fontFamily: 'Principal'),
                                   ),
                                 ),
                               ),

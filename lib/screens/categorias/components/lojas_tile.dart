@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/categorias/components/section_categorias.dart';
 import 'package:mix_brasil/screens/lojas/lojas_screen.dart';
 import 'package:provider/provider.dart';
 

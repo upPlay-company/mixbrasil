@@ -14,6 +14,7 @@ class UserManager extends ChangeNotifier {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+
   UserUser user;
   Address address;
 
@@ -73,7 +74,9 @@ class UserManager extends ChangeNotifier {
   }
 
   //TODO: Implementar a função de recuperação de senha
-  void recoverPass(String email) {}
+  void recoverPass(String email) {
+    auth.sendPasswordResetEmail(email: email);
+  }
 
   Future<void> _loadCurrentUser({User firebaseUser}) async {
     final User currentUser = firebaseUser ?? auth.currentUser;

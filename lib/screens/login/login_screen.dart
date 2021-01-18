@@ -214,10 +214,18 @@ class LoginScreen extends StatelessWidget {
                                                 ));
                                               },
                                               onSuccess: () {
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (_) =>
-                                                            BaseScreen()));
+                                                if(userManager.user.address == null)
+                                                  return Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (_) => CepUserScreen()
+                                                      )
+                                                  );
+                                                else
+                                                  return Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (_) => BaseScreen()
+                                                      )
+                                                  );
                                               });
                                         }
                                       },
@@ -294,9 +302,18 @@ class LoginScreen extends StatelessWidget {
                                               BorderRadius.circular(100)),
                                     ));
                                   }, onSuccess: () {
-                                         Navigator.of(context).push(
+                                    if(userManager.user.address == null)
+                                         return Navigator.of(context).push(
                                             MaterialPageRoute(
-                                                builder: (_) => CepUserScreen()));
+                                                builder: (_) => CepUserScreen()
+                                            )
+                                         );
+                                    else
+                                      return Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) => BaseScreen()
+                                          )
+                                      );
                                   });
                                 },
                                 color: Theme.of(context).primaryColor,

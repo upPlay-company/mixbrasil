@@ -5,6 +5,7 @@ import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -279,9 +280,9 @@ class LoginScreen extends StatelessWidget {
                                               BorderRadius.circular(100)),
                                     ));
                                   }, onSuccess: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (_) => BaseScreen()));
+                                         Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (_) => CepUserScreen()));
                                   });
                                 },
                                 color: Theme.of(context).primaryColor,

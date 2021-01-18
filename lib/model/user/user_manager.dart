@@ -184,41 +184,6 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*//Função para fazer login com o facebook
-  Future<Null> loginFacebook() async {
-    final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
-
-    //switch para verificar status do login, conforme for,
-    // ele trás mensagem avisando sobre o estado atual
-    switch (result.status) {
-      case FacebookLoginStatus.loggedIn:
-        final FacebookAccessToken accessToken = result.accessToken;
-        _showMessageFacebook('''
-         Logado!
-         
-         Token: ${accessToken.token}
-         User id: ${accessToken.userId}
-         Expires: ${accessToken.expires}
-         Permissions: ${accessToken.permissions}
-         Declined permissions: ${accessToken.declinedPermissions}
-         ''');
-        break;
-      case FacebookLoginStatus.cancelledByUser:
-        _showMessageFacebook('Login cancelado pelo usuário.');
-        break;
-      case FacebookLoginStatus.error:
-        _showMessageFacebook('Algo deu errado com o processo de login.\n'
-            'Aqui está o erro que o Facebook nos deu: ${result.errorMessage}');
-        break;
-    }
-  }*/
-
-  /*//Função para deslogar do facebook
-  Future<Null> _logOutFacebook() async {
-    await facebookSignIn.logOut();
-    _showMessageFacebook('Desconectado.');
-  }*/
-
   void _showMessageFacebook(String message) {
     notifyListeners();
     _message = message;

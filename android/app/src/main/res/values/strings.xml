@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">MIX BRASIL</string>
 
-    <string name="facebook_app_id">1864279098897690</string>
+    <string name="facebook_app_id">913630362792394</string>
 
-    <string name="fb_login_protocol_scheme">fb186427909889769</string>
+    <string name="fb_login_protocol_scheme">fb913630362792394</string>
 </resources>

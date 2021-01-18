@@ -14,7 +14,6 @@ class UserManager extends ChangeNotifier {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  static final FacebookLogin facebookSignIn = new FacebookLogin();
   String _message = 'Faça login / logout pressionando os botões abaixo.';
 
   UserUser user;
@@ -42,6 +41,42 @@ class UserManager extends ChangeNotifier {
       onFail(getErrorString(e.code));
     }
 
+    loading = false;
+  }
+
+  Future<void> facebookLogin({Function onFail, Function onSuccess}) async {
+    loading = true;
+
+    final result = await FacebookLogin().logIn(['email', 'public_profile']);
+
+    switch(result.status){
+      case FacebookLoginStatus.loggedIn:
+        final credential = FacebookAuthProvider.credential(
+          result.accessToken.token
+        );
+
+        final authResult = await auth.signInWithCredential(credential);
+
+        if(authResult != null){
+          final firebaseUser = authResult.user;
+
+          user = UserUser(
+            id: firebaseUser.uid,
+            name: firebaseUser.displayName,
+            email: firebaseUser.email
+          );
+
+          await user.saveData();
+
+          onSuccess();
+        }
+        break;
+      case FacebookLoginStatus.cancelledByUser:
+        break;
+      case FacebookLoginStatus.error:
+        onFail(result.errorMessage);
+        break;
+    }
     loading = false;
   }
 
@@ -149,7 +184,7 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  //Função para fazer login com o facebook
+  /*//Função para fazer login com o facebook
   Future<Null> loginFacebook() async {
     final FacebookLoginResult result = await facebookSignIn.logIn(['email']);
 
@@ -176,13 +211,13 @@ class UserManager extends ChangeNotifier {
             'Aqui está o erro que o Facebook nos deu: ${result.errorMessage}');
         break;
     }
-  }
+  }*/
 
-  //Função para deslogar do facebook
+  /*//Função para deslogar do facebook
   Future<Null> _logOutFacebook() async {
     await facebookSignIn.logOut();
     _showMessageFacebook('Desconectado.');
-  }
+  }*/
 
   void _showMessageFacebook(String message) {
     notifyListeners();

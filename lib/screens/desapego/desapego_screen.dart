@@ -14,32 +14,36 @@ class DesapegoScreen extends StatelessWidget {
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-              width: 160,
-              height: 44,
-              child: RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => CriarAnuncioScreen()
-                  ));
-                },
-                color: Theme.of(context).secondaryHeaderColor,
-                child: Flexible(
-                  child: Container(
-                    child: Text(
-                      'Criar Anúncio',
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+          Container(
+            color: Colors.transparent,
+            padding: const EdgeInsets.only(left: 35),
+            child: SizedBox(
+                width: 160,
+                height: 44,
+                child: RaisedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => CriarAnuncioScreen()
+                    ));
+                  },
+                  color: Theme.of(context).secondaryHeaderColor,
+                  child: Flexible(
+                    child: Container(
+                      child: Text(
+                        'Criar Anúncio',
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
                     ),
                   ),
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    ),
                   ),
-                ),
-              )
+                )
+            ),
           ),
         ],
       ),

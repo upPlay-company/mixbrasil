@@ -8,6 +8,7 @@ import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
+import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 
@@ -57,6 +58,10 @@ class MyApp extends StatelessWidget {
             case '/cep':
               return MaterialPageRoute(
                 builder: (_) => CepUserScreen(),
+              );
+            case '/desapego_destaque':
+              return MaterialPageRoute(
+                builder: (_) => DesapegoScreen(),
               );
             case '/login':
               return MaterialPageRoute(

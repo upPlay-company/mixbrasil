@@ -8,7 +8,6 @@ import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
-
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
@@ -31,7 +30,6 @@ class LoginScreen extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
     ));
   }
-
 
   //Fim Declarações de funções
 
@@ -140,7 +138,8 @@ class LoginScreen extends StatelessWidget {
                                         scaffoldKey);
                                   else {
                                     print(emailController.text);
-                                    userManager.recoverPass(emailController.text);
+                                    userManager
+                                        .recoverPass(emailController.text);
                                     _snackBarRecover(
                                         "Verifique seu e-mail", scaffoldKey);
                                   }
@@ -259,7 +258,32 @@ class LoginScreen extends StatelessWidget {
                               height: 54,
                               width: MediaQuery.of(context).size.width,
                               child: RaisedButton(
-                                onPressed: userManager.loginFacebook,
+                                onPressed: () {
+                                  userManager.facebookLogin(onFail: (e) {
+                                    scaffoldKey.currentState
+                                        .showSnackBar(SnackBar(
+                                          content: Text(
+                                        'Falha no login: $e',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      backgroundColor:
+                                          Theme.of(context).primaryColor,
+                                      behavior: SnackBarBehavior.floating,
+                                      margin: EdgeInsets.all(16),
+                                      duration: Duration(seconds: 2),
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                    ));
+                                  }, onSuccess: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (_) => BaseScreen()));
+                                  });
+                                },
                                 color: Theme.of(context).primaryColor,
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,

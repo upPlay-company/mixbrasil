@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MIX BRASIL</string>
+
+    <string name="facebook_app_id">1864279098897690</string>
+
+    <string name="fb_login_protocol_scheme">fb186427909889769</string>
+</resources>

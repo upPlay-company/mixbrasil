@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user.dart';

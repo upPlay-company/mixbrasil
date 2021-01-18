@@ -27,7 +27,6 @@ class LojasDestaqueManager extends ChangeNotifier {
             (c) => DestaqueLoja.fromDocument(c)).toList();
 
     notifyListeners();
-    print(_lojasDestaque);
   }
 
   List<DestaqueLoja> get lojasDestaque {

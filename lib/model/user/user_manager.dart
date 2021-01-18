@@ -14,14 +14,23 @@ class UserManager extends ChangeNotifier {
 
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  String _message = 'Faça login / logout pressionando os botões abaixo.';
 
   UserUser user;
   Address address;
 
   bool _loading = false;
-
   bool get loading => _loading;
+  set loading(bool value) {
+    _loading = value;
+    notifyListeners();
+  }
+
+  bool _loadingFacebook = false;
+  bool get loadingFacebook => _loadingFacebook;
+  set loadingFacebook(bool value) {
+    _loadingFacebook = value;
+    notifyListeners();
+  }
 
   bool get isLoggedIn => user != null;
 
@@ -45,7 +54,7 @@ class UserManager extends ChangeNotifier {
   }
 
   Future<void> facebookLogin({Function onFail, Function onSuccess}) async {
-    loading = true;
+    loadingFacebook = true;
 
     final result = await FacebookLogin().logIn(['email', 'public_profile']);
 
@@ -77,7 +86,7 @@ class UserManager extends ChangeNotifier {
         onFail(result.errorMessage);
         break;
     }
-    loading = false;
+    loadingFacebook = false;
   }
 
   Future<void> signUp(
@@ -102,11 +111,6 @@ class UserManager extends ChangeNotifier {
   void signOut() {
     auth.signOut();
     user = null;
-    notifyListeners();
-  }
-
-  set loading(bool value) {
-    _loading = value;
     notifyListeners();
   }
 
@@ -182,10 +186,5 @@ class UserManager extends ChangeNotifier {
   void removeAddress() {
     address = null;
     notifyListeners();
-  }
-
-  void _showMessageFacebook(String message) {
-    notifyListeners();
-    _message = message;
   }
 }

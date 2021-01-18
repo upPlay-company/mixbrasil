@@ -47,6 +47,20 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Consumer<UserManager>(
               builder: (_, userManager, __) {
+                if(userManager.loadingFacebook){
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                      color: Colors.transparent,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation(
+                          Theme.of(context).primaryColor
+                        ),
+                      ),
+                    ),
+                  );
+                }
+
                 return Padding(
                   padding: const EdgeInsets.all(10),
                   child: Card(

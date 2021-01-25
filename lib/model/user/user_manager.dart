@@ -16,6 +16,7 @@ class UserManager extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   UserUser user;
+  List<UserUser> allUser = [];
   Address address;
 
   bool _loading = false;
@@ -129,6 +130,12 @@ class UserManager extends ChangeNotifier {
     }
   }
 
+  void update(UserUser user) {
+    allUser.removeWhere((u) => u.id == user.id);
+    allUser.add(user);
+    notifyListeners();
+  }
+
   void updateUser(UserManager userManager) {
     user = userManager.user;
     removeAddress();
@@ -182,6 +189,7 @@ class UserManager extends ChangeNotifier {
       return Future.error('Endereço não localizado');
     }
   }
+
 
   void removeAddress() {
     address = null;

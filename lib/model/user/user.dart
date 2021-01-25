@@ -19,13 +19,8 @@ class UserUser extends ChangeNotifier {
 
   Address address;
 
-  String id;
-  String name;
-  String email;
-  String img;
-  String password;
-  String confirmPassword;
-  String phone;
+  String id, name, email, password, img, phone, confirmPassword, newPass;
+
 
 
   DocumentReference get firestoreRef =>
@@ -44,6 +39,35 @@ class UserUser extends ChangeNotifier {
       if(address != null)
         'address': address.toMap(),
     };
+  }
+
+  bool _loading = false;
+  bool get loading => _loading;
+  set loading(bool value){
+    _loading = value;
+    notifyListeners();
+  }
+
+  Future<void> save() async {
+    loading = true;
+
+    final Map<String, dynamic> data = toMap();
+    /*final Map<String, dynamic> data = {
+      'name': name,
+      'email': email,
+      'phone': phone,
+      'nascimento': datanasc,
+    };*/
+
+    if(id == null){
+      final doc = await firestoreRef.collection('users').add(data);
+      id = doc.id;
+    }
+    else {
+      await firestoreRef.update(data);
+    }
+
+    loading = false;
   }
 
   void setAddress(Address address){

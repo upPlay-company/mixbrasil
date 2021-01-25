@@ -18,22 +18,6 @@ class DesapegoLojaScreen extends StatelessWidget {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  width: 55,
-                  height: 100,
-                  child: GestureDetector(
-                    onTap: () {
-                      // TODO: FILTRO DESAPEGO
-                    },
-                    child: Icon(
-                      Icons.filter_list_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: SizedBox(
@@ -71,7 +55,7 @@ class DesapegoLojaScreen extends StatelessWidget {
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     DesapegoData data =
-                    DesapegoData.fromDocument(snapshot.data.docs[index]);
+                        DesapegoData.fromDocument(snapshot.data.docs[index]);
                     data.category = this.snapshot.id;
                     return DesapegoCardTile("list", data);
                   });

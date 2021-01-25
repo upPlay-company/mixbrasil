@@ -129,6 +129,5 @@ class SectionDestaques extends StatelessWidget {
       return Container(
         child: Text('não a lojas!!!'),
       );
-    // TODO: CORRIGIR ERRO QUANDO O ESTADO DO USUARIO É NULL -> Resolvido
   }
 }

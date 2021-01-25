@@ -1,12 +1,12 @@
 import "package:flutter/material.dart";
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
-class loginFacebook extends StatefulWidget {
+class LoginFacebook extends StatefulWidget {
   @override
-  _loginFacebookState createState() => _loginFacebookState();
+  _LoginFacebookState createState() => _LoginFacebookState();
 }
 
-class _loginFacebookState extends State<loginFacebook> {
+class _LoginFacebookState extends State<LoginFacebook> {
   static final FacebookLogin facebookSignIn = new FacebookLogin();
 
   String _message = 'Log in/out by pressing the buttons below.';

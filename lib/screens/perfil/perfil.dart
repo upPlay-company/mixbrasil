@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/minha_conta/minha_conta.dart';
 import 'package:provider/provider.dart';
 
 class Perfil extends StatelessWidget {
@@ -142,13 +143,11 @@ class Perfil extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                child: rowsColumns(
-                  "Plano Profissional",
-                 Icons.monetization_on_rounded,
-                  Icons.arrow_forward_ios,
-                ),
-              ),
-              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => MinhaContaScreen()),
+                  );
+                },
                 child: rowsColumns(
                   "Perfil",
                   Icons.account_circle,

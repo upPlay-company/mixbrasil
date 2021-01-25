@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -6,17 +8,28 @@ import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'components/criar_anuncio_tile.dart';
 
 class CriarAnuncioScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
 
     final userManager = context.watch<UserManager>();
     if(userManager.isLoggedIn)
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('Crie seu anúncio'),
-          centerTitle: true,
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/Fundo_mix.png'),
+            fit: BoxFit.cover
+          )
         ),
-        body: CriarAnuncioTile(),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: Text('Crie seu anúncio'),
+            centerTitle: true,
+            elevation: 0,
+          ),
+          body: CriarAnuncioTile(),
+        ),
       );
     else
       return

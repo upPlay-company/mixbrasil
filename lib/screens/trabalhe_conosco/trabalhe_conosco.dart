@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class TrabalheConosco extends StatelessWidget {
   final dynamic title = "Trabalhe Conosco";
+  String conteudo = "teste";
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class TrabalheConosco extends StatelessWidget {
             text: 'Descrição ',
             style: DefaultTextStyle.of(context).style,
             children: <TextSpan>[
-              TextSpan(text: 'Disponibilidade de horario', style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: conteudo, style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: ' world!'),
             ],
           ),

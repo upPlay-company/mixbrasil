@@ -47,15 +47,14 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Consumer<UserManager>(
               builder: (_, userManager, __) {
-                if(userManager.loadingFacebook){
+                if (userManager.loadingFacebook) {
                   return Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Container(
                       color: Colors.transparent,
                       child: CircularProgressIndicator(
                         valueColor: AlwaysStoppedAnimation(
-                          Theme.of(context).primaryColor
-                        ),
+                            Theme.of(context).primaryColor),
                       ),
                     ),
                   );
@@ -214,18 +213,17 @@ class LoginScreen extends StatelessWidget {
                                                 ));
                                               },
                                               onSuccess: () {
-                                                if(userManager.user.address == null)
-                                                  return Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (_) => CepUserScreen()
-                                                      )
-                                                  );
+                                                if (userManager.user.address ==
+                                                    null)
+                                                  return Navigator.of(context)
+                                                      .push(MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              CepUserScreen()));
                                                 else
-                                                  return Navigator.of(context).push(
-                                                      MaterialPageRoute(
-                                                          builder: (_) => BaseScreen()
-                                                      )
-                                                  );
+                                                  return Navigator.of(context)
+                                                      .push(MaterialPageRoute(
+                                                          builder: (_) =>
+                                                              BaseScreen()));
                                               });
                                         }
                                       },
@@ -285,7 +283,7 @@ class LoginScreen extends StatelessWidget {
                                   userManager.facebookLogin(onFail: (e) {
                                     scaffoldKey.currentState
                                         .showSnackBar(SnackBar(
-                                          content: Text(
+                                      content: Text(
                                         'Falha no login: $e',
                                         style: TextStyle(
                                             fontSize: 16,
@@ -302,18 +300,14 @@ class LoginScreen extends StatelessWidget {
                                               BorderRadius.circular(100)),
                                     ));
                                   }, onSuccess: () {
-                                    if(userManager.user.address == null)
-                                         return Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (_) => CepUserScreen()
-                                            )
-                                         );
+                                    if (userManager.user.address == null)
+                                      return Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) => CepUserScreen()));
                                     else
                                       return Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (_) => BaseScreen()
-                                          )
-                                      );
+                                              builder: (_) => BaseScreen()));
                                   });
                                 },
                                 color: Theme.of(context).primaryColor,

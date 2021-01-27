@@ -51,23 +51,17 @@ class UserUser extends ChangeNotifier {
   Future<void> save() async {
     loading = true;
 
-    final Map<String, dynamic> data = toMap();
-    /*final Map<String, dynamic> data = {
-      'name': name,
-      'email': email,
-      'phone': phone,
-      'nascimento': datanasc,
-    };*/
 
     if(id == null){
-      final doc = await firestoreRef.collection('users').add(data);
+      final doc = await firestoreRef.collection('users').add(toMap());
       id = doc.id;
+      return loading = true;
     }
     else {
-      await firestoreRef.update(data);
+      await firestoreRef.update(toMap());
+      return loading = false;
     }
 
-    loading = false;
   }
 
   void setAddress(Address address){

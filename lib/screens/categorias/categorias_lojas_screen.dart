@@ -18,22 +18,7 @@ class CategoryScreen extends StatelessWidget {
           actions: [
             Row(
               children: [
-                SizedBox(
-                  width: 55,
-                  height: 100,
-                  child: GestureDetector(
-                    onTap: () {
-                      // TODO: FILTRO LOJAS
-                    },
-                    child: Icon(
-                      Icons.filter_list_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
+
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: SizedBox(

@@ -141,7 +141,7 @@ class MinhaContaScreen extends StatelessWidget {
                               _numberTextInputFormatter
                             ],
                             decoration: InputDecoration(
-                              labelText: 'Telefone',
+                              labelText: 'Telefone*',
                               labelStyle: TextStyle(
                                   fontSize: 18,
                                   color: Theme.of(context).primaryColor),
@@ -169,7 +169,7 @@ class MinhaContaScreen extends StatelessWidget {
                                 height: 54,
                                 width: 200,
                                 child: RaisedButton(
-                                  onPressed: !userManager.user.loading
+                                  onPressed: !userManager.loading
                                       ? () async {
                                           if (formKey.currentState.validate()) {
                                             formKey.currentState.save();
@@ -239,6 +239,15 @@ class MinhaContaScreen extends StatelessWidget {
     );
   }
 }
+
+/*Widget teste(bool teste){
+  if(teste == true){
+    return RaisedButton(
+      onPressed: null,
+      child: Text('Atualizar', style: TextStyle(fontSize: 20)),
+    )
+  }
+}*/
 
 class _UsNumberTextInputFormatter extends TextInputFormatter {
   @override

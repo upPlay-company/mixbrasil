@@ -239,16 +239,6 @@ class MinhaContaScreen extends StatelessWidget {
     );
   }
 }
-
-/*Widget teste(bool teste){
-  if(teste == true){
-    return RaisedButton(
-      onPressed: null,
-      child: Text('Atualizar', style: TextStyle(fontSize: 20)),
-    )
-  }
-}*/
-
 class _UsNumberTextInputFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

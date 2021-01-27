@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 
 class ProductScreen extends StatefulWidget {
   //variaveis
@@ -88,7 +89,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 children: <Widget>[
                                   story("\nOfertas", ProductScreen(lojas)),
                                   story("\nCupons", ProductScreen(lojas)),
-                                  story("Trabalhe conosco", ProductScreen(lojas)),
+                                  story("Trabalhe conosco", TrabalheConosco()),
                                 ],
                               ),
                               styleButton(),

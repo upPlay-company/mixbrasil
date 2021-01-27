@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
@@ -9,13 +11,19 @@ import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
+import 'package:mix_brasil/stores/category_desapego_store.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  setupLocators();
   runApp(MyApp());
+}
+
+void setupLocators() {
+  GetIt.I.registerSingleton(CategoryDesapegoStore());
 }
 
 class MyApp extends StatelessWidget {
@@ -52,6 +60,14 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: Color(0xfffea102),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        supportedLocales: const [
+          Locale('pt', 'BR'),
+        ],
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
         initialRoute: 'inicial',
         onGenerateRoute: (settings){
           switch(settings.name){

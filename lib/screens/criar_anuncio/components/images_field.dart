@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/screens/criar_anuncio/components/image_source_dialog.dart';
 import 'package:mix_brasil/stores/create_store.dart';
-
 import 'image_dialog.dart';
 
 class ImagesField extends StatelessWidget {

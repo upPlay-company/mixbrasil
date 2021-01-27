@@ -22,7 +22,6 @@ class MinhaContaScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           centerTitle: true,
-          automaticallyImplyLeading: false,
           iconTheme: new IconThemeData(color: Colors.black),
           title: Text(
             'MINHA CONTA',

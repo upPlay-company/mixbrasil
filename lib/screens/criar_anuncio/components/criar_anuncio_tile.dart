@@ -2,8 +2,10 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:mix_brasil/screens/criar_anuncio/components/cep_field.dart';
 import 'package:mix_brasil/stores/create_store.dart';
 
+import 'category_desapego_field.dart';
 import 'images_field.dart';
 
 class CriarAnuncioTile extends StatelessWidget {
@@ -44,6 +46,8 @@ class CriarAnuncioTile extends StatelessWidget {
             ),
             maxLines: null,
           ),
+          CategoryDesapegoField(createStore),
+          CepField(createStore),
           TextFormField(
             decoration: InputDecoration(
                 labelText: 'Preço *',

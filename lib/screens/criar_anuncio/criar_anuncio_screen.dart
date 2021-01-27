@@ -1,10 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
-
 import 'components/criar_anuncio_tile.dart';
 
 class CriarAnuncioScreen extends StatelessWidget {
@@ -24,9 +22,11 @@ class CriarAnuncioScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            title: Text('Crie seu anúncio'),
+            title: Text('CRIE SEU ANÚNCIO', style: TextStyle(color: Colors.black),),
             centerTitle: true,
             elevation: 0,
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.black),
           ),
           body: CriarAnuncioTile(),
         ),
@@ -35,8 +35,11 @@ class CriarAnuncioScreen extends StatelessWidget {
       return
         Scaffold(
           appBar: AppBar(
-            title: Text('Crie seu anúncio'),
+            title: Text('CRIE SEU ANÚNCIO', style: TextStyle(color: Colors.black),),
             centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.black),
             automaticallyImplyLeading: false,
           ),
           body: ListView(

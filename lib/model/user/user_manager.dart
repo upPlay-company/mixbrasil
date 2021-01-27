@@ -163,7 +163,6 @@ class UserManager extends ChangeNotifier {
 
       if (cepAbertoAddress != null) {
         address = Address(
-            street: cepAbertoAddress.logradouro,
             district: cepAbertoAddress.bairro,
             zipCode: cepAbertoAddress.cep,
             city: cepAbertoAddress.cidade.nome,

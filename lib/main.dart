@@ -24,6 +24,7 @@ void main() async {
 
 void setupLocators() {
   GetIt.I.registerSingleton(CategoryDesapegoStore());
+  GetIt.I.registerSingleton(UserManager());
 }
 
 class MyApp extends StatelessWidget {

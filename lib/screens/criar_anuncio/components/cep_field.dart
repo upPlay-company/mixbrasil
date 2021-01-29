@@ -7,33 +7,36 @@ import 'package:mix_brasil/stores/create_store.dart';
 
 class CepField extends StatelessWidget {
 
-  CepField(this.createStore);
+  CepField(this.createStore) : cepStore = createStore.cepStore;
 
   final CreateStore createStore;
-  final CepStore cepStore = CepStore();
+  final CepStore cepStore;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextFormField(
-          onChanged: cepStore.setCep,
-          keyboardType: TextInputType.number,
-          inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly,
-            CepInputFormatter(),
-          ],
-          decoration: InputDecoration(
-            errorText: createStore.addressError,
-            labelText: 'CEP *',
-            labelStyle: TextStyle(
-              fontWeight: FontWeight.w800,
-              color: Colors.grey,
-              fontSize: 18,
-            ),
-            contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
-          ),
+        Observer(builder: (_){
+            return TextFormField(
+              onChanged: cepStore.setCep,
+              keyboardType: TextInputType.number,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly,
+                CepInputFormatter(),
+              ],
+              decoration: InputDecoration(
+                errorText: createStore.addressError,
+                labelText: 'CEP *',
+                labelStyle: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: Colors.grey,
+                  fontSize: 18,
+                ),
+                contentPadding: const EdgeInsets.fromLTRB(16, 10, 12, 10),
+              ),
+            );
+          },
         ),
         Observer(builder: (_) {
           if (cepStore.address == null &&

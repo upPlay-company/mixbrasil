@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 
+// ignore: must_be_immutable
 class TrabalheConosco extends StatelessWidget {
   final dynamic title = "Trabalhe Conosco";
   String conteudo = "teste";

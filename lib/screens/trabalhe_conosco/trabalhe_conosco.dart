@@ -18,7 +18,7 @@ class TrabalheConosco extends StatelessWidget {
             text: 'Descrição ',
             style: DefaultTextStyle.of(context).style,
             children: <TextSpan>[
-              TextSpan(text: conteudo, style: TextStyle(fontWeight: FontWeight.bold)),
+              TextSpan(text: conteudo??"Não a vagas", style: TextStyle(fontWeight: FontWeight.bold)),
               TextSpan(text: ' world!'),
             ],
           ),

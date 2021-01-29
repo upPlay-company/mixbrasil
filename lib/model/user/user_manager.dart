@@ -115,7 +115,6 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  //TODO: Implementar a função de recuperação de senha
   void recoverPass(String email) {
     auth.sendPasswordResetEmail(email: email);
   }

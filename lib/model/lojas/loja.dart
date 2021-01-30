@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 
 class LojasData extends ChangeNotifier {
 
-  String descricao, id, category, name, promocao, state;
+  String descricao, id, category, name, promocao, state, trabalheConosco;
   double price;
   bool destaque;
   List img;
@@ -21,6 +21,7 @@ class LojasData extends ChangeNotifier {
     promocao = snapshot.data()["promocao"];
     pos = snapshot.data()["pos"];
     state = snapshot.data()["estado"];
+    trabalheConosco = snapshot.data()["trabalheConosco"];
   }
 
   Map<String, dynamic> toResumedMap() {
@@ -32,12 +33,13 @@ class LojasData extends ChangeNotifier {
       "destaque": destaque,
       "promocao": promocao,
       "pos": pos,
-      "estado": state
+      "estado": state,
+      "trabalheConosco": trabalheConosco,
     };
   }
 
   @override
   String toString() {
-    return 'LojasData{descricao: $descricao, id: $id, category: $category, name: $name, price: $price, destaque: $destaque, img: $img, pos: $pos, promocao: $promocao, state: $state}';
+    return 'LojasData{descricao: $descricao, id: $id, category: $category, name: $name, price: $price, destaque: $destaque, img: $img, pos: $pos, trabalheConosco: $trabalheConosco, state: $state}';
   }
 }

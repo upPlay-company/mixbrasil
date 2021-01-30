@@ -4,10 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 
+//Variaveis Globais
+final Color primaryColor = Color(0xff078c9f);
+
 class ProductScreen extends StatefulWidget {
-  //variaveis
+  //Declarações de variaveis
   final LojasData lojas;
 
+  //Declarações de construtores
   ProductScreen(this.lojas);
 
   @override
@@ -23,16 +27,16 @@ class _ProductScreenState extends State<ProductScreen> {
       "https://st.depositphotos.com/1186248/2240/i/950/depositphotos_22400321-stock-photo-100-percent-rubber-stamp.jpg";
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
-//TODO: Ainda existe coisas static, é pra criar um array de imagens de oferta, ou a variavel promocao vai ter as imagens do carde de ofertas
+
+//TODO: Ainda existe coisas static, é pra criar um array de imagens de oferta, ou a variavel promocao vai ter as imagens do card de ofertas
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: FloatingActionButton(
           child: Icon(Icons.arrow_back),
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: primaryColor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16.0))),
           onPressed: () {
@@ -80,23 +84,34 @@ class _ProductScreenState extends State<ProductScreen> {
                           left: 20,
                           right: 20,
                         ),
-                        child: Expanded(
-                          child: Column(
-                            children: [
-                              Row(
-                                //pronto
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  story("\nOfertas", ProductScreen(lojas)),
-                                  story("\nCupons", ProductScreen(lojas)),
-                                  story("Trabalhe conosco", TrabalheConosco()),
-                                ],
-                              ),
-                              styleButton(),
-                              cardOfertas(),
-                              cardOfertas(),
-                              cardOfertas(),
-                            ],
+                        child: Center(
+                          child: Expanded(
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    story(
+                                      "\nOfertas",
+                                      rota: ProductScreen(lojas),
+                                    ),
+                                    story(
+                                      "\nCupons",
+                                      showModal: _showModal,
+                                    ),
+                                    story(
+                                      "Trabalhe conosco",
+                                      rota: TrabalheConosco(lojas),
+                                    ),
+                                  ],
+                                ),
+                                styleButton(),
+                                cardOfertas(),
+                                cardOfertas(),
+                                cardOfertas(),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -110,7 +125,6 @@ class _ProductScreenState extends State<ProductScreen> {
       ),
     );
   }
-
 
   //Declarações de funções
   Widget cardOfertas() {
@@ -155,13 +169,41 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  Widget story(String title, Widget rota) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => rota),
+  dynamic _showModal() {
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      elevation: 10.0,
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.97,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text('TestModal'),
+            ],
+          ),
         );
       },
+    );
+  }
+
+  Widget story(String title, {Widget rota, Function showModal}) {
+    return GestureDetector(
+      onTap: showModal ??
+          () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => rota),
+            );
+          },
       child: Container(
         height: 70,
         width: 70,
@@ -178,8 +220,6 @@ class _ProductScreenState extends State<ProductScreen> {
             ],
           ),
         ),
-
-        // White background container between image and gradient
         child: Container(
           margin: EdgeInsets.all(whiteMargin),
           decoration: BoxDecoration(

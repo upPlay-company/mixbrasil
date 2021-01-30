@@ -1,24 +1,44 @@
 import 'package:flutter/material.dart';
-
+import 'package:mix_brasil/model/lojas/loja.dart';
 
 class TrabalheConosco extends StatelessWidget {
-  final dynamic title = "Trabalhe Conosco";
-  String conteudo = "teste";
+
+  TrabalheConosco(this.lojas);
+
+  final LojasData lojas;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: title,
+        title: Align(
+          alignment: Alignment.topRight,
+          child: Text("Trabalhe Conosco"),
+        ),
       ),
       body: Container(
-        child: RichText(
-          text: TextSpan(
-            text: 'Descrição ',
-            style: DefaultTextStyle.of(context).style,
-            children: <TextSpan>[
-              TextSpan(text: conteudo??"Não a vagas", style: TextStyle(fontWeight: FontWeight.bold)),
-              TextSpan(text: ' world!'),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "DESCRIÇÃO",
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                lojas.trabalheConosco,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Color(0xFF868a9b),
+                ),
+              ),
             ],
           ),
         ),

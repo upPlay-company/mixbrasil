@@ -145,7 +145,6 @@ class LoginScreen extends StatelessWidget {
                             children: [
                               FlatButton(
                                 onPressed: () {
-                                  // TODO: IMPLEMENTAR ESQUECEU SENHA -> Resolvido
                                   if (emailController.text.isEmpty)
                                     _snackBarRecover(
                                         "Insira seu e-mail para recuperação!",

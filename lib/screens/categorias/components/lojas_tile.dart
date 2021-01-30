@@ -103,7 +103,6 @@ class LojasTile extends StatelessWidget {
     if (userManager.isLoggedIn && userManager.user.address.state == lojas.state)
       return lojaTile();
     else if (!userManager.isLoggedIn)
-      // TODO: LISTAR MENSAGEM SE NÃO TIVE LOJAS NO ESTADO DO USER
       return lojaTile();
     /*Navigator.of(context).push(
         MaterialPageRoute(

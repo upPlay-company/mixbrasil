@@ -4,6 +4,7 @@ import 'package:mix_brasil/model/lojas/loja.dart';
 import 'components/lojas_tile.dart';
 
 class CategoryScreen extends StatelessWidget {
+  
   final DocumentSnapshot snapshot;
 
   CategoryScreen(this.snapshot);

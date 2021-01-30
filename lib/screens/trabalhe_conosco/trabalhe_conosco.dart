@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 
+// ignore: must_be_immutable
 class TrabalheConosco extends StatelessWidget {
 
   TrabalheConosco(this.lojas);

@@ -6,7 +6,7 @@ class LojasData extends ChangeNotifier {
   String descricao, id, category, name, promocao, state, trabalheConosco;
   double price;
   bool destaque;
-  List img;
+  List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
 
   //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
@@ -17,6 +17,9 @@ class LojasData extends ChangeNotifier {
     name = snapshot.data()["name"];
     price = snapshot.data()["price"] + 0.0;
     img = snapshot.data()["img"];
+    imgCupons = snapshot.data()["img_cupons"];
+    imgOfertas = snapshot.data()["img_ofertas"];
+    imgDestacadas = snapshot.data()["img_destacadas"];
     destaque = snapshot.data()["destaque"];
     promocao = snapshot.data()["promocao"];
     pos = snapshot.data()["pos"];
@@ -30,6 +33,9 @@ class LojasData extends ChangeNotifier {
       "name": name,
       "price": price,
       "img": img,
+      "imgDestacadas": imgDestacadas,
+      "imgOfertas": imgOfertas,
+      "imgCupons": imgCupons,
       "destaque": destaque,
       "promocao": promocao,
       "pos": pos,
@@ -40,6 +46,6 @@ class LojasData extends ChangeNotifier {
 
   @override
   String toString() {
-    return 'LojasData{descricao: $descricao, id: $id, category: $category, name: $name, price: $price, destaque: $destaque, img: $img, pos: $pos, trabalheConosco: $trabalheConosco, state: $state}';
+    return 'LojasData{descricao: $descricao, id: $id, category: $category, name: $name, promocao: $promocao, state: $state, trabalheConosco: $trabalheConosco, price: $price, destaque: $destaque, img: $img, imgDestacadas: $imgDestacadas, imgCupons: $imgCupons, imgOfertas: $imgOfertas, pos: $pos}';
   }
 }

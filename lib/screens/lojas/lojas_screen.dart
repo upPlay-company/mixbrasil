@@ -23,8 +23,6 @@ class _ProductScreenState extends State<ProductScreen> {
 
   _ProductScreenState(this.lojas);
 
-  String url =
-      "https://st.depositphotos.com/1186248/2240/i/950/depositphotos_22400321-stock-photo-100-percent-rubber-stamp.jpg";
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
 
@@ -108,8 +106,6 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                                 styleButton(),
                                 cardOfertas(),
-                                cardOfertas(),
-                                cardOfertas(),
                               ],
                             ),
                           ),
@@ -131,10 +127,16 @@ class _ProductScreenState extends State<ProductScreen> {
     return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image.network(
-        url,
-        fit: BoxFit.fill,
+      child: ListView.builder(
+          itemCount: lojas.imgOfertas.length,
+          itemBuilder: (_, index){
+            return Image.network(lojas.imgOfertas[index]);
+          }
       ),
+      /*Image.network(
+        snapshot.data()['img_ofertas'],
+        fit: BoxFit.fill,
+      ),*/
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 5,
       margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),

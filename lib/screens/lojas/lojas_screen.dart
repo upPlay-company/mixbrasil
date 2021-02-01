@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 
 //Variaveis Globais
@@ -90,11 +91,11 @@ class _ProductScreenState extends State<ProductScreen> {
                                 children: <Widget>[
                                   story(
                                     "\nOfertas",
-                                    showModal: _showModal,
+                                    showModal: _showModalOfertas,
                                   ),
                                   story(
                                     "\nCupons",
-                                    showModal: _showModal,
+                                    showModal: _showModalCupons,
                                   ),
                                   story(
                                     "Trabalhe conosco",
@@ -171,26 +172,20 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
-  dynamic _showModal() {
+  void _showModalCupons() {
     showModalBottomSheet<void>(
       backgroundColor: Colors.transparent,
-      elevation: 10.0,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
         return Container(
           height: MediaQuery.of(context).size.height * 0.97,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(30),
-              topLeft: Radius.circular(30),
-            ),
-          ),
           child: Carousel(
             images: widget.lojas.imgCupons.map((url) {
               return NetworkImage(url);
             }).toList(),
+            borderRadius: true,
+            radius: Radius.circular(30),
             dotSize: 4.0,
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
@@ -201,6 +196,31 @@ class _ProductScreenState extends State<ProductScreen> {
     );
   }
 
+  void _showModalOfertas() {
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.97,
+          child: Carousel(
+            images: widget.lojas.imgOfertas.map((url) {
+              return NetworkImage(url);
+            }).toList(),
+            borderRadius: true,
+            radius: Radius.circular(30),
+            dotSize: 4.0,
+            dotSpacing: 15.0,
+            dotBgColor: Colors.transparent,
+            dotColor: primaryColor,
+          ),
+        );
+      },
+    );
+  }
+
+  //Função story recebe parametros opcional, você passa uma rota ou passa uma função
   Widget story(String title, {Widget rota, Function showModal}) {
     return GestureDetector(
       onTap: showModal ??

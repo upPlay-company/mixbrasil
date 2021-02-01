@@ -145,7 +145,6 @@ abstract class _CreateStore with Store {
     ad.user = GetIt.I<UserManager>().user;
 
     Ad().save(ad);
-    Ad().saveUser(ad);
   }
 
 }

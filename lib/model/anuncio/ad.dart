@@ -11,6 +11,24 @@ import 'package:uuid/uuid.dart';
 enum AdStatus { PENDING, ACTIVE, SOLD, DELETED }
 class Ad {
 
+  Ad.fromDocument(DocumentSnapshot document){
+    id = document.id;
+    title = document.data()['name'];
+    description = document.data()['description'];
+    price = document.data()['price'];
+    address = Address(
+      cidade: document.data()['cidade'],
+      uf: document.data()['estado'],
+    );
+    user = user.id as UserUser;
+    category = DesapegoCategory(
+      id: document.id,
+      name: document.data()['categoria'],
+    );
+  }
+
+  Ad();
+
   String id;
   List<dynamic> images;
   String title;
@@ -19,31 +37,18 @@ class Ad {
   Address address;
   num price;
   AdStatus status = AdStatus.PENDING;
-  UserUser user = GetIt
-      .I<UserManager>()
-      .user;
+  UserUser user = GetIt.I<UserManager>().user;
   int views;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  bool _loading = false;
-
-  // ignore: unnecessary_getters_setters
-  bool get loading => _loading;
-
-  // ignore: unnecessary_getters_setters
-  set loading(bool value) {
-    _loading = value;
-  }
-
   Reference get storageRef =>
       storage.ref().child('imagens_desapegos').child(user.id);
 
   Future<void> save(Ad ad) async {
-    loading = true;
 
-
+   try {
     final Map<String, dynamic> data = {
       'name': ad.title,
       'description': ad.description,
@@ -53,6 +58,7 @@ class Ad {
       'categoria': ad.category.name,
       'anunciante': ad.user.name,
       'number': ad.user.phone,
+      'views' : ad.views = 0
     };
 
     if (ad.id == null) {
@@ -88,5 +94,9 @@ class Ad {
     else {
       // TODO: ATUALIZAR...
     }
+    
+  } catch (e) {
+     return Future.error('Falha ao salvar anúncio');
+   }
   }
 }

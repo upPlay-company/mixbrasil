@@ -138,6 +138,21 @@ mixin _$CreateStore on _CreateStore, Store {
     });
   }
 
+  final _$errorAtom = Atom(name: '_CreateStore.error');
+
+  @override
+  String get error {
+    _$errorAtom.reportRead();
+    return super.error;
+  }
+
+  @override
+  set error(String value) {
+    _$errorAtom.reportWrite(value, super.error, () {
+      super.error = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: '_CreateStore.loading');
 
   @override
@@ -153,19 +168,26 @@ mixin _$CreateStore on _CreateStore, Store {
     });
   }
 
-  final _$errorAtom = Atom(name: '_CreateStore.error');
+  final _$saveAdAtom = Atom(name: '_CreateStore.saveAd');
 
   @override
-  String get error {
-    _$errorAtom.reportRead();
-    return super.error;
+  bool get saveAd {
+    _$saveAdAtom.reportRead();
+    return super.saveAd;
   }
 
   @override
-  set error(String value) {
-    _$errorAtom.reportWrite(value, super.error, () {
-      super.error = value;
+  set saveAd(bool value) {
+    _$saveAdAtom.reportWrite(value, super.saveAd, () {
+      super.saveAd = value;
     });
+  }
+
+  final _$_sendAsyncAction = AsyncAction('_CreateStore._send');
+
+  @override
+  Future<void> _send() {
+    return _$_sendAsyncAction.run(() => super._send());
   }
 
   final _$_CreateStoreActionController = ActionController(name: '_CreateStore');
@@ -233,8 +255,9 @@ description: ${description},
 category: ${category},
 priceText: ${priceText},
 showErrors: ${showErrors},
-loading: ${loading},
 error: ${error},
+loading: ${loading},
+saveAd: ${saveAd},
 imagesValid: ${imagesValid},
 titleValid: ${titleValid},
 descriptionValid: ${descriptionValid},

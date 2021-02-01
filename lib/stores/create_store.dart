@@ -128,13 +128,16 @@ abstract class _CreateStore with Store {
   void invalidSendPressed() => showErrors = true;
 
   @observable
+  String error;
+
+  @observable
   bool loading = false;
 
   @observable
-  String error;
+  bool saveAd = false;
 
-
-  void _send() {
+  @action
+  Future<void> _send() async {
     final ad = Ad();
     ad.title = title;
     ad.category = category;
@@ -144,7 +147,14 @@ abstract class _CreateStore with Store {
     ad.address = address;
     ad.user = GetIt.I<UserManager>().user;
 
-    Ad().save(ad);
+    loading = true;
+    try {
+      await Ad().save(ad);
+      saveAd = true;
+    } catch (e){
+      error = e;
+    }
+    loading = false;
   }
 
 }

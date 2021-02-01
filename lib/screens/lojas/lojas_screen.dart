@@ -8,10 +8,9 @@ import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 final Color primaryColor = Color(0xff078c9f);
 
 class ProductScreen extends StatefulWidget {
-  //Declarações de variaveis
+
   final LojasData lojas;
 
-  //Declarações de construtores
   ProductScreen(this.lojas);
 
   @override
@@ -43,100 +42,101 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: ListView(
-        children: [
-          Stack(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
-                child: Carousel(
-                  images: widget.lojas.img.map((url) {
-                    return NetworkImage(url);
-                  }).toList(),
-                  boxFit: BoxFit.cover,
-                  dotSize: 4.0,
-                  dotSpacing: 15.0,
-                  dotBgColor: Colors.transparent,
-                  dotColor: primaryColor,
-                ),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Container(
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width,
+              child: Carousel(
+                images: widget.lojas.img.map((url) {
+                  return NetworkImage(url);
+                }).toList(),
+                boxFit: BoxFit.cover,
+                dotSize: 4.0,
+                dotSpacing: 15.0,
+                dotBgColor: Colors.transparent,
+                dotColor: primaryColor,
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 280,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                top: 280,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20.0,
-                          left: 20,
-                          right: 20,
-                        ),
-                        child: Center(
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    story(
-                                      "\nOfertas",
-                                      rota: ProductScreen(lojas),
-                                    ),
-                                    story(
-                                      "\nCupons",
-                                      showModal: _showModal,
-                                    ),
-                                    story(
-                                      "Trabalhe conosco",
-                                      rota: TrabalheConosco(lojas),
-                                    ),
-                                  ],
-                                ),
-                                styleButton(),
-                                cardOfertas(),
-                              ],
-                            ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 20.0,
+                        left: 20,
+                        right: 20,
+                      ),
+                      child: Center(
+                        child: Expanded(
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  story(
+                                    "\nOfertas",
+                                    showModal: _showModal,
+                                  ),
+                                  story(
+                                    "\nCupons",
+                                    showModal: _showModal,
+                                  ),
+                                  story(
+                                    "Trabalhe conosco",
+                                    rota: TrabalheConosco(lojas),
+                                  ),
+                                ],
+                              ),
+                              styleButton(),
+                              ListView.builder(
+                                physics: ScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                itemCount: lojas.imgDestacadas.length,
+                                itemBuilder: (_, index){
+                                  return cardOfertas(index);
+                                },
+                              )
+                            ],
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ),
+      )
+      );
   }
 
   //Declarações de funções
-  Widget cardOfertas() {
+  Widget cardOfertas(index) {
     return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: ListView.builder(
-          itemCount: lojas.imgOfertas.length,
-          itemBuilder: (_, index){
-            return Image.network(lojas.imgOfertas[index]);
-          }
+      child: Column(
+        children: [
+          Image.network(lojas.imgOfertas[index]),
+        ],
       ),
-      /*Image.network(
-        snapshot.data()['img_ofertas'],
-        fit: BoxFit.fill,
-      ),*/
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 5,
       margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),
@@ -187,11 +187,14 @@ class _ProductScreenState extends State<ProductScreen> {
               topLeft: Radius.circular(30),
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Text('TestModal'),
-            ],
+          child: Carousel(
+            images: widget.lojas.imgCupons.map((url) {
+              return NetworkImage(url);
+            }).toList(),
+            dotSize: 4.0,
+            dotSpacing: 15.0,
+            dotBgColor: Colors.transparent,
+            dotColor: primaryColor,
           ),
         );
       },

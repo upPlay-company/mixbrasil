@@ -46,7 +46,7 @@ class CategoryScreen extends StatelessWidget {
               .doc(snapshot.id)
               .collection("lojas")
               .get(),
-          builder: (context, snapshot) {
+               builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(
                 child: CircularProgressIndicator(),

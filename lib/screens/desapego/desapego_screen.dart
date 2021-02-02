@@ -24,8 +24,7 @@ class DesapegoScreen extends StatelessWidget {
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (_) => CriarAnuncioScreen()
-                    ));
+                        builder: (_) => CriarAnuncioScreen()));
                   },
                   color: Theme.of(context).secondaryHeaderColor,
                   child: Flexible(
@@ -43,8 +42,7 @@ class DesapegoScreen extends StatelessWidget {
                       topRight: Radius.circular(20),
                     ),
                   ),
-                )
-            ),
+                )),
           ),
         ],
       ),
@@ -68,65 +66,26 @@ class DesapegoScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 47, bottom: 20),
               child: Container(
                 padding: EdgeInsets.only(left: 10),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      child: RaisedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => DesapegoCategorias()));
-                        },
-                        color: Theme.of(context).primaryColor,
-                        child: Text(
-                          'Todas as categorias',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(10),
-                                right: Radius.circular(10))),
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        SizedBox(
-                          width: 55,
-                          height: 100,
-                          child: RaisedButton(
-                            color: Theme.of(context).primaryColor,
-                            onPressed: () {
-                              // TODO: FILTRO DESAPEGO DESTAQUE
-
-                            },
-                            child: Icon(
-                              Icons.filter_list_rounded,
-                              color: Colors.white,
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.horizontal(
-                                    left: Radius.circular(10),
-                                    right: Radius.circular(10))),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 10),
-                          child: SizedBox(
-                            width: 55,
-                            height: 100,
+                child: Consumer<DestaqueDesapegoManager>(
+                  builder: (_, destaqueDesapegoManager, __) {
+                    if (destaqueDesapegoManager.search.isEmpty) {
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 200,
                             child: RaisedButton(
-                              color: Theme.of(context).primaryColor,
                               onPressed: () {
-                                openSearch(context);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        DesapegoCategorias()));
                               },
-                              child: Icon(
-                                Icons.search,
-                                color: Colors.white,
+                              color: Theme.of(context).primaryColor,
+                              child: Text(
+                                'Todas as categorias',
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
                               ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.horizontal(
@@ -134,10 +93,102 @@ class DesapegoScreen extends StatelessWidget {
                                       right: Radius.circular(10))),
                             ),
                           ),
+                          Row(
+                            children: [
+                              SizedBox(
+                                width: 55,
+                                height: 100,
+                                child: RaisedButton(
+                                  color: Theme.of(context).primaryColor,
+                                  onPressed: () {
+                                    // TODO: FILTRO DESAPEGO DESTAQUE
+                                  },
+                                  child: Icon(
+                                    Icons.filter_list_rounded,
+                                    color: Colors.white,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.horizontal(
+                                          left: Radius.circular(10),
+                                          right: Radius.circular(10))),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 10),
+                                child: SizedBox(
+                                  width: 55,
+                                  height: 100,
+                                  child: RaisedButton(
+                                    color: Theme.of(context).primaryColor,
+                                    onPressed: () async {
+                                      final search = await showDialog<String>(
+                                          context: context,
+                                          builder: (_) => SearchDialog(
+                                              destaqueDesapegoManager.search));
+                                      if (search != null) {
+                                        destaqueDesapegoManager.search = search;
+                                      }
+                                    },
+                                    child: Icon(
+                                      Icons.search,
+                                      color: Colors.white,
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.horizontal(
+                                            left: Radius.circular(10),
+                                            right: Radius.circular(10))),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      );
+                    } else {
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            LayoutBuilder(
+                              builder: (_, constraints) {
+                                return GestureDetector(
+                                  onTap: () async {
+                                    final search = await showDialog<String>(
+                                        context: context,
+                                        builder: (_) => SearchDialog(
+                                            destaqueDesapegoManager.search));
+                                    if (search != null) {
+                                      destaqueDesapegoManager.search = search;
+                                    }
+                                  },
+                                  child: Container(
+                                    child: Text(
+                                      destaqueDesapegoManager.search,
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.close),
+                              onPressed: () async {
+                                destaqueDesapegoManager.search = '';
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ],
+                      );
+                    }
+                  },
                 ),
               ),
             ),
@@ -170,31 +221,24 @@ class DesapegoScreen extends StatelessWidget {
               childCount: 4,
             ),
           ),*/
-          Consumer<DestaqueDesapegoManager>(
-            builder: (_, destaqueDesapego, __) {
-              if (destaqueDesapego.loading) {
-                return SliverToBoxAdapter(
-                  child: LinearProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(Colors.black),
-                    backgroundColor: Colors.transparent,
-                  ),
+          SliverToBoxAdapter(
+            child: Consumer<DestaqueDesapegoManager>(
+              builder: (_, destaqueDesapegoManager, __) {
+                final filteredDesapego =
+                    destaqueDesapegoManager.filteredDesapegoDestaque;
+                return ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: filteredDesapego.length,
+                  itemBuilder: (_, index) {
+                    return SectionDestaquesDesapego(filteredDesapego[index]);
+                  },
                 );
-              }
-              final List<Widget> children =
-              destaqueDesapego.desapegoDestaque.map<Widget>((destaqueDesapego) {
-                return SectionDestaquesDesapego(destaqueDesapego);
-              }).toList();
-              return SliverList(
-                delegate: SliverChildListDelegate(children),
-              );
-            },
-          ),
+              },
+            ),
+          )
         ],
       ),
     );
   }
-}
-
-openSearch(BuildContext context){
-  showDialog(context: context, builder: (_) => SearchDialog());
 }

@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
 
 class SearchDialog extends StatelessWidget {
+
+  const SearchDialog(this.initialText);
+
+  final String initialText;
+
   @override
   Widget build(BuildContext context) {
     return Stack(
-      children: [
+      children: <Widget>[
         Positioned(
-          top: 45,
-          left: 2,
-          right: 2,
+          top: 43.8,
+          left: 6,
+          right: 6,
           child: Card(
-            child: TextField(
+            child: TextFormField(
+              initialValue: initialText,
+              textInputAction: TextInputAction.search,
+              autofocus: true,
               decoration: InputDecoration(
-                border: InputBorder.none,
-                prefixIcon: IconButton(
-                  icon: Icon(
-                    Icons.arrow_back,
-                  ),
-                  onPressed: Navigator.of(context).pop,
-                ),
-                suffixIcon: IconButton(
-                  icon: Icon(
-                    Icons.close,
-                  ),
-                  onPressed: (){},
-                ),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                  prefixIcon: IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    color: Colors.black,
+                    onPressed: (){
+                      Navigator.of(context).pop();
+                    },
+                  )
               ),
+              onFieldSubmitted: (text){
+                Navigator.of(context).pop(text);
+              },
             ),
           ),
-        ),
+        )
       ],
     );
   }

@@ -8,6 +8,7 @@ import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
+import 'components/anuncie_aqui_screen.dart';
 import 'components/section_banner.dart';
 import 'components/section_destaques.dart';
 
@@ -17,6 +18,42 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              color: Colors.transparent,
+              padding: const EdgeInsets.only(left: 35),
+              child: SizedBox(
+                  width: 160,
+                  height: 44,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => AnuncieAquiScreen()
+                      ));
+                    },
+                    color: Theme.of(context).secondaryHeaderColor,
+                    child: Flexible(
+                      child: Container(
+                        child: Text(
+                          'Anúncie aqui',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                  )
+              ),
+            ),
+          ],
+        ),
         body: CustomScrollView(slivers: [
           SliverAppBar(
             expandedHeight: 80,

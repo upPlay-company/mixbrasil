@@ -50,7 +50,7 @@ class AnuncieAquiTile extends StatelessWidget {
               color: Color(0xff2dc64f),
               onPressed: () {
                 _launchURL(
-                    'whatsapp://send?phone=${adm.whats}&text=Quero anúncia no MIX BRASIL'
+                    'whatsapp://send?phone=+55${adm.whats}&text=Quero anúncia no MIX BRASIL'
                 );
               },
               disabledColor:

@@ -26,7 +26,6 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
 
-//TODO: Ainda existe coisas static, é pra criar um array de imagens de oferta, ou a variavel promocao vai ter as imagens do card de ofertas
   @override
   Widget build(BuildContext context) {
     return Scaffold(

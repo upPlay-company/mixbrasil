@@ -8,8 +8,7 @@ class LojasData extends ChangeNotifier {
   bool destaque;
   List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
-
-  //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
+  
 
   LojasData.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;

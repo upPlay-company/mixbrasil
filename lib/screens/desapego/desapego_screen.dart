@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_categorias.dart';
+import 'package:mix_brasil/screens/desapego/components/search_dialog.dart';
 import 'package:provider/provider.dart';
 
 import 'components/section_destaque_desapego.dart';
@@ -98,6 +99,7 @@ class DesapegoScreen extends StatelessWidget {
                             color: Theme.of(context).primaryColor,
                             onPressed: () {
                               // TODO: FILTRO DESAPEGO DESTAQUE
+
                             },
                             child: Icon(
                               Icons.filter_list_rounded,
@@ -120,7 +122,7 @@ class DesapegoScreen extends StatelessWidget {
                             child: RaisedButton(
                               color: Theme.of(context).primaryColor,
                               onPressed: () {
-                                // TODO: SEARCH DESAPEGO DESTAQUE
+                                openSearch(context);
                               },
                               child: Icon(
                                 Icons.search,
@@ -191,4 +193,8 @@ class DesapegoScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+openSearch(BuildContext context){
+  showDialog(context: context, builder: (_) => SearchDialog());
 }

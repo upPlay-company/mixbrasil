@@ -3,9 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/adm/adm.dart';
 
 
-class CategoriasManager extends ChangeNotifier {
+class AdmManager extends ChangeNotifier {
 
-  CategoriasManager(){
+  AdmManager(){
     _loadWhats();
   }
 

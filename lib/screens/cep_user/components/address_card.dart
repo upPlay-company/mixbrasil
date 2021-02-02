@@ -12,6 +12,7 @@ class AddressCard extends StatelessWidget {
     final userManager = context.watch<UserManager>();
     if(userManager.isLoggedIn)
       return Card(
+        elevation: 8,
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),

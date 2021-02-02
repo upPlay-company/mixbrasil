@@ -10,75 +10,97 @@ class CepUserScreen extends StatelessWidget {
 
     final userManager = context.watch<UserManager>();
    if(userManager.isLoggedIn)
-      return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text('Escolha uma localização'),
-          centerTitle: true,
+      return Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/Fundo_mix.png'),
+            fit: BoxFit.cover
+          )
         ),
-        body: ListView(
-          children: <Widget>[
-            AddressCard(),
-            SizedBox(height: 20,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: userManager.isAddressValid ? (){
-                    Navigator.of(context).pushNamed('/base');
-                  } : null ,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                    child: Text(
-                      'Ok',
-                      style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Principal'
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            automaticallyImplyLeading: false,
+            title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 22),),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+          body: ListView(
+            children: <Widget>[
+              AddressCard(),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: userManager.isAddressValid ? (){
+                      Navigator.of(context).pushNamed('/base');
+                    } : null ,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                      child: Text(
+                        'Ok',
+                        style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Principal'
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       );
    else
-     return Scaffold(
-       appBar: AppBar(
-         automaticallyImplyLeading: false,
-         title: Text('Escolha uma localização'),
-         centerTitle: true,
+     return Container(
+       decoration: BoxDecoration(
+         image: DecorationImage(
+           image: AssetImage('images/Fundo_mix.png'),
+           fit: BoxFit.cover
+         )
        ),
-       body: ListView(
-         children: <Widget>[
-           AddressCard(),
-           SizedBox(height: 20,),
-           Row(
-             mainAxisAlignment: MainAxisAlignment.center,
-             children: [
-               GestureDetector(
-                 onTap: (){
-                   Navigator.of(context).pushNamed('/base');
-                 },
-                 child: Padding(
-                   padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                   child: Text(
-                     'Ok',
-                     style: TextStyle(
-                         color: Theme.of(context).primaryColor,
-                         fontSize: 18,
-                         fontWeight: FontWeight.bold,
-                         fontFamily: 'Principal'
+       child: Scaffold(
+         backgroundColor: Colors.transparent,
+         appBar: AppBar(
+           automaticallyImplyLeading: false,
+           title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 22),),
+           centerTitle: true,
+           backgroundColor: Colors.transparent,
+           elevation: 0,
+         ),
+         body: ListView(
+           children: <Widget>[
+             AddressCard(),
+             SizedBox(height: 20,),
+             Row(
+               mainAxisAlignment: MainAxisAlignment.center,
+               children: [
+                 GestureDetector(
+                   onTap: (){
+                     Navigator.of(context).pushNamed('/base');
+                   },
+                   child: Padding(
+                     padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                     child: Text(
+                       'Ok',
+                       style: TextStyle(
+                           color: Theme.of(context).primaryColor,
+                           fontSize: 18,
+                           fontWeight: FontWeight.bold,
+                           fontFamily: 'Principal'
+                       ),
                      ),
                    ),
                  ),
-               ),
-             ],
-           ),
-         ],
+               ],
+             ),
+           ],
+         ),
        ),
      );
   }

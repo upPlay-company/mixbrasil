@@ -4,45 +4,53 @@ import 'package:flutter/cupertino.dart';
 
 class DestaqueLoja extends ChangeNotifier {
 
-  String descricao;
-  String id;
-  String cid;
-  String name;
+  String descricao, id, category, name, promocao, state, trabalheConosco, cid, lid;
   double price;
-  String lid;
-  List img;
+  bool destaque;
+  List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
-  String state;
 
   //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
 
   DestaqueLoja.fromDocument(DocumentSnapshot snapshot) {
+    lid = snapshot.data()["lid"];
+    cid = snapshot.data()["cid"];
     id = snapshot.id;
-    descricao = snapshot.data()["promocao"];
+    descricao = snapshot.data()["descricao"];
     name = snapshot.data()["name"];
     price = snapshot.data()["price"] + 0.0;
     img = snapshot.data()["img"];
-    lid = snapshot.data()["lid"];
-    cid = snapshot.data()["cid"];
+    imgCupons = snapshot.data()["img_cupons"];
+    imgOfertas = snapshot.data()["img_ofertas"];
+    imgDestacadas = snapshot.data()["img_destacadas"];
+    destaque = snapshot.data()["destaque"];
+    promocao = snapshot.data()["promocao"];
     pos = snapshot.data()["pos"];
-    state = snapshot.data()['estado'];
+    state = snapshot.data()["estado"];
+    trabalheConosco = snapshot.data()["trabalheConosco"];
   }
 
   Map<String, dynamic> toResumedMap() {
     return {
-      "promocao": descricao,
+      "lid": lid,
+      "cid": cid,
+      "descricao": descricao,
       "name": name,
       "price": price,
       "img": img,
-      "lid": lid,
-      "cid": cid,
+      "imgDestacadas": imgDestacadas,
+      "imgOfertas": imgOfertas,
+      "imgCupons": imgCupons,
+      "destaque": destaque,
+      "promocao": promocao,
       "pos": pos,
-      "estado": state
+      "estado": state,
+      "trabalheConosco": trabalheConosco,
     };
   }
 
   @override
   String toString() {
-    return 'DestaqueLoja{descricao: $descricao, id: $id, cid: $cid, name: $name, price: $price, lid: $lid, img: $img, pos: $pos, state: $state}';
+    return 'DestaqueLoja{descricao: $descricao, id: $id, category: $category, name: $name, promocao: $promocao, state: $state, trabalheConosco: $trabalheConosco, cid: $cid, lid: $lid, price: $price, destaque: $destaque, img: $img, imgDestacadas: $imgDestacadas, imgCupons: $imgCupons, imgOfertas: $imgOfertas, pos: $pos}';
   }
 }

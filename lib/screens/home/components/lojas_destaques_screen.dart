@@ -2,6 +2,11 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
+import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco_destaque.dart';
+
+
+//Variaveis Globais
+final Color primaryColor = Color(0xff078c9f);
 
 class LojasDestaqueScreen extends StatefulWidget {
   //variaveis
@@ -18,31 +23,28 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
 
   _LojasDestaqueScreenState(this.lojasDestaque);
 
-  String url =
-      "https://st.depositphotos.com/1186248/2240/i/950/depositphotos_22400321-stock-photo-100-percent-rubber-stamp.jpg";
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
 
+//TODO: Ainda existe coisas static, é pra criar um array de imagens de oferta, ou a variavel promocao vai ter as imagens do card de ofertas
   @override
   Widget build(BuildContext context) {
-    final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: FloatingActionButton(
-          child: Icon(Icons.arrow_back),
-          backgroundColor: Theme.of(context).primaryColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16.0))),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: FloatingActionButton(
+            child: Icon(Icons.arrow_back),
+            backgroundColor: primaryColor,
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(16.0))),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: ListView(
-        children: [
-          Stack(
+        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+        body: SingleChildScrollView(
+          child: Stack(
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.5,
@@ -79,23 +81,40 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                           left: 20,
                           right: 20,
                         ),
-                        child: Expanded(
-                          child: Column(
-                            children: [
-                              Row(
-                                //pronto
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  story("\nOfertas",),
-                                  story("\nCupons",),
-                                  story("Trabalhe conosco",),
-                                ],
-                              ),
-                              styleButton(),
-                              cardOfertas(),
-                              cardOfertas(),
-                              cardOfertas(),
-                            ],
+                        child: Center(
+                          child: Expanded(
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    story(
+                                      "\nOfertas",
+                                      showModal: _showModalOfertas,
+                                    ),
+                                    story(
+                                      "\nCupons",
+                                      showModal: _showModalCupons,
+                                    ),
+                                    story(
+                                      "Trabalhe conosco",
+                                      rota: TrabalheConoscoDestaque(lojasDestaque),
+                                    ),
+                                  ],
+                                ),
+                                styleButton(),
+                                ListView.builder(
+                                  physics: ScrollPhysics(),
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: lojasDestaque.imgDestacadas.length,
+                                  itemBuilder: (_, index){
+                                    return cardOfertas(index);
+                                  },
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -105,20 +124,19 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
               ),
             ],
           ),
-        ],
-      ),
+        )
     );
   }
 
-
   //Declarações de funções
-  Widget cardOfertas() {
+  Widget cardOfertas(index) {
     return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Image.network(
-        url,
-        fit: BoxFit.fill,
+      child: Column(
+        children: [
+          Image.network(lojasDestaque.imgOfertas[index]),
+        ],
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 5,
@@ -154,13 +172,63 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
     );
   }
 
-  Widget story(String title, {Widget rota}) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => rota),
+  void _showModalCupons() {
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.97,
+          child: Carousel(
+            images: widget.lojasDestaque.imgCupons.map((url) {
+              return NetworkImage(url);
+            }).toList(),
+            borderRadius: true,
+            radius: Radius.circular(30),
+            dotSize: 4.0,
+            dotSpacing: 15.0,
+            dotBgColor: Colors.transparent,
+            dotColor: primaryColor,
+          ),
         );
       },
+    );
+  }
+
+  void _showModalOfertas() {
+    showModalBottomSheet<void>(
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.97,
+          child: Carousel(
+            images: widget.lojasDestaque.imgOfertas.map((url) {
+              return NetworkImage(url);
+            }).toList(),
+            borderRadius: true,
+            radius: Radius.circular(30),
+            dotSize: 4.0,
+            dotSpacing: 15.0,
+            dotBgColor: Colors.transparent,
+            dotColor: primaryColor,
+          ),
+        );
+      },
+    );
+  }
+
+  //Função story recebe parametros opcional, você passa uma rota ou passa uma função
+  Widget story(String title, {Widget rota, Function showModal}) {
+    return GestureDetector(
+      onTap: showModal ??
+              () {
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => rota),
+            );
+          },
       child: Container(
         height: 70,
         width: 70,
@@ -177,8 +245,6 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
             ],
           ),
         ),
-
-        // White background container between image and gradient
         child: Container(
           margin: EdgeInsets.all(whiteMargin),
           decoration: BoxDecoration(

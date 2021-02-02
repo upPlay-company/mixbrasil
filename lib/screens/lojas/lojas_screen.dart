@@ -2,7 +2,6 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
-import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 
 //Variaveis Globais

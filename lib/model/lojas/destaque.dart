@@ -4,19 +4,16 @@ import 'package:flutter/cupertino.dart';
 
 class DestaqueLoja extends ChangeNotifier {
 
-  String descricao, id, category, name, promocao, state, trabalheConosco, cid, lid;
+  String id, category, name, promocao, state, trabalheConosco, cid, lid;
   double price;
   bool destaque;
   List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
 
-  //TODO: RETORNA OFERTAS EM DESTAQUE, OFERTAS STORY, CUPONS E TRABALHE CONOSCO
-
   DestaqueLoja.fromDocument(DocumentSnapshot snapshot) {
     lid = snapshot.data()["lid"];
     cid = snapshot.data()["cid"];
     id = snapshot.id;
-    descricao = snapshot.data()["descricao"];
     name = snapshot.data()["name"];
     price = snapshot.data()["price"] + 0.0;
     img = snapshot.data()["img"];
@@ -34,7 +31,6 @@ class DestaqueLoja extends ChangeNotifier {
     return {
       "lid": lid,
       "cid": cid,
-      "descricao": descricao,
       "name": name,
       "price": price,
       "img": img,
@@ -51,6 +47,6 @@ class DestaqueLoja extends ChangeNotifier {
 
   @override
   String toString() {
-    return 'DestaqueLoja{descricao: $descricao, id: $id, category: $category, name: $name, promocao: $promocao, state: $state, trabalheConosco: $trabalheConosco, cid: $cid, lid: $lid, price: $price, destaque: $destaque, img: $img, imgDestacadas: $imgDestacadas, imgCupons: $imgCupons, imgOfertas: $imgOfertas, pos: $pos}';
+    return 'DestaqueLoja{ id: $id, category: $category, name: $name, promocao: $promocao, state: $state, trabalheConosco: $trabalheConosco, cid: $cid, lid: $lid, price: $price, destaque: $destaque, img: $img, imgDestacadas: $imgDestacadas, imgCupons: $imgCupons, imgOfertas: $imgOfertas, pos: $pos}';
   }
 }

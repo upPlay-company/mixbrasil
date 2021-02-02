@@ -71,7 +71,7 @@ class SectionDestaques extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        lojasDestaque.descricao,
+                        lojasDestaque.promocao,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,

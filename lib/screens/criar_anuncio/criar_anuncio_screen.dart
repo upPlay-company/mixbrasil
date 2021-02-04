@@ -1,11 +1,16 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:provider/provider.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'components/criar_anuncio_tile.dart';
 
 class CriarAnuncioScreen extends StatelessWidget {
+
+  CriarAnuncioScreen({this.ad});
+
+  final Ad ad;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +33,8 @@ class CriarAnuncioScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
           ),
-          body: CriarAnuncioTile(),
-        ),
+          body: CriarAnuncioTile(ad: ad),
+        )
       );
     else
       return

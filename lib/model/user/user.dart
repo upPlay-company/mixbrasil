@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 
@@ -25,6 +28,9 @@ class UserUser extends ChangeNotifier {
 
   DocumentReference get firestoreRef =>
       FirebaseFirestore.instance.doc('users/$id');
+
+  CollectionReference get tokensReference =>
+      firestoreRef.collection('tokens');
 
   Future<void> saveData() async {
     await firestoreRef.set(toMap());
@@ -68,6 +74,15 @@ class UserUser extends ChangeNotifier {
     this.address = address;
     saveData();
     print(address);
+  }
+
+  Future<void> saveToken() async {
+    final token = await FirebaseMessaging().getToken();
+    tokensReference.doc(token).set({
+      'token': token,
+      'updateAt': FieldValue.serverTimestamp(),
+      'platform': Platform.operatingSystem
+    });
   }
 
 }

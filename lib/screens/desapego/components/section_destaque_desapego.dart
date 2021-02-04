@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
 import 'package:mix_brasil/screens/desapego/components/itens_desapego_destaque.dart';
@@ -20,28 +21,26 @@ class SectionDestaquesDesapego extends StatelessWidget {
         },
         child: Container(
             height: 120,
-            padding: EdgeInsets.only(top: 15),
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Card(
+              elevation: 8,
               color: Colors.white,
               child: Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
                     child: SizedBox(
-                      width: 130,
-                      height: 90,
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: Image.network(
-                          desapegoDestaque.img.first,
-                          fit: BoxFit.cover,
-                        ),
+                      height: 135,
+                      width: 127,
+                      child: CachedNetworkImage(
+                        imageUrl: desapegoDestaque.img.isEmpty ?
+                        'https://static.thenounproject.com/png/194055-200.png' :
+                        desapegoDestaque.img.first,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
                   const SizedBox(
-                    //teste
                     width: 10,
                   ),
                   Expanded(

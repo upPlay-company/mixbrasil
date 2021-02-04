@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'itens_desapegos_screen.dart';
@@ -21,20 +22,20 @@ class DesapegoCardTile extends StatelessWidget {
             height: 120,
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
             child: Card(
+              elevation: 8,
               color: Colors.white,
               child: Row(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
                     child: SizedBox(
-                      width: 130,
-                      height: 90,
-                      child: AspectRatio(
-                        aspectRatio: 1,
-                        child: Image.network(
-                          desapego.img.first,
-                          fit: BoxFit.cover,
-                        ),
+                      height: 135,
+                      width: 127,
+                      child: CachedNetworkImage(
+                        imageUrl: desapego.img.isEmpty ?
+                        'https://static.thenounproject.com/png/194055-200.png' :
+                        desapego.img.first,
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

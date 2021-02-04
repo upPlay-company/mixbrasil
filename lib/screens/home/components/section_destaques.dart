@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
@@ -36,21 +37,21 @@ class SectionDestaques extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           height: 120,
           child: Card(
+            elevation: 8,
             color: Colors.cyan[50],
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8,),
                   child: SizedBox(
-                    width: 130,
-                    height: 90,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Image.network(
-                        lojasDestaque.img.first,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                  height: 135,
+                  width: 127,
+                  child: CachedNetworkImage(
+                    imageUrl: lojasDestaque.img.isEmpty ?
+                    'https://static.thenounproject.com/png/194055-200.png' :
+                    lojasDestaque.img.first,
+                    fit: BoxFit.cover,
+                   ),
                   ),
                 ),
                 const SizedBox(

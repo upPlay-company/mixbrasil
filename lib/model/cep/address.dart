@@ -38,6 +38,6 @@ class Address {
 
   @override
   String toString() {
-    return 'Address{district: $district, zipCode: $zipCode, city: $city, state: $state, lat: $lat, long: $long}';
+    return 'Address{district: $district, zipCode: $zipCode, city: $city, state: $state, lat: $lat, long: $long, uf: $uf, cidade: $cidade}';
   }
 }

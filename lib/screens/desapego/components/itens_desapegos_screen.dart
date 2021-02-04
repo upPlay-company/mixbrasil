@@ -55,7 +55,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 280,
+                  top: 350,
                 ),
                 child: Column(
                   children: [

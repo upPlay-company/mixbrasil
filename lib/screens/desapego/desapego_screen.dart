@@ -227,6 +227,7 @@ class DesapegoScreen extends StatelessWidget {
                 final filteredDesapego =
                     destaqueDesapegoManager.filteredDesapegoDestaque;
                 return ListView.builder(
+                  physics: ScrollPhysics(),
                   shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   itemCount: filteredDesapego.length,

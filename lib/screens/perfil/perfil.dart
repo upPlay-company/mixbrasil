@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/minha_conta/minha_conta.dart';
+import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:provider/provider.dart';
 
 class Perfil extends StatelessWidget {
@@ -43,55 +44,58 @@ class Perfil extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 75),
-                            child: Consumer<UserManager>(
-                              builder: (_, userManager, __){
-                                return Column(
-                                  children: [
-                                    Text(
-                                      '${userManager.user?.name ?? 'Olá Convidado'}',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.none,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 24,
-                                      ),
-                                    ),
-                                    SizedBox(height: 10,),
-                                    GestureDetector(
-                                      onTap: (){
-                                        if(userManager.isLoggedIn){
-                                          userManager.signOut();
-                                          Navigator.of(context).pushNamed('/base');
-                                        } else {
-                                          Navigator.of(context).pushNamed('/login');
-                                        }
-                                      },
-                                      child: Text(
-                                        userManager.isLoggedIn
-                                            ? 'Sair'
-                                            : 'Entre Agora',
+                              padding: const EdgeInsets.only(top: 75),
+                              child: Consumer<UserManager>(
+                                builder: (_, userManager, __) {
+                                  return Column(
+                                    children: [
+                                      Text(
+                                        '${userManager.user?.name ?? 'Olá Convidado'}',
                                         style: TextStyle(
                                           decoration: TextDecoration.none,
                                           color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 24,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            )
-                          ),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          if (userManager.isLoggedIn) {
+                                            userManager.signOut();
+                                            Navigator.of(context)
+                                                .pushNamed('/base');
+                                          } else {
+                                            Navigator.of(context)
+                                                .pushNamed('/login');
+                                          }
+                                        },
+                                        child: Text(
+                                          userManager.isLoggedIn
+                                              ? 'Sair'
+                                              : 'Entre Agora',
+                                          style: TextStyle(
+                                            decoration: TextDecoration.none,
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              )),
                         ),
                       ),
                     ),
                   ),
                   Center(
                     child: Consumer<UserManager>(
-                      builder: (_, userManager, __){
-                        if(userManager.isLoggedIn)
+                      builder: (_, userManager, __) {
+                        if (userManager.isLoggedIn)
                           return Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -102,7 +106,8 @@ class Perfil extends StatelessWidget {
                               child: GFAvatar(
                                 size: 84,
                                 backgroundImage: NetworkImage(
-                                    userManager.user?.img ?? 'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
+                                  userManager.user?.img ??
+                                      'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
                                 ),
                               ),
                             ),
@@ -118,7 +123,7 @@ class Perfil extends StatelessWidget {
                               child: GFAvatar(
                                 size: 84,
                                 backgroundImage: NetworkImage(
-                                    'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
+                                  'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
                                 ),
                               ),
                             ),
@@ -129,6 +134,10 @@ class Perfil extends StatelessWidget {
                 ],
               ),
               GestureDetector(
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => MyAdsScreen()));
+                },
                 child: rowsColumns(
                   "Meus Anúncios",
                   Icons.card_giftcard,
@@ -143,7 +152,7 @@ class Perfil extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => MinhaContaScreen()),
                   );
@@ -168,11 +177,11 @@ class Perfil extends StatelessWidget {
     );
   }
 
-
   Widget rowsColumns(String title, IconData iconLeft, IconData iconRight) {
     return Padding(
       padding: const EdgeInsets.only(
-        left: 15, top: 8,
+        left: 15,
+        top: 8,
       ),
       child: Column(
         children: <Widget>[
@@ -191,7 +200,9 @@ class Perfil extends StatelessWidget {
                   color: Color(0xFF3CA59D),
                 ),
               ),
-              SizedBox(width: 10,),
+              SizedBox(
+                width: 10,
+              ),
               Expanded(
                 flex: 5,
                 child: Text(

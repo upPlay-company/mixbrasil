@@ -78,6 +78,8 @@ class UserManager extends ChangeNotifier {
 
           await user.saveData();
 
+          user.saveToken();
+
           onSuccess();
         }
         break;
@@ -102,6 +104,8 @@ class UserManager extends ChangeNotifier {
 
       await user.saveData();
 
+      user.saveToken();
+
       onSuccess();
     } on FirebaseAuthException catch (e) {
       onFail(getErrorString(e.code));
@@ -125,6 +129,8 @@ class UserManager extends ChangeNotifier {
       final DocumentSnapshot docUser =
           await firestore.collection('users').doc(currentUser.uid).get();
       user = UserUser.fromDocument(docUser);
+
+      user.saveToken();
       notifyListeners();
     }
   }

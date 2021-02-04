@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/common/error_box.dart';
+import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/criar_anuncio/components/cep_field.dart';
 import 'package:mix_brasil/stores/create_store.dart';
@@ -13,12 +14,23 @@ import 'images_field.dart';
 
 class CriarAnuncioTile extends StatefulWidget {
 
+  CriarAnuncioTile({this.ad});
+
+  final Ad ad;
+
   @override
-  _CriarAnuncioTileState createState() => _CriarAnuncioTileState();
+  _CriarAnuncioTileState createState() => _CriarAnuncioTileState(ad);
 }
 
 class _CriarAnuncioTileState extends State<CriarAnuncioTile> {
-  final CreateStore createStore = CreateStore();
+
+  _CriarAnuncioTileState(Ad ad)
+      : editing = ad != null,
+        createStore = CreateStore(ad ?? Ad());
+
+  final CreateStore createStore;
+
+  bool editing;
 
   @override
   void initState() {
@@ -78,6 +90,7 @@ class _CriarAnuncioTileState extends State<CriarAnuncioTile> {
                     ImagesField(createStore),
                     Observer(builder: (_){
                       return TextFormField(
+                        initialValue: createStore.title,
                         onChanged: createStore.setTitle,
                         decoration: InputDecoration(
                             labelText: 'Título *',
@@ -89,6 +102,7 @@ class _CriarAnuncioTileState extends State<CriarAnuncioTile> {
                     }),
                     Observer(builder: (_){
                       return TextFormField(
+                        initialValue: createStore.description,
                         onChanged: createStore.setDescription,
                         decoration: InputDecoration(
                           labelText: 'Descrição *',
@@ -104,6 +118,7 @@ class _CriarAnuncioTileState extends State<CriarAnuncioTile> {
                     CepField(createStore),
                     Observer(builder: (_){
                       return TextFormField(
+                        initialValue: createStore.priceText,
                         onChanged: createStore.setPrice,
                         decoration: InputDecoration(
                             labelText: 'Preço *',

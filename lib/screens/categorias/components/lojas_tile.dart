@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -26,20 +27,20 @@ class LojasTile extends StatelessWidget {
           height: 120,
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
           child: Card(
+            elevation: 8,
             color: Colors.cyan[50],
             child: Row(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
                   child: SizedBox(
-                    width: 130,
-                    height: 90,
-                    child: AspectRatio(
-                      aspectRatio: 1,
-                      child: Image.network(
-                        lojas.img.first,
-                        fit: BoxFit.cover,
-                      ),
+                    height: 135,
+                    width: 127,
+                    child: CachedNetworkImage(
+                      imageUrl: lojas.img.isEmpty ?
+                      'https://static.thenounproject.com/png/194055-200.png' :
+                      lojas.img.first,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),

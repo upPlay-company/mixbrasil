@@ -30,15 +30,19 @@ abstract class _MyAdsStore with Store {
 
   Future<void> _getMyAds() async {
     final user = GetIt.I<UserManager>().user;
-    final QuerySnapshot snapAnuncio = await firestore
-        .collection('users')
-        .doc(user.id)
-        .collection('desapegos')
-        .orderBy('created', descending: true)
-        .limit(100)
-        .get();
+    try {
+      loading = true;
+      final QuerySnapshot snapAnuncio = await firestore
+          .collection('users')
+          .doc(user.id)
+          .collection('desapegos')
+          .orderBy('created', descending: true)
+          .limit(100)
+          .get();
 
-    AllAds = snapAnuncio.docs.map((a) => Ad.fromDocument(a)).toList();
+      AllAds = snapAnuncio.docs.map((a) => Ad.fromDocument(a)).toList();
+      loading = false;
+    } catch (e){}
   }
 
   @observable

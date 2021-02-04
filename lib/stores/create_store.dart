@@ -11,7 +11,7 @@ part 'create_store.g.dart';
 class CreateStore = _CreateStore with _$CreateStore;
 
 abstract class _CreateStore with Store {
-  _CreateStore(this.ad) {
+  _CreateStore({this.ad}) {
     title = ad.title ?? '';
     description = ad.description ?? '';
     images = ad.images.asObservable();
@@ -152,7 +152,6 @@ abstract class _CreateStore with Store {
 
   @action
   Future<void> _send() async {
-    final ad = Ad();
     ad.title = title;
     ad.category = category;
     ad.description = description;

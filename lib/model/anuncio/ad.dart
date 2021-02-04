@@ -34,12 +34,15 @@ class Ad {
     created = document.data()['created'] as Timestamp;
     status = AdStatus.values[document.data()['status'] as int];
     views = document.data()['views'];
+    idAds = document.data()['idAds'];
+    idCat = document.data()['idCat'];
+
   }
 
   Ad();
 
   String id;
-  List<dynamic> images;
+  List<dynamic> images = [];
   String title;
   String description;
   DesapegoCategory category;
@@ -49,6 +52,8 @@ class Ad {
   UserUser user = GetIt.I<UserManager>().user;
   int views;
   Timestamp created;
+  String idAds;
+  String idCat;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
@@ -70,7 +75,8 @@ class Ad {
         'number': ad.user.phone,
         'views': ad.views = 0,
         'created': FieldValue.serverTimestamp(),
-        'status': ad.status.index
+        'status': ad.status.index,
+        'user': ad.user.id,
       };
 
       if (ad.id == null) {
@@ -112,23 +118,64 @@ class Ad {
           await firestoreRef.update({'img': uploadImage});
           ad.images = uploadImage;
 
-          await firestoreRefUser.update({'img': uploadImage});
+          await firestoreRefUser.update({'img': uploadImage, 'idAds': doc.id, 'idCat': ad.category.id});
           ad.images = uploadImage;
         }
       } else {
-        // TODO: ATUALIZAR...
+
+        DocumentReference firestoreRef = firestore
+            .collection('users')
+            .doc(ad.user.id)
+            .collection('desapegos')
+            .doc(ad.id);
+
+        DocumentReference firestoreRefAds = firestore
+            .collection('desapego')
+            .doc(ad.idCat)
+            .collection('desapegos')
+            .doc(ad.idAds);
+
+        await firestoreRef.update(data);
+        await firestoreRefAds.update(data);
+
       }
     } catch (e) {
       return Future.error('Falha ao salvar anúncio');
     }
   }
 
-  Future<void> sold(Ad ad) {
+  Future<void> sold(Ad ad) async {
+    DocumentReference firestoreRef = firestore
+        .collection('users')
+        .doc(ad.user.id)
+        .collection('desapegos')
+        .doc(ad.id);
 
+    DocumentReference firestoreRefAds = firestore
+        .collection('desapego')
+        .doc(ad.idCat)
+        .collection('desapegos')
+        .doc(ad.idAds);
+
+    await firestoreRef.update({'status': AdStatus.SOLD.index});
+    await firestoreRefAds.update({'status': AdStatus.SOLD.index});
   }
 
-  Future<void> delete(Ad ad) {
+  Future<void> delete(Ad ad) async {
+    DocumentReference firestoreRef = firestore
+        .collection('users')
+        .doc(ad.user.id)
+        .collection('desapegos')
+        .doc(ad.id);
 
+    DocumentReference firestoreRefAds = firestore
+        .collection('desapego')
+        .doc(ad.idCat)
+        .collection('desapegos')
+        .doc(ad.idAds);
+
+    await firestoreRef.delete();
+    await firestoreRefAds.delete();
   }
 
   @override

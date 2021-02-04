@@ -15,7 +15,7 @@ class DesapegoCategorias extends StatelessWidget {
         ),
       ),
       body: FutureBuilder<QuerySnapshot>(
-          future: FirebaseFirestore.instance.collection("desapego").orderBy('pos').get(),
+          future: FirebaseFirestore.instance.collection("desapego").get(),
           builder: (context, snapshot) {
             if (!snapshot.hasData)
               return Center(

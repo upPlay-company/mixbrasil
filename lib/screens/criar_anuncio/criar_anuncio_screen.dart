@@ -1,16 +1,71 @@
 import 'dart:ui';
+import 'package:brasil_fields/formatter/real_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mix_brasil/common/error_box.dart';
 import 'package:mix_brasil/model/anuncio/ad.dart';
+import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/myads/myads_screen.dart';
+import 'package:mix_brasil/stores/create_store.dart';
+import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
-import 'components/criar_anuncio_tile.dart';
+import 'components/category_desapego_field.dart';
+import 'components/cep_field.dart';
+import 'components/images_field.dart';
 
-class CriarAnuncioScreen extends StatelessWidget {
+class CriarAnuncioScreen extends StatefulWidget {
 
   CriarAnuncioScreen({this.ad});
 
   final Ad ad;
+
+  @override
+  _CriarAnuncioScreenState createState() => _CriarAnuncioScreenState(ad);
+}
+
+class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
+
+  _CriarAnuncioScreenState(Ad ad)
+      : editing = ad != null,
+        createStore = CreateStore(ad: ad ?? Ad());
+
+  final CreateStore createStore;
+
+  bool editing;
+
+  @override
+  void initState() {
+    super.initState();
+
+    when((_) => createStore.saveAd, () {
+      if(editing)
+        Navigator.of(context).pop(true);
+      else {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => BaseScreen(),
+          ),
+        );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => MyAdsScreen(),
+          ),
+        );
+      }
+
+    });
+  }
+
+  final labelStyle = TextStyle(
+      fontWeight: FontWeight.w800,
+      color: Colors.grey,
+      fontSize: 18
+  );
+
+  final contentPadding = const EdgeInsets.fromLTRB(16, 10, 12, 10);
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +82,130 @@ class CriarAnuncioScreen extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            title: Text('CRIE SEU DESAPEGO', style: TextStyle(color: Colors.black),),
+            title: Text(editing ? 'EDITANDO ANÚNCIO' : 'CRIE SEU DESAPEGO', style: TextStyle(color: Colors.black),),
             centerTitle: true,
             elevation: 0,
             backgroundColor: Colors.transparent,
             iconTheme: IconThemeData(color: Colors.black),
           ),
-          body: CriarAnuncioTile(ad: ad),
+          body: Container(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Card(
+                clipBehavior: Clip.antiAlias,
+                margin: const EdgeInsets.symmetric(horizontal: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                elevation: 8,
+                child: Observer(builder: (_){
+                  if(createStore.loading)
+                    return Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        children: [
+                          Text(
+                            'Salvando Anúncio',
+                            style: TextStyle(fontSize: 18, color: Theme.of(context).primaryColor),
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
+                          )
+                        ],
+                      ),
+                    );
+                  else
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ImagesField(createStore),
+                        Observer(builder: (_){
+                          return TextFormField(
+                            initialValue: editing ? createStore.title : '',
+                            onChanged: createStore.setTitle,
+                            decoration: InputDecoration(
+                                labelText: 'Título *',
+                                labelStyle: labelStyle,
+                                contentPadding: contentPadding,
+                                errorText: createStore.titleError
+                            ),
+                          );
+                        }),
+                        Observer(builder: (_){
+                          return TextFormField(
+                            initialValue: createStore.description,
+                            onChanged: createStore.setDescription,
+                            decoration: InputDecoration(
+                              labelText: 'Descrição *',
+                              labelStyle: labelStyle,
+                              contentPadding: contentPadding,
+                              errorText: createStore.descriptionError,
+                            ),
+                            maxLines: null,
+                          );
+                        },
+                        ),
+                        CategoryDesapegoField(createStore),
+                        CepField(createStore),
+                        Observer(builder: (_){
+                          return TextFormField(
+                            initialValue: createStore.priceText,
+                            onChanged: createStore.setPrice,
+                            decoration: InputDecoration(
+                                labelText: 'Preço *',
+                                labelStyle: labelStyle,
+                                contentPadding: contentPadding,
+                                prefixText: 'R\$',
+                                errorText: createStore.priceError
+                            ),
+                            keyboardType: TextInputType.number,
+                            inputFormatters: [
+                              FilteringTextInputFormatter.digitsOnly,
+                              RealInputFormatter(centavos: true)
+                            ],
+                          );
+                        },
+                        ),
+                        Observer(builder: (_){
+                          return ErrorBox(
+                            message: createStore.error,
+                          );
+                        }),
+                        SizedBox(height: 10,),
+                        Observer(builder: (_){
+                          return SizedBox(
+                            height: 50,
+                            child: GestureDetector(
+                              onTap: createStore.invalidSendPressed,
+                              child: RaisedButton(
+                                onPressed: createStore.sendPressed,
+                                child: Text('Enviar', style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    fontFamily: 'Principal'),
+                                ),
+                                textColor: Colors.white,
+                                color: Theme.of(context).primaryColor,
+                                disabledColor: Theme.of(context)
+                                    .primaryColor
+                                    .withAlpha(100),
+                                elevation: 0,
+                                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
+                            ),
+                          );
+                        },
+                        )
+                      ],
+                    );
+                },
+                ),
+              ),
+            ),
+          ),
         )
       );
     else

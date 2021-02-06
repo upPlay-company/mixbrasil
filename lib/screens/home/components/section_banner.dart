@@ -26,6 +26,7 @@ class SectionBanner extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   shape: BoxShape.rectangle,
+                  border: Border.all(color: Theme.of(context).primaryColor, width: 1.0),
                   image: DecorationImage(
                       image: NetworkImage(section.img[index]),
                       fit: BoxFit.cover,

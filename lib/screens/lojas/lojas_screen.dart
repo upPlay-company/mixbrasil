@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
+import 'package:line_icons/line_icons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //Variaveis Globais
 final Color primaryColor = Color(0xff078c9f);
@@ -28,17 +30,41 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: FloatingActionButton(
-          child: Icon(Icons.arrow_back),
-          backgroundColor: primaryColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16.0))),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: FloatingActionButton(
+              child: Icon(Icons.arrow_back),
+              backgroundColor: primaryColor,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(16.0))),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, right: 30),
+            child: SizedBox(
+              width: 55,
+              height: 55,
+              child: RaisedButton(
+                child: Icon(LineIcons.whatsapp, color: Colors.white,),
+                color: Color(0xff2dc64f),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                onPressed: () {
+                  final clearNumber = lojas.number.replaceAll(RegExp('[^0-9]'), '');
+                  _launchURL(
+                      'whatsapp://send?phone=+55$clearNumber&text=Quero adquirir as ofertas'
+                  );
+                },
+              ),
+            ),
+          )
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: SingleChildScrollView(
@@ -272,5 +298,13 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
       ),
     );
+  }
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

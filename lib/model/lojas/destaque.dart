@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class DestaqueLoja extends ChangeNotifier {
 
-  String id, category, name, promocao, state, trabalheConosco, cid, lid;
+  String id, category, name, promocao, state, trabalheConosco, cid, lid, city, number;
   double price;
   bool destaque;
   List img, imgDestacadas, imgCupons, imgOfertas;
@@ -25,6 +25,8 @@ class DestaqueLoja extends ChangeNotifier {
     pos = snapshot.data()["pos"];
     state = snapshot.data()["estado"];
     trabalheConosco = snapshot.data()["trabalheConosco"];
+    city = snapshot.data()['cidade'];
+    number = snapshot.data()['whatsapp'];
   }
 
   Map<String, dynamic> toResumedMap() {

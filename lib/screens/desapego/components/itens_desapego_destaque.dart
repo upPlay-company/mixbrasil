@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItensDestaqueDesapego extends StatefulWidget {
 
@@ -19,10 +20,12 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
   final DesapegoDestaque desapegoDestaque;
   String nameAnuciante = "mauricio";
 
+
   _ItensDestaqueDesapegoState(this.desapegoDestaque);
 
   @override
   Widget build(BuildContext context) {
+    final clearNumber = desapegoDestaque.number.replaceAll(RegExp('[^0-9]'), '');
     final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -109,7 +112,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                               left: 20,
                             ),
                             child: Text(
-                              "concessonária Ford \n",
+                              "${desapegoDestaque.cidade} \n",
                               style: TextStyle(
                                 fontSize: 18,
                               ),
@@ -144,7 +147,11 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                 ),
                                 Center(
                                   child: RaisedButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      _launchURL(
+                                          'whatsapp://send?phone=+55$clearNumber&text=Olá, ainda está disponível?'
+                                      );
+                                    },
                                     color: Theme.of(context).secondaryHeaderColor,
                                     child: Padding(
                                       padding: const EdgeInsets.all(15.0),
@@ -191,5 +198,13 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
         ),
       ),
     );
+  }
+
+  _launchURL(url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

@@ -19,8 +19,9 @@ class SectionAtCategorias extends StatelessWidget {
         );
       },
       child: Container(
-        width: 200,
+        width: 190,
         child: Card(
+          elevation: 8,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,

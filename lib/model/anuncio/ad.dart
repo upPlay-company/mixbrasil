@@ -158,7 +158,7 @@ class Ad {
         .doc(ad.idAds);
 
     await firestoreRef.update({'status': AdStatus.SOLD.index});
-    await firestoreRefAds.update({'status': AdStatus.SOLD.index});
+    await firestoreRefAds.delete();
   }
 
   Future<void> delete(Ad ad) async {
@@ -168,14 +168,7 @@ class Ad {
         .collection('desapegos')
         .doc(ad.id);
 
-    DocumentReference firestoreRefAds = firestore
-        .collection('desapego')
-        .doc(ad.idCat)
-        .collection('desapegos')
-        .doc(ad.idAds);
-
     await firestoreRef.delete();
-    await firestoreRefAds.delete();
   }
 
   @override

@@ -9,11 +9,13 @@ class DesapegoDestaque extends ChangeNotifier {
     descricao = document.data()['descricao'] as String;
     number = document.data()['number'] as String;
     estado = document.data()['estado'] as String;
-    cidade = document.data()['estado'] as String;
+    cidade = document.data()['cidade'] as String;
     price = document.data()['price'] as double;
     img = List<String>.from(document.data()['img'] as List<dynamic>);
-    cid = document.data()['cid'] as String;
-    did = document.data()['did'] as String;
+    viewsDestaque = document.data()['viewsDestaque'];
+    idCat = document.data()["idCat"];
+    idUser = document.data()['user'];
+    idAdsUser = document.data()['idAdsUser'];
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -23,35 +25,21 @@ class DesapegoDestaque extends ChangeNotifier {
 
   get storageRef => storage.ref().child('destaque_desapego/$id');
 
-  String estado, cidade, descricao, name, id, number, cid, did;
-  List<String> img;
+  String descricao;
+  String id;
+  String category;
+  String name;
   double price;
-
-  Map<String, dynamic> toResumedMap() {
-    return {
-      "descricao": descricao,
-      "name": name,
-      "cidade": cidade,
-      "estado": estado,
-      "price": price,
-      "img": img,
-      "cid": cid,
-      "did": did,
-    };
-  }
-
-  @override
-  String toString() {
-    return 'DesapegoDestaque{'
-        'id: $id, '
-        'name: $name, '
-        'descricao: $descricao, '
-        'number: $number, '
-        'cidade: $cidade, '
-        'estado: $estado, '
-        'img: $img, '
-        'price: $price, '
-        'cid: $cid, '
-        'did: $did}';
-  }
+  bool destaque;
+  List img;
+  int pos;
+  String promocao;
+  String cidade;
+  String anunciante;
+  String estado;
+  String number;
+  int viewsDestaque;
+  String idCat;
+  String idUser;
+  String idAdsUser;
 }

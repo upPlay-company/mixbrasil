@@ -1,11 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mix_brasil/screens/myads/components/destacados_tile.dart';
 import 'package:mix_brasil/stores/myads_store.dart';
-
 import 'components/active_tile.dart';
 import 'components/solt_tile.dart';
+import 'package:mix_brasil/common/empty_card.dart';
 
 class MyAdsScreen extends StatefulWidget {
 
@@ -29,7 +29,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
     super.initState();
 
     tabController = TabController(
-      length: 2,
+      length: 3,
       vsync: this,
       initialIndex: widget.inicialPage
     );
@@ -59,9 +59,9 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
               Tab(
-                  child: Text('ATIVOS', style: TextStyle(fontSize: 16)),
-              ),
-              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 16)))
+                  child: Text('ATIVOS', style: TextStyle(fontSize: 13))),
+              Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 13))),
+              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 13))),
             ],
           ),
         ),
@@ -77,7 +77,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
               children: [
                 Observer(builder: (_){
                   if(store.activeAds.isEmpty)
-                    return Container();
+                    return EmptyCard('Você não possui nenhum anúncio ativo.');
 
                   return ListView.builder(
                     itemCount: store.activeAds.length,
@@ -88,8 +88,19 @@ class _MyAdsScreenState extends State<MyAdsScreen>
                   },
                 ),
                 Observer(builder: (_) {
+                  if (store.destacadoAds.isEmpty)
+                    return EmptyCard('Você não possui nenhum anúncio destacados.');
+
+                  return ListView.builder(
+                    itemCount: store.destacadoAds.length,
+                    itemBuilder: (_, index) {
+                      return DestacadoTile(store.destacadoAds[index], store);
+                    },
+                  );
+                }),
+                Observer(builder: (_) {
                   if (store.soldAds.isEmpty)
-                    return Container();
+                    return EmptyCard('Você não possui nenhum anúncio vendido.');
 
                   return ListView.builder(
                     itemCount: store.soldAds.length,

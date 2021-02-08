@@ -5,10 +5,15 @@ import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/minha_conta/minha_conta.dart';
 import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:mix_brasil/common/entra_screen.dart';
+import 'package:mix_brasil/screens/privacidade/privacidade_e_seguranca_screen.dart';
 
 class Perfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final userManager = context.watch<UserManager>();
+
     return Container(
       color: Colors.white,
       child: ListView(
@@ -135,8 +140,12 @@ class Perfil extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => MyAdsScreen()));
+                  if(userManager.isLoggedIn)
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => MyAdsScreen()));
+                  else
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
                 },
                 child: rowsColumns(
                   "Meus Anúncios",
@@ -145,6 +154,16 @@ class Perfil extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                onTap: (){
+                  if(userManager.isLoggedIn)
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => Container()),
+                    );
+                  else
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FacaLoginScreen()),
+                    );
+                },
                 child: rowsColumns(
                   "Meus Favoritos",
                   Icons.bookmark,
@@ -153,9 +172,14 @@ class Perfil extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MinhaContaScreen()),
-                  );
+                  if(userManager.isLoggedIn)
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MinhaContaScreen()),
+                    );
+                  else
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => FacaLoginScreen()),
+                    );
                 },
                 child: rowsColumns(
                   "Perfil",
@@ -164,6 +188,11 @@ class Perfil extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PrivacidadeSegurancaScreen())
+                  );
+                },
                 child: rowsColumns(
                   "Segurança e privacidade",
                   Icons.vpn_key,

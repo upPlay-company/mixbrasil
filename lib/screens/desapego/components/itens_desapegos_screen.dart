@@ -29,16 +29,36 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
       backgroundColor: Colors.white,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(top: 10),
-        child: FloatingActionButton(
-          child: Icon(Icons.arrow_back),
-          backgroundColor: Theme
-              .of(context)
-              .primaryColor,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16.0))),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: FloatingActionButton(
+                child: Icon(Icons.arrow_back),
+                backgroundColor: primaryColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, right: 30),
+              child: SizedBox(
+                width: 55,
+                height: 55,
+                child: RaisedButton(
+                  child: Icon(Icons.favorite_outline_outlined, color: Colors.red,),
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                  onPressed: (){}
+                ),
+              ),
+            )
+          ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
@@ -222,4 +242,21 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
       throw 'Could not launch $url';
     }
   }
+
+  /*void saveFavoritos(){
+    final user = GetIt.I<UserManager>().user;
+
+    final Map<String, dynamic> data = {
+      'name': desapego.name,
+      'descricao': desapego.descricao,
+      'price': desapego.price,
+      'categoria': desapego.category,
+      'number': desapego.number,
+      'user': desapego.idUser,
+      'img': desapego.img
+    };
+
+    FirebaseFirestore.instance.collection('users').doc(user.id).collection('favoritos').add(data);
+
+  }*/
 }

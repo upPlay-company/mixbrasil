@@ -1,26 +1,57 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/lojas/lojas_screen.dart';
 import 'package:provider/provider.dart';
 
-class LojasTile extends StatelessWidget {
+class LojasTile extends StatefulWidget {
   final String type;
   final LojasData lojas;
 
   LojasTile(this.type, this.lojas);
 
   @override
+  _LojasTileState createState() => _LojasTileState();
+}
+
+class _LojasTileState extends State<LojasTile> {
+  @override
   Widget build(BuildContext context) {
     final userManager = context.watch<UserManager>();
+
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    int counter = 0;
+
+    void saveViews() async {
+      ++counter;
+      final viewsTotal = counter + widget.lojas.views;
+
+      DocumentReference firestoreRefUser = firestore
+          .collection('users')
+          .doc(widget.lojas.idUser)
+          .collection('loja')
+          .doc(widget.lojas.idAdsUser);
+
+      DocumentReference firestoreRefAds = firestore
+          .collection('categorias')
+          .doc(widget.lojas.idCat)
+          .collection('lojas')
+          .doc(widget.lojas.id);
+
+      await firestoreRefAds.update({'views': viewsTotal});
+      await firestoreRefUser.update({'views': viewsTotal});
+    }
 
     //Declarações de funções
     Widget lojaTile() {
       return InkWell(
         onTap: () {
+          saveViews();
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ProductScreen(lojas)),
+            MaterialPageRoute(builder: (context) => ProductScreen(widget.lojas)),
           );
         },
         child: Container(
@@ -37,9 +68,9 @@ class LojasTile extends StatelessWidget {
                     height: 135,
                     width: 127,
                     child: CachedNetworkImage(
-                      imageUrl: lojas.img.isEmpty ?
+                      imageUrl: widget.lojas.img.isEmpty ?
                       'https://static.thenounproject.com/png/194055-200.png' :
-                      lojas.img.first,
+                      widget.lojas.img.first,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -55,7 +86,7 @@ class LojasTile extends StatelessWidget {
                         height: 10,
                       ),
                       Text(
-                        lojas.name,
+                        widget.lojas.name,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w800),
                       ),
@@ -63,7 +94,7 @@ class LojasTile extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        lojas.descricao,
+                        widget.lojas.promocao,
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.w700,
@@ -82,7 +113,7 @@ class LojasTile extends StatelessWidget {
                                 color: Colors.black),
                           ),
                           Text(
-                            ' R\$${lojas.price.toStringAsFixed(2)}',
+                            ' R\$${widget.lojas.price.toStringAsFixed(2)}',
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w800,
@@ -101,7 +132,7 @@ class LojasTile extends StatelessWidget {
     }
     //Fim da Declarações de funções
 
-    if (userManager.isLoggedIn && userManager.user.address.state == lojas.state)
+    if (userManager.isLoggedIn && userManager.user.address.state == widget.lojas.state)
       return lojaTile();
     else if (!userManager.isLoggedIn)
       return lojaTile();

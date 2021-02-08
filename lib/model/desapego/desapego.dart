@@ -16,6 +16,10 @@ class DesapegoData extends ChangeNotifier {
   String anunciante;
   String estado;
   String number;
+  int views;
+  String idCat;
+  String idUser;
+  String idAdsUser;
 
   DesapegoData.fromDocument(DocumentSnapshot snapshot) {
     id = snapshot.id;
@@ -30,6 +34,10 @@ class DesapegoData extends ChangeNotifier {
     pos = snapshot.data()["pos"];
     number = snapshot.data()["number"];
     anunciante = snapshot.data()["anunciante"];
+    views = snapshot.data()['views'];
+    idCat = snapshot.data()["idCat"];
+    idUser = snapshot.data()['user'];
+    idAdsUser = snapshot.data()['idAdsUser'];
   }
 
   Map<String, dynamic> toResumedMap() {

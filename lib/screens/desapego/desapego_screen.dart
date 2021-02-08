@@ -95,7 +95,7 @@ class DesapegoScreen extends StatelessWidget {
                           ),
                           Row(
                             children: [
-                              SizedBox(
+                              /*SizedBox(
                                 width: 55,
                                 height: 100,
                                 child: RaisedButton(
@@ -112,7 +112,7 @@ class DesapegoScreen extends StatelessWidget {
                                           left: Radius.circular(10),
                                           right: Radius.circular(10))),
                                 ),
-                              ),
+                              ),*/
                               SizedBox(
                                 width: 5,
                               ),
@@ -193,7 +193,6 @@ class DesapegoScreen extends StatelessWidget {
               ),
             ),
           ),
-          // TODO: MOSTRAR SEM, PARA APROVAÇÃO
           /*SliverGrid(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200.0,

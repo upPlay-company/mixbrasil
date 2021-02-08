@@ -161,12 +161,8 @@ abstract class _CreateStore with Store {
     ad.user = GetIt.I<UserManager>().user;
 
     loading = true;
-    try {
       await Ad().save(ad);
       saveAd = true;
-    } catch (e){
-      error = e;
-    }
     loading = false;
   }
 

@@ -16,10 +16,9 @@ class CategoryScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: Text(snapshot.data()["name"]),
-          actions: [
+          /*actions: [
             Row(
               children: [
-
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: SizedBox(
@@ -38,7 +37,7 @@ class CategoryScreen extends StatelessWidget {
                 ),
               ],
             )
-          ],
+          ],*/
         ),
         body: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance

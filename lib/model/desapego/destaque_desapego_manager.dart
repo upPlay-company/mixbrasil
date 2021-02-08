@@ -41,7 +41,7 @@ class DestaqueDesapegoManager extends ChangeNotifier {
 
   Future<void> _loadDesapego() async {
     final QuerySnapshot snapDestaques =
-    await firestore.collection('destaque_desapego').orderBy('pos').get();
+    await firestore.collection('destaque_desapego').orderBy('created', descending: true).get();
 
     _desapegoDestaque = snapDestaques.docs.map(
             (c) => DesapegoDestaque.fromDocument(c)).toList();

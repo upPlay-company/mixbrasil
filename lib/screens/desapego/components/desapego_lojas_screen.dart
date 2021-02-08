@@ -15,7 +15,7 @@ class DesapegoLojaScreen extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
           title: Text(snapshot.data()["name"]),
-          actions: [
+          /*actions: [
             Row(
               children: [
                 Padding(
@@ -36,7 +36,7 @@ class DesapegoLojaScreen extends StatelessWidget {
                 ),
               ],
             )
-          ],
+          ],*/
         ),
         body: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance

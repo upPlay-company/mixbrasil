@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
@@ -26,6 +27,30 @@ class _ProductScreenState extends State<ProductScreen> {
 
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  int counter = 0;
+
+  void saveViewsWhats() async {
+    ++counter;
+    final viewsTotal = counter + widget.lojas.viewsWhats;
+
+    DocumentReference firestoreRefUser = firestore
+        .collection('users')
+        .doc(widget.lojas.idUser)
+        .collection('loja')
+        .doc(widget.lojas.idAdsUser);
+
+    DocumentReference firestoreRefAds = firestore
+        .collection('categorias')
+        .doc(widget.lojas.idCat)
+        .collection('lojas')
+        .doc(widget.lojas.id);
+
+    await firestoreRefAds.update({'viewsWhats': viewsTotal});
+    await firestoreRefUser.update({'viewsWhats': viewsTotal});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +81,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(16.0))),
                 onPressed: () {
+                  saveViewsWhats();
                   final clearNumber = lojas.number.replaceAll(RegExp('[^0-9]'), '');
                   _launchURL(
                       'whatsapp://send?phone=+55$clearNumber&text=Quero adquirir as ofertas'

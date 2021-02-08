@@ -5,16 +5,15 @@ import 'package:mix_brasil/helpers/extensions.dart';
 import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/stores/myads_store.dart';
 
-class ActiveTile extends StatelessWidget {
+class DestacadoTile extends StatelessWidget {
 
-  ActiveTile(this.ad, this.store);
+  DestacadoTile(this.ad, this.store);
   final Ad ad;
   final MyAdsStore store;
 
   final List<MenuChoice> choices = [
-    MenuChoice(index: 0, title: 'Editar', iconData: Icons.edit),
-    MenuChoice(index: 1, title: 'Já vendi', iconData: Icons.thumb_up),
-    MenuChoice(index: 2, title: 'Excluir', iconData: Icons.delete)
+    MenuChoice(index: 0, title: 'Já vendi', iconData: Icons.thumb_up),
+    MenuChoice(index: 1, title: 'Excluir', iconData: Icons.delete)
   ];
 
   @override
@@ -66,15 +65,6 @@ class ActiveTile extends StatelessWidget {
                           color: Colors.grey[800],
                         ),
                       ),
-                      GestureDetector(
-                        onTap: (){destacarAd(context);},
-                        child: Text(
-                          'Destacar anúncio',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14, color: Theme.of(context).primaryColor
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 ),
@@ -85,12 +75,9 @@ class ActiveTile extends StatelessWidget {
                     onSelected: (choice) {
                       switch (choice.index) {
                         case 0:
-                          editAd(context);
-                          break;
-                        case 1:
                           soldAd(context);
                           break;
-                        case 2:
+                        case 1:
                           deleteAd(context);
                           break;
                       }
@@ -159,7 +146,7 @@ class ActiveTile extends StatelessWidget {
           FlatButton(
             onPressed: () {
               Navigator.of(context).pop();
-              store.soldAd(ad);
+              store.soldDestaque(ad);
             },
             child: Text('Sim'),
             textColor: Colors.red,
@@ -172,66 +159,32 @@ class ActiveTile extends StatelessWidget {
   void deleteAd(BuildContext context) {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: Text('Excluir'),
-        content: Text('Confirmar a exclusão de ${ad.title}?'),
-        actions: [
-          FlatButton(
-            onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Theme.of(context).primaryColor,
+      builder: (_) =>
+          AlertDialog(
+            title: Text('Excluir'),
+            content: Text('Confirmar a exclusão de ${ad.title}?'),
+            actions: [
+              FlatButton(
+                onPressed: Navigator
+                    .of(context)
+                    .pop,
+                child: Text('Não'),
+                textColor: Theme
+                    .of(context)
+                    .primaryColor,
+              ),
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  store.deleteAd(ad);
+                },
+                child: Text('Sim'),
+                textColor: Colors.red,
+              ),
+            ],
           ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              store.deleteAd(ad);
-            },
-            child: Text('Sim'),
-            textColor: Colors.red,
-          ),
-        ],
-      ),
     );
   }
-  void destacarAd(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (_) => AlertDialog(
-        title: Text('Destacar anúncio'),
-        content: Text('Venda mais rápido destacando o anúncio ${ad.title}'),
-        actions: [
-          FlatButton(
-            onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Colors.red,
-          ),
-          FlatButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              store.destacarAd(ad);
-              showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    title: Text('Mensagem enviado com sucesso'),
-                    content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, em breve entraremos em contato.'),
-                    actions: [
-                      FlatButton(
-                        onPressed: Navigator.of(context).pop,
-                        child: Text('Ok'),
-                        textColor: Theme.of(context).primaryColor,
-                      ),
-                    ],
-                  ),
-              );
-            },
-            child: Text('Sim'),
-            textColor: Theme.of(context).primaryColor,
-          ),
-        ],
-      ),
-    );
-  }
-
 }
 
 class MenuChoice {

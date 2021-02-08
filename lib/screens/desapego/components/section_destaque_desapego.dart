@@ -1,22 +1,30 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
 import 'package:mix_brasil/screens/desapego/components/itens_desapego_destaque.dart';
 
 
-class SectionDestaquesDesapego extends StatelessWidget {
+class SectionDestaquesDesapego extends StatefulWidget {
 
   SectionDestaquesDesapego(this.desapegoDestaque);
 
   final DesapegoDestaque desapegoDestaque;
 
   @override
+  _SectionDestaquesDesapegoState createState() => _SectionDestaquesDesapegoState();
+}
+
+class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  @override
   Widget build(BuildContext context) {
+    print(widget.desapegoDestaque.viewsDestaque);
     return InkWell(
         onTap: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => ItensDestaqueDesapego(desapegoDestaque)),
+                builder: (context) => ItensDestaqueDesapego(widget.desapegoDestaque)),
           );
         },
         child: Container(
@@ -33,9 +41,9 @@ class SectionDestaquesDesapego extends StatelessWidget {
                       height: 135,
                       width: 127,
                       child: CachedNetworkImage(
-                        imageUrl: desapegoDestaque.img.isEmpty ?
+                        imageUrl: widget.desapegoDestaque.img.isEmpty ?
                         'https://static.thenounproject.com/png/194055-200.png' :
-                        desapegoDestaque.img.first,
+                        widget.desapegoDestaque.img.first,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -57,7 +65,7 @@ class SectionDestaquesDesapego extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 3.0),
                                 child: Text(
-                                  desapegoDestaque.name,
+                                  widget.desapegoDestaque.name,
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w900,
@@ -75,7 +83,7 @@ class SectionDestaquesDesapego extends StatelessWidget {
                               color: Colors.grey[700],
                             ),
                             Text(
-                              "Concessonária FORD",
+                              widget.desapegoDestaque.cidade,
                               style: TextStyle(
                                   fontSize: 15,
                                   fontWeight: FontWeight.w700,
@@ -88,7 +96,7 @@ class SectionDestaquesDesapego extends StatelessWidget {
                           child: Row(
                             children: <Widget>[
                               Text(
-                                'R\$${desapegoDestaque.price.toStringAsFixed(2)}',
+                                'R\$${widget.desapegoDestaque.price.toStringAsFixed(2)}',
                                 textScaleFactor: 1.2,
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,

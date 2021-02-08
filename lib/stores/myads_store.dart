@@ -23,8 +23,8 @@ abstract class _MyAdsStore with Store {
   @computed
   List<Ad> get activeAds => AllAds.where(
           (ad) => ad.status == AdStatus.ACTIVE).toList();
-  List<Ad> get pendingAds => AllAds.where(
-          (ad) => ad.status == AdStatus.PENDING).toList();
+  List<Ad> get destacadoAds => AllAds.where(
+          (ad) => ad.status == AdStatus.DELETE).toList();
   List<Ad> get soldAds => AllAds.where(
           (ad) => ad.status == AdStatus.SOLD).toList();
 
@@ -61,6 +61,20 @@ abstract class _MyAdsStore with Store {
   Future<void> deleteAd(Ad ad) async {
     loading = true;
     await Ad().delete(ad);
+    refresh();
+  }
+
+  @action
+  Future<void> destacarAd(Ad ad) async {
+    loading = true;
+    await Ad().destacar(ad);
+    refresh();
+  }
+
+  @action
+  Future<void> soldDestaque(Ad ad) async {
+    loading = true;
+    await Ad().soldDestaque(ad);
     refresh();
   }
 }

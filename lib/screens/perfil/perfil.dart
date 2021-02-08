@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/favoritos/favoritos_screen.dart';
 import 'package:mix_brasil/screens/minha_conta/minha_conta.dart';
 import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:provider/provider.dart';
@@ -157,7 +158,7 @@ class Perfil extends StatelessWidget {
                 onTap: (){
                   if(userManager.isLoggedIn)
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => Container()),
+                      MaterialPageRoute(builder: (context) => FavoritosScreen()),
                     );
                   else
                     Navigator.of(context).push(

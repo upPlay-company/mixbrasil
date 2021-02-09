@@ -238,6 +238,7 @@ class Ad {
       'user': ad.user.id,
       'idAds': ad.id,
       'img': ad.images,
+      'destaque': ad.destaque = false
     };
 
     FirebaseFirestore.instance.collection('msg_destaca_desapego').add(data);

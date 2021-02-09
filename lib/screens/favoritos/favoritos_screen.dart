@@ -15,7 +15,7 @@ class FavoritosScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             'MEUS FAVORITOS',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.black, fontSize: 16),
           ),
           centerTitle: true,
           elevation: 0,

@@ -67,6 +67,7 @@ class Ad {
       storage.ref().child('imagens_desapegos').child(user.id);
 
   Future<void> save(Ad ad) async {
+    try {
       final Map<String, dynamic> data = {
         'name': ad.title,
         'descricao': ad.description,
@@ -103,7 +104,7 @@ class Ad {
         for (final image in ad.images) {
           if (image as File != null) {
             final UploadTask task =
-                storageRef.child(Uuid().v1()).putFile(image);
+            storageRef.child(Uuid().v1()).putFile(image);
             final TaskSnapshot snapshot = await task;
             final String url = await snapshot.ref.getDownloadURL();
             uploadImage.add(url);
@@ -121,14 +122,18 @@ class Ad {
               .collection('desapegos')
               .doc(docUser.id);
 
-          await firestoreRef.update({'img': uploadImage, 'idAdsUser': docUser.id,'idCat': ad.category.id});
+          await firestoreRef.update({
+            'img': uploadImage,
+            'idAdsUser': docUser.id,
+            'idCat': ad.category.id
+          });
           ad.images = uploadImage;
 
-          await firestoreRefUser.update({'img': uploadImage, 'idAds': doc.id, 'idCat': ad.category.id});
+          await firestoreRefUser.update(
+              {'img': uploadImage, 'idAds': doc.id, 'idCat': ad.category.id});
           ad.images = uploadImage;
         }
       } else {
-
         DocumentReference firestoreRef = firestore
             .collection('users')
             .doc(ad.user.id)
@@ -150,32 +155,34 @@ class Ad {
             final TaskSnapshot snapshot = await task;
             final String url = await snapshot.ref.getDownloadURL();
             uploadImage.add(url);
-          } else if(ad.images.contains(image)){
+          } else if (ad.images.contains(image)) {
             uploadImage.add(image as String);
           }
         }
 
-        for(final image in ad.images){
-          if(!ad.images.contains(image)){
+        for (final image in ad.images) {
+          if (!ad.images.contains(image)) {
             try {
               final ref = storage.refFromURL(image);
               await ref.delete();
-            } catch (e){
+            } catch (e) {
               debugPrint('Falha ao deletar $image');
             }
           }
         }
 
-          await firestoreRef.update({'img': uploadImage});
-          ad.images = uploadImage;
+        await firestoreRef.update({'img': uploadImage});
+        ad.images = uploadImage;
 
-          await firestoreRefAds.update({'img': uploadImage});
-          ad.images = uploadImage;
+        await firestoreRefAds.update({'img': uploadImage});
+        ad.images = uploadImage;
 
         await firestoreRef.update(data);
         await firestoreRefAds.update(data);
-
-        }
+      }
+    } catch (e){
+      return Future.error('Falha ao salvar anúncio');
+    }
   }
 
   Future<void> sold(Ad ad) async {

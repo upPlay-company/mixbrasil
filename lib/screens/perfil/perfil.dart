@@ -29,7 +29,7 @@ class Perfil extends StatelessWidget {
                     decoration: TextDecoration.none,
                     color: Colors.black,
                     fontWeight: FontWeight.w800,
-                    fontSize: 30,
+                    fontSize: 14,
                   ),
                 ),
               ),
@@ -61,7 +61,7 @@ class Perfil extends StatelessWidget {
                                           decoration: TextDecoration.none,
                                           color: Colors.black,
                                           fontWeight: FontWeight.w900,
-                                          fontSize: 24,
+                                          fontSize: 16,
                                         ),
                                       ),
                                       SizedBox(
@@ -85,7 +85,7 @@ class Perfil extends StatelessWidget {
                                           style: TextStyle(
                                             decoration: TextDecoration.none,
                                             color: Colors.black,
-                                            fontSize: 16,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),
@@ -218,11 +218,11 @@ class Perfil extends StatelessWidget {
           Row(
             children: <Widget>[
               Container(
-                height: 40,
-                width: 40,
+                height: 30,
+                width: 30,
                 child: Icon(
                   iconLeft,
-                  size: 30,
+                  size: 20,
                   color: Colors.white,
                 ),
                 decoration: BoxDecoration(
@@ -238,7 +238,7 @@ class Perfil extends StatelessWidget {
                 child: Text(
                   title,
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 14,
                     decoration: TextDecoration.none,
                     color: Colors.black,
                   ),
@@ -249,6 +249,7 @@ class Perfil extends StatelessWidget {
                 child: Icon(
                   iconRight,
                   color: Color(0xFF3CA59D),
+                  size: 15,
                 ),
               ),
             ],

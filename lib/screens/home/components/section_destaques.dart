@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -16,58 +15,56 @@ class SectionDestaques extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userManager = context.watch<UserManager>();
-    final user = GetIt.I<UserManager>().user;
-    if(userManager.isLoggedIn){
-      if(lojasDestaque.state == user.address.state)
-        return InkWell(
-          onTap: () {
-            if (lojasDestaque.id != null) {
-              final product = context
-                  .read<LojasDestaqueManager>()
-                  .findProductByID(lojasDestaque.id);
-              if (product != null) {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                      builder: (context) => LojasDestaqueScreen(lojasDestaque)),
-                );
-              }
+    if(userManager.isLoggedIn && lojasDestaque.state == userManager.user.address.state){
+      return InkWell(
+        onTap: () {
+          if (lojasDestaque.id != null) {
+            final product = context
+                .read<LojasDestaqueManager>()
+                .findProductByID(lojasDestaque.id);
+            if (product != null) {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) => LojasDestaqueScreen(lojasDestaque)),
+              );
             }
-          },
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-            height: 120,
-            child: Card(
-              elevation: 8,
-              color: Colors.cyan[50],
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8,),
-                    child: SizedBox(
-                      height: 135,
-                      width: 127,
-                      child: CachedNetworkImage(
-                        imageUrl: lojasDestaque.img.isEmpty ?
-                        'https://static.thenounproject.com/png/194055-200.png' :
-                        lojasDestaque.img.first,
-                        fit: BoxFit.cover,
-                      ),
+          }
+        },
+        child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+          height: 120,
+          child: Card(
+            elevation: 8,
+            color: Colors.cyan[50],
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8,),
+                  child: SizedBox(
+                    height: 135,
+                    width: 127,
+                    child: CachedNetworkImage(
+                      imageUrl: lojasDestaque.img.isEmpty ?
+                      'https://static.thenounproject.com/png/194055-200.png' :
+                      lojasDestaque.img.first,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  child: Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        SizedBox(
-                          height: 10,
-                        ),
                         Text(
                           lojasDestaque.name,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w800),
+                              fontSize: 14, fontWeight: FontWeight.w800),
                         ),
                         SizedBox(
                           height: 5,
@@ -75,7 +72,7 @@ class SectionDestaques extends StatelessWidget {
                         Text(
                           lojasDestaque.promocao,
                           style: TextStyle(
-                              fontSize: 12,
+                              fontSize: 11,
                               fontWeight: FontWeight.w700,
                               color: Colors.grey[700]),
                         ),
@@ -87,14 +84,14 @@ class SectionDestaques extends StatelessWidget {
                             Text(
                               'A partir de',
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.black),
                             ),
                             Text(
                               ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w800,
                                   color: Theme.of(context).primaryColor),
                             ),
@@ -102,12 +99,13 @@ class SectionDestaques extends StatelessWidget {
                         ),
                       ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
-        );
+        ),
+      );
     } else if(!userManager.isLoggedIn) {
       return InkWell(
         onTap: () {
@@ -147,50 +145,51 @@ class SectionDestaques extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        lojasDestaque.name,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w800),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        lojasDestaque.promocao,
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.grey[700]),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'A partir de',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                                color: Colors.black),
-                          ),
-                          Text(
-                            ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
-                            style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w800,
-                                color: Theme.of(context).primaryColor),
-                          ),
-                        ],
-                      ),
-                    ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, bottom: 20),
+                  child: Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          lojasDestaque.name,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w800),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          lojasDestaque.promocao,
+                          style: TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.grey[700]),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'A partir de',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  color: Colors.black),
+                            ),
+                            Text(
+                              ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  color: Theme.of(context).primaryColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ],

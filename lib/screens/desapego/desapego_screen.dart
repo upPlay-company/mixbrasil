@@ -19,7 +19,7 @@ class DesapegoScreen extends StatelessWidget {
             color: Colors.transparent,
             padding: const EdgeInsets.only(left: 35),
             child: SizedBox(
-                width: 160,
+                width: 120,
                 height: 44,
                 child: RaisedButton(
                   onPressed: () {
@@ -32,7 +32,7 @@ class DesapegoScreen extends StatelessWidget {
                       child: Text(
                         'Criar Anúncio',
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: TextStyle(color: Colors.white, fontSize: 14),
                       ),
                     ),
                   ),
@@ -49,7 +49,7 @@ class DesapegoScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 120,
+            expandedHeight: 110,
             snap: true,
             floating: true,
             elevation: 0,
@@ -57,13 +57,13 @@ class DesapegoScreen extends StatelessWidget {
               'DESAPEGOS',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 22,
+                  fontSize: 14,
                   fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 47, bottom: 20),
+              padding: const EdgeInsets.only(top: 40, bottom: 20),
               child: Container(
                 padding: EdgeInsets.only(left: 10),
                 child: Consumer<DestaqueDesapegoManager>(
@@ -74,7 +74,7 @@ class DesapegoScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 200,
+                            width: 180,
                             child: RaisedButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -85,7 +85,7 @@ class DesapegoScreen extends StatelessWidget {
                               child: Text(
                                 'Todas as categorias',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
+                                    color: Colors.white, fontSize: 14),
                               ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.horizontal(
@@ -135,6 +135,7 @@ class DesapegoScreen extends StatelessWidget {
                                     child: Icon(
                                       Icons.search,
                                       color: Colors.white,
+                                      size: 16,
                                     ),
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.horizontal(

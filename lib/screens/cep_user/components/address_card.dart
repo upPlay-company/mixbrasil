@@ -47,10 +47,10 @@ class AddressCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Icon(Icons.location_on,
-            size: 80.0, color: Theme.of(context).primaryColor,),
+            size: 60.0, color: Theme.of(context).primaryColor,),
           SizedBox(height: 16.0,),
           Text("Faça o login para adicionar seu localização!",
-            style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 16.0,),

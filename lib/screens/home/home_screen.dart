@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           color: Colors.transparent,
           padding: const EdgeInsets.only(left: 35),
           child: SizedBox(
-              width: 160,
+              width: 120,
               height: 44,
               child: RaisedButton(
                 onPressed: () {
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       'Anúncie aqui',
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: Colors.white, fontSize: 14),
                     ),
                   ),
                 ),
@@ -56,14 +56,14 @@ class HomeScreen extends StatelessWidget {
         ),
         body: CustomScrollView(slivers: [
           SliverAppBar(
-            expandedHeight: 80,
+            expandedHeight: 55,
             snap: true,
             floating: true,
             elevation: 0,
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 27),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 padding: EdgeInsets.only(left: 10),
                 child: Row(
@@ -84,19 +84,19 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
+                                  padding: const EdgeInsets.only(top:7),
                                   child: Column(
                                     children: [
                                       Text(
                                         'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 14),
+                                        style: TextStyle(color: Colors.white, fontSize: 12),
                                       ),
                                       Flexible(
                                         child: Container(
                                           child: Text(
                                             '${userManager.user?.address?.city ?? 'Manaus'}',
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 18),
+                                            style: TextStyle(color: Colors.white, fontSize: 14),
                                           ),
                                         ),
                                       ),
@@ -117,19 +117,19 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
+                                  padding: const EdgeInsets.only(top:7),
                                   child: Column(
                                     children: [
                                       Text(
                                         'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 14),
+                                        style: TextStyle(color: Colors.white, fontSize: 12),
                                       ),
                                       Flexible(
                                         child: Container(
                                           child: Text(
                                             'Manaus',
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 20),
+                                            style: TextStyle(color: Colors.white, fontSize: 14),
                                           ),
                                         ),
                                       ),
@@ -180,8 +180,8 @@ class HomeScreen extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              padding: EdgeInsets.only(top: 20),
-              height: 200.0,
+              padding: EdgeInsets.only(top: 10),
+              height: 150.0,
               child: FutureBuilder<QuerySnapshot>(
                 future: FirebaseFirestore.instance
                     .collection("categorias")

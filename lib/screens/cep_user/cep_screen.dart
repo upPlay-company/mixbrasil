@@ -21,7 +21,7 @@ class CepUserScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 22),),
+            title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 16),),
             centerTitle: true,
             backgroundColor: Colors.transparent,
             elevation: 0,
@@ -68,7 +68,7 @@ class CepUserScreen extends StatelessWidget {
          backgroundColor: Colors.transparent,
          appBar: AppBar(
            automaticallyImplyLeading: false,
-           title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 22),),
+           title: Text('Escolha uma localização', style: TextStyle(color: Colors.black, fontSize: 16),),
            centerTitle: true,
            backgroundColor: Colors.transparent,
            elevation: 0,
@@ -90,7 +90,7 @@ class CepUserScreen extends StatelessWidget {
                        'Ok',
                        style: TextStyle(
                            color: Theme.of(context).primaryColor,
-                           fontSize: 18,
+                           fontSize: 16,
                            fontWeight: FontWeight.bold,
                            fontFamily: 'Principal'
                        ),

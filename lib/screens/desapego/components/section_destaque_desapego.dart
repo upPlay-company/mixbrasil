@@ -67,7 +67,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                                 child: Text(
                                   widget.desapegoDestaque.name,
                                   style: TextStyle(
-                                    fontSize: 18,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
@@ -75,24 +75,25 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                             ),
                           ],
                         ),
+                        SizedBox(height: 5,),
                         Row(
                           children: [
                             Icon(
                               Icons.location_on,
-                              size: 15,
+                              size: 12,
                               color: Colors.grey[700],
                             ),
                             Text(
                               widget.desapegoDestaque.cidade,
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[700]),
                             ),
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 18, right: 10,),
+                          padding: const EdgeInsets.only(top: 30, right: 10,),
                           child: Row(
                             children: <Widget>[
                               Text(

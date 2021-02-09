@@ -75,11 +75,11 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               'Entre',
                               style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
+                                  fontSize: 18, fontWeight: FontWeight.bold),
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(20, 10, 20, 20),
+                              padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Theme.of(context)
@@ -237,7 +237,7 @@ class LoginScreen extends StatelessWidget {
                                         style: TextStyle(
                                             color: Colors.white,
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontFamily: 'Principal'),
                                       ),
                                 disabledColor: Theme.of(context)
@@ -315,7 +315,7 @@ class LoginScreen extends StatelessWidget {
                                   children: [
                                     Icon(
                                       LineIcons.facebook,
-                                      size: 30,
+                                      size: 25,
                                       color: Colors.white,
                                     ),
                                     Text(
@@ -323,7 +323,7 @@ class LoginScreen extends StatelessWidget {
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 18,
+                                          fontSize: 16,
                                           fontFamily: 'Principal'),
                                     ),
                                   ],
@@ -348,7 +348,7 @@ class LoginScreen extends StatelessWidget {
                                     'Não tem conta? ',
                                     style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Principal'),
                                   ),
@@ -356,7 +356,7 @@ class LoginScreen extends StatelessWidget {
                                     'Clique aqui',
                                     style: TextStyle(
                                         color: Theme.of(context).primaryColor,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Principal'),
                                   )

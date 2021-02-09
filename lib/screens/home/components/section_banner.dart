@@ -13,7 +13,7 @@ class SectionBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Padding(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 20),
           child: CarouselSlider.builder(
             itemCount: section.img.length,
             options: CarouselOptions(
@@ -26,7 +26,6 @@ class SectionBanner extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(20)),
                   shape: BoxShape.rectangle,
-                  border: Border.all(color: Theme.of(context).primaryColor, width: 1.0),
                   image: DecorationImage(
                       image: NetworkImage(section.img[index]),
                       fit: BoxFit.cover,

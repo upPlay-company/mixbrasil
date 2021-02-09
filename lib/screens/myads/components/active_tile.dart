@@ -52,17 +52,17 @@ class ActiveTile extends StatelessWidget {
                         ad.title,
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       Text(
                         ad.price.formattedMoney(),
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 16),
+                            fontWeight: FontWeight.w500, fontSize: 14),
                       ),
                       Text(
                         '${ad.views} visitas',
                         style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 12,
                           color: Colors.grey[800],
                         ),
                       ),

@@ -10,7 +10,7 @@ class DesapegoCategorias extends StatelessWidget {
       appBar: AppBar(
         title: Text('Todas as categorias', style: TextStyle(
             color: Colors.white,
-            fontSize: 22,
+            fontSize: 14,
           ),
         ),
       ),

@@ -46,11 +46,11 @@ class SoldTile extends StatelessWidget {
                       Text(
                         ad.title,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                       ),
                       Text(
                         ad.price.formattedMoney(),
-                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
                       ),
                     ],
                   ),

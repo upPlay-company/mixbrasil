@@ -21,7 +21,7 @@ class AnuncieAquiTile extends StatelessWidget {
           Text(
             "Anúncie agora no Mix Brasil!",
             style: TextStyle(
-                fontSize: 25.0, fontWeight: FontWeight.bold),
+                fontSize: 18.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -35,14 +35,14 @@ class AnuncieAquiTile extends StatelessWidget {
                 children: [
                   Icon(
                     LineIcons.whatsapp,
-                    size: 30,
+                    size: 20,
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
                     'Clique Aqui',
-                    style: TextStyle(fontSize: 22.0),
+                    style: TextStyle(fontSize: 16.0),
                   ),
                 ],
               ),

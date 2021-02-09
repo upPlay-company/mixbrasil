@@ -111,16 +111,16 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 140,
+                                Expanded(
                                   child: Text(
                                     desapego.name.toUpperCase(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
+                                SizedBox(width: 10,),
                                 Text(
                                   'R\$${desapego.price.toStringAsFixed(2)}',
                                   textScaleFactor: 1.4,
@@ -129,7 +129,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     color: Theme
                                         .of(context)
                                         .primaryColor,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -142,7 +142,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                             child: Text(
                               "${desapego.cidade} \n",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -157,7 +157,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     text: 'DESCRIÇÃO \n',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: Colors.black,
                                     ),
                                     children: <TextSpan>[
@@ -167,7 +167,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                       TextSpan(
                                         text: desapego.descricao + "\n\n",
                                         style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 14,
                                         ),
                                       ),
                                     ],
@@ -188,7 +188,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                       child: Text(
                                         desapego.number,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 22),
+                                            color: Colors.white, fontSize: 16),
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -213,7 +213,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 70,
+        height: 50,
         width: MediaQuery
             .of(context)
             .size
@@ -225,7 +225,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
           child: Text(
             "ANUCIANTE: " + desapego.anunciante.toUpperCase(),
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 14,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

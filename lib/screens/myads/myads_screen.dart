@@ -46,7 +46,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
         appBar: AppBar(
           title: Text(
             'Meus Anúncios',
-            style: TextStyle(color: Colors.black, fontSize: 22),
+            style: TextStyle(color: Colors.black, fontSize: 16),
           ),
           iconTheme: IconThemeData(color: Colors.black),
           centerTitle: true,
@@ -59,9 +59,9 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
               Tab(
-                  child: Text('ATIVOS', style: TextStyle(fontSize: 13))),
-              Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 13))),
-              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 13))),
+                  child: Text('ATIVOS', style: TextStyle(fontSize: 10))),
+              Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 10))),
+              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 10))),
             ],
           ),
         ),

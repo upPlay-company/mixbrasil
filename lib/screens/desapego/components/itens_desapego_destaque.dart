@@ -107,23 +107,23 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Container(
-                                  width: 140,
+                                Expanded(
                                   child: Text(
                                     desapegoDestaque.name.toUpperCase(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
+                                SizedBox(width: 10,),
                                 Text(
                                   'R\$${desapegoDestaque.price.toStringAsFixed(2)}',
                                   textScaleFactor: 1.4,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context).primaryColor,
-                                    fontSize: 20,
+                                    fontSize: 14,
                                   ),
                                 ),
                               ],
@@ -136,7 +136,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                             child: Text(
                               "${desapegoDestaque.cidade} \n",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -151,7 +151,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                     text: 'DESCRIÇÃO \n',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       color: Colors.black,
                                     ),
                                     children: <TextSpan>[
@@ -161,7 +161,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                       TextSpan(
                                         text: desapegoDestaque.descricao + "\n\n",
                                         style: TextStyle(
-                                          fontSize: 15,
+                                          fontSize: 14,
                                         ),
                                       ),
                                     ],
@@ -180,7 +180,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                       child: Text(
                                         desapegoDestaque.number,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 22),
+                                            color: Colors.white, fontSize: 16),
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -205,14 +205,14 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
         ],
       ),
       bottomNavigationBar: Container(
-        height: 70,
+        height: 50,
         width: MediaQuery.of(context).size.width,
         color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
             "ANUCIANTE: " + nameAnuciante.toUpperCase(),
             style: TextStyle(
-              fontSize: 20,
+              fontSize: 14,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

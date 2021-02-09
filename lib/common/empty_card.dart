@@ -16,10 +16,10 @@ class EmptyCard extends StatelessWidget {
       child: Column(
         children: [
           Expanded(
-            flex: 4,
+            flex: 2,
             child: Icon(
               Icons.border_clear,
-              size: 200,
+              size: 150,
               color: Theme.of(context).primaryColor,
             ),
           ),
@@ -34,7 +34,7 @@ class EmptyCard extends StatelessWidget {
                     'Hmmm...',
                     style: TextStyle(
                       color: Colors.orange,
-                      fontSize: 18,
+                      fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -42,7 +42,7 @@ class EmptyCard extends StatelessWidget {
                     text,
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 14,
                     ),
                   ),
                 ],

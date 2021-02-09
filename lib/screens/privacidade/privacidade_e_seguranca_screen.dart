@@ -5,7 +5,7 @@ class PrivacidadeSegurancaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Privacidade e Segurança', style: TextStyle(color: Colors.white),),
+        title: Text('Privacidade e Segurança', style: TextStyle(color: Colors.white, fontSize: 14),),
         centerTitle: true,
         elevation: 0,
         iconTheme: IconThemeData(color: Colors.white),

@@ -19,7 +19,7 @@ class SectionAtCategorias extends StatelessWidget {
         );
       },
       child: Container(
-        width: 200,
+        width: 150,
         child: Card(
           elevation: 4,
           child: Column(
@@ -27,8 +27,8 @@ class SectionAtCategorias extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                  height: 80,
-                  width: 80,
+                  height: 50,
+                  width: 50,
                   child: Image.network(
                     snapshot.data()['image'],
                     fit: BoxFit.cover,)),
@@ -38,7 +38,7 @@ class SectionAtCategorias extends StatelessWidget {
                 children: [
                   Text(
                     snapshot.data()['name'],
-                    style: TextStyle(fontSize: 18,
+                    style: TextStyle(fontSize: 13,
                         fontWeight: FontWeight.w600),),
                 ],
               )

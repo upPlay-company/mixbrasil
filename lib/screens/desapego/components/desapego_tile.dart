@@ -13,7 +13,7 @@ class DesapegoTile extends StatelessWidget {
     return ListTile(
       leading: Container(
         width: 50,
-        height: 28,
+        height: 22,
         decoration: BoxDecoration(
             image: DecorationImage(
                 image: NetworkImage(snapshot.data()['image']),
@@ -22,7 +22,7 @@ class DesapegoTile extends StatelessWidget {
         ),
       ),
       title: Text(snapshot.data()["name"], style: TextStyle(
-          fontSize: 16,
+          fontSize: 12,
           fontWeight: FontWeight.bold),
       ),
       trailing: Icon(Icons.keyboard_arrow_right, color: Colors.cyan,),

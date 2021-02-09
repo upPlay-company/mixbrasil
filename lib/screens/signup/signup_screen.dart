@@ -47,13 +47,13 @@ class SignUpScreen extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 10),
                             child: Text('Cadastro',
                               style: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold
                               ),
                             ),
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(20, 30, 20, 20),
+                              padding: EdgeInsets.fromLTRB(20, 30, 20, 10),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor.withAlpha(50),
@@ -86,7 +86,7 @@ class SignUpScreen extends StatelessWidget {
                               )
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor.withAlpha(50),
@@ -119,7 +119,7 @@ class SignUpScreen extends StatelessWidget {
                               )
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
+                              padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor.withAlpha(50),
@@ -191,7 +191,7 @@ class SignUpScreen extends StatelessWidget {
                               )
                           ),
                           Padding(
-                              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                              padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
                               child: Container(
                                 decoration: BoxDecoration(
                                     color: Theme.of(context).primaryColor.withAlpha(50),
@@ -277,7 +277,7 @@ class SignUpScreen extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 20,
+                                      fontSize: 16,
                                       fontFamily: 'Principal'
                                   ),
                                 ),

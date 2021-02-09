@@ -10,14 +10,14 @@ class CategoriasScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 80,
+            expandedHeight: 55,
             snap: true,
             floating: true,
             elevation: 0,
             backgroundColor: Colors.white,
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 27),
+              padding: const EdgeInsets.only(top: 10),
               child: Container(
                 padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
@@ -29,7 +29,7 @@ class CategoriasScreen extends StatelessWidget {
                       child: Text(
                         'Categorias',
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold
                         ),
                       ),

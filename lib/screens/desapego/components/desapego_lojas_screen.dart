@@ -14,7 +14,7 @@ class DesapegoLojaScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
-          title: Text(snapshot.data()["name"]),
+          title: Text(snapshot.data()["name"], style: TextStyle(fontSize: 14),),
           /*actions: [
             Row(
               children: [

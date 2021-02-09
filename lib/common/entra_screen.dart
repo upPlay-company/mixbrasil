@@ -21,7 +21,7 @@ class FacaLoginScreen extends StatelessWidget {
                 children: <Widget>[
                   Icon(
                     Icons.login,
-                    size: 80.0,
+                    size: 60.0,
                     color: Theme.of(context).primaryColor,
                   ),
                   SizedBox(
@@ -30,7 +30,7 @@ class FacaLoginScreen extends StatelessWidget {
                   Text(
                     "Faça login!",
                     style: TextStyle(
-                        fontSize: 25.0, fontWeight: FontWeight.bold),
+                        fontSize: 18.0, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
@@ -41,7 +41,7 @@ class FacaLoginScreen extends StatelessWidget {
                     child: RaisedButton(
                       child: Text(
                         "Entrar",
-                        style: TextStyle(fontSize: 22.0),
+                        style: TextStyle(fontSize: 18.0),
                       ),
                       textColor: Colors.white,
                       color: Theme.of(context).primaryColor,
@@ -75,7 +75,7 @@ class FacaLoginScreen extends StatelessWidget {
                       'Voltar',
                       style: TextStyle(
                           color: Theme.of(context).primaryColor,
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Principal'),
                     ),

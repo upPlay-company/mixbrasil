@@ -124,9 +124,14 @@ class HomeScreen extends StatelessWidget {
                                         'Você está em:',
                                         style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
-                                      Text(
-                                        'Manaus',
-                                        style: TextStyle(color: Colors.white, fontSize: 20),
+                                      Flexible(
+                                        child: Container(
+                                          child: Text(
+                                            'Manaus',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(color: Colors.white, fontSize: 20),
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),

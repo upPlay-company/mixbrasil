@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'Mix Brasil',
         theme: ThemeData(
           primaryColor: Color(0xff078c9f),
           secondaryHeaderColor: Color(0xfffea102),

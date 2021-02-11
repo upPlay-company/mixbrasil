@@ -30,7 +30,7 @@ class AnuncieAquiScreen extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   'ANÚNCIE AGORA',
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(color: Colors.black, fontSize: 18),
                 ),
                 centerTitle: true,
                 elevation: 0,
@@ -59,7 +59,7 @@ class AnuncieAquiScreen extends StatelessWidget {
           appBar: AppBar(
             title: Text(
               'ANÚNCIE AGORA',
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              style: TextStyle(color: Colors.black, fontSize: 18),
             ),
             centerTitle: true,
             elevation: 0,
@@ -77,7 +77,7 @@ class AnuncieAquiScreen extends StatelessWidget {
                   children: <Widget>[
                     Icon(
                       Icons.login,
-                      size: 60.0,
+                      size: 70.0,
                       color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(
@@ -86,7 +86,7 @@ class AnuncieAquiScreen extends StatelessWidget {
                     Text(
                       "Faça o login para criar seu anúncio!",
                       style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(

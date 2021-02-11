@@ -57,12 +57,12 @@ class ActiveTile extends StatelessWidget {
                       Text(
                         ad.price.formattedMoney(),
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 14),
+                            fontWeight: FontWeight.w500, fontSize: 15),
                       ),
                       Text(
                         '${ad.views} visitas',
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 14,
                           color: Colors.grey[800],
                         ),
                       ),
@@ -71,7 +71,7 @@ class ActiveTile extends StatelessWidget {
                         child: Text(
                           'Destacar anúncio',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 14, color: Theme.of(context).primaryColor
+                              fontWeight: FontWeight.bold, fontSize: 15, color: Theme.of(context).primaryColor
                           ),
                         ),
                       )

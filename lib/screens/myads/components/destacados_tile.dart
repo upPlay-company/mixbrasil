@@ -56,7 +56,7 @@ class DestacadoTile extends StatelessWidget {
                       Text(
                         ad.price.formattedMoney(),
                         style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 14),
+                            fontWeight: FontWeight.w500, fontSize: 15),
                       ),
                       Text(
                         '${ad.views} visitas',

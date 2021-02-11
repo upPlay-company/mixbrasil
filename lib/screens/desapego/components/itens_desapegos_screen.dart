@@ -129,7 +129,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     color: Theme
                                         .of(context)
                                         .primaryColor,
-                                    fontSize: 14,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ],
@@ -157,7 +157,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     text: 'DESCRIÇÃO \n',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16,
+                                      fontSize: 17,
                                       color: Colors.black,
                                     ),
                                     children: <TextSpan>[
@@ -167,7 +167,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                       TextSpan(
                                         text: desapego.descricao + "\n\n",
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -188,7 +188,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                       child: Text(
                                         desapego.number,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 16),
+                                            color: Colors.white, fontSize: 18),
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -225,7 +225,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
           child: Text(
             "ANUCIANTE: " + desapego.anunciante.toUpperCase(),
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

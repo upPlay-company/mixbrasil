@@ -20,7 +20,7 @@ class SectionHeader extends StatelessWidget {
             Text(
               section.name,
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 16,
                 fontWeight: FontWeight.bold
               ),
             )

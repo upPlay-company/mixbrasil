@@ -19,7 +19,7 @@ class DesapegoScreen extends StatelessWidget {
             color: Colors.transparent,
             padding: const EdgeInsets.only(left: 35),
             child: SizedBox(
-                width: 120,
+                width: 140,
                 height: 44,
                 child: RaisedButton(
                   onPressed: () {
@@ -32,7 +32,7 @@ class DesapegoScreen extends StatelessWidget {
                       child: Text(
                         'Criar Anúncio',
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 14),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                     ),
                   ),
@@ -57,7 +57,7 @@ class DesapegoScreen extends StatelessWidget {
               'DESAPEGOS',
               style: TextStyle(
                   color: Colors.black,
-                  fontSize: 14,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
@@ -74,7 +74,7 @@ class DesapegoScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
-                            width: 180,
+                            width: 190,
                             child: RaisedButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -85,7 +85,7 @@ class DesapegoScreen extends StatelessWidget {
                               child: Text(
                                 'Todas as categorias',
                                 style: TextStyle(
-                                    color: Colors.white, fontSize: 14),
+                                    color: Colors.white, fontSize: 16),
                               ),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.horizontal(
@@ -135,7 +135,7 @@ class DesapegoScreen extends StatelessWidget {
                                     child: Icon(
                                       Icons.search,
                                       color: Colors.white,
-                                      size: 16,
+                                      size: 20,
                                     ),
                                     shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.horizontal(

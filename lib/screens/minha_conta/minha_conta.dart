@@ -27,7 +27,7 @@ class MinhaContaScreen extends StatelessWidget {
             'MINHA CONTA',
             style: TextStyle(
                 color: Colors.black,
-                fontSize: 16,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Principal'),
           ),

@@ -11,7 +11,7 @@ class SearchDialog extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Positioned(
-          top: 43.8,
+          top: 38,
           left: 6,
           right: 6,
           child: Card(

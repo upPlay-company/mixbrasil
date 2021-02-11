@@ -21,7 +21,7 @@ class AnuncieAquiTile extends StatelessWidget {
           Text(
             "Anúncie agora no Mix Brasil!",
             style: TextStyle(
-                fontSize: 18.0, fontWeight: FontWeight.bold),
+                fontSize: 20.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           SizedBox(

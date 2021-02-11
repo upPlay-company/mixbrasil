@@ -64,7 +64,7 @@ class SectionDestaques extends StatelessWidget {
                         Text(
                           lojasDestaque.name,
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w800),
+                              fontSize: 16, fontWeight: FontWeight.w800),
                         ),
                         SizedBox(
                           height: 5,
@@ -72,7 +72,7 @@ class SectionDestaques extends StatelessWidget {
                         Text(
                           lojasDestaque.promocao,
                           style: TextStyle(
-                              fontSize: 11,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: Colors.grey[700]),
                         ),
@@ -84,14 +84,14 @@ class SectionDestaques extends StatelessWidget {
                             Text(
                               'A partir de',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.black),
                             ),
                             Text(
                               ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                   color: Theme.of(context).primaryColor),
                             ),
@@ -155,7 +155,7 @@ class SectionDestaques extends StatelessWidget {
                         Text(
                           lojasDestaque.name,
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w800),
+                              fontSize: 16, fontWeight: FontWeight.w800),
                         ),
                         SizedBox(
                           height: 5,
@@ -163,7 +163,7 @@ class SectionDestaques extends StatelessWidget {
                         Text(
                           lojasDestaque.promocao,
                           style: TextStyle(
-                              fontSize: 11,
+                              fontSize: 13,
                               fontWeight: FontWeight.w700,
                               color: Colors.grey[700]),
                         ),
@@ -175,14 +175,14 @@ class SectionDestaques extends StatelessWidget {
                             Text(
                               'A partir de',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                   color: Colors.black),
                             ),
                             Text(
                               ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w800,
                                   color: Theme.of(context).primaryColor),
                             ),

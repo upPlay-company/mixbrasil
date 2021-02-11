@@ -15,7 +15,7 @@ class CategoryScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Theme.of(context).primaryColor,
-          title: Text(snapshot.data()["name"], style: TextStyle(fontSize: 14),),
+          title: Text(snapshot.data()["name"], style: TextStyle(fontSize: 18),),
           iconTheme: IconThemeData(size: 10, color: Colors.white),
           /*actions: [
             Row(

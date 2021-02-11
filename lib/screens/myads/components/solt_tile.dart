@@ -46,11 +46,11 @@ class SoldTile extends StatelessWidget {
                       Text(
                         ad.title,
                         overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       ),
                       Text(
                         ad.price.formattedMoney(),
-                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
+                        style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                       ),
                     ],
                   ),
@@ -60,7 +60,7 @@ class SoldTile extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: Icon(Icons.delete),
-                    iconSize: 20,
+                    iconSize: 22,
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
                       store.deleteAd(ad);

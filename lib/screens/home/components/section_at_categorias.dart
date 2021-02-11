@@ -19,7 +19,7 @@ class SectionAtCategorias extends StatelessWidget {
         );
       },
       child: Container(
-        width: 150,
+        width: 160,
         child: Card(
           elevation: 4,
           child: Column(
@@ -38,7 +38,7 @@ class SectionAtCategorias extends StatelessWidget {
                 children: [
                   Text(
                     snapshot.data()['name'],
-                    style: TextStyle(fontSize: 13,
+                    style: TextStyle(fontSize: 14,
                         fontWeight: FontWeight.w600),),
                 ],
               )

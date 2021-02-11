@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
           color: Colors.transparent,
           padding: const EdgeInsets.only(left: 35),
           child: SizedBox(
-              width: 120,
+              width: 140,
               height: 44,
               child: RaisedButton(
                 onPressed: () {
@@ -39,7 +39,7 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       'Anúncie aqui',
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(color: Colors.white, fontSize: 14),
+                      style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
                 ),
@@ -84,19 +84,19 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top:7),
+                                  padding: const EdgeInsets.only(top:5),
                                   child: Column(
                                     children: [
                                       Text(
                                         'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 12),
+                                        style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
                                       Flexible(
                                         child: Container(
                                           child: Text(
                                             '${userManager.user?.address?.city ?? 'Manaus'}',
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 14),
+                                            style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),
                                         ),
                                       ),
@@ -117,19 +117,19 @@ class HomeScreen extends StatelessWidget {
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(
-                                  padding: const EdgeInsets.only(top:7),
+                                  padding: const EdgeInsets.only(top:5),
                                   child: Column(
                                     children: [
                                       Text(
                                         'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 12),
+                                        style: TextStyle(color: Colors.white, fontSize: 14),
                                       ),
                                       Flexible(
                                         child: Container(
                                           child: Text(
                                             'Manaus',
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 14),
+                                            style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),
                                         ),
                                       ),

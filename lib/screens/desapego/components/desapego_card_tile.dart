@@ -89,7 +89,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
                                 child: Text(
                                   widget.desapego.name,
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
@@ -102,13 +102,13 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
                           children: [
                             Icon(
                               Icons.location_on,
-                              size: 12,
+                              size: 14,
                               color: Colors.grey[700],
                             ),
                             Text(
                               widget.desapego.cidade,
                               style: TextStyle(
-                                  fontSize: 12,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[700]),
                             ),

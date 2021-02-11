@@ -82,7 +82,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-            title: Text(editing ? 'EDITANDO ANÚNCIO' : 'CRIE SEU DESAPEGO', style: TextStyle(color: Colors.black, fontSize: 16),),
+            title: Text(editing ? 'EDITANDO ANÚNCIO' : 'CRIE SEU DESAPEGO', style: TextStyle(color: Colors.black, fontSize: 18),),
             centerTitle: true,
             elevation: 0,
             backgroundColor: Colors.transparent,
@@ -219,7 +219,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
             appBar: AppBar(
               title: Text(
                 'CRIE SEU DESAPEGO',
-                style: TextStyle(color: Colors.black, fontSize: 16),
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
               centerTitle: true,
               elevation: 0,
@@ -237,7 +237,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                     children: <Widget>[
                       Icon(
                         Icons.login,
-                        size: 60.0,
+                        size: 70.0,
                         color: Theme.of(context).primaryColor,
                       ),
                       SizedBox(
@@ -246,7 +246,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                       Text(
                         "Faça o login para criar seu desapego!",
                         style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
+                            fontSize: 20.0, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                       SizedBox(
@@ -257,7 +257,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                         child: RaisedButton(
                           child: Text(
                             "Entrar",
-                            style: TextStyle(fontSize: 16.0),
+                            style: TextStyle(fontSize: 18.0),
                           ),
                           textColor: Colors.white,
                           color: Theme.of(context).primaryColor,

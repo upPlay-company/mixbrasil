@@ -123,7 +123,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context).primaryColor,
-                                    fontSize: 14,
+                                    fontSize: 15,
                                   ),
                                 ),
                               ],
@@ -151,7 +151,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                     text: 'DESCRIÇÃO \n',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 16,
+                                      fontSize: 17,
                                       color: Colors.black,
                                     ),
                                     children: <TextSpan>[
@@ -161,7 +161,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                       TextSpan(
                                         text: desapegoDestaque.descricao + "\n\n",
                                         style: TextStyle(
-                                          fontSize: 14,
+                                          fontSize: 16,
                                         ),
                                       ),
                                     ],
@@ -180,7 +180,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                       child: Text(
                                         desapegoDestaque.number,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 16),
+                                            color: Colors.white, fontSize: 18),
                                       ),
                                     ),
                                     shape: RoundedRectangleBorder(
@@ -212,7 +212,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
           child: Text(
             "ANUCIANTE: " + nameAnuciante.toUpperCase(),
             style: TextStyle(
-              fontSize: 14,
+              fontSize: 16,
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

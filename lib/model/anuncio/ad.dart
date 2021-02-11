@@ -39,6 +39,7 @@ class Ad {
     idCat = document.data()['idCat'];
     viewsDestaque = document.data()['viewsDestaque'];
     idAdsDestaque = document.data()['idAdsDestaque'];
+    mensagem = document.data()['mensagem'];
   }
 
   Ad();
@@ -59,6 +60,7 @@ class Ad {
   String idCat;
   bool destaque;
   String idAdsDestaque;
+  String mensagem;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
@@ -236,9 +238,11 @@ class Ad {
       'email': user.email,
       'created': FieldValue.serverTimestamp(),
       'user': ad.user.id,
-      'idAds': ad.id,
+      'idAds': ad.idAds,
       'img': ad.images,
-      'destaque': ad.destaque = false
+      'destaque': ad.destaque = false,
+      'mensagem': ad.mensagem = 'Quero destarcar meu desapego!',
+      'idCat': ad.idCat
     };
 
     FirebaseFirestore.instance.collection('msg_destaca_desapego').add(data);

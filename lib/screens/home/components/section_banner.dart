@@ -1,13 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/home/section.dart';
+import 'package:mix_brasil/model/home/banners.dart';
+
+import 'image_tile.dart';
 
 class SectionBanner extends StatelessWidget {
 
-  SectionBanner(this.section);
+  SectionBanner(this.banners);
 
-  final Section section;
+  final Banners banners;
 
   @override
   Widget build(BuildContext context) {
@@ -15,23 +17,14 @@ class SectionBanner extends StatelessWidget {
       child: Padding(
           padding: const EdgeInsets.only(top: 20),
           child: CarouselSlider.builder(
-            itemCount: section.img.length,
+            itemCount: banners.img.length,
             options: CarouselOptions(
               autoPlay: true,
               aspectRatio: 2.0,
               enlargeCenterPage: true,
             ),
             itemBuilder: (_, index) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                  shape: BoxShape.rectangle,
-                  image: DecorationImage(
-                      image: NetworkImage(section.img[index]),
-                      fit: BoxFit.cover,
-                    )
-                  ),
-                );
+              return ImageTile(banners.img[index]);
             },
           )
       ),

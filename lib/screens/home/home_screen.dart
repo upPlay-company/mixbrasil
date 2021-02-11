@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -152,9 +153,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          Consumer<HomeManager>(
-            builder: (_, homeManager, __) {
-              if (homeManager.loading) {
+          Consumer<BannersManager>(
+            builder: (_, bannersManager, __) {
+              if (bannersManager.loading) {
                 return SliverToBoxAdapter(
                   child: LinearProgressIndicator(
                     valueColor: AlwaysStoppedAnimation(Colors.black),
@@ -164,15 +165,9 @@ class HomeScreen extends StatelessWidget {
               }
 
               final List<Widget> children =
-                  homeManager.sections.map<Widget>((section) {
-                switch (section.type) {
-                  case 'banners':
-                    return SectionBanner(section);
-                  default:
-                    return Container();
-                }
-              }).toList();
-
+                  bannersManager.banners.map<Widget>((banners) {
+                    return SectionBanner(banners);
+                }).toList();
               return SliverList(
                 delegate: SliverChildListDelegate(children),
               );

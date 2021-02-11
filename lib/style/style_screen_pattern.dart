@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-
 class StyleScreenPattern extends StatelessWidget {
-
   StyleScreenPattern({this.child});
 
   final child;
@@ -14,7 +12,7 @@ class StyleScreenPattern extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('images/Fundo_mix.png'),
+            image: AssetImage('images/Fundo mix 90.png'),
             fit: BoxFit.cover,
           ),
         ),
@@ -23,4 +21,3 @@ class StyleScreenPattern extends StatelessWidget {
     );
   }
 }
-

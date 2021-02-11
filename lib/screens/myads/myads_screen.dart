@@ -8,7 +8,6 @@ import 'components/solt_tile.dart';
 import 'package:mix_brasil/common/empty_card.dart';
 
 class MyAdsScreen extends StatefulWidget {
-
   MyAdsScreen({this.inicialPage = 0});
 
   final int inicialPage;
@@ -23,24 +22,23 @@ class _MyAdsScreenState extends State<MyAdsScreen>
 
   TabController tabController;
 
-
   @override
   void initState() {
     super.initState();
 
-    tabController = TabController(
-      length: 3,
-      vsync: this,
-      initialIndex: widget.inicialPage
-    );
+    tabController =
+        TabController(length: 3, vsync: this, initialIndex: widget.inicialPage);
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('images/Fundo_mix.png'), fit: BoxFit.cover)),
+        image: DecorationImage(
+          image: AssetImage('images/Fundo mix 90.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
@@ -58,38 +56,41 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
-              Tab(
-                  child: Text('ATIVOS', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 12))),
               Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 12))),
               Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 12))),
             ],
           ),
         ),
-        body: Observer(builder: (_){
-            if(store.loading)
+        body: Observer(
+          builder: (_) {
+            if (store.loading)
               return Center(
                 child: CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
+                  valueColor:
+                      AlwaysStoppedAnimation(Theme.of(context).primaryColor),
                 ),
               );
             return TabBarView(
               controller: tabController,
               children: [
-                Observer(builder: (_){
-                  if(store.activeAds.isEmpty)
-                    return EmptyCard('Você não possui nenhum anúncio ativo.');
+                Observer(
+                  builder: (_) {
+                    if (store.activeAds.isEmpty)
+                      return EmptyCard('Você não possui nenhum anúncio ativo.');
 
-                  return ListView.builder(
-                    itemCount: store.activeAds.length,
-                    itemBuilder: (_, index){
-                      return ActiveTile(store.activeAds[index], store);
+                    return ListView.builder(
+                      itemCount: store.activeAds.length,
+                      itemBuilder: (_, index) {
+                        return ActiveTile(store.activeAds[index], store);
                       },
                     );
                   },
                 ),
                 Observer(builder: (_) {
                   if (store.destacadoAds.isEmpty)
-                    return EmptyCard('Você não possui nenhum anúncio destacados.');
+                    return EmptyCard(
+                        'Você não possui nenhum anúncio destacados.');
 
                   return ListView.builder(
                     itemCount: store.destacadoAds.length,

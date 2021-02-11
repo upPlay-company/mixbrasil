@@ -22,9 +22,11 @@ class AnuncieAquiScreen extends StatelessWidget {
         builder: (_, admManager, __) {
           return Container(
             decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('images/Fundo_mix.png'),
-                    fit: BoxFit.cover)),
+              image: DecorationImage(
+                image: AssetImage('images/Fundo mix 90.png'),
+                fit: BoxFit.cover,
+              ),
+            ),
             child: Scaffold(
               backgroundColor: Colors.transparent,
               appBar: AppBar(
@@ -38,13 +40,11 @@ class AnuncieAquiScreen extends StatelessWidget {
                 iconTheme: IconThemeData(color: Colors.black),
               ),
               body: ListView.builder(
-
                   shrinkWrap: true,
                   itemCount: admManager.adm.length,
-                  itemBuilder: (_, index){
+                  itemBuilder: (_, index) {
                     return AnuncieAquiTile(admManager.adm[index]);
-                  }
-              ),
+                  }),
             ),
           );
         },
@@ -52,8 +52,11 @@ class AnuncieAquiScreen extends StatelessWidget {
     else
       return Container(
         decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('images/Fundo_mix.png'), fit: BoxFit.cover)),
+          image: DecorationImage(
+            image: AssetImage('images/Fundo mix 90.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(

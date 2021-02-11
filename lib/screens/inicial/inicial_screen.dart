@@ -22,11 +22,11 @@ class _InicialScreenState extends State<InicialScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/Fundo_mix.png'),
-          fit: BoxFit.cover
-        )
-      ),
+          image: DecorationImage(
+            image: AssetImage('images/Fundo mix 90.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
       child: Center(
         child: Container(
           height: 200,

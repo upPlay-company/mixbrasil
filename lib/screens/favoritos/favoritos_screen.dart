@@ -6,9 +6,9 @@ class FavoritosScreen extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('images/Fundo_mix.png'),
-          fit: BoxFit.cover
-        )
+          image: AssetImage('images/Fundo mix 90.png'),
+          fit: BoxFit.cover,
+        ),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -22,7 +22,11 @@ class FavoritosScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           iconTheme: IconThemeData(color: Colors.black),
         ),
-        body: Center(child: Text('Em Breve', style: TextStyle(fontSize: 20),)),
+        body: Center(
+            child: Text(
+          'Em Breve',
+          style: TextStyle(fontSize: 20),
+        )),
       ),
     );
   }

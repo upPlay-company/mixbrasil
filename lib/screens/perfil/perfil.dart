@@ -29,7 +29,7 @@ class Perfil extends StatelessWidget {
                     decoration: TextDecoration.none,
                     color: Colors.black,
                     fontWeight: FontWeight.w800,
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                 ),
               ),

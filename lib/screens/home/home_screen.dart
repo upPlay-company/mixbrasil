@@ -191,7 +191,7 @@ class HomeScreen extends StatelessWidget {
                     return ListView.builder(
                         scrollDirection: Axis.horizontal,
                         padding: EdgeInsets.all(4.0),
-                        itemCount: 4,
+                        itemCount: 5,
                         itemBuilder: (context, index) {
                           return SectionAtCategorias(
                             snapshot: snapshot.data.docs[index],

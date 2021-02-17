@@ -201,6 +201,7 @@ class UserManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  // ignore: missing_return
   Future<List<DesapegoData>> getFavoritos(UserUser user) async {
     final QuerySnapshot snapAnuncio = await firestore
         .collection('users')

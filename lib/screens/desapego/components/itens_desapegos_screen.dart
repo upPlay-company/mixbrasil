@@ -1,30 +1,30 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/favorite_store.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
-class ItensDesapegoScreen extends StatefulWidget {
+class ItensDesapegosScreen extends StatelessWidget {
+
+  ItensDesapegosScreen(this.desapego);
+
   final DesapegoData desapego;
 
-  ItensDesapegoScreen(this.desapego);
 
-  @override
-  _ItensDesapegoScreenState createState() =>
-      _ItensDesapegoScreenState(desapego);
-}
-
-class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
-  final DesapegoData desapego;
-
-  _ItensDesapegoScreenState(this.desapego);
+  final FavoriteStore favoriteStore = FavoriteStore();
 
   @override
   Widget build(BuildContext context) {
+
+    final userManager = context.watch<UserManager>();
+
     final clearNumber = desapego.number.replaceAll(RegExp('[^0-9]'), '');
-    final Color primaryColor = Theme
-        .of(context)
-        .primaryColor;
+    final Color primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButton: Padding(
@@ -44,20 +44,29 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 30),
-              child: SizedBox(
-                width: 55,
-                height: 55,
-                child: RaisedButton(
-                  child: Icon(Icons.favorite_outline_outlined, color: Colors.red,),
-                  color: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                  onPressed: (){}
+            if (userManager.isLoggedIn)
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 30),
+                child: SizedBox(
+                  width: 55,
+                  height: 55,
+                  child: Observer(builder: (_){
+                    return RaisedButton(
+                        child: Icon(
+                        favoriteStore.favoriteList.any((a) => a.id == desapego.id)
+                              ? Icons.favorite
+                              : Icons.favorite_outline_outlined,
+                          color: Colors.red,
+                        ),
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius:
+                            BorderRadius.all(Radius.circular(16.0))),
+                        onPressed: () => favoriteStore.toggleFavorite(desapego)
+                    );
+                  }),
                 ),
-              ),
-            )
+              )
           ],
         ),
       ),
@@ -67,16 +76,10 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
           Stack(
             children: [
               Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.5,
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
+                height: MediaQuery.of(context).size.height * 0.5,
+                width: MediaQuery.of(context).size.width,
                 child: Carousel(
-                  images: widget.desapego.img.map((url) {
+                  images: desapego.img.map((url) {
                     return NetworkImage(url);
                   }).toList(),
                   dotSize: 4.0,
@@ -120,15 +123,15 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(width: 10,),
+                                SizedBox(
+                                  width: 10,
+                                ),
                                 Text(
                                   'R\$${desapego.price.toStringAsFixed(2)}',
                                   textScaleFactor: 1.4,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColor,
+                                    color: Theme.of(context).primaryColor,
                                     fontSize: 15,
                                   ),
                                 ),
@@ -177,12 +180,10 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
                                   child: RaisedButton(
                                     onPressed: () {
                                       _launchURL(
-                                          'whatsapp://send?phone=+55$clearNumber&text=Olá, ainda está disponível?'
-                                      );
+                                          'whatsapp://send?phone=+55$clearNumber&text=Olá, ainda está disponível?');
                                     },
-                                    color: Theme
-                                        .of(context)
-                                        .secondaryHeaderColor,
+                                    color:
+                                    Theme.of(context).secondaryHeaderColor,
                                     child: Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Text(
@@ -214,13 +215,8 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
       ),
       bottomNavigationBar: Container(
         height: 50,
-        width: MediaQuery
-            .of(context)
-            .size
-            .width,
-        color: Theme
-            .of(context)
-            .secondaryHeaderColor,
+        width: MediaQuery.of(context).size.width,
+        color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
             "ANUCIANTE: " + desapego.anunciante.toUpperCase(),
@@ -242,6 +238,7 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
       throw 'Could not launch $url';
     }
   }
+}
 
   /*void saveFavoritos(){
     final user = GetIt.I<UserManager>().user;
@@ -259,4 +256,3 @@ class _ItensDesapegoScreenState extends State<ItensDesapegoScreen> {
     FirebaseFirestore.instance.collection('users').doc(user.id).collection('favoritos').add(data);
 
   }*/
-}

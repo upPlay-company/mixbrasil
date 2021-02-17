@@ -24,7 +24,7 @@ class UserUser extends ChangeNotifier {
 
   String id, name, email, password, img, phone, confirmPassword, newPass;
 
-
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   DocumentReference get firestoreRef =>
       FirebaseFirestore.instance.doc('users/$id');
@@ -67,7 +67,6 @@ class UserUser extends ChangeNotifier {
       await firestoreRef.update(toMap());
       return loading = false;
     }
-
   }
 
   void setAddress(Address address){
@@ -75,6 +74,8 @@ class UserUser extends ChangeNotifier {
     saveData();
     print(address);
   }
+
+
 
   Future<void> saveToken() async {
     final token = await FirebaseMessaging().getToken();

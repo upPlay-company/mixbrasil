@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/model/cep/address.dart';
+import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/services/cep_aberto_services.dart';
 
@@ -198,5 +199,14 @@ class UserManager extends ChangeNotifier {
   void removeAddress() {
     address = null;
     notifyListeners();
+  }
+
+  Future<List<DesapegoData>> getFavoritos(UserUser user) async {
+    final QuerySnapshot snapAnuncio = await firestore
+        .collection('users')
+        .doc(user.id)
+        .collection('favoritos').get();
+
+    snapAnuncio.docs.map((a) => DesapegoData.fromDocument(a)).toList();
   }
 }

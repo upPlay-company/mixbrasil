@@ -36,7 +36,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
           .doc(widget.desapego.id);
 
       await firestoreRefAds.update({'views': viewsTotal});
-    await firestoreRefUser.update({'views': viewsTotal});
+      await firestoreRefUser.update({'views': viewsTotal});
   }
 
   @override
@@ -46,7 +46,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
           saveViews();
           Navigator.of(context).push(
             MaterialPageRoute(
-                builder: (context) => ItensDesapegoScreen(widget.desapego)),
+                builder: (context) => ItensDesapegosScreen(widget.desapego)),
           );
         },
         child: Container(

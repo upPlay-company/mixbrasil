@@ -3,8 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/home/banners.dart';
 
-import 'image_tile.dart';
-
 class SectionBanner extends StatelessWidget {
 
   SectionBanner(this.banners);
@@ -24,7 +22,15 @@ class SectionBanner extends StatelessWidget {
               enlargeCenterPage: true,
             ),
             itemBuilder: (_, index) {
-              return ImageTile(banners.img[index]);
+              return Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    shape: BoxShape.rectangle,
+                    image: DecorationImage(
+                      image: NetworkImage(banners.img[index]),
+                      fit: BoxFit.cover,
+                    )),
+              );
             },
           )
       ),

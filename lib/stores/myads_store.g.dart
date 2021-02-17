@@ -61,6 +61,20 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
     return _$deleteAdAsyncAction.run(() => super.deleteAd(ad));
   }
 
+  final _$destacarAdAsyncAction = AsyncAction('_MyAdsStore.destacarAd');
+
+  @override
+  Future<void> destacarAd(Ad ad) {
+    return _$destacarAdAsyncAction.run(() => super.destacarAd(ad));
+  }
+
+  final _$soldDestaqueAsyncAction = AsyncAction('_MyAdsStore.soldDestaque');
+
+  @override
+  Future<void> soldDestaque(Ad ad) {
+    return _$soldDestaqueAsyncAction.run(() => super.soldDestaque(ad));
+  }
+
   @override
   String toString() {
     return '''

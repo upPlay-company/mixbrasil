@@ -86,11 +86,12 @@ class ItensDesapegosScreen extends StatelessWidget {
                   dotSpacing: 15.0,
                   dotBgColor: Colors.transparent,
                   dotColor: primaryColor,
+                  showIndicator: false,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 280,
+                  top: 295,
                 ),
                 child: Column(
                   children: [

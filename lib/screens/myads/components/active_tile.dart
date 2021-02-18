@@ -4,6 +4,7 @@ import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/helpers/extensions.dart';
 import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/stores/myads_store.dart';
+import 'package:mix_brasil/screens/myads/components/hide_pag.dart';
 
 class ActiveTile extends StatelessWidget {
 
@@ -198,7 +199,17 @@ class ActiveTile extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         title: Text('Destacar anúncio'),
-        content: Text('Venda mais rápido destacando o anúncio ${ad.title}'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Venda mais rápido destacando o anúncio ${ad.title} por apenas R\$5,99 por 15 dias!'),
+            Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Text('Escolha uma forma de pagamento:'),
+            ),
+            HidePag(store: store),
+          ],
+        ),
         actions: [
           FlatButton(
             onPressed: Navigator.of(context).pop,
@@ -213,7 +224,7 @@ class ActiveTile extends StatelessWidget {
                   context: context,
                   builder: (_) => AlertDialog(
                     title: Text('Mensagem enviado com sucesso'),
-                    content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, em breve entraremos em contato.'),
+                    content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
                     actions: [
                       FlatButton(
                         onPressed: Navigator.of(context).pop,

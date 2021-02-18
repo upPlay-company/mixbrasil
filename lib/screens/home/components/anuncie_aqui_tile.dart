@@ -30,6 +30,35 @@ class AnuncieAquiTile extends StatelessWidget {
           SizedBox(
             height: 54.0,
             child: RaisedButton(
+              child: Text(
+                'Clique aqui!',
+                style: TextStyle(fontSize: 16.0),
+              ),
+              textColor: Colors.white,
+              color: Theme.of(context).primaryColor,
+              onPressed: () {
+                _launchURL(
+                    'http://mix-brasil.herokuapp.com'
+                );
+              },
+              disabledColor:
+              Theme.of(context).primaryColor.withAlpha(100),
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+          ),
+          SizedBox(height: 30,),
+          Text(
+            "Anúncie para todo Brasil o seu negocio nos banner's da Mix! Quem anuncia Vende! CLIQUE NO BOTÃO E SAIBA MAIS...",
+            style: TextStyle(
+                fontSize: 20.0, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: 20,),
+          SizedBox(
+            height: 54.0,
+            child: RaisedButton(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -41,7 +70,7 @@ class AnuncieAquiTile extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    'Clique Aqui',
+                    'Dúvidas',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],

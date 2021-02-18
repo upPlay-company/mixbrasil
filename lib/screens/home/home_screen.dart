@@ -61,19 +61,22 @@ class HomeScreen extends StatelessWidget {
             snap: true,
             floating: true,
             elevation: 0,
-            backgroundColor: Colors.white,
+            backgroundColor: Theme.of(context).primaryColor,
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 10),
+              padding: const EdgeInsets.only(top: 5),
               child: Container(
                 padding: EdgeInsets.only(left: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Image.asset('images/Logo mix.png'),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20),
+                      padding: const EdgeInsets.all(8),
+                      child: Image.asset('images/Logo mix branco.png'),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(right: 20, bottom: 5),
                       child: SizedBox(
                         width: 140,
                         child: Consumer<UserManager>(

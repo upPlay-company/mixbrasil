@@ -6,6 +6,7 @@ import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:mix_brasil/screens/lojas/components/image_dialog_lojas.dart';
 
 //Variaveis Globais
 final Color primaryColor = Color(0xff078c9f);
@@ -108,11 +109,12 @@ class _ProductScreenState extends State<ProductScreen> {
                 dotSpacing: 15.0,
                 dotBgColor: Colors.transparent,
                 dotColor: primaryColor,
+                autoplayDuration: Duration(seconds: 3),
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(
-                top: 280,
+                top: 310,
               ),
               child: Container(
                 decoration: BoxDecoration(
@@ -183,11 +185,18 @@ class _ProductScreenState extends State<ProductScreen> {
     return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Column(
-        children: [
-          Image.network(lojas.imgOfertas[index]),
-        ],
-      ),
+        child: GestureDetector(
+          onTap: (){
+            showDialog(
+                context: context,
+                builder: (_) => ImageDialogLojas(
+                    image: lojas.imgDestacadas[index],
+                )
+            );
+          },
+          child: Container(
+            child: Image.network(lojas.imgDestacadas[index], fit: BoxFit.cover,)),
+        ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 5,
       margin: EdgeInsets.only(top: 15, bottom: 10, left: 30, right: 30),
@@ -224,16 +233,16 @@ class _ProductScreenState extends State<ProductScreen> {
 
   void _showModalCupons() {
     showModalBottomSheet<void>(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.97,
           child: Carousel(
             images: widget.lojas.imgCupons.map((url) {
               return NetworkImage(url);
             }).toList(),
+            boxFit: BoxFit.contain,
             borderRadius: true,
             radius: Radius.circular(30),
             dotSize: 4.0,
@@ -248,17 +257,19 @@ class _ProductScreenState extends State<ProductScreen> {
 
   void _showModalOfertas() {
     showModalBottomSheet<void>(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.97,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20)
+          ),
           child: Carousel(
             images: widget.lojas.imgOfertas.map((url) {
               return NetworkImage(url);
             }).toList(),
-            borderRadius: true,
+            boxFit: BoxFit.contain,
             radius: Radius.circular(30),
             dotSize: 4.0,
             dotSpacing: 15.0,

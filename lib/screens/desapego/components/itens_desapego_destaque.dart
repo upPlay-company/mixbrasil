@@ -18,7 +18,6 @@ class ItensDestaqueDesapego extends StatefulWidget {
 class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
 
   final DesapegoDestaque desapegoDestaque;
-  String nameAnuciante = "mauricio";
 
 
   _ItensDestaqueDesapegoState(this.desapegoDestaque);
@@ -46,6 +45,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                 },
               ),
             ),
+            /*
             Padding(
               padding: const EdgeInsets.only(top: 10, right: 30),
               child: SizedBox(
@@ -60,6 +60,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                 ),
               ),
             )
+          */
           ],
         ),
       ),
@@ -78,12 +79,13 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                   dotSize: 4.0,
                   dotSpacing: 15.0,
                   dotBgColor: Colors.transparent,
-                  dotColor: primaryColor,
+                  dotColor: Colors.transparent,
+                  showIndicator: false,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  top: 280,
+                  top: 295,
                 ),
                 child: Column(
                   children: [
@@ -210,7 +212,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
         color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
-            "ANUCIANTE: " + nameAnuciante.toUpperCase(),
+            "ANUCIANTE: " + desapegoDestaque.anunciante.toUpperCase(),
             style: TextStyle(
               fontSize: 16,
               color: Colors.white,

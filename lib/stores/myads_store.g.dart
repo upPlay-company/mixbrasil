@@ -47,6 +47,36 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
     });
   }
 
+  final _$hidePhoneAtom = Atom(name: '_MyAdsStore.hidePhone');
+
+  @override
+  bool get hidePhone {
+    _$hidePhoneAtom.reportRead();
+    return super.hidePhone;
+  }
+
+  @override
+  set hidePhone(bool value) {
+    _$hidePhoneAtom.reportWrite(value, super.hidePhone, () {
+      super.hidePhone = value;
+    });
+  }
+
+  final _$hidePhoneTrueAtom = Atom(name: '_MyAdsStore.hidePhoneTrue');
+
+  @override
+  bool get hidePhoneTrue {
+    _$hidePhoneTrueAtom.reportRead();
+    return super.hidePhoneTrue;
+  }
+
+  @override
+  set hidePhoneTrue(bool value) {
+    _$hidePhoneTrueAtom.reportWrite(value, super.hidePhoneTrue, () {
+      super.hidePhoneTrue = value;
+    });
+  }
+
   final _$soldAdAsyncAction = AsyncAction('_MyAdsStore.soldAd');
 
   @override
@@ -75,11 +105,26 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
     return _$soldDestaqueAsyncAction.run(() => super.soldDestaque(ad));
   }
 
+  final _$_MyAdsStoreActionController = ActionController(name: '_MyAdsStore');
+
+  @override
+  void setHidePhone(bool value) {
+    final _$actionInfo = _$_MyAdsStoreActionController.startAction(
+        name: '_MyAdsStore.setHidePhone');
+    try {
+      return super.setHidePhone(value);
+    } finally {
+      _$_MyAdsStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 AllAds: ${AllAds},
 loading: ${loading},
+hidePhone: ${hidePhone},
+hidePhoneTrue: ${hidePhoneTrue},
 activeAds: ${activeAds}
     ''';
   }

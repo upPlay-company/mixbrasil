@@ -26,6 +26,15 @@ mixin _$FavoriteStore on _FavoriteStore, Store {
         .run(() => super.toggleFavorite(desapego));
   }
 
+  final _$deleteFavoriteAsyncAction =
+      AsyncAction('_FavoriteStore.deleteFavorite');
+
+  @override
+  Future<void> deleteFavorite(DesapegoData desapego) {
+    return _$deleteFavoriteAsyncAction
+        .run(() => super.deleteFavorite(desapego));
+  }
+
   @override
   String toString() {
     return '''

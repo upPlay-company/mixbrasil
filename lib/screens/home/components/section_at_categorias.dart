@@ -34,12 +34,16 @@ class SectionAtCategorias extends StatelessWidget {
                     fit: BoxFit.cover,)),
               SizedBox(height: 10,),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    snapshot.data()['name'],
-                    style: TextStyle(fontSize: 14,
-                        fontWeight: FontWeight.w600),),
+                  Expanded(
+                    child: Center(
+                      child: Text(
+                        snapshot.data()['name'],
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(fontSize: 14,
+                            fontWeight: FontWeight.w600),),
+                    ),
+                  ),
                 ],
               )
             ],

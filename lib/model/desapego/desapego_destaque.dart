@@ -16,6 +16,7 @@ class DesapegoDestaque extends ChangeNotifier {
     idCat = document.data()["idCat"];
     idUser = document.data()['user'];
     idAdsUser = document.data()['idAdsUser'];
+    anunciante = document.data()['anunciante'];
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;

@@ -80,49 +80,49 @@ class _LojasTileState extends State<LojasTile> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 20),
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
                           widget.lojas.name,
                           style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w800),
+                              fontSize: 14, fontWeight: FontWeight.w800),
                         ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          widget.lojas.promocao,
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey[700]),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'A partir de',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.black),
-                            ),
-                            Text(
-                              ' R\$${widget.lojas.price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        widget.lojas.promocao,
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.grey[700]),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'A partir de',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            ' R\$${widget.lojas.price.toStringAsFixed(2)}',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: Theme.of(context).primaryColor),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 )
               ],

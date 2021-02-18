@@ -50,6 +50,15 @@ abstract class _MyAdsStore with Store {
 
   void refresh() => _getMyAds();
 
+  @observable
+  bool hidePhone = false;
+
+  @observable
+  bool hidePhoneTrue = true;
+
+  @action
+  void setHidePhone(bool value) => hidePhone = value;
+
   @action
   Future<void> soldAd(Ad ad) async {
     loading = true;

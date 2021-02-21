@@ -32,7 +32,7 @@ class ImageSourceDialog extends StatelessWidget {
       );
     else
       return CupertinoActionSheet(
-        title: Text('Escolha a foto para seu anúncio'),
+        title: Text('Escolha uma foto'),
           actions: [
             CupertinoActionSheetAction(
                 onPressed: getFromCamera,

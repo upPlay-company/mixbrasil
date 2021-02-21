@@ -28,6 +28,7 @@ class DesapegoData extends ChangeNotifier {
   AdStatus status;
   FavoriteUser favoriteUser;
   String idAds;
+  Timestamp created;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -61,10 +62,10 @@ class DesapegoData extends ChangeNotifier {
           snapshot.data()[userManager.user.id] as Map<String, dynamic>);
     }
     idAds = snapshot.data()['idAds'];
+    created = snapshot.data()['created'];
   }
 
   Future<void> save({DesapegoData desapego, UserUser user}) async {
-    try {
       final Map<String, dynamic> data = {
         'idAds': desapego.id,
         'name': desapego.name,
@@ -94,9 +95,6 @@ class DesapegoData extends ChangeNotifier {
           .doc(desapego.id);
 
       await firestoreRef.update({user.id: {'favoriteId': doc.id}});
-    } catch (e) {
-      Future.error('Falhar ao favorita anúncio!');
-    }
   }
 
   Future<void> delete({DesapegoData desapego, UserUser user}) async {

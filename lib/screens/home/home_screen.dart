@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 child: Flexible(
                   child: Container(
                     child: Text(
-                      'Anúncie aqui',
+                      'Anunciar Loja',
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
@@ -98,7 +98,7 @@ class HomeScreen extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            '${userManager.user?.address?.city ?? 'Manaus'}',
+                                            '${userManager.user?.address?.city ?? 'Brasil'}',
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),
@@ -131,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            'Manaus',
+                                            'Brasil',
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),

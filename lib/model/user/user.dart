@@ -1,9 +1,10 @@
 import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/cep/address.dart';
+import 'package:uuid/uuid.dart';
 
 class UserUser extends ChangeNotifier {
 
@@ -14,15 +15,23 @@ class UserUser extends ChangeNotifier {
     name = document.data()['name'] as String;
     email = document.data()['email'] as String;
     phone = document.data()['phone'] as String;
-    img = document.data()['img'] as String;
+    if(document.data().containsKey('img')){
+      img = List<String>.from(document.data()['img'] as List<dynamic>);
+    }
     if(document.data().containsKey('address')){
       address = Address.fromMap(document.data()['address'] as Map<String, dynamic>);
     }
   }
 
+  final FirebaseStorage storage = FirebaseStorage.instance;
+
+  Reference get storageRef => storage.ref().child('users').child(id);
+
   Address address;
 
-  String id, name, email, password, img, phone, confirmPassword, newPass;
+  String id, name, email, password, phone, confirmPassword, newPass;
+
+  List<dynamic> img;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -41,7 +50,6 @@ class UserUser extends ChangeNotifier {
       'name': name,
       'email': email,
       'phone' : phone,
-      'img': img,
       if(address != null)
         'address': address.toMap(),
     };
@@ -61,12 +69,26 @@ class UserUser extends ChangeNotifier {
     if(id == null){
       final doc = await firestoreRef.collection('users').add(toMap());
       id = doc.id;
-      return loading = true;
     }
     else {
       await firestoreRef.update(toMap());
-      return loading = false;
     }
+
+    final List<String> updateImages = [];
+
+    for(final newImage in img){
+        final UploadTask task = storageRef.child(Uuid().v1())
+            .putFile(newImage as File);
+        final TaskSnapshot snapshot = await task;
+        final String url = await snapshot.ref.getDownloadURL();
+        updateImages.add(url);
+      }
+
+    await firestoreRef.update({'img': updateImages});
+    img = updateImages;
+
+    loading = false;
+
   }
 
   void setAddress(Address address){
@@ -74,8 +96,6 @@ class UserUser extends ChangeNotifier {
     saveData();
     print(address);
   }
-
-
 
   Future<void> saveToken() async {
     final token = await FirebaseMessaging().getToken();

@@ -17,6 +17,7 @@ class DesapegoDestaque extends ChangeNotifier {
     idUser = document.data()['user'];
     idAdsUser = document.data()['idAdsUser'];
     anunciante = document.data()['anunciante'];
+    created = document.data()['created'];
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -43,4 +44,5 @@ class DesapegoDestaque extends ChangeNotifier {
   String idCat;
   String idUser;
   String idAdsUser;
+  Timestamp created;
 }

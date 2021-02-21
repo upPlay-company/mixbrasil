@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'itens_desapegos_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 
 class DesapegoCardTile extends StatefulWidget {
   final String type;
@@ -41,99 +43,220 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-        onTap: () {
-          saveViews();
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => ItensDesapegosScreen(widget.desapego)),
-          );
-        },
-        child: Container(
-            height: 120,
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-            child: Card(
-              elevation: 8,
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
-                    child: SizedBox(
-                      height: 135,
-                      width: 127,
-                      child: CachedNetworkImage(
-                        imageUrl: widget.desapego.img.isEmpty ?
-                        'https://static.thenounproject.com/png/194055-200.png' :
-                        widget.desapego.img.first,
-                        fit: BoxFit.cover,
+
+    final userManager = context.watch<UserManager>();
+
+    if(userManager.isLoggedIn && userManager.user.address.state == widget.desapego.estado)
+      return InkWell(
+          onTap: () {
+            saveViews();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => ItensDesapegosScreen(widget.desapego)),
+            );
+          },
+          child: Container(
+              height: 120,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+              child: Card(
+                elevation: 8,
+                color: Colors.white,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                      child: SizedBox(
+                        height: 135,
+                        width: 127,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.desapego.img.isEmpty ?
+                          'https://static.thenounproject.com/png/194055-200.png' :
+                          widget.desapego.img.first,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 3.0),
-                                child: Text(
-                                  widget.desapego.name,
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w900,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 3.0),
+                                  child: Text(
+                                    widget.desapego.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 5,),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              size: 14,
-                              color: Colors.grey[700],
-                            ),
-                            Text(
-                              widget.desapego.cidade,
+                            ],
+                          ),
+                          SizedBox(height: 5,),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                size: 14,
+                                color: Colors.grey[700],
+                              ),
+                              Text(
+                                '${widget.desapego.cidade}/${userManager.user.address.district}',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.grey[700]),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15,),
+                            child: Text(
+                              'Criado em: ${widget.desapego.created.toDate().day}/${widget.desapego.created.toDate().month}/${widget.desapego.created.toDate().year}',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[700]),
                             ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 30, right: 10,),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                 'R\$${widget.desapego.price.toStringAsFixed(2)}',
-                                textScaleFactor: 1.2,
-                                 style: TextStyle(
-                                   fontWeight: FontWeight.bold,
-                                   color: Theme.of(context).primaryColor,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2, right: 10,),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                   'R\$${widget.desapego.price.toStringAsFixed(2)}',
+                                  textScaleFactor: 1.2,
+                                   style: TextStyle(
+                                     fontWeight: FontWeight.bold,
+                                     color: Theme.of(context).primaryColor,
+                                   ),
                                  ),
-                               ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )));
+    if(!userManager.isLoggedIn)
+      return InkWell(
+          onTap: () {
+            saveViews();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                  builder: (context) => ItensDesapegosScreen(widget.desapego)),
+            );
+          },
+          child: Container(
+              height: 120,
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+              child: Card(
+                elevation: 8,
+                color: Colors.white,
+                child: Row(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                      child: SizedBox(
+                        height: 135,
+                        width: 127,
+                        child: CachedNetworkImage(
+                          imageUrl: widget.desapego.img.isEmpty ?
+                          'https://static.thenounproject.com/png/194055-200.png' :
+                          widget.desapego.img.first,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 3.0),
+                                  child: Text(
+                                    widget.desapego.name,
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )));
+                          SizedBox(height: 5,),
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.location_on,
+                                size: 14,
+                                color: Colors.grey[700],
+                              ),
+                              Text(
+                                '${widget.desapego.cidade}',
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.grey[700]),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15,),
+                            child: Text(
+                              'Criado em: ${widget.desapego.created.toDate().day}/${widget.desapego.created.toDate().month}/${widget.desapego.created.toDate().year}',
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.grey[700]),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 2, right: 10,),
+                            child: Row(
+                              children: <Widget>[
+                                Text(
+                                  'R\$${widget.desapego.price.toStringAsFixed(2)}',
+                                  textScaleFactor: 1.2,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )));
+    else
+      return Container();
   }
 }

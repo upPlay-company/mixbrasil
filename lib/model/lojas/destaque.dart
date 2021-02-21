@@ -22,7 +22,6 @@ class DestaqueLoja extends ChangeNotifier {
     imgDestacadas = snapshot.data()["img_destacadas"];
     destaque = snapshot.data()["destaque"];
     promocao = snapshot.data()["promocao"];
-    pos = snapshot.data()["pos"];
     state = snapshot.data()["estado"];
     trabalheConosco = snapshot.data()["trabalheConosco"];
     city = snapshot.data()['cidade'];

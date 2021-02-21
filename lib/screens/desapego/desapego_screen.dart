@@ -19,7 +19,7 @@ class DesapegoScreen extends StatelessWidget {
             color: Colors.transparent,
             padding: const EdgeInsets.only(left: 35),
             child: SizedBox(
-                width: 140,
+                width: 160,
                 height: 44,
                 child: RaisedButton(
                   onPressed: () {
@@ -30,7 +30,7 @@ class DesapegoScreen extends StatelessWidget {
                   child: Flexible(
                     child: Container(
                       child: Text(
-                        'Criar Anúncio',
+                        'Criar Desapego',
                         overflow: TextOverflow.ellipsis,
                         style: TextStyle(color: Colors.white, fontSize: 16),
                       ),

@@ -109,7 +109,7 @@ class _ProductScreenState extends State<ProductScreen> {
                 dotSpacing: 15.0,
                 dotBgColor: Colors.transparent,
                 dotColor: primaryColor,
-                autoplayDuration: Duration(seconds: 3),
+                autoplayDuration: Duration(seconds: 5),
               ),
             ),
             Padding(
@@ -142,7 +142,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   story(
-                                    "\nOfertas",
+                                    "\nStory",
                                     showModal: _showModalOfertas,
                                   ),
                                   story(
@@ -249,6 +249,7 @@ class _ProductScreenState extends State<ProductScreen> {
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
+            autoplayDuration: Duration(seconds: 5),
           ),
         );
       },
@@ -275,6 +276,7 @@ class _ProductScreenState extends State<ProductScreen> {
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
+            autoplayDuration: Duration(seconds: 5),
           ),
         );
       },

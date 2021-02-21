@@ -2,6 +2,7 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
+import 'package:mix_brasil/screens/lojas/components/image_dialog_lojas.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco_destaque.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -115,7 +116,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                                   MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     story(
-                                      "\nOfertas",
+                                      "\nStory",
                                       showModal: _showModalOfertas,
                                     ),
                                     story(
@@ -158,10 +159,17 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
     return Card(
       semanticContainer: true,
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: Column(
-        children: [
-          Image.network(lojasDestaque.imgOfertas[index]),
-        ],
+      child: GestureDetector(
+        onTap: (){
+          showDialog(
+              context: context,
+              builder: (_) => ImageDialogLojas(
+                image: lojasDestaque.imgDestacadas[index],
+              )
+          );
+        },
+        child: Container(
+            child: Image.network(lojasDestaque.imgDestacadas[index], fit: BoxFit.cover,)),
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       elevation: 5,
@@ -199,22 +207,23 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
 
   void _showModalCupons() {
     showModalBottomSheet<void>(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.97,
           child: Carousel(
             images: widget.lojasDestaque.imgCupons.map((url) {
               return NetworkImage(url);
             }).toList(),
+            boxFit: BoxFit.contain,
             borderRadius: true,
             radius: Radius.circular(30),
             dotSize: 4.0,
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
+            autoplayDuration: Duration(seconds: 5),
           ),
         );
       },
@@ -223,22 +232,25 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
 
   void _showModalOfertas() {
     showModalBottomSheet<void>(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.black,
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
         return Container(
-          height: MediaQuery.of(context).size.height * 0.97,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20)
+          ),
           child: Carousel(
             images: widget.lojasDestaque.imgOfertas.map((url) {
               return NetworkImage(url);
             }).toList(),
-            borderRadius: true,
+            boxFit: BoxFit.contain,
             radius: Radius.circular(30),
             dotSize: 4.0,
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
+            autoplayDuration: Duration(seconds: 5),
           ),
         );
       },

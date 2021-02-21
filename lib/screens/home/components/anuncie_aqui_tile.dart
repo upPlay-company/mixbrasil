@@ -31,7 +31,7 @@ class AnuncieAquiTile extends StatelessWidget {
             height: 54.0,
             child: RaisedButton(
               child: Text(
-                'Clique aqui!',
+                'Criar/Atualizar loja',
                 style: TextStyle(fontSize: 16.0),
               ),
               textColor: Colors.white,
@@ -56,6 +56,17 @@ class AnuncieAquiTile extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 20,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.arrow_downward_outlined,
+                size: 70.0,
+                color: Theme.of(context).primaryColor,
+              ),
+            ],
+          ),
+          SizedBox(height: 20,),
           SizedBox(
             height: 54.0,
             child: RaisedButton(
@@ -70,7 +81,7 @@ class AnuncieAquiTile extends StatelessWidget {
                     width: 10,
                   ),
                   Text(
-                    'Dúvidas',
+                    'Banners/Dúvidas',
                     style: TextStyle(fontSize: 16.0),
                   ),
                 ],

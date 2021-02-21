@@ -101,7 +101,8 @@ class Perfil extends StatelessWidget {
                   Center(
                     child: Consumer<UserManager>(
                       builder: (_, userManager, __) {
-                        if (userManager.isLoggedIn)
+                        // ignore: null_aware_in_logical_operator
+                        if (userManager.isLoggedIn && userManager.user?.img?.isEmpty != null)
                           return Container(
                             decoration: BoxDecoration(
                               color: Colors.white,
@@ -112,7 +113,7 @@ class Perfil extends StatelessWidget {
                               child: GFAvatar(
                                 size: 84,
                                 backgroundImage: NetworkImage(
-                                  userManager.user?.img ??
+                                  userManager.user.img?.first ??
                                       'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
                                 ),
                               ),

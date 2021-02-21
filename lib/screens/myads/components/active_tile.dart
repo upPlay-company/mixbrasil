@@ -202,7 +202,7 @@ class ActiveTile extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Venda mais rápido destacando o anúncio ${ad.title} por apenas R\$5,99 por 15 dias!'),
+            Text('Venda mais rápido destacando o anúncio ${ad.title} por apenas R\$5,99 por 7 dias!'),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text('Escolha uma forma de pagamento:'),

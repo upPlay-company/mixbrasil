@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:getwidget/components/avatar/gf_avatar.dart';
 import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/style/style_screen_pattern.dart';
@@ -40,35 +39,16 @@ class MinhaContaScreen extends StatelessWidget {
               key: formKey,
               child: ListView(
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: SizedBox(
-                          height: 150,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 110, right: 110, bottom: 10),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(100),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(5),
-                                child: GFAvatar(
-                                  size: 84,
-                                  backgroundImage: NetworkImage(
-                                    userManager.user?.img ??
-                                        'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                  SizedBox(height: 30,),
+                    Container(
+                      height: 50, decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      image: DecorationImage(
+                        image: AssetImage('images/Mix 230.png')
+                      )
+                    ),
                   ),
+                  SizedBox(height: 30,),
                   Container(
                     color: Colors.white70,
                     child: Padding(

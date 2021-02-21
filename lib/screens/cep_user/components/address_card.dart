@@ -49,7 +49,7 @@ class AddressCard extends StatelessWidget {
           Icon(Icons.location_on,
             size: 60.0, color: Theme.of(context).primaryColor,),
           SizedBox(height: 16.0,),
-          Text("Faça o login para adicionar seu localização!",
+          Text("Faça o login para adicionar sua localização!",
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),

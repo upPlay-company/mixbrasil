@@ -77,7 +77,7 @@ class _ProductScreenState extends State<ProductScreen> {
               width: 55,
               height: 55,
               child: RaisedButton(
-                child: Icon(LineIcons.whatsapp, color: Colors.white,),
+                child: Icon(LineIcons.whatSApp, color: Colors.white,),
                 color: Color(0xff2dc64f),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(16.0))),
@@ -113,8 +113,8 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                top: 310,
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.width * 0.8,
               ),
               child: Container(
                 decoration: BoxDecoration(

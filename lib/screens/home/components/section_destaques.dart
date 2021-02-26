@@ -61,10 +61,13 @@ class SectionDestaques extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          lojasDestaque.name,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w800),
+                        Expanded(
+                          child: Text(
+                            lojasDestaque.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w800),
+                          ),
                         ),
                         SizedBox(
                           height: 5,
@@ -152,10 +155,13 @@ class SectionDestaques extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          lojasDestaque.name,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w800),
+                        Expanded(
+                          child: Text(
+                            lojasDestaque.name,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w800),
+                          ),
                         ),
                         SizedBox(
                           height: 5,

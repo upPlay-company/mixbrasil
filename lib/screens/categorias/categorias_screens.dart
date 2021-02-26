@@ -6,7 +6,7 @@ class CategoriasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -14,7 +14,7 @@ class CategoriasScreen extends StatelessWidget {
             snap: true,
             floating: true,
             elevation: 0,
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey[50],
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
               padding: const EdgeInsets.only(top: 10),

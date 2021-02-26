@@ -34,25 +34,21 @@ class _MyAdsScreenState extends State<MyAdsScreen>
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/Fundo mix 90.png'),
-          fit: BoxFit.cover,
-        ),
+        color: Colors.grey[50],
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            'Meus Anúncios',
-            style: TextStyle(color: Colors.black, fontSize: 18),
+            'Meus Desapegos',
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: IconThemeData(color: Colors.white),
           centerTitle: true,
-          backgroundColor: Colors.transparent,
           elevation: 0,
           bottom: TabBar(
-            indicator: BoxDecoration(color: Theme.of(context).primaryColor),
-            labelColor: Colors.black,
+            indicator: BoxDecoration(color: Theme.of(context).secondaryHeaderColor),
+            labelColor: Colors.white,
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [

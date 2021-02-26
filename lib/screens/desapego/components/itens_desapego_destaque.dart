@@ -2,7 +2,9 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
 
 class ItensDestaqueDesapego extends StatefulWidget {
 
@@ -24,6 +26,9 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userManager = context.watch<UserManager>();
+
     final clearNumber = desapegoDestaque.number.replaceAll(RegExp('[^0-9]'), '');
     final Color primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
@@ -45,22 +50,6 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                 },
               ),
             ),
-            /*
-            Padding(
-              padding: const EdgeInsets.only(top: 10, right: 30),
-              child: SizedBox(
-                width: 55,
-                height: 55,
-                child: RaisedButton(
-                    child: Icon(Icons.favorite_outline_outlined, color: Colors.red,),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                    onPressed: (){}
-                ),
-              ),
-            )
-          */
           ],
         ),
       ),
@@ -81,11 +70,12 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                   dotBgColor: Colors.transparent,
                   dotColor: Colors.transparent,
                   showIndicator: false,
+                  autoplay: false,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 295,
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.width * 0.8,
                 ),
                 child: Column(
                   children: [
@@ -136,9 +126,9 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                               left: 20,
                             ),
                             child: Text(
-                              "${desapegoDestaque.cidade} \n",
+                              "${desapegoDestaque.cidade} ${userManager.isLoggedIn ? '/': ''}${userManager.isLoggedIn ? userManager.user.address.district : ''} \n",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 12,
                               ),
                             ),
                           ),

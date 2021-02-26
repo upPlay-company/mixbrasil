@@ -11,7 +11,7 @@ class DesapegoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[50],
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -60,7 +60,7 @@ class DesapegoScreen extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.bold),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Colors.grey[50],
             automaticallyImplyLeading: false,
             flexibleSpace: Padding(
               padding: const EdgeInsets.only(top: 40, bottom: 20),

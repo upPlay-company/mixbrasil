@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[50],
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

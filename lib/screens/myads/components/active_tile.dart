@@ -24,114 +24,146 @@ class ActiveTile extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
       child: Card(
         elevation: 8,
-        child: Container(
-          height: 120,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 135,
-                  width: 127,
-                  child: CachedNetworkImage(
-                    imageUrl: ad.images.isEmpty ?
-                    'https://static.thenounproject.com/png/194055-200.png' :
-                    ad.images.first,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-              const SizedBox(width: 8),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        ad.title,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      Text(
-                        ad.price.formattedMoney(),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 15),
-                      ),
-                      Text(
-                        '${ad.views} visitas',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[800],
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: (){destacarAd(context);},
-                        child: Text(
-                          'Destacar anúncio',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 15, color: Theme.of(context).primaryColor
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-              Column(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              height: 120,
+              child: Row(
                 children: [
-                  PopupMenuButton<MenuChoice>(
-                    onSelected: (choice) {
-                      switch (choice.index) {
-                        case 0:
-                          editAd(context);
-                          break;
-                        case 1:
-                          soldAd(context);
-                          break;
-                        case 2:
-                          deleteAd(context);
-                          break;
-                      }
-                    },
-                    icon: Icon(
-                      Icons.more_vert,
-                      size: 20,
-                      color: Theme.of(context).primaryColor,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 135,
+                      width: 127,
+                      child: CachedNetworkImage(
+                        imageUrl: ad.images.isEmpty ?
+                        'https://static.thenounproject.com/png/194055-200.png' :
+                        ad.images.first,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    itemBuilder: (_) {
-                      return choices
-                          .map(
-                            (choice) =>
-                            PopupMenuItem<MenuChoice>(
-                              value: choice,
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    choice.iconData,
-                                    size: 20,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    choice.title,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: Theme.of(context).primaryColor,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            ad.title,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          Text(
+                            ad.price.formattedMoney(),
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 15),
+                          ),
+                          Text(
+                            '${ad.views} visitas',
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey[800],
                             ),
-                      ).toList();
-                    },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Column(
+                    children: [
+                      PopupMenuButton<MenuChoice>(
+                        onSelected: (choice) {
+                          switch (choice.index) {
+                            case 0:
+                              editAd(context);
+                              break;
+                            case 1:
+                              soldAd(context);
+                              break;
+                            case 2:
+                              deleteAd(context);
+                              break;
+                          }
+                        },
+                        icon: Icon(
+                          Icons.more_vert,
+                          size: 20,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        itemBuilder: (_) {
+                          return choices
+                              .map(
+                                (choice) =>
+                                PopupMenuItem<MenuChoice>(
+                                  value: choice,
+                                  child: Row(
+                                    children: [
+                                      Icon(
+                                        choice.iconData,
+                                        size: 20,
+                                        color: Theme.of(context).primaryColor,
+                                      ),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        choice.title,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          color: Theme.of(context).primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                          ).toList();
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(30)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          child: Text('Venda mais rápido destacando esse desapego',
+                          style: TextStyle(color: Colors.grey[600]),)),
+                      SizedBox(
+                        height: 40,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          color: Theme.of(context).secondaryHeaderColor,
+                          onPressed: (){destacarAd(context);},
+                          child: Text(
+                            'Destacar',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ),
+            )
+          ],
         ),
       ),
     );

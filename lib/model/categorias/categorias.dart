@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class Categorias extends ChangeNotifier {
 
-  Categorias({this.name}){
+  Categorias({this.name, this.id}){
     name = name ?? [];
     img = img ?? [];
   }

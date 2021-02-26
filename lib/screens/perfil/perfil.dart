@@ -16,7 +16,7 @@ class Perfil extends StatelessWidget {
     final userManager = context.watch<UserManager>();
 
     return Container(
-      color: Colors.white,
+      color: Colors.grey[50],
       child: ListView(
         children: [
           Column(

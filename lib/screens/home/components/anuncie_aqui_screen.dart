@@ -23,7 +23,7 @@ class AnuncieAquiScreen extends StatelessWidget {
           return Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/Fundo mix 90.png'),
+                image: AssetImage('images/Pronto 4.png'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -32,12 +32,11 @@ class AnuncieAquiScreen extends StatelessWidget {
               appBar: AppBar(
                 title: Text(
                   'ANÚNCIE AGORA',
-                  style: TextStyle(color: Colors.black, fontSize: 18),
+                  style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                iconTheme: IconThemeData(color: Colors.black),
+                backgroundColor: Color(0xfff7ad2e),
+                iconTheme: IconThemeData(color: Colors.white),
               ),
               body: ListView.builder(
                   shrinkWrap: true,

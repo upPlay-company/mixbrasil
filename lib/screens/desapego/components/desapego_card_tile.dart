@@ -84,7 +84,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,21 +111,23 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
                                 size: 14,
                                 color: Colors.grey[700],
                               ),
-                              Text(
-                                '${widget.desapego.cidade}/${userManager.user.address.district}',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.grey[700]),
+                              Expanded(
+                                child: Text(
+                                  '${widget.desapego.cidade}/${userManager.user.address.district}',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.grey[700]),
+                                ),
                               ),
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 15,),
+                            padding: const EdgeInsets.only(top: 10,),
                             child: Text(
                               'Criado em: ${widget.desapego.created.toDate().day}/${widget.desapego.created.toDate().month}/${widget.desapego.created.toDate().year}',
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[700]),
                             ),
@@ -230,7 +232,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
                             child: Text(
                               'Criado em: ${widget.desapego.created.toDate().day}/${widget.desapego.created.toDate().month}/${widget.desapego.created.toDate().year}',
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: Colors.grey[700]),
                             ),

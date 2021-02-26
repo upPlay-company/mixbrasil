@@ -87,11 +87,12 @@ class ItensDesapegosScreen extends StatelessWidget {
                   dotBgColor: Colors.transparent,
                   dotColor: primaryColor,
                   showIndicator: false,
+                  autoplay: false,
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 295,
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.width * 0.8,
                 ),
                 child: Column(
                   children: [
@@ -144,9 +145,9 @@ class ItensDesapegosScreen extends StatelessWidget {
                               left: 20,
                             ),
                             child: Text(
-                              "${desapego.cidade} \n",
+                              "${desapego.cidade} ${userManager.isLoggedIn ? '/': ''}${userManager.isLoggedIn ? userManager.user.address.district : ''} \n",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 12,
                               ),
                             ),
                           ),

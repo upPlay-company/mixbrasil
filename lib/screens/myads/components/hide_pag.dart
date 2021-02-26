@@ -9,6 +9,7 @@ class HidePag extends StatelessWidget {
 
   final MyAdsStore store;
 
+
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
@@ -16,15 +17,14 @@ class HidePag extends StatelessWidget {
         children: [
           RadioListTile(
             title: Text('Cartão de credito'),
-            value: store.hidePhoneTrue,
-            groupValue: store.hidePhone,
-            onChanged: store.setHidePhone,
+            value: store.hideCard,
+            onChanged: store.setHidePag,
             activeColor: Theme.of(context).primaryColor,
           ),
           RadioListTile(
             title: Text('Boleto'),
-            groupValue: store.hidePhone,
-            onChanged: store.setHidePhone,
+            onChanged: store.setHidePag,
+            value: store.hideCard,
             activeColor: Theme.of(context).primaryColor,
           )
         ],

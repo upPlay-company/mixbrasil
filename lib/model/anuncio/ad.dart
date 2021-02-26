@@ -61,6 +61,8 @@ class Ad {
   bool destaque;
   String idAdsDestaque;
   String mensagem;
+  bool hideCredito;
+  bool hideBoleto;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
@@ -242,7 +244,9 @@ class Ad {
       'img': ad.images,
       'destaque': ad.destaque = false,
       'mensagem': ad.mensagem = 'Quero destarcar meu desapego!',
-      'idCat': ad.idCat
+      'idCat': ad.idCat,
+      'pag_credito': ad.hideCredito,
+      'pag_boleto': ad.hideBoleto
     };
 
     FirebaseFirestore.instance.collection('msg_destaca_desapego').add(data);

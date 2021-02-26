@@ -11,28 +11,37 @@ class CategoryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: Container(
-        width: 50,
-        height: 25,
-        decoration: BoxDecoration(
-            image: DecorationImage(
-                image: NetworkImage(snapshot.data()['image']),
-                fit: BoxFit.contain
-            )
+    return Column(
+      children: [
+        ListTile(
+          leading: Container(
+            width: 50,
+            height: 25,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: NetworkImage(snapshot.data()['image']),
+                    fit: BoxFit.contain
+                )
+            ),
+          ),
+          title: Text(snapshot.data()["name"], style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold),
+          ),
+          trailing: Icon(Icons.keyboard_arrow_right, color: Colors.cyan,),
+          onTap: (){
+            Navigator.of(context).push(
+                MaterialPageRoute(builder:
+                    (context)=>CategoryScreen(snapshot))
+            );
+          },
         ),
-      ),
-      title: Text(snapshot.data()["name"], style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold),
-      ),
-      trailing: Icon(Icons.keyboard_arrow_right, color: Colors.cyan,),
-      onTap: (){
-        Navigator.of(context).push(
-            MaterialPageRoute(builder:
-                (context)=>CategoryScreen(snapshot))
-        );
-      },
+        Container(
+          decoration: BoxDecoration(
+              border: Border(top: BorderSide(color: Colors.grey[300]))
+          ),
+        )
+      ],
     );
   }
 }

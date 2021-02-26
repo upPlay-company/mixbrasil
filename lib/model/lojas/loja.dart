@@ -3,13 +3,14 @@ import 'package:flutter/cupertino.dart';
 
 class LojasData extends ChangeNotifier {
 
-  String id, category, name, promocao, state, trabalheConosco, city, number;
+  String id, name, promocao, state, trabalheConosco, city, number;
   double price;
   bool destaque;
   List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
   int views, viewsWhats;
   String idCat, idAdsUser, idUser;
+  String category;
   
 
   LojasData.fromDocument(DocumentSnapshot snapshot) {
@@ -34,19 +35,10 @@ class LojasData extends ChangeNotifier {
     viewsWhats = snapshot.data()['viewsWhats'];
   }
 
-  Map<String, dynamic> toResumedMap() {
-    return {
-      "name": name,
-      "price": price,
-      "img": img,
-      "imgDestacados": imgDestacadas,
-      "imgOfertas": imgOfertas,
-      "imgCupons": imgCupons,
-      "destaque": destaque,
-      "promocao": promocao,
-      "pos": pos,
-      "estado": state,
-      "trabalhe_conosco": trabalheConosco,
-    };
+
+
+  @override
+  String toString() {
+    return 'LojasData{id: $id, category: $category, name: $name, promocao: $promocao, state: $state, trabalheConosco: $trabalheConosco, city: $city, number: $number, price: $price, destaque: $destaque, img: $img, imgDestacadas: $imgDestacadas, imgCupons: $imgCupons, imgOfertas: $imgOfertas, pos: $pos, views: $views, viewsWhats: $viewsWhats, idCat: $idCat, idAdsUser: $idAdsUser, idUser: $idUser}';
   }
 }

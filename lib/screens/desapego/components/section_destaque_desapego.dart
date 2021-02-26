@@ -25,7 +25,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
 
     final userManager = context.watch<UserManager>();
 
-    if(userManager.isLoggedIn && userManager.user.address.state == widget.desapegoDestaque.estado)
+    if(userManager.isLoggedIn && userManager.user.address.state == widget.desapegoDestaque.estado) {
       return InkWell(
           onTap: () {
             Navigator.of(context).push(
@@ -89,17 +89,19 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                                 size: 12,
                                 color: Colors.grey[700],
                               ),
-                              Text(
-                                '${widget.desapegoDestaque.cidade}/${userManager.user.address.district}',
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.grey[700]),
+                              Expanded(
+                                child: Text(
+                                  '${widget.desapegoDestaque.cidade}/${userManager.user.address.district}',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.grey[700]),
+                                ),
                               ),
                             ],
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 20,),
+                            padding: const EdgeInsets.only(top: 10,),
                             child: Text(
                               'Criado em: ${widget.desapegoDestaque.created.toDate().day}/${widget.desapegoDestaque.created.toDate().month}/${widget.desapegoDestaque.created.toDate().year}',
                               style: TextStyle(
@@ -131,7 +133,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
               )
           )
       );
-    else if(!userManager.isLoggedIn)
+    } else if(!userManager.isLoggedIn)
       return InkWell(
         onTap: () {
           Navigator.of(context).push(
@@ -205,11 +207,11 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                           ],
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20,),
+                          padding: const EdgeInsets.only(top: 10,),
                           child: Text(
                             'Criado em: ${widget.desapegoDestaque.created.toDate().day}/${widget.desapegoDestaque.created.toDate().month}/${widget.desapegoDestaque.created.toDate().year}',
                             style: TextStyle(
-                                fontSize: 14,
+                                fontSize: 12,
                                 fontWeight: FontWeight.w700,
                                 color: Colors.grey[700]),
                           ),

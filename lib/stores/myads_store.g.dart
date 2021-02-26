@@ -47,33 +47,18 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
     });
   }
 
-  final _$hidePhoneAtom = Atom(name: '_MyAdsStore.hidePhone');
+  final _$hideCardAtom = Atom(name: '_MyAdsStore.hideCard');
 
   @override
-  bool get hidePhone {
-    _$hidePhoneAtom.reportRead();
-    return super.hidePhone;
+  bool get hideCard {
+    _$hideCardAtom.reportRead();
+    return super.hideCard;
   }
 
   @override
-  set hidePhone(bool value) {
-    _$hidePhoneAtom.reportWrite(value, super.hidePhone, () {
-      super.hidePhone = value;
-    });
-  }
-
-  final _$hidePhoneTrueAtom = Atom(name: '_MyAdsStore.hidePhoneTrue');
-
-  @override
-  bool get hidePhoneTrue {
-    _$hidePhoneTrueAtom.reportRead();
-    return super.hidePhoneTrue;
-  }
-
-  @override
-  set hidePhoneTrue(bool value) {
-    _$hidePhoneTrueAtom.reportWrite(value, super.hidePhoneTrue, () {
-      super.hidePhoneTrue = value;
+  set hideCard(bool value) {
+    _$hideCardAtom.reportWrite(value, super.hideCard, () {
+      super.hideCard = value;
     });
   }
 
@@ -108,11 +93,11 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
   final _$_MyAdsStoreActionController = ActionController(name: '_MyAdsStore');
 
   @override
-  void setHidePhone(bool value) {
+  void setHidePag(bool value) {
     final _$actionInfo = _$_MyAdsStoreActionController.startAction(
-        name: '_MyAdsStore.setHidePhone');
+        name: '_MyAdsStore.setHidePag');
     try {
-      return super.setHidePhone(value);
+      return super.setHidePag(value);
     } finally {
       _$_MyAdsStoreActionController.endAction(_$actionInfo);
     }
@@ -123,8 +108,7 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
     return '''
 AllAds: ${AllAds},
 loading: ${loading},
-hidePhone: ${hidePhone},
-hidePhoneTrue: ${hidePhoneTrue},
+hideCard: ${hideCard},
 activeAds: ${activeAds}
     ''';
   }

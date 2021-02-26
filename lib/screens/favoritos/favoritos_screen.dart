@@ -16,28 +16,25 @@ class FavoritosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return StyleScreenPattern(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.transparent,
-          title: Text('FAVORITOS', style: TextStyle(color: Colors.black, fontSize: 16),),
-          centerTitle: true,
-          elevation: 0,
-        ),
-        body: Observer(builder: (_) {
-          if (favoriteStore.favoriteList.isEmpty)
-            return EmptyCard('Nenhum anúncio favoritado.');
-
-          return ListView.builder(
-            padding: const EdgeInsets.all(2),
-            itemCount: favoriteStore.favoriteList.length,
-            itemBuilder: (_, index) =>
-                FavoriteTile(favoriteStore.favoriteList[index]),
-          );
-        }),
+    return Scaffold(
+      backgroundColor: Colors.grey[50],
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        title: Text('FAVORITOS', style: TextStyle(color: Colors.white, fontSize: 16),),
+        centerTitle: true,
+        elevation: 0,
       ),
+      body: Observer(builder: (_) {
+        if (favoriteStore.favoriteList.isEmpty)
+          return EmptyCard('Nenhum anúncio favoritado.');
+
+        return ListView.builder(
+          padding: const EdgeInsets.all(2),
+          itemCount: favoriteStore.favoriteList.length,
+          itemBuilder: (_, index) =>
+              FavoriteTile(favoriteStore.favoriteList[index]),
+        );
+      }),
     );
   }
 }

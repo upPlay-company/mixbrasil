@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/favoritos/favoritos_screen.dart';
 import 'package:mix_brasil/screens/minha_conta/minha_conta.dart';
 import 'package:mix_brasil/screens/myads/myads_screen.dart';
+import 'package:mix_brasil/screens/mylojas/my_lojas_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:mix_brasil/common/entra_screen.dart';
 import 'package:mix_brasil/screens/privacidade/privacidade_e_seguranca_screen.dart';
@@ -150,8 +152,23 @@ class Perfil extends StatelessWidget {
                         .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
                 },
                 child: rowsColumns(
-                  "Meus Anúncios",
+                  "Meus Desapegos",
                   Icons.card_giftcard,
+                  Icons.arrow_forward_ios,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if(userManager.isLoggedIn)
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => MyLojasScreen()));
+                  else
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
+                },
+                child: rowsColumns(
+                  "Minhas Lojas",
+                  LineIcons.store,
                   Icons.arrow_forward_ios,
                 ),
               ),
@@ -168,7 +185,7 @@ class Perfil extends StatelessWidget {
                 },
                 child: rowsColumns(
                   "Meus Favoritos",
-                  Icons.bookmark,
+                  Icons.favorite,
                   Icons.arrow_forward_ios,
                 ),
               ),

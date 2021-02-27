@@ -12,7 +12,7 @@ import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:uuid/uuid.dart';
 
-enum AdStatus{ ACTIVE, DELETE }
+enum AdStatus { PENDING, ACTIVE, SOLD, DELETE }
 
 class AdLojas {
 

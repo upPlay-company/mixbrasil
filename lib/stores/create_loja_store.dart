@@ -13,7 +13,23 @@ class CreateLojaStore = _CreateLojaStore with _$CreateLojaStore;
 
 abstract class _CreateLojaStore with Store {
 
-  _CreateLojaStore({this.adLojas});
+  _CreateLojaStore({this.adLojas}) {
+    name = adLojas.name ?? '';
+    promocao = adLojas.promocao ?? '';
+    imgCapa = adLojas.img.asObservable();
+    imgOfertas = adLojas.imgDestacadas.asObservable();
+    imgStory = adLojas.imgOfertas.asObservable();
+    imgCupons = adLojas.imgCupons.asObservable();
+    vagaEmprego = adLojas.trabalheConosco ?? '';
+    whats = adLojas.number ?? '';
+    category = adLojas.category;
+    priceText = adLojas.price?.toStringAsFixed(2) ?? '';
+
+    if (adLojas.address != null)
+      cepStore = CepStore(adLojas.address.zipCode);
+    else
+      cepStore = CepStore(null);
+  }
 
   final AdLojas adLojas;
 
@@ -194,7 +210,7 @@ abstract class _CreateLojaStore with Store {
           vagaValid;
 
   @computed
-  Function get sendPressed => _send;
+  Function get sendPressed => formValid ? _send : null;
 
   @observable
   bool showErrors = false;
@@ -222,7 +238,7 @@ abstract class _CreateLojaStore with Store {
     adLojas.imgOfertas = imgStory;
     adLojas.imgCupons = imgCupons;
     adLojas.trabalheConosco = vagaEmprego;
-    adLojas.name = whats;
+    adLojas.number = whats;
     adLojas.user = GetIt.I<UserManager>().user;
     adLojas.address = address;
 

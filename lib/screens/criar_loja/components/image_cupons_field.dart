@@ -23,11 +23,8 @@ class ImagesCuponsField extends StatelessWidget {
     return Column(
       children: [
         Container(
-            color: Theme.of(context).primaryColor.withAlpha(430),
-            child: Divider(color: Colors.white,)),
-        Container(
           padding: EdgeInsets.only(top: 5),
-          color: Theme.of(context).primaryColor.withAlpha(430),
+          color: Theme.of(context).primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

@@ -24,7 +24,7 @@ class ImagesCapaField extends StatelessWidget {
       children: [
         Container(
           padding: EdgeInsets.only(top: 5),
-          color: Theme.of(context).primaryColor.withAlpha(430),
+          color: Theme.of(context).primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

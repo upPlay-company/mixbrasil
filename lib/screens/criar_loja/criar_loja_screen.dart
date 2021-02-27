@@ -4,11 +4,15 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/common/error_box.dart';
 import 'package:mix_brasil/model/criar_loja/criar_loja.dart';
+import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/screens/criar_loja/components/category_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_capa_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_ofertas_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_story_field.dart';
 import 'package:mix_brasil/stores/create_loja_store.dart';
+import 'package:mobx/mobx.dart';
 
+import 'components/cep_lojas_field.dart';
 import 'components/image_cupons_field.dart';
 
 class CriarLojaScreen extends StatefulWidget {
@@ -23,12 +27,35 @@ class CriarLojaScreen extends StatefulWidget {
 
 class _CriarLojaScreenState extends State<CriarLojaScreen> {
 
-  _CriarLojaScreenState(this.adLojas);
+  _CriarLojaScreenState(AdLojas adLojas)
+      : editing = adLojas != null,
+        createLojaStore = CreateLojaStore(adLojas: adLojas ?? AdLojas());
 
-  final AdLojas adLojas;
+  final CreateLojaStore createLojaStore;
 
-  final CreateLojaStore createLojaStore = CreateLojaStore();
+  bool editing;
 
+  @override
+  void initState() {
+    super.initState();
+
+    when((_) => createLojaStore.saveAd, () {
+      if (editing)
+        Navigator.of(context).pop(true);
+      else {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => BaseScreen(),
+          ),
+        );
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => Container(),
+          ),
+        );
+      }
+    });
+  }
 
   final labelStyle =
   TextStyle(fontWeight: FontWeight.w800, color: Colors.grey, fontSize: 18);
@@ -50,7 +77,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
         backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
-            'CRIE SUA LOJA',
+            editing ? 'EDITANDO LOJA' : 'CRIE SUA LOJA',
             style: TextStyle(color: Colors.black, fontSize: 18),
           ),
           centerTitle: true,
@@ -77,7 +104,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                         child: Column(
                           children: [
                             Text(
-                              'Salvando Anúncio',
+                              'Salvando Loja',
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Theme.of(context).primaryColor),
@@ -103,7 +130,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                           ImagesCuponsField(createLojaStore),
                           Observer(builder: (_) {
                             return TextFormField(
-                              initialValue: createLojaStore.name,
+                              initialValue: editing ? createLojaStore.name : '',
                               onChanged: createLojaStore.SetName,
                               decoration: InputDecoration(
                                   labelText: 'Nome da loja *',
@@ -127,8 +154,8 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                               );
                             },
                           ),
-                          //CategoryDesapegoField(createStore),
-                          //CepField(createStore),
+                          CategoryField(createLojaStore),
+                          CepLojasField(createLojaStore),
                           Observer(
                             builder: (_) {
                               return TextFormField(
@@ -209,9 +236,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                                     ),
                                     textColor: Colors.white,
                                     color: Theme.of(context).secondaryHeaderColor,
-                                    disabledColor: Theme.of(context)
-                                        .primaryColor
-                                        .withAlpha(100),
+                                    disabledColor: Theme.of(context).secondaryHeaderColor.withAlpha(100),
                                     elevation: 0,
                                     materialTapTargetSize:
                                     MaterialTapTargetSize.shrinkWrap,

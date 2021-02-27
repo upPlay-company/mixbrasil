@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -8,6 +10,7 @@ import 'package:mix_brasil/model/cep/city.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:uuid/uuid.dart';
 
 enum AdStatus{ ACTIVE, DELETE }
 
@@ -18,7 +21,10 @@ class AdLojas {
   String id, name, promocao, trabalheConosco, number;
   double price;
   bool destaque;
-  List<dynamic> img, imgDestacadas, imgCupons, imgOfertas = [];
+  List<dynamic> img = [];
+  List<dynamic> imgDestacadas = [];
+  List<dynamic> imgCupons = [];
+  List<dynamic> imgOfertas = [];
   int pos;
   int views, viewsWhats;
   String idCat, idAdsUser, idUser;
@@ -91,7 +97,7 @@ class AdLojas {
       'status': adLojas.status.index,
       'user': adLojas.user.id,
       'destaque': adLojas.destaque = false,
-      'trabalheConosco': adLojas.trabalheConosco
+      'trabalhe_conosco': adLojas.trabalheConosco
     };
 
     if(id == null){
@@ -108,8 +114,97 @@ class AdLojas {
           .collection('lojas')
           .add(data);
 
+      final List<String> uploadImgCapa = [];
+
+      for (final image in adLojas.img) {
+        if (image as File != null) {
+          final UploadTask task =
+          storageRef.child(Uuid().v1()).putFile(image);
+          final TaskSnapshot snapshot = await task;
+          final String url = await snapshot.ref.getDownloadURL();
+          uploadImgCapa.add(url);
+        }
+      }
+
+      final List<String> uploadImgOfertas = [];
+
+      for (final image in adLojas.imgDestacadas) {
+        if (image as File != null) {
+          final UploadTask task =
+          storageRef.child(Uuid().v1()).putFile(image);
+          final TaskSnapshot snapshot = await task;
+          final String url = await snapshot.ref.getDownloadURL();
+          uploadImgOfertas.add(url);
+        }
+      }
+
+      final List<String> uploadImgStory = [];
+
+      for (final image in adLojas.imgOfertas) {
+        if (image as File != null) {
+          final UploadTask task =
+          storageRef.child(Uuid().v1()).putFile(image);
+          final TaskSnapshot snapshot = await task;
+          final String url = await snapshot.ref.getDownloadURL();
+          uploadImgStory.add(url);
+        }
+      }
+
+      final List<String> uploadImgCupons = [];
+
+      for (final image in adLojas.imgCupons) {
+        if (image as File != null) {
+          final UploadTask task =
+          storageRef.child(Uuid().v1()).putFile(image);
+          final TaskSnapshot snapshot = await task;
+          final String url = await snapshot.ref.getDownloadURL();
+          uploadImgCupons.add(url);
+        }
+      }
+
+      DocumentReference firestoreRef = firestore
+          .collection('categorias')
+          .doc(adLojas.category.id)
+          .collection('lojas')
+          .doc(doc.id);
+
+      DocumentReference firestoreRefUser = firestore
+          .collection('users')
+          .doc(adLojas.user.id)
+          .collection('lojas')
+          .doc(docUser.id);
+
+      await firestoreRef.update({
+        'img': uploadImgCapa,
+        'img_destacados': uploadImgOfertas,
+        'img_ofertas': uploadImgStory,
+        'img_cupons': uploadImgCupons,
+        'idAdsUser': docUser.id,
+        'idCat': adLojas.category.id
+      });
+      adLojas.img = uploadImgCapa;
+      adLojas.imgDestacadas = uploadImgOfertas;
+      adLojas.imgOfertas = uploadImgStory;
+      adLojas.imgCupons = uploadImgCupons;
+
+      await firestoreRefUser.update(
+          {'img': uploadImgCapa,
+            'img_destacados': uploadImgOfertas,
+            'img_ofertas': uploadImgStory,
+            'img_cupons': uploadImgCupons,
+            'idAds': doc.id,
+            'idCat': adLojas.category.id
+          });
+      adLojas.img = uploadImgCapa;
+      adLojas.imgDestacadas = uploadImgOfertas;
+      adLojas.imgOfertas = uploadImgStory;
+      adLojas.imgCupons = uploadImgCupons;
     }
-  }
+    else {
+
+    }
+
+}
 
 
 

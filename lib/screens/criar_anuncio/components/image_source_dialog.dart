@@ -19,11 +19,11 @@ class ImageSourceDialog extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              FlatButton(
+              TextButton(
                   onPressed: getFromCamera,
                   child: Text('Câmera')
               ),
-              FlatButton(
+              TextButton(
                   onPressed: getFromGallery,
                   child: Text('Galeria')
               ),

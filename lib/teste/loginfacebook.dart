@@ -61,11 +61,11 @@ class _LoginFacebookState extends State<LoginFacebook> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               new Text(_message),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: _login,
                 child: new Text('Log in'),
               ),
-              new RaisedButton(
+              new ElevatedButton(
                 onPressed: _logOut,
                 child: new Text('Logout'),
               ),

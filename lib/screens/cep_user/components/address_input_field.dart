@@ -80,6 +80,7 @@ class AddressInputField extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
               backgroundColor: Colors.transparent,
             ),
+          // ignore: deprecated_member_use
           RaisedButton(
             color: Theme.of(context).primaryColor,
             disabledColor: Theme.of(context).primaryColor.withAlpha(100),

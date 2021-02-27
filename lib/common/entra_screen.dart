@@ -38,6 +38,7 @@ class FacaLoginScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     height: 54.0,
+                    // ignore: deprecated_member_use
                     child: RaisedButton(
                       child: Text(
                         "Entrar",

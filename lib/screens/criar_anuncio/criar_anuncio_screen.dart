@@ -183,6 +183,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                                   height: 50,
                                   child: GestureDetector(
                                     onTap: createStore.invalidSendPressed,
+                                    // ignore: deprecated_member_use
                                     child: RaisedButton(
                                       onPressed: createStore.sendPressed,
                                       child: Text(
@@ -262,6 +263,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                     ),
                     SizedBox(
                       height: 54.0,
+                      // ignore: deprecated_member_use
                       child: RaisedButton(
                         child: Text(
                           "Entrar",

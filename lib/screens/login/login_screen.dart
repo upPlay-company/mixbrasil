@@ -143,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {
                                   if (emailController.text.isEmpty)
                                     _snackBarRecover(
@@ -176,6 +176,7 @@ class LoginScreen extends StatelessWidget {
                             child: SizedBox(
                               height: 54,
                               width: MediaQuery.of(context).size.width,
+                              // ignore: deprecated_member_use
                               child: RaisedButton(
                                 onPressed: userManager.loading
                                     ? null
@@ -187,8 +188,8 @@ class LoginScreen extends StatelessWidget {
                                                   password:
                                                       passController.text),
                                               onFail: (e) {
-                                                scaffoldKey.currentState
-                                                    .showSnackBar(SnackBar(
+                                                // ignore: deprecated_member_use
+                                                scaffoldKey.currentState.showSnackBar(SnackBar(
                                                   content: Text(
                                                     'Falha no login: $e',
                                                     style: TextStyle(
@@ -277,12 +278,14 @@ class LoginScreen extends StatelessWidget {
                             child: SizedBox(
                               height: 54,
                               width: MediaQuery.of(context).size.width,
+                              // ignore: deprecated_member_use
                               child: RaisedButton(
                                 onPressed: () {
                                   userManager.facebookLogin(onFail: (e) {
                                     scaffoldKey.currentState
+                                        // ignore: deprecated_member_use
                                         .showSnackBar(SnackBar(
-                                      content: Text(
+                                        content: Text(
                                         'Falha no login: $e',
                                         style: TextStyle(
                                             fontSize: 16,

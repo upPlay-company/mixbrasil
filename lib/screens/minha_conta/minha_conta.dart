@@ -146,6 +146,7 @@ class MinhaContaScreen extends StatelessWidget {
                             SizedBox(
                               height: 54,
                               width: 200,
+                              // ignore: deprecated_member_use
                               child: RaisedButton(
                                 onPressed: !userManager.loading
                                     ? () async {
@@ -153,6 +154,7 @@ class MinhaContaScreen extends StatelessWidget {
                                           formKey.currentState.save();
                                           await userManager.user.save();
                                           scaffoldKey.currentState
+                                              // ignore: deprecated_member_use
                                               .showSnackBar(
                                             SnackBar(
                                               content: const Text(

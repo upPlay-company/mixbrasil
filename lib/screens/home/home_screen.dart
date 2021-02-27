@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
           child: SizedBox(
               width: 140,
               height: 44,
+              // ignore: deprecated_member_use
               child: RaisedButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -82,6 +83,7 @@ class HomeScreen extends StatelessWidget {
                         child: Consumer<UserManager>(
                           builder: (_, userManager, __){
                             if(userManager.isLoggedIn)
+                              // ignore: deprecated_member_use
                               return RaisedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushNamed('/cep');
@@ -115,6 +117,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               );
                             else
+                              // ignore: deprecated_member_use
                               return RaisedButton(
                                 onPressed: () {
                                   Navigator.of(context).pushNamed('/cep');

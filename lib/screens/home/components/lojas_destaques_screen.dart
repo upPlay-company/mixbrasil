@@ -52,6 +52,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
               child: SizedBox(
                 width: 55,
                 height: 55,
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   child: Icon(LineIcons.whatSApp, color: Colors.white,),
                   color: Color(0xff2dc64f),

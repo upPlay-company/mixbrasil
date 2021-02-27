@@ -160,6 +160,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                                   ),
                                 ),
                                 Center(
+                                  // ignore: deprecated_member_use
                                   child: RaisedButton(
                                     onPressed: () {
                                       _launchURL(

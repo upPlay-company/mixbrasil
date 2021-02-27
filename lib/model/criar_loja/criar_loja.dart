@@ -51,7 +51,7 @@ class AdLojas {
     id = snapshot.id;
     name = snapshot.data()["name"];
     price = snapshot.data()["price"] + 0.0;
-    img = List<String>.from(snapshot.data()['img'] as List<dynamic>);;
+    img = List<String>.from(snapshot.data()['img'] as List<dynamic>);
     imgCupons = List<String>.from(snapshot.data()["img_cupons"] as List<dynamic>);
     imgOfertas = List<String>.from(snapshot.data()["img_ofertas"] as List<dynamic>);
     imgDestacadas = List<String>.from(snapshot.data()["img_destacados"] as List<dynamic>);

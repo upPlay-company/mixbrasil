@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mix_brasil/screens/criar_anuncio/components/category_desapego_screen.dart';
 import 'package:mix_brasil/screens/criar_loja/components/category_screen.dart';
 import 'package:mix_brasil/stores/create_loja_store.dart';
 

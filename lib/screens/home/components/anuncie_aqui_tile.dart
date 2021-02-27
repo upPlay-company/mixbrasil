@@ -47,6 +47,7 @@ class AnuncieAquiTile extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 54.0,
+                  // ignore: deprecated_member_use
                   child: RaisedButton(
                     child: Text(
                       'Criar Loja',
@@ -93,6 +94,7 @@ class AnuncieAquiTile extends StatelessWidget {
             children: [
               SizedBox(
                 height: 54.0,
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

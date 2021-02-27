@@ -81,6 +81,7 @@ abstract class _CreateLojaStore with Store {
   String name = '';
 
   @action
+  // ignore: non_constant_identifier_names
   void SetName(String value) => name = value;
 
   @computed
@@ -98,6 +99,7 @@ abstract class _CreateLojaStore with Store {
   String promocao = '';
 
   @action
+  // ignore: non_constant_identifier_names
   void SetPromocao(String value) => promocao = value;
 
   @computed
@@ -115,6 +117,7 @@ abstract class _CreateLojaStore with Store {
   Categorias category;
 
   @action
+  // ignore: non_constant_identifier_names
   void SetCategory(Categorias value) => category = value;
 
   @computed
@@ -167,6 +170,7 @@ abstract class _CreateLojaStore with Store {
   String vagaEmprego = '';
 
   @action
+  // ignore: non_constant_identifier_names
   void SetVagaEmprego(String value) => vagaEmprego = value;
 
   @computed

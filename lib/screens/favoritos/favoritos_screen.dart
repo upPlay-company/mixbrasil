@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/common/empty_card.dart';
 import 'package:mix_brasil/stores/favorite_store.dart';
-import 'package:mix_brasil/style/style_screen_pattern.dart';
 
 import 'favorite_tile.dart';
 

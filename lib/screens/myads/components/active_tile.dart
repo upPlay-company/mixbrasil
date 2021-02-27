@@ -144,6 +144,7 @@ class ActiveTile extends StatelessWidget {
                           style: TextStyle(color: Colors.grey[600]),)),
                       SizedBox(
                         height: 40,
+                        // ignore: deprecated_member_use
                         child: RaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)
@@ -184,18 +185,16 @@ class ActiveTile extends StatelessWidget {
         title: Text('Vendido'),
         content: Text('Confirmar a venda de ${ad.title}?'),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Theme.of(context).primaryColor,
+            child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               store.soldAd(ad);
             },
-            child: Text('Sim'),
-            textColor: Colors.red,
+            child: Text('Sim', style: TextStyle(color: Colors.red),),
           ),
         ],
       ),
@@ -209,18 +208,16 @@ class ActiveTile extends StatelessWidget {
         title: Text('Excluir'),
         content: Text('Confirmar a exclusão de ${ad.title}?'),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Theme.of(context).primaryColor,
+            child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               store.deleteAd(ad);
             },
-            child: Text('Sim'),
-            textColor: Colors.red,
+            child: Text('Sim', style: TextStyle(color: Colors.red),),
           ),
         ],
       ),
@@ -243,12 +240,11 @@ class ActiveTile extends StatelessWidget {
           ],
         ),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Colors.red,
+            child: Text('Não', style: TextStyle(color: Colors.red),),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               store.destacarAd(ad);
@@ -258,17 +254,15 @@ class ActiveTile extends StatelessWidget {
                     title: Text('Mensagem enviado com sucesso'),
                     content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
                     actions: [
-                      FlatButton(
+                      TextButton(
                         onPressed: Navigator.of(context).pop,
-                        child: Text('Ok'),
-                        textColor: Theme.of(context).primaryColor,
+                        child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor,),),
                       ),
                     ],
                   ),
               );
             },
-            child: Text('Sim'),
-            textColor: Theme.of(context).primaryColor,
+            child: Text('Sim', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
         ],
       ),

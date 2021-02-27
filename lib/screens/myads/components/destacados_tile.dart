@@ -138,18 +138,16 @@ class DestacadoTile extends StatelessWidget {
         title: Text('Vendido'),
         content: Text('Confirmar a venda de ${ad.title}?'),
         actions: [
-          FlatButton(
+          TextButton(
             onPressed: Navigator.of(context).pop,
-            child: Text('Não'),
-            textColor: Theme.of(context).primaryColor,
+            child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
-          FlatButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context).pop();
               store.soldDestaque(ad);
             },
-            child: Text('Sim'),
-            textColor: Colors.red,
+            child: Text('Sim', style: TextStyle(color: Colors.red),),
           ),
         ],
       ),
@@ -164,22 +162,21 @@ class DestacadoTile extends StatelessWidget {
             title: Text('Excluir'),
             content: Text('Confirmar a exclusão de ${ad.title}?'),
             actions: [
-              FlatButton(
+              TextButton(
                 onPressed: Navigator
                     .of(context)
                     .pop,
-                child: Text('Não'),
-                textColor: Theme
+                child: Text('Não', style: TextStyle(color: Theme
                     .of(context)
-                    .primaryColor,
+                    .primaryColor,)
+                  ),
               ),
-              FlatButton(
+              TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                   store.deleteAd(ad);
                 },
-                child: Text('Sim'),
-                textColor: Colors.red,
+                child: Text('Sim', style: TextStyle(color: Colors.red),),
               ),
             ],
           ),

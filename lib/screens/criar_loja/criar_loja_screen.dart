@@ -224,6 +224,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                                 height: 50,
                                 child: GestureDetector(
                                   onTap: createLojaStore.invalidSendPressed,
+                                  // ignore: deprecated_member_use
                                   child: RaisedButton(
                                     onPressed: createLojaStore.sendPressed,
                                     child: Text(

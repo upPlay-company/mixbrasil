@@ -21,6 +21,7 @@ class DesapegoScreen extends StatelessWidget {
             child: SizedBox(
                 width: 160,
                 height: 44,
+                // ignore: deprecated_member_use
                 child: RaisedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -75,6 +76,7 @@ class DesapegoScreen extends StatelessWidget {
                         children: [
                           SizedBox(
                             width: 190,
+                            // ignore: deprecated_member_use
                             child: RaisedButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -121,6 +123,7 @@ class DesapegoScreen extends StatelessWidget {
                                 child: SizedBox(
                                   width: 55,
                                   height: 100,
+                                  // ignore: deprecated_member_use
                                   child: RaisedButton(
                                     color: Theme.of(context).primaryColor,
                                     onPressed: () async {

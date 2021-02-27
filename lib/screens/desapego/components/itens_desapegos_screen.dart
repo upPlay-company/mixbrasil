@@ -51,6 +51,7 @@ class ItensDesapegosScreen extends StatelessWidget {
                   width: 55,
                   height: 55,
                   child: Observer(builder: (_){
+                    // ignore: deprecated_member_use
                     return RaisedButton(
                         child: Icon(
                         favoriteStore.favoriteList.any((a) => a.id == desapego.id)
@@ -179,6 +180,7 @@ class ItensDesapegosScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Center(
+                                  // ignore: deprecated_member_use
                                   child: RaisedButton(
                                     onPressed: () {
                                       _launchURL(

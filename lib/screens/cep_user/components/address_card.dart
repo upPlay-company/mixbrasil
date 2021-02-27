@@ -56,6 +56,7 @@ class AddressCard extends StatelessWidget {
           SizedBox(height: 16.0,),
           SizedBox(
             height: 54.0,
+            // ignore: deprecated_member_use
             child: RaisedButton(
               child: Text("Entrar", style: TextStyle(fontSize: 18.0),),
               textColor: Colors.white,

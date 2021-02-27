@@ -18,13 +18,12 @@ class ImageDialog extends StatelessWidget {
           if(image is File)
             Image.file(image)
           else Image.network(image),
-          FlatButton(
+          TextButton(
             onPressed: (){
               Navigator.of(context).pop();
               onDelete();
             },
-            child: Text('Excluir'),
-            textColor: Colors.red,
+            child: Text('Excluir', style: TextStyle(color: Colors.red),),
           )
         ],
       ),

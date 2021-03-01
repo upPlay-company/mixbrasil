@@ -142,6 +142,7 @@ class ActiveTile extends StatelessWidget {
                       Expanded(
                           child: Text('Venda mais rápido destacando esse desapego',
                           style: TextStyle(color: Colors.grey[600]),)),
+                      SizedBox(width: 10,),
                       SizedBox(
                         height: 40,
                         // ignore: deprecated_member_use
@@ -150,7 +151,13 @@ class ActiveTile extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20)
                           ),
                           color: Theme.of(context).secondaryHeaderColor,
-                          onPressed: (){destacarAd(context);},
+                          onPressed: (){
+                            if(ad.solicitacao == 0){
+                                destacarAd(context);
+                              } else {
+                              solicitacaoNegada(context);
+                              }
+                            },
                           child: Text(
                             'Destacar',
                             style: TextStyle(
@@ -268,6 +275,27 @@ class ActiveTile extends StatelessWidget {
       ),
     );
   }
+
+  void solicitacaoNegada(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Sua solicitação já foi enviada!'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: Navigator.of(context).pop,
+            child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor),),
+          ),
+        ],
+      ),
+    );
+  }
+
 
 }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/common/empty_card.dart';
 import 'package:mix_brasil/stores/my_lojas_store.dart';
-
 import 'components/active_lojas_tile.dart';
 import 'components/destacados_lojas_tile.dart';
 
@@ -16,7 +15,8 @@ class MyLojasScreen extends StatefulWidget {
   _MyLojasScreenState createState() => _MyLojasScreenState();
 }
 
-class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProviderStateMixin {
+class _MyLojasScreenState extends State<MyLojasScreen>
+    with SingleTickerProviderStateMixin {
 
   final MyLojasStore store = MyLojasStore();
 
@@ -27,7 +27,7 @@ class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProvide
     super.initState();
 
     tabController =
-        TabController(length: 2, vsync: this, initialIndex: widget.inicialPage);
+        TabController(length: 3, vsync: this, initialIndex: widget.inicialPage);
   }
 
   @override
@@ -48,6 +48,7 @@ class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProvide
           tabs: [
             Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 12))),
             Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 12))),
+            Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 12))),
             ],
           )
       ),
@@ -66,7 +67,7 @@ class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProvide
               Observer(
                 builder: (_) {
                   if (store.activeAds.isEmpty)
-                    return EmptyCard('Você não possui nenhum anúncio ativo.');
+                    return EmptyCard('Você não possui nenhum lojas ativo.');
 
                   return ListView.builder(
                     itemCount: store.activeAds.length,
@@ -79,7 +80,7 @@ class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProvide
               Observer(builder: (_) {
                 if (store.destacadoAds.isEmpty)
                   return EmptyCard(
-                      'Você não possui nenhum anúncio destacados.');
+                      'Você não possui nenhum lojas destacadas.');
 
                 return ListView.builder(
                   itemCount: store.destacadoAds.length,
@@ -88,6 +89,7 @@ class _MyLojasScreenState extends State<MyLojasScreen>  with SingleTickerProvide
                   },
                 );
               }),
+              Container(color: Colors.blue,)
             ],
           );
         },

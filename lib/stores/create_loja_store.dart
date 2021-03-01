@@ -174,7 +174,7 @@ abstract class _CreateLojaStore with Store {
   void SetVagaEmprego(String value) => vagaEmprego = value;
 
   @computed
-  bool get vagaValid => vagaEmprego.length >= 15;
+  bool get vagaValid => vagaEmprego.length >= 5;
   String get vagaError {
     if (!showErrors || vagaValid)
       return null;
@@ -191,13 +191,14 @@ abstract class _CreateLojaStore with Store {
   void setWhats(String value) => whats = value;
 
   @computed
+  bool get whatsValid => whats.length >= 11;
   String get whatsError {
-    if (!showErrors)
+    if (!showErrors || whatsValid)
       return null;
     else if (whats.isEmpty)
       return 'Campo obrigatório';
     else
-      return null;
+      return 'Número inválido';
   }
 
   @computed
@@ -211,7 +212,8 @@ abstract class _CreateLojaStore with Store {
           addressValid &&
           priceValid &&
           nameValid &&
-          vagaValid;
+          vagaValid &&
+          whatsValid;
 
   @computed
   Function get sendPressed => formValid ? _send : null;

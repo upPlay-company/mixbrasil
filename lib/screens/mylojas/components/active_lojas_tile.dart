@@ -136,8 +136,9 @@ class ActiveLojasTile extends StatelessWidget {
                     child: Row(
                       children: [
                         Expanded(
-                            child: Text('Venda mais rápido destacando esse desapego',
+                            child: Text('Venda mais rápido destacando a sua loja',
                               style: TextStyle(color: Colors.grey[600]),)),
+                        SizedBox(width: 10,),
                         SizedBox(
                           height: 40,
                           // ignore: deprecated_member_use
@@ -146,7 +147,13 @@ class ActiveLojasTile extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)
                             ),
                             color: Theme.of(context).secondaryHeaderColor,
-                            onPressed: (){destacarAd(context);},
+                            onPressed: (){
+                              if(adLojas.solicitacao == 0){
+                                destacarAd(context);
+                              } else {
+                                  solicitacaoNegada(context);
+                                }
+                              },
                             child: Text(
                               'Destacar',
                               style: TextStyle(
@@ -189,7 +196,7 @@ class ActiveLojasTile extends StatelessWidget {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              //store.deleteAd(ad);
+              store.deleteAd(adLojas);
             },
             child: Text('Sim', style: TextStyle(color: Colors.red),),
           ),
@@ -205,7 +212,7 @@ class ActiveLojasTile extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Venda mais rápido destacando o anúncio ${adLojas.name} por apenas R\$5,99 por 7 dias!'),
+            Text('Venda mais rápido destacando a sua loja ${adLojas.name} por apenas R\$5,99 por 7 dias!'),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text('Escolha uma forma de pagamento:'),
@@ -221,12 +228,12 @@ class ActiveLojasTile extends StatelessWidget {
           TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              //store.destacarAd(ad);
+              store.destacarAd(adLojas);
               showDialog(
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text('Mensagem enviado com sucesso'),
-                  content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${adLojas.name}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
+                  content: Text('Olá, recebemos sua mensagem para destacar a sua ${adLojas.name}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
                   actions: [
                     TextButton(
                       onPressed: Navigator.of(context).pop,
@@ -242,6 +249,27 @@ class ActiveLojasTile extends StatelessWidget {
       ),
     );
   }
+
+  void solicitacaoNegada(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text('Sua solicitação já foi enviada!'),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: Navigator.of(context).pop,
+            child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor),),
+          ),
+        ],
+      ),
+    );
+  }
+
 
 }
 

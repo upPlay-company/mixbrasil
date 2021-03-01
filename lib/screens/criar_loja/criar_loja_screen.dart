@@ -9,9 +9,9 @@ import 'package:mix_brasil/screens/criar_loja/components/category_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_capa_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_ofertas_field.dart';
 import 'package:mix_brasil/screens/criar_loja/components/image_story_field.dart';
+import 'package:mix_brasil/screens/mylojas/my_lojas_screen.dart';
 import 'package:mix_brasil/stores/create_loja_store.dart';
 import 'package:mobx/mobx.dart';
-
 import 'components/cep_lojas_field.dart';
 import 'components/image_cupons_field.dart';
 
@@ -50,7 +50,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
         );
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (_) => Container(),
+            builder: (_) => MyLojasScreen(),
           ),
         );
       }

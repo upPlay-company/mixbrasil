@@ -12,8 +12,7 @@ abstract class _MyLojasStore with Store {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  // ignore: non_constant_identifier_names
-  MyLojasStore() {
+  _MyLojasStore() {
     _getMyLojas();
   }
 
@@ -23,17 +22,17 @@ abstract class _MyLojasStore with Store {
 
   @computed
   List<AdLojas> get activeAds => AllAds.where(
-          (ad) => ad.status == AdStatus.ACTIVE).toList();
+          (adLojas) => adLojas.status == AdStatus.ACTIVE).toList();
   List<AdLojas> get destacadoAds => AllAds.where(
-          (ad) => ad.status == AdStatus.DELETE).toList();
+          (adLojas) => adLojas.status == AdStatus.DELETE).toList();
+
 
   Future<void> _getMyLojas() async {
-    final user = GetIt.I<UserManager>().user;
-    try {
+    final user = GetIt.I<UserManager>().user.id;
       loading = true;
       final QuerySnapshot snapAnuncio = await firestore
           .collection('users')
-          .doc(user.id)
+          .doc(user)
           .collection('lojas')
           .orderBy('created', descending: true)
           .limit(100)
@@ -41,12 +40,33 @@ abstract class _MyLojasStore with Store {
 
       AllAds = snapAnuncio.docs.map((a) => AdLojas.fromDocument(a)).toList();
       loading = false;
-    } catch (e){}
-  }
+    }
 
   @observable
   bool loading = false;
 
   void refresh() => _getMyLojas();
+
+  @observable
+  bool hideCard = false;
+
+  @action
+  void setHidePag(bool value) => hideCard = value;
+
+  @action
+  Future<void> deleteAd(AdLojas adLojas) async {
+    loading = true;
+    await AdLojas().delete(adLojas);
+    refresh();
+  }
+
+  @action
+  Future<void> destacarAd(AdLojas adLojas) async {
+    adLojas.hideCredito = hideCard;
+    adLojas.hideBoleto = hideCard;
+    loading = true;
+    await AdLojas().destacar(adLojas);
+    refresh();
+  }
 
 }

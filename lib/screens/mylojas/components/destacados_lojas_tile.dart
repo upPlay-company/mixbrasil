@@ -139,7 +139,7 @@ class DestacadolojasTile extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
-                  //store.deleteAd(ad);
+                  store.deleteAd(adLojas);
                 },
                 child: Text('Sim', style: TextStyle(color: Colors.red),),
               ),

@@ -27,7 +27,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
     super.initState();
 
     tabController =
-        TabController(length: 3, vsync: this, initialIndex: widget.inicialPage);
+        TabController(length: 4, vsync: this, initialIndex: widget.inicialPage);
   }
 
   @override
@@ -52,9 +52,10 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
-              Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 12))),
-              Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 12))),
-              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 12))),
+              Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 11))),
+              Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 11))),
+              Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 11))),
+              Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 11))),
             ],
           ),
         ),
@@ -106,6 +107,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
                     },
                   );
                 }),
+                Container(color: Colors.blue,)
               ],
             );
           },

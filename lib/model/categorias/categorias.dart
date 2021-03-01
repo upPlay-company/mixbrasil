@@ -4,10 +4,7 @@ import 'package:flutter/cupertino.dart';
 
 class Categorias extends ChangeNotifier {
 
-  Categorias({this.name, this.id}){
-    name = name ?? [];
-    img = img ?? [];
-  }
+  Categorias({this.name, this.id});
 
   Categorias.fromDocument(DocumentSnapshot document){
     id = document.id;
@@ -19,10 +16,6 @@ class Categorias extends ChangeNotifier {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
 
-  DocumentReference get firestoreRef => firestore.doc('home/$id');
-  //StorageReference get storageRef => storage.ref().child('home/$id');
-
-  List<Categorias> lojas1;
   String name;
   String id;
   String img;

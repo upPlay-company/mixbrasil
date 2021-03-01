@@ -40,6 +40,7 @@ class Ad {
     viewsDestaque = document.data()['viewsDestaque'];
     idAdsDestaque = document.data()['idAdsDestaque'];
     mensagem = document.data()['mensagem'];
+    solicitacao = document.data()['solicitacao'] as int;
   }
 
   Ad();
@@ -63,6 +64,7 @@ class Ad {
   String mensagem;
   bool hideCredito;
   bool hideBoleto;
+  int solicitacao;
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseStorage storage = FirebaseStorage.instance;
@@ -87,7 +89,8 @@ class Ad {
         'created': FieldValue.serverTimestamp(),
         'status': ad.status.index,
         'user': ad.user.id,
-        'destaque': ad.destaque = false
+        'destaque': ad.destaque = false,
+        'solicitacao': ad.solicitacao = 0
       };
 
       if (ad.id == null) {
@@ -250,6 +253,14 @@ class Ad {
     };
 
     FirebaseFirestore.instance.collection('msg_destaca_desapego').add(data);
+
+    DocumentReference firestoreRef = firestore
+        .collection('users')
+        .doc(ad.user.id)
+        .collection('desapegos')
+        .doc(ad.id);
+
+    await firestoreRef.update({'solicitacao': solicitacao = 1});
 
   }
 

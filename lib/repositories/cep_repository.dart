@@ -20,6 +20,7 @@ class CepRepository {
         return Future.error('CEP Inválido');
 
       final ufList = await IBGERepository().getUFList();
+      print(ufList);
 
       return Address(
         zipCode: response.data['cep'],

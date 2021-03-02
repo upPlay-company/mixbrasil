@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/model/cep/address.dart';
+import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/services/cep_aberto_services.dart';
@@ -19,6 +20,7 @@ class UserManager extends ChangeNotifier {
   UserUser user;
   List<UserUser> allUser = [];
   Address address;
+  UF uf;
 
   bool _loading = false;
   bool get loading => _loading;

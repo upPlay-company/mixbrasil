@@ -6,6 +6,7 @@ import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/screens/cep_user/components/uf_list.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +87,10 @@ class HomeScreen extends StatelessWidget {
                               // ignore: deprecated_member_use
                               return RaisedButton(
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed('/cep');
+                                  //Navigator.of(context).pushNamed('/cep');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => FilterLocal()
+                                  ));
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(

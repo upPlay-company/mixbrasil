@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/common/empty_card.dart';
+import 'package:mix_brasil/model/dicas_mix/dicas_mix_lojas_manager.dart';
+import 'package:mix_brasil/screens/mylojas/components/dicas_mix_lojas_tile.dart';
 import 'package:mix_brasil/stores/my_lojas_store.dart';
+import 'package:provider/provider.dart';
 import 'components/active_lojas_tile.dart';
 import 'components/destacados_lojas_tile.dart';
 
@@ -89,7 +92,21 @@ class _MyLojasScreenState extends State<MyLojasScreen>
                   },
                 );
               }),
-              Container(color: Colors.blue,)
+              Consumer<DicasMixLojasManager>(
+                builder: (_, dicasLojasManager, __){
+                  if(dicasLojasManager.loading)
+                    return CircularProgressIndicator();
+
+                  return Container(
+                    child: ListView.builder(
+                      itemCount: dicasLojasManager.dicasMixLojas.length,
+                      itemBuilder: (_, index){
+                        return DicasMixLojasTile(dicasLojasManager.dicasMixLojas[index]);
+                      },
+                    ),
+                  );
+                },
+              )
             ],
           );
         },

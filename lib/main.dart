@@ -5,6 +5,8 @@ import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/adm/adm_manager.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
+import 'package:mix_brasil/model/dicas_mix/dicas_mix_desapegos_manager.dart';
+import 'package:mix_brasil/model/dicas_mix/dicas_mix_lojas_manager.dart';
 import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
@@ -64,6 +66,14 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => BannersManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DicasMixLojasManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DicasMixDesapegosManager(),
           lazy: false,
         ),
       ],

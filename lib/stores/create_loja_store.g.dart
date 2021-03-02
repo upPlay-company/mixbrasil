@@ -78,12 +78,12 @@ mixin _$CreateLojaStore on _CreateLojaStore, Store {
       (_$vagaValidComputed ??= Computed<bool>(() => super.vagaValid,
               name: '_CreateLojaStore.vagaValid'))
           .value;
-  Computed<String> _$whatsErrorComputed;
+  Computed<bool> _$whatsValidComputed;
 
   @override
-  String get whatsError =>
-      (_$whatsErrorComputed ??= Computed<String>(() => super.whatsError,
-              name: '_CreateLojaStore.whatsError'))
+  bool get whatsValid =>
+      (_$whatsValidComputed ??= Computed<bool>(() => super.whatsValid,
+              name: '_CreateLojaStore.whatsValid'))
           .value;
   Computed<bool> _$formValidComputed;
 
@@ -360,7 +360,7 @@ categoryValid: ${categoryValid},
 address: ${address},
 price: ${price},
 vagaValid: ${vagaValid},
-whatsError: ${whatsError},
+whatsValid: ${whatsValid},
 formValid: ${formValid},
 sendPressed: ${sendPressed}
     ''';

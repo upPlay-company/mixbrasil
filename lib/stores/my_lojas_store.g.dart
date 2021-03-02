@@ -47,11 +47,55 @@ mixin _$MyLojasStore on _MyLojasStore, Store {
     });
   }
 
+  final _$hideCardAtom = Atom(name: '_MyLojasStore.hideCard');
+
+  @override
+  bool get hideCard {
+    _$hideCardAtom.reportRead();
+    return super.hideCard;
+  }
+
+  @override
+  set hideCard(bool value) {
+    _$hideCardAtom.reportWrite(value, super.hideCard, () {
+      super.hideCard = value;
+    });
+  }
+
+  final _$deleteAdAsyncAction = AsyncAction('_MyLojasStore.deleteAd');
+
+  @override
+  Future<void> deleteAd(AdLojas adLojas) {
+    return _$deleteAdAsyncAction.run(() => super.deleteAd(adLojas));
+  }
+
+  final _$destacarAdAsyncAction = AsyncAction('_MyLojasStore.destacarAd');
+
+  @override
+  Future<void> destacarAd(AdLojas adLojas) {
+    return _$destacarAdAsyncAction.run(() => super.destacarAd(adLojas));
+  }
+
+  final _$_MyLojasStoreActionController =
+      ActionController(name: '_MyLojasStore');
+
+  @override
+  void setHidePag(bool value) {
+    final _$actionInfo = _$_MyLojasStoreActionController.startAction(
+        name: '_MyLojasStore.setHidePag');
+    try {
+      return super.setHidePag(value);
+    } finally {
+      _$_MyLojasStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
 AllAds: ${AllAds},
 loading: ${loading},
+hideCard: ${hideCard},
 activeAds: ${activeAds}
     ''';
   }

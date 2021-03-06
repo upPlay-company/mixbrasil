@@ -27,6 +27,7 @@ class AdLojas {
   List<dynamic> imgOfertas = [];
   int pos;
   int views, viewsWhats;
+  int viewsWhatsDestaque;
   String idCat, idAdsUser, idUser;
   Categorias category;
   UserUser user = GetIt.I<UserManager>().user;
@@ -77,6 +78,8 @@ class AdLojas {
     idUser = snapshot.data()['user'];
     idAdsUser = snapshot.data()['idAdsUser'];
     viewsWhats = snapshot.data()['viewsWhats'];
+    viewsDestaque = snapshot.data()['viewsDestaque'];
+    viewsWhatsDestaque = snapshot.data()['viewsWhatsDestaque'];
     status = AdStatus.values[snapshot.data()['status'] as int];
     idAds = snapshot.data()['idAds'];
     solicitacao = snapshot.data()['solicitacao'] as int;
@@ -98,6 +101,7 @@ class AdLojas {
         'number': adLojas.number,
         'views': adLojas.views = 0,
         'viewsDestaque': adLojas.viewsDestaque = 0,
+        'viewsWhatsDestaque': adLojas.viewsWhatsDestaque = 0,
         'viewsWhats': adLojas.viewsWhats = 0,
         'created': FieldValue.serverTimestamp(),
         'status': adLojas.status.index,

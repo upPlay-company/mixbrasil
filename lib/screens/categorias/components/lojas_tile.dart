@@ -32,7 +32,7 @@ class _LojasTileState extends State<LojasTile> {
       DocumentReference firestoreRefUser = firestore
           .collection('users')
           .doc(widget.lojas.idUser)
-          .collection('loja')
+          .collection('lojas')
           .doc(widget.lojas.idAdsUser);
 
       DocumentReference firestoreRefAds = firestore

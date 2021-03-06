@@ -50,7 +50,8 @@ class DestacadolojasTile extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      Text(
+                      // TODO: PASSAR AS VISUALIZAÇÕES DE DESTAQUE LOJAS
+                      /*Text(
                         'Cliques na Loja: ${adLojas.views}',
                         style: TextStyle(
                           fontSize: 14,
@@ -63,7 +64,7 @@ class DestacadolojasTile extends StatelessWidget {
                           fontSize: 14,
                           color: Colors.grey[800],
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),

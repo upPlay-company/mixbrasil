@@ -95,6 +95,7 @@ class AddressInputField extends StatelessWidget {
                 try {
                   await context.read<UserManager>().setAddress(address);
                 } catch (e){
+                  // ignore: deprecated_member_use
                   Scaffold.of(context).showSnackBar(
                       SnackBar(
                         content: Text('$e',

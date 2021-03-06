@@ -62,6 +62,7 @@ class _CepInputFieldState extends State<CepInputField> {
                 try {
                   await context.read<UserManager>().getAddress(cepController.text);
                 } catch (e){
+                  // ignore: deprecated_member_use
                   Scaffold.of(context).showSnackBar(
                       SnackBar(
                         content: Text('$e',

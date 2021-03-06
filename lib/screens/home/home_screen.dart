@@ -87,7 +87,6 @@ class HomeScreen extends StatelessWidget {
                               // ignore: deprecated_member_use
                               return RaisedButton(
                                 onPressed: () {
-                                  //Navigator.of(context).pushNamed('/cep');
                                   Navigator.of(context).push(MaterialPageRoute(
                                     builder: (_) => FilterLocal()
                                   ));
@@ -124,7 +123,9 @@ class HomeScreen extends StatelessWidget {
                               // ignore: deprecated_member_use
                               return RaisedButton(
                                 onPressed: () {
-                                  Navigator.of(context).pushNamed('/cep');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => FilterLocal()
+                                  ));
                                 },
                                 color: Theme.of(context).secondaryHeaderColor,
                                 child: Padding(

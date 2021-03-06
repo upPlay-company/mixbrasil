@@ -213,6 +213,7 @@ class UserManager extends ChangeNotifier {
     snapAnuncio.docs.map((a) => DesapegoData.fromDocument(a)).toList();
   }
 
+  // ignore: missing_return
   Future<void> saveIdState(UF uf, UserUser user){
 
     loading = true;

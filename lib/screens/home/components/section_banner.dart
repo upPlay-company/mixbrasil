@@ -21,7 +21,7 @@ class SectionBanner extends StatelessWidget {
               aspectRatio: 2.0,
               enlargeCenterPage: true,
             ),
-            itemBuilder: (_, index) {
+            itemBuilder: (_, index, realIdx) {
               return Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),

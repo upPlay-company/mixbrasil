@@ -108,7 +108,7 @@ class UserUser extends ChangeNotifier {
   }
 
   Future<void> saveToken() async {
-    final token = await FirebaseMessaging().getToken();
+    final token = await FirebaseMessaging.instance.getToken();
     tokensReference.doc(token).set({
       'token': token,
       'updateAt': FieldValue.serverTimestamp(),

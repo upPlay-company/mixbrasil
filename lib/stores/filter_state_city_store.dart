@@ -41,12 +41,8 @@ abstract class _FilterStateCityStore with Store {
   @action
   Future<void> _send() async {
 
-    print('entrou');
-
     final UserManager userManager = GetIt.I<UserManager>();
-
-    
-      await UserManager().saveIdState(uf, userManager.user);
+    await UserManager().saveIdState(uf, userManager.user);
 
     saveState = true;
   }

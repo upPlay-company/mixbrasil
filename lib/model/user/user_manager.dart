@@ -215,11 +215,14 @@ class UserManager extends ChangeNotifier {
 
   // ignore: missing_return
   Future<void> saveIdState(UF uf, UserUser user){
-
     loading = true;
     DocumentReference firestoreRef = firestore
         .collection('users')
         .doc(user.id);
+
+    print(user.id);
+
+    print(uf.id);
 
     firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
 

@@ -49,181 +49,144 @@ class DesapegoScreen extends StatelessWidget {
       ),
       body: CustomScrollView(
         slivers: [
-          SliverAppBar(
-            expandedHeight: 110,
-            snap: true,
-            floating: true,
-            elevation: 0,
-            title: Text(
-              'DESAPEGOS',
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
-            ),
-            backgroundColor: Colors.grey[50],
-            automaticallyImplyLeading: false,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 40, bottom: 20),
-              child: Container(
-                padding: EdgeInsets.only(left: 10),
-                child: Consumer<DestaqueDesapegoManager>(
-                  builder: (_, destaqueDesapegoManager, __) {
-                    if (destaqueDesapegoManager.search.isEmpty) {
-                      return Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          SizedBox(
-                            width: 190,
-                            // ignore: deprecated_member_use
-                            child: RaisedButton(
-                              onPressed: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        DesapegoCategorias()));
-                              },
-                              color: Theme.of(context).primaryColor,
-                              child: Text(
-                                'Todas as categorias',
-                                style: TextStyle(
-                                    color: Colors.white, fontSize: 16),
-                              ),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.horizontal(
-                                      left: Radius.circular(10),
-                                      right: Radius.circular(10))),
-                            ),
-                          ),
-                          Row(
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 25, bottom: 5),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, bottom: 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'DESAPEGOS',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 55,
+                    color: Colors.grey[50],
+                    padding: EdgeInsets.only(left: 10),
+                    child: Consumer<DestaqueDesapegoManager>(
+                      builder: (_, destaqueDesapegoManager, __) {
+                        if (destaqueDesapegoManager.search.isEmpty) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              /*SizedBox(
-                                width: 55,
-                                height: 100,
+                              SizedBox(
+                                width: 190,
+                                // ignore: deprecated_member_use
                                 child: RaisedButton(
-                                  color: Theme.of(context).primaryColor,
                                   onPressed: () {
-                                    // TODO: FILTRO DESAPEGO DESTAQUE
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) =>
+                                            DesapegoCategorias()));
                                   },
-                                  child: Icon(
-                                    Icons.filter_list_rounded,
-                                    color: Colors.white,
+                                  color: Theme.of(context).primaryColor,
+                                  child: Text(
+                                    'Todas as categorias',
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
                                   ),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.horizontal(
                                           left: Radius.circular(10),
                                           right: Radius.circular(10))),
                                 ),
-                              ),*/
-                              SizedBox(
-                                width: 5,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 10),
-                                child: SizedBox(
-                                  width: 55,
-                                  height: 100,
-                                  // ignore: deprecated_member_use
-                                  child: RaisedButton(
-                                    color: Theme.of(context).primaryColor,
-                                    onPressed: () async {
-                                      final search = await showDialog<String>(
-                                          context: context,
-                                          builder: (_) => SearchDialog(
-                                              destaqueDesapegoManager.search));
-                                      if (search != null) {
-                                        destaqueDesapegoManager.search = search;
-                                      }
-                                    },
-                                    child: Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.horizontal(
-                                            left: Radius.circular(10),
-                                            right: Radius.circular(10))),
+                              Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5,
                                   ),
-                                ),
-                              ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 10),
+                                    child: SizedBox(
+                                      width: 55,
+                                      height: 100,
+                                      // ignore: deprecated_member_use
+                                      child: RaisedButton(
+                                        color: Theme.of(context).primaryColor,
+                                        onPressed: () async {
+                                          final search = await showDialog<String>(
+                                              context: context,
+                                              builder: (_) => SearchDialog(
+                                                  destaqueDesapegoManager.search));
+                                          if (search != null) {
+                                            destaqueDesapegoManager.search = search;
+                                          }
+                                        },
+                                        child: Icon(
+                                          Icons.search,
+                                          color: Colors.white,
+                                          size: 20,
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.horizontal(
+                                                left: Radius.circular(10),
+                                                right: Radius.circular(10))),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
                             ],
-                          )
-                        ],
-                      );
-                    } else {
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            LayoutBuilder(
-                              builder: (_, constraints) {
-                                return GestureDetector(
-                                  onTap: () async {
-                                    final search = await showDialog<String>(
-                                        context: context,
-                                        builder: (_) => SearchDialog(
-                                            destaqueDesapegoManager.search));
-                                    if (search != null) {
-                                      destaqueDesapegoManager.search = search;
-                                    }
+                          );
+                        } else {
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 20, right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                LayoutBuilder(
+                                  builder: (_, constraints) {
+                                    return GestureDetector(
+                                      onTap: () async {
+                                        final search = await showDialog<String>(
+                                            context: context,
+                                            builder: (_) => SearchDialog(
+                                                destaqueDesapegoManager.search));
+                                        if (search != null) {
+                                          destaqueDesapegoManager.search = search;
+                                        }
+                                      },
+                                      child: Container(
+                                        child: Text(
+                                          destaqueDesapegoManager.search,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    );
                                   },
-                                  child: Container(
-                                    child: Text(
-                                      destaqueDesapegoManager.search,
-                                      style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 22,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                );
-                              },
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.close),
+                                  onPressed: () async {
+                                    destaqueDesapegoManager.search = '';
+                                  },
+                                ),
+                              ],
                             ),
-                            IconButton(
-                              icon: Icon(Icons.close),
-                              onPressed: () async {
-                                destaqueDesapegoManager.search = '';
-                              },
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
-                ),
+                          );
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          /*SliverGrid(
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200.0,
-              mainAxisSpacing: 20.0,
-              crossAxisSpacing: 10,
-              childAspectRatio: 4.0,
-            ),
-            delegate: SliverChildBuilderDelegate(
-              (BuildContext context, int index) {
-                return Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 20),
-                  child: RaisedButton(
-                      onPressed: () {},
-                      color: Theme.of(context).secondaryHeaderColor,
-                      child: Text(
-                        'Manaus',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              topRight: Radius.circular(20)))),
-                );
-              },
-              childCount: 4,
-            ),
-          ),*/
           SliverToBoxAdapter(
             child: Consumer<DestaqueDesapegoManager>(
               builder: (_, destaqueDesapegoManager, __) {

@@ -54,21 +54,16 @@ class HomeScreen extends StatelessWidget {
                 ),
               )
           ),
-        )
-          ],
+        )],
         ),
         body: CustomScrollView(slivers: [
-          SliverAppBar(
-            expandedHeight: 55,
-            snap: true,
-            floating: true,
-            elevation: 0,
-            backgroundColor: Theme.of(context).primaryColor,
-            automaticallyImplyLeading: false,
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.only(top: 5),
-              child: Container(
-                padding: EdgeInsets.only(left: 10),
+          SliverToBoxAdapter(
+            child: Container(
+              color: Theme.of(context).primaryColor,
+              height: 60,
+              padding: EdgeInsets.only(left: 10),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,83 +75,85 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(right: 20, bottom: 5),
                       child: SizedBox(
-                        width: 140,
-                        child: Consumer<UserManager>(
-                          builder: (_, userManager, __){
-                            if(userManager.isLoggedIn)
-                              // ignore: deprecated_member_use
-                              return RaisedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => FilterLocal()
-                                  ));
-                                },
-                                color: Theme.of(context).secondaryHeaderColor,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 14),
-                                      ),
-                                      Flexible(
-                                        child: Container(
-                                          child: Text(
-                                            '${userManager.user?.idState?.name ?? 'Brasil'}',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          width: 140,
+                          child: Consumer<UserManager>(
+                            builder: (_, userManager, __){
+                              if(userManager.isLoggedIn)
+                                return ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (_) => FilterLocal()
+                                    ));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).secondaryHeaderColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                        ),
+                                      )
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top:5),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Você está em:',
+                                          style: TextStyle(color: Colors.white, fontSize: 14),
+                                        ),
+                                        Flexible(
+                                          child: Container(
+                                            child: Text(
+                                              '${userManager.user?.idState?.name ?? 'Brasil'}',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(color: Colors.white, fontSize: 16),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
+                                );
+                              else
+                                return ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (_) => FilterLocal()
+                                    ));
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Theme.of(context).secondaryHeaderColor,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(20),
+                                          topRight: Radius.circular(20),
+                                        ),
+                                      )
                                   ),
-                                ),
-                              );
-                            else
-                              // ignore: deprecated_member_use
-                              return RaisedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => FilterLocal()
-                                  ));
-                                },
-                                color: Theme.of(context).secondaryHeaderColor,
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 14),
-                                      ),
-                                      Flexible(
-                                        child: Container(
-                                          child: Text(
-                                            'Brasil',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 16),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(top:5),
+                                    child: Column(
+                                      children: [
+                                        Text(
+                                          'Você está em:',
+                                          style: TextStyle(color: Colors.white, fontSize: 14),
+                                        ),
+                                        Flexible(
+                                          child: Container(
+                                            child: Text(
+                                              '${userManager.user?.idState?.name ?? 'Brasil'}',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(color: Colors.white, fontSize: 16),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(20),
-                                    topRight: Radius.circular(20),
-                                  ),
-                                ),
-                              );
-                          },
-                        )
+                                );
+                            },
+                          )
                       ),
                     ),
                   ],

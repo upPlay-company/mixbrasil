@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/criar_loja/criar_loja.dart';
 import 'package:mix_brasil/screens/criar_loja/criar_loja_screen.dart';
 import 'package:mix_brasil/stores/my_lojas_store.dart';
+import 'package:mix_brasil/screens/mylojas/components/hide_pag_lojas.dart';
 
 class ActiveLojasTile extends StatelessWidget {
 
@@ -212,12 +213,14 @@ class ActiveLojasTile extends StatelessWidget {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Venda mais rápido destacando a sua loja ${adLojas.name} por apenas R\$5,99 por 7 dias!'),
+            Text('Venda mais rápido destacando a sua loja ${adLojas.name} por apenas R\$39,90 por 7 dias!'),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text('Escolha uma forma de pagamento:'),
             ),
-            //HidePag(store: store),
+            HidePagLojas(store: store),
+            SizedBox(height: 10,),
+            Text('Obs.: Pagamento com cartão de crédito e boleto tem confirmação em 24hs!', style: TextStyle(fontSize: 14),)
           ],
         ),
         actions: [

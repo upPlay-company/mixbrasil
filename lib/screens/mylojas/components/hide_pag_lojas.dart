@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mix_brasil/stores/myads_store.dart';
+import 'package:mix_brasil/stores/my_lojas_store.dart';
 
-class HidePag extends StatelessWidget {
-  
-  HidePag({this.store});
-  
+class HidePagLojas extends StatelessWidget {
 
-  final MyAdsStore store;
+  HidePagLojas({this.store});
+
+
+  final MyLojasStore store;
 
 
   @override

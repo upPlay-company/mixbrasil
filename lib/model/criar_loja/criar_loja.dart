@@ -36,8 +36,7 @@ class AdLojas {
   String idAds;
   String idAdsDestaque;
   String mensagem;
-  bool hideCredito;
-  bool hideBoleto;
+  String hidePag;
   AdStatus status = AdStatus.ACTIVE;
   int solicitacao;
 
@@ -390,8 +389,7 @@ class AdLojas {
       'destaque': adLojas.destaque = false,
       'mensagem': adLojas.mensagem = 'Quero destarcar minha Loja!',
       'idCat': adLojas.idCat,
-      'pag_credito': adLojas.hideCredito,
-      'pag_boleto': adLojas.hideBoleto,
+      'pagamento': adLojas.hidePag,
     };
 
     FirebaseFirestore.instance.collection('msg_destaca_loja').add(data);

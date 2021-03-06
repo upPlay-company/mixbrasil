@@ -246,6 +246,8 @@ class ActiveTile extends StatelessWidget {
               child: Text('Escolha uma forma de pagamento:'),
             ),
             HidePag(store: store),
+            SizedBox(height: 10,),
+            Text('Obs.: Pagamento com cartão de crédito e boleto tem confirmação em 24hs!', style: TextStyle(fontSize: 14),)
           ],
         ),
         actions: [

@@ -50,13 +50,13 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
   final _$hideCardAtom = Atom(name: '_MyAdsStore.hideCard');
 
   @override
-  bool get hideCard {
+  String get hideCard {
     _$hideCardAtom.reportRead();
     return super.hideCard;
   }
 
   @override
-  set hideCard(bool value) {
+  set hideCard(String value) {
     _$hideCardAtom.reportWrite(value, super.hideCard, () {
       super.hideCard = value;
     });
@@ -93,11 +93,11 @@ mixin _$MyAdsStore on _MyAdsStore, Store {
   final _$_MyAdsStoreActionController = ActionController(name: '_MyAdsStore');
 
   @override
-  void setHidePag(bool value) {
+  void setHidePagCard(String value) {
     final _$actionInfo = _$_MyAdsStoreActionController.startAction(
-        name: '_MyAdsStore.setHidePag');
+        name: '_MyAdsStore.setHidePagCard');
     try {
-      return super.setHidePag(value);
+      return super.setHidePagCard(value);
     } finally {
       _$_MyAdsStoreActionController.endAction(_$actionInfo);
     }

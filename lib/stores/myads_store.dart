@@ -51,10 +51,10 @@ abstract class _MyAdsStore with Store {
   void refresh() => _getMyAds();
 
   @observable
-  bool hideCard = false;
+  String hideCard;
 
   @action
-  void setHidePag(bool value) => hideCard = value;
+  void setHidePagCard(String value) => hideCard = value;
 
   @action
   Future<void> soldAd(Ad ad) async {
@@ -72,8 +72,7 @@ abstract class _MyAdsStore with Store {
 
   @action
   Future<void> destacarAd(Ad ad) async {
-    ad.hideCredito = hideCard;
-    ad.hideBoleto = hideCard;
+    ad.hidePag = hideCard;
     loading = true;
     await Ad().destacar(ad);
     refresh();

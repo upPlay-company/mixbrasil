@@ -14,8 +14,10 @@ class SectionDestaques extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final userManager = context.watch<UserManager>();
-    if(userManager.isLoggedIn && lojasDestaque.state == userManager.user.address.state){
+
+    Widget lojaTile() {
       return InkWell(
         onTap: () {
           if (lojasDestaque.id != null) {
@@ -56,52 +58,68 @@ class SectionDestaques extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10, bottom: 20),
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            lojasDestaque.name,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w800),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          lojasDestaque.promocao,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                        child: Text(
+                          lojasDestaque.name,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey[700]),
+                              fontSize: 14, fontWeight: FontWeight.w800),
                         ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'A partir de',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.black),
-                            ),
-                            Text(
-                              ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            size: 14,
+                            color: Colors.grey[700],
+                          ),
+                          Text(
+                            '${lojasDestaque.city}',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.grey[700]),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5,),
+                      Text(
+                        lojasDestaque.promocao,
+                        style: TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.grey[700]),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'A partir de',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: Colors.black),
+                          ),
+                          Text(
+                            ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w800,
+                                color: Theme
+                                    .of(context)
+                                    .primaryColor),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 )
               ],
@@ -109,102 +127,16 @@ class SectionDestaques extends StatelessWidget {
           ),
         ),
       );
-    } else if(!userManager.isLoggedIn) {
-      return InkWell(
-        onTap: () {
-          if (lojasDestaque.id != null) {
-            final product = context
-                .read<LojasDestaqueManager>()
-                .findProductByID(lojasDestaque.id);
-            if (product != null) {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) => LojasDestaqueScreen(lojasDestaque)),
-              );
-            }
-          }
-        },
-        child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-          height: 120,
-          child: Card(
-            elevation: 8,
-            color: Colors.cyan[50],
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 8, left: 8,),
-                  child: SizedBox(
-                    height: 135,
-                    width: 127,
-                    child: CachedNetworkImage(
-                      imageUrl: lojasDestaque.img.isEmpty ?
-                      'https://static.thenounproject.com/png/194055-200.png' :
-                      lojasDestaque.img.first,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 10, bottom: 20),
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Expanded(
-                          child: Text(
-                            lojasDestaque.name,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w800),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                        Text(
-                          lojasDestaque.promocao,
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.grey[700]),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          children: [
-                            Text(
-                              'A partir de',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Colors.black),
-                            ),
-                            Text(
-                              ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w800,
-                                  color: Theme.of(context).primaryColor),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      );
-    } else {
-      return Container();
     }
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == lojasDestaque.state)
+      return lojaTile();
+    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
+      return lojaTile();
+    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null)
+      return lojaTile();
+    else if (!userManager.isLoggedIn)
+      return lojaTile();
+    else
+      return Container();
   }
 }

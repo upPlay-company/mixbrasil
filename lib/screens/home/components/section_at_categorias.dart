@@ -19,7 +19,7 @@ class SectionAtCategorias extends StatelessWidget {
         );
       },
       child: Container(
-        width: 160,
+        width: 170,
         child: Card(
           elevation: 4,
           child: Column(
@@ -27,8 +27,8 @@ class SectionAtCategorias extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                  height: 50,
-                  width: 50,
+                  height: 40,
+                  width: 40,
                   child: Image.network(
                     snapshot.data()['image'],
                     fit: BoxFit.cover,)),

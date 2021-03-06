@@ -22,6 +22,8 @@ class ItensDesapegosScreen extends StatelessWidget {
 
     final userManager = context.watch<UserManager>();
 
+    // TODO: COLOCAR BAIRRO NOS DESAPEGOS
+
     final clearNumber = desapego.number.replaceAll(RegExp('[^0-9]'), '');
     final Color primaryColor = Theme.of(context).primaryColor;
 
@@ -146,7 +148,7 @@ class ItensDesapegosScreen extends StatelessWidget {
                               left: 20,
                             ),
                             child: Text(
-                              "${desapego.cidade} ${userManager.isLoggedIn ? '/': ''}${userManager.isLoggedIn ? userManager.user.address.district : ''} \n",
+                              "${desapego.cidade} ${userManager.isLoggedIn ? '/': ''}${desapego?.district ?? ''} \n",
                               style: TextStyle(
                                 fontSize: 12,
                               ),
@@ -243,20 +245,3 @@ class ItensDesapegosScreen extends StatelessWidget {
     }
   }
 }
-
-  /*void saveFavoritos(){
-    final user = GetIt.I<UserManager>().user;
-
-    final Map<String, dynamic> data = {
-      'name': desapego.name,
-      'descricao': desapego.descricao,
-      'price': desapego.price,
-      'categoria': desapego.category,
-      'number': desapego.number,
-      'user': desapego.idUser,
-      'img': desapego.img
-    };
-
-    FirebaseFirestore.instance.collection('users').doc(user.id).collection('favoritos').add(data);
-
-  }*/

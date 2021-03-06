@@ -27,7 +27,7 @@ class LojasData extends ChangeNotifier {
     state = snapshot.data()["estado"];
     trabalheConosco = snapshot.data()["trabalhe_conosco"];
     city = snapshot.data()['cidade'];
-    number = snapshot.data()['whatsapp'];
+    number = snapshot.data()['number'];
     views = snapshot.data()['views'];
     idCat = snapshot.data()["idCat"];
     idUser = snapshot.data()['user'];

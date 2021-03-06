@@ -10,6 +10,7 @@ class DesapegoDestaque extends ChangeNotifier {
     number = document.data()['number'] as String;
     estado = document.data()['estado'] as String;
     cidade = document.data()['cidade'] as String;
+    district = document.data()['bairro'] as String;
     price = document.data()['price'] as double;
     img = List<String>.from(document.data()['img'] as List<dynamic>);
     viewsDestaque = document.data()['viewsDestaque'];
@@ -37,6 +38,7 @@ class DesapegoDestaque extends ChangeNotifier {
   int pos;
   String promocao;
   String cidade;
+  String district;
   String anunciante;
   String estado;
   String number;

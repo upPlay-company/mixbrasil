@@ -6,7 +6,7 @@ import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/cep_user/components/uf_list.dart';
+import 'package:mix_brasil/screens/cep_user/uf_list.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
 import 'package:provider/provider.dart';
@@ -104,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            '${userManager.user?.address?.city ?? 'Brasil'}',
+                                            '${userManager.user?.idState?.name ?? 'Brasil'}',
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),

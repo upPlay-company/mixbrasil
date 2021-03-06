@@ -82,7 +82,6 @@ class _LojasTileState extends State<LojasTile> {
                   padding: const EdgeInsets.only(top: 10, bottom: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Expanded(
                         child: Text(
@@ -94,6 +93,23 @@ class _LojasTileState extends State<LojasTile> {
                       SizedBox(
                         height: 5,
                       ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            size: 14,
+                            color: Colors.grey[700],
+                          ),
+                          Text(
+                            '${widget.lojas.city}',
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.grey[700]),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 5,),
                       Text(
                         widget.lojas.promocao,
                         style: TextStyle(
@@ -102,7 +118,7 @@ class _LojasTileState extends State<LojasTile> {
                             color: Colors.grey[700]),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: 10,
                       ),
                       Row(
                         children: [
@@ -133,15 +149,14 @@ class _LojasTileState extends State<LojasTile> {
     }
     //Fim da Declarações de funções
 
-    if (userManager.isLoggedIn && userManager.user.address.state == widget.lojas.state)
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.lojas.state)
+      return lojaTile();
+    else if(userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
+      return lojaTile();
+    else if(userManager.isLoggedIn)
       return lojaTile();
     else if (!userManager.isLoggedIn)
       return lojaTile();
-    /*Navigator.of(context).push(
-        MaterialPageRoute(
-            builder: (context) => ReplaceNotLoja()),
-        // retorna pra mesma pagina sem informação
-      );*/
     else
       return Container();
   }

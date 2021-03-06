@@ -11,13 +11,13 @@ import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
-import 'package:mix_brasil/screens/cep_user/cep_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:mix_brasil/stores/category_desapego_store.dart';
 import 'package:mix_brasil/stores/category_lojas_store.dart';
 import 'package:mix_brasil/stores/favorite_store.dart';
+import 'package:mix_brasil/stores/filter_state_store.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 
@@ -33,6 +33,7 @@ void setupLocators() {
   GetIt.I.registerSingleton(UserManager());
   GetIt.I.registerSingleton(FavoriteStore());
   GetIt.I.registerSingleton(CategoryLojasStore());
+  GetIt.I.registerSingleton(FilterStateStore());
 }
 
 class MyApp extends StatelessWidget {
@@ -96,10 +97,6 @@ class MyApp extends StatelessWidget {
         initialRoute: 'inicial',
         onGenerateRoute: (settings){
           switch(settings.name){
-            case '/cep':
-              return MaterialPageRoute(
-                builder: (_) => CepUserScreen(),
-              );
             case '/desapego_destaque':
               return MaterialPageRoute(
                 builder: (_) => DesapegoScreen(),

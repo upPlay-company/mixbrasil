@@ -92,18 +92,6 @@ class MinhaContaScreen extends StatelessWidget {
                           ),
                         ),
                         TextFormField(
-                          readOnly: true,
-                          initialValue: userManager.user.address.zipCode,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: 'CEP',
-                            labelStyle: TextStyle(
-                                fontSize: 18,
-                                color: Theme.of(context).primaryColor),
-                            suffixIcon: Icon(Icons.lock),
-                          ),
-                        ),
-                        TextFormField(
                           initialValue: userManager.user.phone,
                           keyboardType: TextInputType.number,
                           validator: (phone) {

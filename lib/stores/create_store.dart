@@ -44,14 +44,14 @@ abstract class _CreateStore with Store {
   void setTitle(String value) => title = value;
 
   @computed
-  bool get titleValid => title.length >= 6;
+  bool get titleValid => title.length <= 30;
   String get titleError {
     if (!showErrors || titleValid)
       return null;
     else if (title.isEmpty)
       return 'Campo obrigatório';
     else
-      return 'Título muito curto';
+      return 'Título muito grande';
   }
 
   @observable

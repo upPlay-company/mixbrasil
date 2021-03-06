@@ -18,6 +18,7 @@ class DesapegoData extends ChangeNotifier {
   int pos;
   String promocao;
   String cidade;
+  String district;
   String anunciante;
   String estado;
   String number;
@@ -46,6 +47,7 @@ class DesapegoData extends ChangeNotifier {
     promocao = snapshot.data()["promocao"];
     estado = snapshot.data()["estado"];
     cidade = snapshot.data()["cidade"];
+    district = snapshot.data()['bairro'];
     pos = snapshot.data()["pos"];
     number = snapshot.data()["number"];
     anunciante = snapshot.data()["anunciante"];

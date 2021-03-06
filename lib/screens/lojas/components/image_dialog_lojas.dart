@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 class ImageDialogLojas extends StatelessWidget {
 
@@ -11,10 +12,16 @@ class ImageDialogLojas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Dialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      elevation: 8,
+      elevation: 0,
+      backgroundColor: Colors.transparent,
       child: Container(
           width: 700,
-          child: Image.network(image, fit: BoxFit.cover,)),
+          child: PhotoView(
+            backgroundDecoration: BoxDecoration(
+              color: Colors.transparent,
+            ),
+            imageProvider: NetworkImage(image),
+          )),
     );
   }
 }

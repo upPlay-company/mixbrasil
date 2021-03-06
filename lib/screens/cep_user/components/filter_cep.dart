@@ -1,71 +1,88 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
+import 'package:mix_brasil/common/error_box.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
-import 'package:mix_brasil/repositories/ibge_repository.dart';
+import 'package:mix_brasil/stores/filter_state_store.dart';
 
-class FilterCep extends StatefulWidget {
-  @override
-  _FilterCepState createState() => _FilterCepState();
-}
+class FilterState extends StatelessWidget {
 
-class _FilterCepState extends State<FilterCep> {
+  FilterState({this.selected, this.showAll});
 
-  Future<List<UF>> listState;
+  final UF selected;
+  final bool showAll;
 
-  @override
-  void initState() {
-    super.initState();
-    listState = IBGERepository().getUFList();
-  }
+  final FilterStateStore filterStateStore = GetIt.I<FilterStateStore>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Estados'),
-        centerTitle: true,
+    return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage('images/Fundo_mix.png'),
+            fit: BoxFit.cover
+        ),
       ),
-      body: Center(
-        child: Card(
-          margin: EdgeInsets.all(20),
-          elevation: 8,
-          child: FutureBuilder<List<UF>>(
-            future: listState,
-            builder: (context, snapshot){
-              if(snapshot.hasData){
-                return ListView.separated(
-                  itemCount: snapshot.data.length,
-                  itemBuilder: (_, index){
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: const Text('Estados'),
+          centerTitle: true,
+          elevation: 0,
+        ),
+        body: Observer(builder: (_) {
+          if(filterStateStore.error != null) {
+            return ErrorBox(
+              message: filterStateStore.error,
+            );
+          } else if(filterStateStore.listState.isEmpty) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            final states = showAll
+                ? filterStateStore.allStateList
+                : filterStateStore.listState;
 
-                    final category = snapshot.data[index].name;
+            return ListView.separated(
+              itemCount: states.length,
+              separatorBuilder: (_, __){
+                return Divider(height: 0.1, color: Colors.grey,);
+              },
+              itemBuilder: (_, index) {
+                final state = states[index];
 
-                    return GestureDetector(
-                      onTap: (){
-                        print(category);
-                        Navigator.of(context).pop(category);
-                      },
-                      child: Container(
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: Text(
-                          snapshot.data[index].name,
-                          style: TextStyle(
-                            color: Colors.grey[700],
+                return InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop(state);
+                  },
+                  child: Container(
+                    height: 50,
+                    color: state.id == selected?.id ?
+                    Theme.of(context).primaryColor.withAlpha(100) : null,
+                    alignment: Alignment.center,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text(
+                            state.name,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: state.id == selected?.id ?
+                                FontWeight.bold : null
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                  separatorBuilder: (_, __){
-                    return Divider(height: 0.1, color: Colors.grey,);
-                  },
+                      ],
+                    ),
+                  ),
                 );
-              } else if(snapshot.hasError){
-                return Text('${snapshot.error}');
-              }
-              return CircularProgressIndicator();
-            },
-          ),
+              },
+            );
+          }
+        },
         ),
       ),
     );

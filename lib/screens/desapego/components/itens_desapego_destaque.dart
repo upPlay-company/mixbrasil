@@ -27,6 +27,8 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
   @override
   Widget build(BuildContext context) {
 
+    // TODO: COLOCAR BAIRRO NOS DESAPEGOS
+
     final userManager = context.watch<UserManager>();
 
     final clearNumber = desapegoDestaque.number.replaceAll(RegExp('[^0-9]'), '');
@@ -126,7 +128,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
                               left: 20,
                             ),
                             child: Text(
-                              "${desapegoDestaque.cidade} ${userManager.isLoggedIn ? '/': ''}${userManager.isLoggedIn ? userManager.user.address.district : ''} \n",
+                              "${desapegoDestaque.cidade} ${userManager.isLoggedIn ? '/': ''}${desapegoDestaque?.district ?? ''} \n",
                               style: TextStyle(
                                 fontSize: 12,
                               ),

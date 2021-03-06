@@ -151,7 +151,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                     showModal: _showModalCupons,
                                   ),
                                   story(
-                                    "Trabalhe conosco",
+                                    "\nVagas",
                                     rota: TrabalheConosco(lojas),
                                   ),
                                 ],

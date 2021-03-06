@@ -23,10 +23,12 @@ class Ad {
     address = Address(
       cidade: City(name: document.data()['cidade'] as String),
       uf: UF(initials: document.data()['estado']as String),
-      zipCode: document.data()['zipCode']
+      zipCode: document.data()['zipCode'],
+      district: document.data()['bairro'],
     );
     user = UserUser(
-      id: user.id
+      id: user.id,
+      idState: user.idState
     );
     category = DesapegoCategory(
       id: document.id,
@@ -81,6 +83,7 @@ class Ad {
         'estado': ad.address.uf.initials,
         'cidade': ad.address.cidade.name,
         'zipCode': ad.address.zipCode,
+        'bairro': ad.address.district,
         'categoria': ad.category.name,
         'anunciante': ad.user.name,
         'number': ad.user.phone,

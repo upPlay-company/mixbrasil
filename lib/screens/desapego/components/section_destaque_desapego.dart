@@ -22,15 +22,15 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-
     final userManager = context.watch<UserManager>();
 
-    if(userManager.isLoggedIn && userManager.user.address.state == widget.desapegoDestaque.estado) {
+    Widget lojaTile() {
       return InkWell(
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                  builder: (context) => ItensDestaqueDesapego(widget.desapegoDestaque)),
+                  builder: (context) =>
+                      ItensDestaqueDesapego(widget.desapegoDestaque)),
             );
           },
           child: Container(
@@ -42,13 +42,16 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                 child: Row(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
+                      padding: const EdgeInsets.only(
+                          left: 8, top: 8, bottom: 8),
                       child: SizedBox(
                         height: 135,
                         width: 127,
                         child: CachedNetworkImage(
-                          imageUrl: widget.desapegoDestaque.img.isEmpty ?
-                          'https://static.thenounproject.com/png/194055-200.png' :
+                          imageUrl: widget.desapegoDestaque.img.isEmpty
+                              ?
+                          'https://static.thenounproject.com/png/194055-200.png'
+                              :
                           widget.desapegoDestaque.img.first,
                           fit: BoxFit.cover,
                         ),
@@ -91,7 +94,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                               ),
                               Expanded(
                                 child: Text(
-                                  '${widget.desapegoDestaque.cidade}/${userManager.user.address.district}',
+                                  '${widget.desapegoDestaque.cidade} ${widget.desapegoDestaque?.district == null ? '' : '/'} ${widget.desapegoDestaque?.district ?? ''}',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w700,
@@ -103,7 +106,13 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                           Padding(
                             padding: const EdgeInsets.only(top: 10,),
                             child: Text(
-                              'Criado em: ${widget.desapegoDestaque.created.toDate().day}/${widget.desapegoDestaque.created.toDate().month}/${widget.desapegoDestaque.created.toDate().year}',
+                              'Criado em: ${widget.desapegoDestaque.created
+                                  .toDate()
+                                  .day}/${widget.desapegoDestaque.created
+                                  .toDate()
+                                  .month}/${widget.desapegoDestaque.created
+                                  .toDate()
+                                  .year}',
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w700,
@@ -115,11 +124,14 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                             child: Row(
                               children: <Widget>[
                                 Text(
-                                  'R\$${widget.desapegoDestaque.price.toStringAsFixed(2)}',
+                                  'R\$${widget.desapegoDestaque.price
+                                      .toStringAsFixed(2)}',
                                   textScaleFactor: 1.2,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).primaryColor,
+                                    color: Theme
+                                        .of(context)
+                                        .primaryColor,
                                   ),
                                 ),
                               ],
@@ -133,110 +145,16 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
               )
           )
       );
-    } else if(!userManager.isLoggedIn)
-      return InkWell(
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-                builder: (context) => ItensDestaqueDesapego(widget.desapegoDestaque)),
-          );
-        },
-        child: Container(
-            height: 120,
-            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-            child: Card(
-              elevation: 8,
-              color: Colors.white,
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 8, top: 8, bottom: 8),
-                    child: SizedBox(
-                      height: 135,
-                      width: 127,
-                      child: CachedNetworkImage(
-                        imageUrl: widget.desapegoDestaque.img.isEmpty ?
-                        'https://static.thenounproject.com/png/194055-200.png' :
-                        widget.desapegoDestaque.img.first,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 3.0),
-                                child: Text(
-                                  widget.desapegoDestaque.name,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 5,),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              size: 12,
-                              color: Colors.grey[700],
-                            ),
-                            Text(
-                              '${widget.desapegoDestaque.cidade}',
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: Colors.grey[700]),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10,),
-                          child: Text(
-                            'Criado em: ${widget.desapegoDestaque.created.toDate().day}/${widget.desapegoDestaque.created.toDate().month}/${widget.desapegoDestaque.created.toDate().year}',
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.grey[700]),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 2, right: 10,),
-                          child: Row(
-                            children: <Widget>[
-                              Text(
-                                'R\$${widget.desapegoDestaque.price.toStringAsFixed(2)}',
-                                textScaleFactor: 1.2,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )));
+    }
+
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.desapegoDestaque.estado)
+      return lojaTile();
+    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
+      return lojaTile();
+    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null)
+      return lojaTile();
+    else if (!userManager.isLoggedIn)
+      return lojaTile();
     else
       return Container();
   }

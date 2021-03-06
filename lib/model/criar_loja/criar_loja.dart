@@ -67,7 +67,8 @@ class AdLojas {
     address = Address(
         cidade: City(name: snapshot.data()['cidade'] as String),
         uf: UF(initials: snapshot.data()['estado']as String),
-        zipCode: snapshot.data()['zipCode']
+        zipCode: snapshot.data()['zipCode'],
+        district: snapshot.data()['bairro']
     );
     promocao = snapshot.data()["promocao"];
     trabalheConosco = snapshot.data()["trabalhe_conosco"];
@@ -91,6 +92,7 @@ class AdLojas {
         'price': adLojas.price,
         'estado': adLojas.address.uf.initials,
         'cidade': adLojas.address.cidade.name,
+        'bairro': adLojas.address.district,
         'zipCode': adLojas.address.zipCode,
         'categoria': adLojas.category.name,
         'anunciante': adLojas.user.name,

@@ -11,6 +11,16 @@ class UF {
   String initials;
   String name;
 
+  UF listUF;
+
+  Future<void> loadCity(UF uf) async {
+
+    listUF = uf;
+
+    print(listUF);
+
+  }
+
   @override
   String toString() {
     return 'UF{id: $id, initials: $initials, name: $name}';

@@ -125,7 +125,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                                       showModal: _showModalCupons,
                                     ),
                                     story(
-                                      "Trabalhe conosco",
+                                      "\nVagas",
                                       rota: TrabalheConoscoDestaque(lojasDestaque),
                                     ),
                                   ],

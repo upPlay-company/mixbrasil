@@ -212,4 +212,17 @@ class UserManager extends ChangeNotifier {
 
     snapAnuncio.docs.map((a) => DesapegoData.fromDocument(a)).toList();
   }
+
+  Future<void> saveIdState(UF uf, UserUser user){
+
+    loading = true;
+    DocumentReference firestoreRef = firestore
+        .collection('users')
+        .doc(user.id);
+
+    firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
+
+    loading = false;
+
+  }
 }

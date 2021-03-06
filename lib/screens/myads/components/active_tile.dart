@@ -20,6 +20,8 @@ class ActiveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    print(ad.user.idState);
     return Padding(
       padding: const EdgeInsets.only(top: 5, left: 10, right: 10),
       child: Card(

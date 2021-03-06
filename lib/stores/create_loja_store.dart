@@ -103,14 +103,14 @@ abstract class _CreateLojaStore with Store {
   void SetPromocao(String value) => promocao = value;
 
   @computed
-  bool get promocaoValid => promocao.length >= 6;
+  bool get promocaoValid => promocao.length <= 30;
   String get promocaoError {
     if (!showErrors || promocaoValid)
       return null;
     else if (promocao.isEmpty)
       return 'Campo obrigatório';
     else
-      return 'Promoção muito curto';
+      return 'Promoção muito grande';
   }
 
   @observable

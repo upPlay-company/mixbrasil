@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mix_brasil/screens/lojas/components/image_dialog_lojas.dart';
 
@@ -95,88 +96,99 @@ class _ProductScreenState extends State<ProductScreen> {
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.5,
-              width: MediaQuery.of(context).size.width,
-              child: Carousel(
-                images: widget.lojas.img.map((url) {
-                  return NetworkImage(url);
-                }).toList(),
-                boxFit: BoxFit.cover,
-                dotSize: 4.0,
-                dotSpacing: 15.0,
-                dotBgColor: Colors.transparent,
-                dotColor: primaryColor,
-                autoplayDuration: Duration(seconds: 5),
+      body: ListView(
+        children: [
+          Container(
+            color: Colors.grey[100],
+            height: MediaQuery.of(context).size.height * 0.5,
+            width: MediaQuery.of(context).size.width,
+            child: Carousel(
+              images: widget.lojas.img.map((url) {
+                return GestureDetector(
+                  onTap: (){
+                    showDialog(
+                        context: context,
+                        builder: (_) => ImageDialogLojas(
+                          image: url,
+                        )
+                    );
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: NetworkImage(url)
+                        )
+                    ),
+                  ),
+                );
+              }).toList(),
+              boxFit: BoxFit.cover,
+              dotSize: 4.0,
+              dotSpacing: 15.0,
+              dotBgColor: Colors.transparent,
+              dotColor: primaryColor,
+              showIndicator: false,
+              autoplayDuration: Duration(seconds: 5),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).size.width * 0.8,
-              ),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20.0,
+                    left: 20,
+                    right: 20,
                   ),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        top: 20.0,
-                        left: 20,
-                        right: 20,
-                      ),
-                      child: Center(
-                        child: Expanded(
-                          child: Column(
-                            children: [
-                              Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  story(
-                                    "\nStory",
-                                    showModal: _showModalOfertas,
-                                  ),
-                                  story(
-                                    "\nCupons",
-                                    showModal: _showModalCupons,
-                                  ),
-                                  story(
-                                    "\nVagas",
-                                    rota: TrabalheConosco(lojas),
-                                  ),
-                                ],
+                  child: Center(
+                    child: Expanded(
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              story(
+                                "\nStory",
+                                showModal: _showModalOfertas,
                               ),
-                              styleButton(),
-                              ListView.builder(
-                                physics: ScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                itemCount: lojas.imgDestacadas.length,
-                                itemBuilder: (_, index){
-                                  return cardOfertas(index);
-                                },
-                              )
+                              story(
+                                "\nCupons",
+                                showModal: _showModalCupons,
+                              ),
+                              story(
+                                "\nVagas",
+                                rota: TrabalheConosco(lojas),
+                              ),
                             ],
                           ),
-                        ),
+                          styleButton(),
+                          ListView.builder(
+                            physics: ScrollPhysics(),
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            itemCount: lojas.imgDestacadas.length,
+                            itemBuilder: (_, index){
+                              return cardOfertas(index);
+                            },
+                          )
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       )
       );
   }
@@ -241,7 +253,12 @@ class _ProductScreenState extends State<ProductScreen> {
         return Container(
           child: Carousel(
             images: widget.lojas.imgCupons.map((url) {
-              return NetworkImage(url);
+              return PhotoView(
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                imageProvider: NetworkImage(url),
+              );
             }).toList(),
             boxFit: BoxFit.contain,
             borderRadius: true,
@@ -250,7 +267,7 @@ class _ProductScreenState extends State<ProductScreen> {
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
-            autoplayDuration: Duration(seconds: 5),
+            autoplay: false,
           ),
         );
       },
@@ -269,7 +286,12 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
           child: Carousel(
             images: widget.lojas.imgOfertas.map((url) {
-              return NetworkImage(url);
+              return PhotoView(
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                imageProvider: NetworkImage(url),
+              );
             }).toList(),
             boxFit: BoxFit.contain,
             radius: Radius.circular(30),
@@ -277,7 +299,7 @@ class _ProductScreenState extends State<ProductScreen> {
             dotSpacing: 15.0,
             dotBgColor: Colors.transparent,
             dotColor: primaryColor,
-            autoplayDuration: Duration(seconds: 5),
+            autoplay: false,
           ),
         );
       },

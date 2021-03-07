@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/helpers/validators.dart';
+import 'package:mix_brasil/main.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -215,7 +215,7 @@ class LoginScreen extends StatelessWidget {
                                                   return Navigator.of(context)
                                                       .push(MaterialPageRoute(
                                                           builder: (_) =>
-                                                              BaseScreen()));
+                                                              MyApp()));
                                               });
                                         }
                                       },
@@ -296,7 +296,7 @@ class LoginScreen extends StatelessWidget {
                                   }, onSuccess: () {
                                     Navigator.of(context).push(
                                           MaterialPageRoute(
-                                              builder: (_) => BaseScreen()));
+                                              builder: (_) => MyApp()));
                                   });
                                 },
                                 color: Theme.of(context).primaryColor,

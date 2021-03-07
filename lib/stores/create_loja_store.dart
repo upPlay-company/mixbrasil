@@ -24,6 +24,7 @@ abstract class _CreateLojaStore with Store {
     whats = adLojas.number ?? '';
     category = adLojas.category;
     priceText = adLojas.price?.toStringAsFixed(2) ?? '';
+    cpfCnpj = adLojas.cpfCnpj ?? '';
 
     if (adLojas.address != null)
       cepStore = CepStore(adLojas.address.zipCode);
@@ -142,6 +143,13 @@ abstract class _CreateLojaStore with Store {
   }
 
   @observable
+  String cpfCnpj = '';
+
+  @action
+  void setCpfCnpj(String value) => cpfCnpj = value;
+
+
+  @observable
   String priceText = '';
 
   @action
@@ -247,6 +255,7 @@ abstract class _CreateLojaStore with Store {
     adLojas.number = whats;
     adLojas.user = GetIt.I<UserManager>().user;
     adLojas.address = address;
+    adLojas.cpfCnpj = cpfCnpj;
 
     loading = true;
     try {

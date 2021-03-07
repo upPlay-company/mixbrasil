@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImageSourceDialog extends StatelessWidget {
@@ -55,20 +54,20 @@ class ImageSourceDialog extends StatelessWidget {
     final pickerFile = await ImagePicker().getImage(source: ImageSource.camera);
     if(pickerFile == null) return;
     final image = File(pickerFile.path);
-    imageSelected(image);
+    onImageSelected(image);
   }
 
   Future<void> getFromGallery() async {
     final pickerFile = await ImagePicker().getImage(source: ImageSource.gallery);
     if(pickerFile == null) return;
     final image = File(pickerFile.path);
-    imageSelected(image);
+    onImageSelected(image);
   }
 
-  Future<void> imageSelected(File image) async {
+  /*Future<void> imageSelected(File image) async {
     final croppedFile =  await ImageCropper.cropImage(
       sourcePath: image.path,
-      aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+      aspectRatio: CropAspectRatio(ratioX: 2, ratioY: 2),
       androidUiSettings: AndroidUiSettings(
         toolbarTitle: 'Editar Imagem',
         toolbarColor: Color(0xff078c9f),
@@ -82,5 +81,5 @@ class ImageSourceDialog extends StatelessWidget {
     );
     if(croppedFile != null )
       onImageSelected(croppedFile);
-  }
+  }*/
 }

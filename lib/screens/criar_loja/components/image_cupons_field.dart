@@ -28,7 +28,7 @@ class ImagesCuponsField extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Imagens Ofertas', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
+              Text('Imagens Cupons', style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.w800),
               )
             ],
           ),

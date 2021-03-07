@@ -27,6 +27,7 @@ class CepLojasField extends StatelessWidget {
               CepInputFormatter(),
             ],
             decoration: InputDecoration(
+              hintText: '12.345-678',
               errorText: createLojaStore.addressError,
               labelText: 'CEP *',
               labelStyle: TextStyle(
@@ -46,7 +47,7 @@ class CepLojasField extends StatelessWidget {
             return Container();
           else if (cepStore.address == null && cepStore.error == null)
             return LinearProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(Colors.purple),
+              valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
               backgroundColor: Colors.transparent,
             );
           else if (cepStore.error != null)

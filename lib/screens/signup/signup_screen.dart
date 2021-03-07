@@ -4,8 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:mix_brasil/helpers/validators.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:provider/provider.dart';
+import '../../main.dart';
 
 class SignUpScreen extends StatelessWidget {
 
@@ -250,7 +250,7 @@ class SignUpScreen extends StatelessWidget {
                                         user: user,
                                         onSuccess: (){
                                           Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (_) => BaseScreen()
+                                            builder: (_) => MyApp()
                                           ));
                                         },
                                         onFail: (e){

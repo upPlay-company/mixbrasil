@@ -20,6 +20,7 @@ class AdLojas {
 
   String id, name, promocao, trabalheConosco, number;
   double price;
+  String cpfCnpj;
   bool destaque;
   List<dynamic> img = [];
   List<dynamic> imgDestacadas = [];
@@ -83,6 +84,7 @@ class AdLojas {
     status = AdStatus.values[snapshot.data()['status'] as int];
     idAds = snapshot.data()['idAds'];
     solicitacao = snapshot.data()['solicitacao'] as int;
+    cpfCnpj = snapshot.data()['cpf_cnpj'];
   }
 
 
@@ -108,7 +110,8 @@ class AdLojas {
         'user': adLojas.user.id,
         'destaque': adLojas.destaque = false,
         'trabalhe_conosco': adLojas.trabalheConosco,
-        'solicitacao': adLojas.solicitacao = 0
+        'solicitacao': adLojas.solicitacao = 0,
+        'cpf_cnpj': adLojas.cpfCnpj
       };
 
       if (adLojas.id == null) {

@@ -27,6 +27,7 @@ class CepField extends StatelessWidget {
                 CepInputFormatter(),
               ],
               decoration: InputDecoration(
+                hintText: '12.345-678',
                 errorText: createStore.addressError,
                 labelText: 'CEP *',
                 labelStyle: TextStyle(

@@ -11,7 +11,7 @@ class CepRepository {
     final clearCep = cep.replaceAll(RegExp('[^0-9]'), '');
     if (clearCep.length != 8) return Future.error('CEP Inválido');
 
-    final endpoint = 'http://viacep.com.br/ws/$clearCep/json';
+    final endpoint = 'https://viacep.com.br/ws/$clearCep/json';
 
     try {
       final response = await Dio().get<Map>(endpoint);
@@ -20,7 +20,6 @@ class CepRepository {
         return Future.error('CEP Inválido');
 
       final ufList = await IBGERepository().getUFList();
-      print(ufList);
 
       return Address(
         zipCode: response.data['cep'],

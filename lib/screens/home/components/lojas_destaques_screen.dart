@@ -5,6 +5,7 @@ import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/screens/lojas/components/image_dialog_lojas.dart';
 import 'package:mix_brasil/screens/trabalhe_conosco/trabalhe_conosco_destaque.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
@@ -70,87 +71,98 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
           ],
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
-                child: Carousel(
-                  images: widget.lojasDestaque.img.map((url) {
-                    return NetworkImage(url);
-                  }).toList(),
-                  boxFit: BoxFit.cover,
-                  dotSize: 4.0,
-                  dotSpacing: 15.0,
-                  dotBgColor: Colors.transparent,
-                  dotColor: primaryColor,
+        body: ListView(
+          children: [
+            Container(
+              color: Colors.grey[100],
+              height: MediaQuery.of(context).size.height * 0.5,
+              width: MediaQuery.of(context).size.width,
+              child: Carousel(
+                images: widget.lojasDestaque.img.map((url) {
+                  return GestureDetector(
+                    onTap: (){
+                      showDialog(
+                          context: context,
+                          builder: (_) => ImageDialogLojas(
+                            image: url,
+                          )
+                      );
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(url)
+                          )
+                      ),
+                    ),
+                  );
+                }).toList(),
+                boxFit: BoxFit.cover,
+                dotSize: 4.0,
+                dotSpacing: 15.0,
+                dotBgColor: Colors.transparent,
+                showIndicator: false,
+                dotColor: primaryColor,
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.width * 0.8,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                      left: 20,
+                      right: 20,
                     ),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          top: 20.0,
-                          left: 20,
-                          right: 20,
-                        ),
-                        child: Center(
-                          child: Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                                  children: <Widget>[
-                                    story(
-                                      "\nStory",
-                                      showModal: _showModalOfertas,
-                                    ),
-                                    story(
-                                      "\nCupons",
-                                      showModal: _showModalCupons,
-                                    ),
-                                    story(
-                                      "\nVagas",
-                                      rota: TrabalheConoscoDestaque(lojasDestaque),
-                                    ),
-                                  ],
+                    child: Center(
+                      child: Expanded(
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                story(
+                                  "\nStory",
+                                  showModal: _showModalOfertas,
                                 ),
-                                styleButton(),
-                                ListView.builder(
-                                  physics: ScrollPhysics(),
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  itemCount: lojasDestaque.imgDestacadas.length,
-                                  itemBuilder: (_, index){
-                                    return cardOfertas(index);
-                                  },
-                                )
+                                story(
+                                  "\nCupons",
+                                  showModal: _showModalCupons,
+                                ),
+                                story(
+                                  "\nVagas",
+                                  rota: TrabalheConoscoDestaque(lojasDestaque),
+                                ),
                               ],
                             ),
-                          ),
+                            styleButton(),
+                            ListView.builder(
+                              physics: ScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              itemCount: lojasDestaque.imgDestacadas.length,
+                              itemBuilder: (_, index){
+                                return cardOfertas(index);
+                              },
+                            )
+                          ],
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         )
     );
   }
@@ -215,7 +227,12 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
         return Container(
           child: Carousel(
             images: widget.lojasDestaque.imgCupons.map((url) {
-              return NetworkImage(url);
+              return PhotoView(
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                imageProvider: NetworkImage(url),
+              );
             }).toList(),
             boxFit: BoxFit.contain,
             borderRadius: true,
@@ -243,7 +260,12 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
           ),
           child: Carousel(
             images: widget.lojasDestaque.imgOfertas.map((url) {
-              return NetworkImage(url);
+              return PhotoView(
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                imageProvider: NetworkImage(url),
+              );
             }).toList(),
             boxFit: BoxFit.contain,
             radius: Radius.circular(30),

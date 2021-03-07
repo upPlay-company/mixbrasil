@@ -39,6 +39,7 @@ abstract class _CepStore with Store {
 
   @action
   Future<void> _searchCep() async {
+
     loading = true;
     try {
       address = await CepRepository().getAddressFromApi(clearCep);

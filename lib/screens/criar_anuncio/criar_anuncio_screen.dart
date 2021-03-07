@@ -127,6 +127,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                                 initialValue: editing ? createStore.title : '',
                                 onChanged: createStore.setTitle,
                                 decoration: InputDecoration(
+                                    hintText: 'Ex: Celular Sansumg A50',
                                     labelText: 'Título *',
                                     labelStyle: labelStyle,
                                     contentPadding: contentPadding,
@@ -139,6 +140,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                                   initialValue: createStore.description,
                                   onChanged: createStore.setDescription,
                                   decoration: InputDecoration(
+                                    hintText: 'Ex: Celular Sansumg A50, com todo os acessórios...',
                                     labelText: 'Descrição *',
                                     labelStyle: labelStyle,
                                     contentPadding: contentPadding,
@@ -156,6 +158,7 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                                   initialValue: createStore.priceText,
                                   onChanged: createStore.setPrice,
                                   decoration: InputDecoration(
+                                      hintText: 'Ex: 100,00',
                                       labelText: 'Preço *',
                                       labelStyle: labelStyle,
                                       contentPadding: contentPadding,

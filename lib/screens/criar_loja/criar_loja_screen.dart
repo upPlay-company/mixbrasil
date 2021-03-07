@@ -133,6 +133,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                               initialValue: editing ? createLojaStore.name : '',
                               onChanged: createLojaStore.SetName,
                               decoration: InputDecoration(
+                                  hintText: 'Ex: Mix Brasil',
                                   labelText: 'Nome da loja *',
                                   labelStyle: labelStyle,
                                   contentPadding: contentPadding,
@@ -145,6 +146,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                                 initialValue: createLojaStore.promocao,
                                 onChanged: createLojaStore.SetPromocao,
                                 decoration: InputDecoration(
+                                  hintText: 'Ex: 20% de desconto em toda loja...',
                                   labelText: 'Promoção da loja*',
                                   labelStyle: labelStyle,
                                   contentPadding: contentPadding,
@@ -156,12 +158,30 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                           ),
                           CategoryField(createLojaStore),
                           CepLojasField(createLojaStore),
+                          Observer(builder: (_){
+                            return TextFormField(
+                              initialValue: createLojaStore.cpfCnpj,
+                              onChanged: createLojaStore.setCpfCnpj,
+                              decoration: InputDecoration(
+                                  hintText: 'Ex: 123.456.789.12 ou 12.345.678/0001-12',
+                                  labelText: 'CPF/CNPJ*',
+                                  labelStyle: labelStyle,
+                                  contentPadding: contentPadding,
+                                  errorText: createLojaStore.priceError),
+                              keyboardType: TextInputType.number,
+                              inputFormatters: [
+                                FilteringTextInputFormatter.digitsOnly,
+                                CpfOuCnpjFormatter()
+                              ],
+                            );
+                          }),
                           Observer(
                             builder: (_) {
                               return TextFormField(
                                 initialValue: createLojaStore.priceText,
                                 onChanged: createLojaStore.setPrice,
                                 decoration: InputDecoration(
+                                    hintText: 'Ex: 100,00',
                                     labelText: 'Preço padrão*',
                                     labelStyle: labelStyle,
                                     contentPadding: contentPadding,
@@ -181,6 +201,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                                 initialValue: createLojaStore.vagaEmprego,
                                 onChanged: createLojaStore.SetVagaEmprego,
                                 decoration: InputDecoration(
+                                  hintText: 'Ex: vaga de vendedor...',
                                   labelText: 'Vaga de emprego *',
                                   labelStyle: labelStyle,
                                   contentPadding: contentPadding,
@@ -196,6 +217,7 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
                                 initialValue: createLojaStore.whats,
                                 onChanged: createLojaStore.setWhats,
                                 decoration: InputDecoration(
+                                    hintText: 'Ex: (99) 99999-9999',
                                     labelText: 'WhatsApp*',
                                     labelStyle: labelStyle,
                                     contentPadding: contentPadding,

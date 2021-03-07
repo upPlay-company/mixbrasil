@@ -24,7 +24,7 @@ abstract class _CreateLojaStore with Store {
     whats = adLojas.number ?? '';
     category = adLojas.category;
     priceText = adLojas.price?.toStringAsFixed(2) ?? '';
-    cpfCnpj = adLojas.cpfCnpj ?? '';
+    cpfCnpjText = adLojas.cpfCnpj ?? '';
 
     if (adLojas.address != null)
       cepStore = CepStore(adLojas.address.zipCode);
@@ -104,7 +104,7 @@ abstract class _CreateLojaStore with Store {
   void SetPromocao(String value) => promocao = value;
 
   @computed
-  bool get promocaoValid => promocao.length <= 30;
+  bool get promocaoValid => promocao.length <= 30 && promocao.length >= 1;
   String get promocaoError {
     if (!showErrors || promocaoValid)
       return null;
@@ -143,11 +143,23 @@ abstract class _CreateLojaStore with Store {
   }
 
   @observable
-  String cpfCnpj = '';
+  String cpfCnpjText = '';
 
   @action
-  void setCpfCnpj(String value) => cpfCnpj = value;
+  void setCpfCnpj(String value) => cpfCnpjText = value;
 
+  @computed
+
+  bool get cpfcnpjValid => cpfCnpjText.length >= 11;
+  String get cpjCnpjError {
+    if(!showErrors || cpfcnpjValid){
+      return null;
+    } else if(cpfCnpjText.isEmpty)
+      return 'Campo obrigatório';
+    else {
+      return 'inválido';
+    }
+  }
 
   @observable
   String priceText = '';
@@ -221,6 +233,7 @@ abstract class _CreateLojaStore with Store {
           priceValid &&
           nameValid &&
           vagaValid &&
+          cpfcnpjValid &&
           whatsValid;
 
   @computed
@@ -255,7 +268,7 @@ abstract class _CreateLojaStore with Store {
     adLojas.number = whats;
     adLojas.user = GetIt.I<UserManager>().user;
     adLojas.address = address;
-    adLojas.cpfCnpj = cpfCnpj;
+    adLojas.cpfCnpj = cpfCnpjText;
 
     loading = true;
     try {

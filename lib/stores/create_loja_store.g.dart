@@ -65,6 +65,13 @@ mixin _$CreateLojaStore on _CreateLojaStore, Store {
       (_$addressComputed ??= Computed<Address>(() => super.address,
               name: '_CreateLojaStore.address'))
           .value;
+  Computed<bool> _$cpfcnpjValidComputed;
+
+  @override
+  bool get cpfcnpjValid =>
+      (_$cpfcnpjValidComputed ??= Computed<bool>(() => super.cpfcnpjValid,
+              name: '_CreateLojaStore.cpfcnpjValid'))
+          .value;
   Computed<num> _$priceComputed;
 
   @override
@@ -142,6 +149,21 @@ mixin _$CreateLojaStore on _CreateLojaStore, Store {
   set category(Categorias value) {
     _$categoryAtom.reportWrite(value, super.category, () {
       super.category = value;
+    });
+  }
+
+  final _$cpfCnpjTextAtom = Atom(name: '_CreateLojaStore.cpfCnpjText');
+
+  @override
+  String get cpfCnpjText {
+    _$cpfCnpjTextAtom.reportRead();
+    return super.cpfCnpjText;
+  }
+
+  @override
+  set cpfCnpjText(String value) {
+    _$cpfCnpjTextAtom.reportWrite(value, super.cpfCnpjText, () {
+      super.cpfCnpjText = value;
     });
   }
 
@@ -294,6 +316,17 @@ mixin _$CreateLojaStore on _CreateLojaStore, Store {
   }
 
   @override
+  void setCpfCnpj(String value) {
+    final _$actionInfo = _$_CreateLojaStoreActionController.startAction(
+        name: '_CreateLojaStore.setCpfCnpj');
+    try {
+      return super.setCpfCnpj(value);
+    } finally {
+      _$_CreateLojaStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setPrice(String value) {
     final _$actionInfo = _$_CreateLojaStoreActionController.startAction(
         name: '_CreateLojaStore.setPrice');
@@ -343,6 +376,7 @@ mixin _$CreateLojaStore on _CreateLojaStore, Store {
 name: ${name},
 promocao: ${promocao},
 category: ${category},
+cpfCnpjText: ${cpfCnpjText},
 priceText: ${priceText},
 vagaEmprego: ${vagaEmprego},
 whats: ${whats},
@@ -358,6 +392,7 @@ nameValid: ${nameValid},
 promocaoValid: ${promocaoValid},
 categoryValid: ${categoryValid},
 address: ${address},
+cpfcnpjValid: ${cpfcnpjValid},
 price: ${price},
 vagaValid: ${vagaValid},
 whatsValid: ${whatsValid},

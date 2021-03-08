@@ -220,10 +220,6 @@ class UserManager extends ChangeNotifier {
         .collection('users')
         .doc(user.id);
 
-    print(user.id);
-
-    print(uf.id);
-
     firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
 
     loading = false;

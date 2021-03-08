@@ -191,7 +191,9 @@ class ActiveLojasTile extends StatelessWidget {
         content: Text('Confirmar a exclusão de ${adLojas.name}?'),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
           TextButton(
@@ -225,7 +227,9 @@ class ActiveLojasTile extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Não', style: TextStyle(color: Colors.red),),
           ),
           TextButton(
@@ -236,7 +240,7 @@ class ActiveLojasTile extends StatelessWidget {
                 context: context,
                 builder: (_) => AlertDialog(
                   title: Text('Mensagem enviado com sucesso'),
-                  content: Text('Olá, recebemos sua mensagem para destacar a sua ${adLojas.name}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
+                  content: Text('Olá, recebemos sua mensagem para destacar a sua ${adLojas.name}, enviaremos o link para pagamento em até 24hs no e-mail ou telefone cadastrado.'),
                   actions: [
                     TextButton(
                       onPressed: Navigator.of(context).pop,
@@ -265,7 +269,9 @@ class ActiveLojasTile extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor),),
           ),
         ],

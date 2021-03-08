@@ -195,7 +195,9 @@ class ActiveTile extends StatelessWidget {
         content: Text('Confirmar a venda de ${ad.title}?'),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
           TextButton(
@@ -218,7 +220,9 @@ class ActiveTile extends StatelessWidget {
         content: Text('Confirmar a exclusão de ${ad.title}?'),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+                Navigator.of(context).pop();
+            },
             child: Text('Não', style: TextStyle(color: Theme.of(context).primaryColor,),),
           ),
           TextButton(
@@ -252,7 +256,9 @@ class ActiveTile extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Não', style: TextStyle(color: Colors.red),),
           ),
           TextButton(
@@ -263,7 +269,7 @@ class ActiveTile extends StatelessWidget {
                   context: context,
                   builder: (_) => AlertDialog(
                     title: Text('Mensagem enviado com sucesso'),
-                    content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, enviaremos o link para pagamento no e-mail ou telefone cadastrado.'),
+                    content: Text('Olá, recebemos sua mensagem para destacar o anúncio ${ad.title}, enviaremos o link para pagamento em até 24hs no e-mail ou telefone cadastrado.'),
                     actions: [
                       TextButton(
                         onPressed: Navigator.of(context).pop,
@@ -292,7 +298,9 @@ class ActiveTile extends StatelessWidget {
         ),
         actions: [
           TextButton(
-            onPressed: Navigator.of(context).pop,
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
             child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor),),
           ),
         ],

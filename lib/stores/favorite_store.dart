@@ -43,9 +43,11 @@ abstract class _FavoriteStore with Store {
   @action
   Future<void> toggleFavorite(DesapegoData desapego) async {
     try {
-      if(favoriteList.any((a) => a.id == desapego.id) || favoriteList.any((a) => a.id == desapego.favoriteUser.favoriteId)){
+      if (favoriteList.any((a) => a.id == desapego.id) ||
+          favoriteList.any((a) => a.id == desapego.favoriteUser?.favoriteId)) {
         favoriteList.removeWhere((a) => a.id == desapego.id);
-        favoriteList.removeWhere((a) => a.id == desapego.favoriteUser.favoriteId);
+        favoriteList.removeWhere((a) =>
+        a.id == desapego.favoriteUser.favoriteId);
         await desapego.delete(desapego: desapego, user: userManager.user);
       } else {
         favoriteList.add(desapego);
@@ -54,7 +56,6 @@ abstract class _FavoriteStore with Store {
     } catch (e){
       print(e);
     }
-
   }
 
   @action

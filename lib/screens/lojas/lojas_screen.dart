@@ -87,7 +87,7 @@ class _ProductScreenState extends State<ProductScreen> {
                   saveViewsWhats();
                   final clearNumber = lojas.number.replaceAll(RegExp('[^0-9]'), '');
                   _launchURL(
-                      'whatsapp://send?phone=+55$clearNumber&text=Quero adquirir as ofertas'
+                      'whatsapp://send?phone=+55$clearNumber&text=Olá, vi seus anúncios na Mix Brasil. Quero comprar/saber mais!'
                   );
                 },
               ),

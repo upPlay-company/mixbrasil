@@ -160,7 +160,7 @@ class _LojasTileState extends State<LojasTile> {
       return lojaTile();
     else if(userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
       return lojaTile();
-    else if(userManager.isLoggedIn)
+    else if(userManager.isLoggedIn && userManager.user.idState?.initials == null)
       return lojaTile();
     else if (!userManager.isLoggedIn)
       return lojaTile();

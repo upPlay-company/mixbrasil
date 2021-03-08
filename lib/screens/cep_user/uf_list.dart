@@ -3,7 +3,6 @@ import 'package:mix_brasil/main.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/stores/filter_state_city_store.dart';
-import 'package:provider/provider.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/cep_user/components/address_card.dart';
 
@@ -31,7 +30,7 @@ class _FilterLocalState extends State<FilterLocal> {
   @override
   Widget build(BuildContext context) {
 
-    final userManager = context.watch<UserManager>();
+    final UserManager userManager = locate.get<UserManager>();
 
     if(userManager.isLoggedIn)
       return Scaffold(
@@ -101,7 +100,6 @@ class _FilterLocalState extends State<FilterLocal> {
           ),
           body: ListView(
             children: <Widget>[
-              AddressCard(),
               SizedBox(
                 height: 20,
               ),

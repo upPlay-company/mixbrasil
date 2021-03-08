@@ -28,9 +28,21 @@ void main() async {
   runApp(MyApp());
 }
 
+final locate = GetIt.instance;
+
+void setupLocators() {
+  locate.registerSingleton(CategoryDesapegoStore());
+  locate.registerSingleton<UserManager>(UserManager(), signalsReady: true);
+  locate.registerSingleton(FavoriteStore());
+  locate.registerSingleton(CategoryLojasStore());
+  locate.registerSingleton(FilterStateStore());
+}
+
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
@@ -113,10 +125,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void setupLocators() {
-  GetIt.I.registerSingleton(CategoryDesapegoStore());
-  GetIt.I.registerSingleton(UserManager());
-  GetIt.I.registerSingleton(FavoriteStore());
-  GetIt.I.registerSingleton(CategoryLojasStore());
-  GetIt.I.registerSingleton(FilterStateStore());
-}

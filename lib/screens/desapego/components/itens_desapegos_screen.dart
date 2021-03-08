@@ -66,7 +66,9 @@ class ItensDesapegosScreen extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius:
                             BorderRadius.all(Radius.circular(16.0))),
-                        onPressed: () => favoriteStore.toggleFavorite(desapego)
+                        onPressed: (){
+                          favoriteStore.toggleFavorite(desapego);
+                        }
                     );
                   }),
                 ),

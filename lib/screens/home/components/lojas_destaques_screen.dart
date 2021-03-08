@@ -62,7 +62,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                   onPressed: () {
                     final clearNumber = lojasDestaque.number.replaceAll(RegExp('[^0-9]'), '');
                     _launchURL(
-                        'whatsapp://send?phone=+55$clearNumber&text=Quero adquirir as ofertas'
+                        'whatsapp://send?phone=+55$clearNumber&text=Olá, vi seus anúncios na Mix Brasil. Quero comprar/saber mais!'
                     );
                   },
                 ),

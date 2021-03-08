@@ -57,7 +57,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
               );
             },
             child: Container(
-                height: 120,
+                height: 130,
                 margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
                 child: Card(
                   elevation: 8,

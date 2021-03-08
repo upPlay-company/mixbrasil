@@ -23,14 +23,14 @@ class ImagesField extends StatelessWidget {
     return Column(
       children: [
         Container(
-          color: Colors.grey[200],
+          color: Theme.of(context).primaryColor.withAlpha(430),
           height: 120,
           child: Observer(
             builder: (_) {
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: createStore.images.length < 5 ?
-                  createStore.images.length + 1 : 5,
+                  itemCount: createStore.images.length < 10 ?
+                  createStore.images.length + 1 : 10,
                   itemBuilder: (_, index) {
                     if(index == createStore.images.length)
                       return Padding(
@@ -51,7 +51,7 @@ class ImagesField extends StatelessWidget {
                           },
                           child: CircleAvatar(
                             radius: 44,
-                            backgroundColor: Colors.grey[300],
+                            backgroundColor: Theme.of(context).primaryColor,
                             child: Icon(
                               Icons.camera_alt,
                               size: 40,

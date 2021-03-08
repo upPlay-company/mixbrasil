@@ -60,20 +60,20 @@ class HomeScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: Container(
               color: Theme.of(context).primaryColor,
-              height: 60,
+              height: 75,
               padding: EdgeInsets.only(left: 10),
               child: Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 5),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8),
+                      padding: const EdgeInsets.only(left: 16, top: 12, bottom: 18, right: 6),
                       child: Image.asset('images/Logo mix branco.png'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 20, bottom: 5),
+                      padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
                       child: SizedBox(
                           width: 140,
                           child: Consumer<UserManager>(

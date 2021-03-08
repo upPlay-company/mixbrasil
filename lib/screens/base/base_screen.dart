@@ -31,7 +31,7 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: Container(
-          height: 65,
+          height: 70,
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
           ]),

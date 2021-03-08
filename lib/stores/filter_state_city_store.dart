@@ -1,7 +1,7 @@
+import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mobx/mobx.dart';
-import 'package:get_it/get_it.dart';
 part 'filter_state_city_store.g.dart';
 
 class FilterStateCityStore = _FilterStateCityStore with _$FilterStateCityStore;
@@ -41,10 +41,10 @@ abstract class _FilterStateCityStore with Store {
   @action
   Future<void> _send() async {
 
-    final UserManager userManager = GetIt.I<UserManager>();
-    await UserManager().saveIdState(uf, userManager.user);
+    final user = GetIt.instance<UserManager>().user;
+
+    await UserManager().saveIdState(uf, user);
 
     saveState = true;
   }
-
 }

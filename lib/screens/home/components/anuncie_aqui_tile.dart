@@ -11,9 +11,7 @@ class AnuncieAquiTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: <Widget>[
         Container(
           height: 350,
@@ -80,49 +78,55 @@ class AnuncieAquiTile extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          height: 220,
-          decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('images/Imagem 02.png'),
-                  fit: BoxFit.cover)),
+        Padding(
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.40),
+          child: Container(
+            height: 220,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('images/Imagem 02.png'),
+                    fit: BoxFit.cover)),
+          ),
         ),
         Padding(
-          padding: const EdgeInsets.all(16),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.67),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
-                height: 54.0,
-                // ignore: deprecated_member_use
-                child: RaisedButton(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        LineIcons.whatSApp,
-                        size: 20,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Banners/Dúvidas',
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                    ],
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: SizedBox(
+                  height: 54.0,
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          LineIcons.whatSApp,
+                          size: 20,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Banners/Dúvidas',
+                          style: TextStyle(fontSize: 16.0),
+                        ),
+                      ],
+                    ),
+                    textColor: Colors.white,
+                    color: Color(0xff2dc64f),
+                    onPressed: () {
+                      _launchURL(
+                          'whatsapp://send?phone=+55${adm.whats}&text=Quero anúncia no MIX BRASIL');
+                    },
+                    disabledColor:
+                        Theme.of(context).primaryColor.withAlpha(100),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
                   ),
-                  textColor: Colors.white,
-                  color: Color(0xff2dc64f),
-                  onPressed: () {
-                    _launchURL(
-                        'whatsapp://send?phone=+55${adm.whats}&text=Quero anúncia no MIX BRASIL');
-                  },
-                  disabledColor:
-                      Theme.of(context).primaryColor.withAlpha(100),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
                 ),
               ),
             ],

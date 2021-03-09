@@ -147,13 +147,20 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
       );
     }
 
-    if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.desapegoDestaque.estado)
+    final DateTime dateTime = DateTime.now();
+
+    DateTime _pickedDate = widget.desapegoDestaque.created.toDate();
+
+    final date = dateTime.difference(_pickedDate).inDays <= 6;
+
+
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.desapegoDestaque.estado && date)
       return lojaTile();
-    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
+    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil' && date)
       return lojaTile();
-    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null)
+    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null && date)
       return lojaTile();
-    else if (!userManager.isLoggedIn)
+    else if (!userManager.isLoggedIn && date)
       return lojaTile();
     else
       return Container();

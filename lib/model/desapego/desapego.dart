@@ -5,6 +5,7 @@ import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/model/desapego/user_favorite.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 
 class DesapegoData extends ChangeNotifier {
 
@@ -33,7 +34,7 @@ class DesapegoData extends ChangeNotifier {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  final UserManager userManager = GetIt.I<UserManager>();
+  final UserManagerStore userManager = GetIt.I<UserManagerStore>();
 
   FavoriteUser favorite;
 

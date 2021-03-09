@@ -115,4 +115,9 @@ class UserUser extends ChangeNotifier {
       'platform': Platform.operatingSystem
     });
   }
+
+  @override
+  String toString() {
+    return 'UserUser{address: $address, id: $id, name: $name, email: $email, password: $password, phone: $phone, confirmPassword: $confirmPassword, newPass: $newPass, img: $img, idState: $idState, _loading: $_loading}';
+  }
 }

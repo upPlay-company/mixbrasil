@@ -1,0 +1,44 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mix_brasil/model/user/user.dart';
+import 'package:mix_brasil/repositories/user_repository.dart';
+import 'package:mobx/mobx.dart';
+
+part 'user_manager_store.g.dart';
+
+class UserManagerStore = _UserManagerStore with _$UserManagerStore;
+
+abstract class _UserManagerStore with Store {
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  _UserManagerStore(){
+    loadCurrentUser();
+  }
+
+  @observable
+  UserUser user;
+
+  @action
+  void setUser(UserUser value) => user = value;
+
+  @computed
+  bool get isLoggedIn => user != null;
+
+  Future<void> loadCurrentUser({User firebaseUser}) async {
+    final User currentUser = firebaseUser ?? auth.currentUser;
+    if (currentUser != null) {
+      final DocumentSnapshot docUser =
+      await firestore.collection('users').doc(currentUser.uid).get();
+      user = UserUser.fromDocument(docUser);
+
+      user.saveToken();
+    }
+  }
+
+  Future<void> logout() async {
+    UserRepository().signOut();
+    setUser(null);
+  }
+}

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'myads_store.g.dart';
@@ -29,7 +30,7 @@ abstract class _MyAdsStore with Store {
           (ad) => ad.status == AdStatus.SOLD).toList();
 
   Future<void> _getMyAds() async {
-    final user = GetIt.I<UserManager>().user;
+    final user = GetIt.I<UserManagerStore>().user;
     try {
       loading = true;
       final QuerySnapshot snapAnuncio = await firestore

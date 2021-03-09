@@ -63,6 +63,7 @@ dependencies:
   url_launcher: ^6.0.0-nullsafety
   plugin_platform_interface: ^2.0.0
   shared_preferences: ^2.0.3
+  ntp: ^1.0.8
   flutter_localizations:
     sdk: flutter
 

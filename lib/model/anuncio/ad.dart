@@ -8,7 +8,7 @@ import 'package:mix_brasil/model/cep/city.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/desapego/desapego_category.dart';
 import 'package:mix_brasil/model/user/user.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:uuid/uuid.dart';
 
 enum AdStatus { PENDING, ACTIVE, SOLD, DELETE }
@@ -55,7 +55,7 @@ class Ad {
   Address address;
   num price;
   AdStatus status = AdStatus.ACTIVE;
-  UserUser user = GetIt.I<UserManager>().user;
+  UserUser user = GetIt.I<UserManagerStore>().user;
   int views;
   int viewsDestaque;
   Timestamp created;

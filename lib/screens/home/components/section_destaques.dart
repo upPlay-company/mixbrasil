@@ -131,15 +131,23 @@ class SectionDestaques extends StatelessWidget {
         ),
       );
     }
-    if (userManager.isLoggedIn && userManager.user.idState?.initials == lojasDestaque.state)
+
+    final DateTime dateTime = DateTime.now();
+
+    DateTime _pickedDate = lojasDestaque.created.toDate();
+
+    final date = dateTime.difference(_pickedDate).inDays <= 6;
+
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == lojasDestaque.state && date)
       return lojaTile();
-    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')
+    else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil' && date)
       return lojaTile();
-    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null)
+    else if (userManager.isLoggedIn && userManager.user.idState?.initials == null && date)
       return lojaTile();
-    else if (!userManager.isLoggedIn)
+    else if (!userManager.isLoggedIn && date)
       return lojaTile();
     else
       return Container();
   }
+
 }

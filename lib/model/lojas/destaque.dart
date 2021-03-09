@@ -9,6 +9,7 @@ class DestaqueLoja extends ChangeNotifier {
   bool destaque;
   List img, imgDestacadas, imgCupons, imgOfertas;
   int pos;
+  Timestamp created;
 
   DestaqueLoja.fromDocument(DocumentSnapshot snapshot) {
     lid = snapshot.data()["lid"];
@@ -26,6 +27,7 @@ class DestaqueLoja extends ChangeNotifier {
     trabalheConosco = snapshot.data()["trabalheConosco"];
     city = snapshot.data()['cidade'];
     number = snapshot.data()['whatsapp'];
+    created = snapshot.data()['created'];
   }
 
   Map<String, dynamic> toResumedMap() {

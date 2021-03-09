@@ -11,6 +11,7 @@ class LojasData extends ChangeNotifier {
   int views, viewsWhats;
   String idCat, idAdsUser, idUser;
   String category;
+  Timestamp created;
   
 
   LojasData.fromDocument(DocumentSnapshot snapshot) {
@@ -33,6 +34,7 @@ class LojasData extends ChangeNotifier {
     idUser = snapshot.data()['user'];
     idAdsUser = snapshot.data()['idAdsUser'];
     viewsWhats = snapshot.data()['viewsWhats'];
+    created = snapshot.data()['created'];
   }
 
 

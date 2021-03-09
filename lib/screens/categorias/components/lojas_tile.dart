@@ -155,7 +155,6 @@ class _LojasTileState extends State<LojasTile> {
       );
     }
     //Fim da Declarações de funções
-
     if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.lojas.state)
       return lojaTile();
     else if(userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil')

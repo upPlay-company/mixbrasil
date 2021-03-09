@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/criar_loja/criar_loja.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'my_lojas_store.g.dart';
@@ -28,7 +28,7 @@ abstract class _MyLojasStore with Store {
 
 
   Future<void> _getMyLojas() async {
-    final user = GetIt.I<UserManager>().user.id;
+    final user = GetIt.I<UserManagerStore>().user.id;
       loading = true;
       final QuerySnapshot snapAnuncio = await firestore
           .collection('users')

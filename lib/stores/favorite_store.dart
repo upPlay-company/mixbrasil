@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'favorite_store.g.dart';
@@ -10,7 +10,7 @@ class FavoriteStore = _FavoriteStore with _$FavoriteStore;
 
 abstract class _FavoriteStore with Store {
 
-  final UserManager userManager = GetIt.I<UserManager>();
+  final UserManagerStore userManager = GetIt.I<UserManagerStore>();
 
   _FavoriteStore() {
     _getFavoriteList();

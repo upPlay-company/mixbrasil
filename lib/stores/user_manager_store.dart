@@ -14,7 +14,7 @@ abstract class _UserManagerStore with Store {
   final FirebaseAuth auth = FirebaseAuth.instance;
 
   _UserManagerStore(){
-    loadCurrentUser();
+    _loadCurrentUser();
   }
 
   @observable
@@ -26,7 +26,7 @@ abstract class _UserManagerStore with Store {
   @computed
   bool get isLoggedIn => user != null;
 
-  Future<void> loadCurrentUser({User firebaseUser}) async {
+  Future<void> _loadCurrentUser({User firebaseUser}) async {
     final User currentUser = firebaseUser ?? auth.currentUser;
     if (currentUser != null) {
       final DocumentSnapshot docUser =
@@ -34,6 +34,7 @@ abstract class _UserManagerStore with Store {
       user = UserUser.fromDocument(docUser);
 
       user.saveToken();
+      setUser(user);
     }
   }
 

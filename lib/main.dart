@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,7 +19,6 @@ import 'package:mix_brasil/stores/category_lojas_store.dart';
 import 'package:mix_brasil/stores/favorite_store.dart';
 import 'package:mix_brasil/stores/filter_state_store.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
-import 'package:ntp/ntp.dart';
 import 'package:provider/provider.dart';
 import 'model/home/home_manager.dart';
 

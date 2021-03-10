@@ -1,6 +1,4 @@
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/repositories/user_repository.dart';
-import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mix_brasil/helpers/extensions.dart';
 
@@ -35,6 +33,12 @@ abstract class _LoginStore with Store {
   Function get loginPressed =>
       emailValid && passwordValid && !loading ? _login : null;
 
+  @computed
+  Function get recoverPassword => _recover;
+
+  @computed
+  Function get loginFacebook => _face;
+
   @observable
   bool loading = false;
 
@@ -46,7 +50,40 @@ abstract class _LoginStore with Store {
     loading = true;
     error = null;
 
-    await UserRepository().signIn(email: email, password: password);
+    try {
+      await UserRepository().signIn(email: email, password: password);
+    } catch (e) {
+      error = e;
+    }
+
+    loading = false;
+  }
+
+  @action
+  Future<void> _face() async {
+    loading = true;
+    error = null;
+
+    try {
+      await UserRepository().facebookLogin();
+    } catch (e) {
+      error = e;
+    }
+
+    loading = false;
+  }
+
+  @action
+  Future<void> _recover() async {
+    loading = true;
+    error = null;
+
+    try {
+      UserRepository().recoverPass(email);
+    } catch (e) {
+      error = e;
+    }
+
     loading = false;
   }
 }

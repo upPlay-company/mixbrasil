@@ -13,18 +13,35 @@ class UserRepository {
 
   UserUser user;
 
-  Future<UserUser> signIn({String email, String password, Function onFail, Function onSuccess}) async {
+  Future<void> loadCurrentUser({User firebaseUser}) async {
+    final User currentUser = firebaseUser ?? auth.currentUser;
+    if (currentUser != null) {
+      final DocumentSnapshot docUser =
+      await firestore.collection('users').doc(currentUser.uid).get();
+      user = UserUser.fromDocument(docUser);
+
+      user.saveToken();
+    }
+  }
+
+  // ignore: missing_return
+  Future<UserUser> signIn({String email, String password}) async {
+    try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      await UserManagerStore().loadCurrentUser(firebaseUser: result.user);
+      await loadCurrentUser(firebaseUser: result.user);
 
       GetIt.I<UserManagerStore>().setUser(user);
+    } catch (e){
+      Future.error(getErrorString((e.code)));
+    }
   }
 
-  Future<UserUser> signUp({UserUser user, Function onFail, Function onSuccess}) async {
+  // ignore: missing_return
+  Future<UserUser> signUp(UserUser user) async {
     try {
       final UserCredential result = await auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
@@ -34,15 +51,19 @@ class UserRepository {
 
       await user.saveData();
 
+      await loadCurrentUser(firebaseUser: result.user);
+
       user.saveToken();
 
-      onSuccess();
+      GetIt.I<UserManagerStore>().setUser(user);
+
     } on FirebaseAuthException catch (e) {
-      onFail(getErrorString(e.code));
+      print(getErrorString(e.code));
     }
   }
 
-  Future<UserUser> facebookLogin({Function onFail, Function onSuccess}) async {
+  // ignore: missing_return
+  Future<UserUser> facebookLogin() async {
     final result = await FacebookLogin().logIn(['email', 'public_profile']);
 
     switch(result.status){
@@ -66,13 +87,13 @@ class UserRepository {
 
           user.saveToken();
 
-          onSuccess();
+          GetIt.I<UserManagerStore>().setUser(user);
         }
         break;
       case FacebookLoginStatus.cancelledByUser:
         break;
       case FacebookLoginStatus.error:
-        onFail(result.errorMessage);
+        Future.error(result.errorMessage);
         break;
     }
   }
@@ -80,5 +101,9 @@ class UserRepository {
   void signOut() {
     auth.signOut();
     user = null;
+  }
+
+  void recoverPass(String email) {
+    auth.sendPasswordResetEmail(email: email);
   }
 }

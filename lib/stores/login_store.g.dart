@@ -30,6 +30,20 @@ mixin _$LoginStore on _LoginStore, Store {
       (_$loginPressedComputed ??= Computed<Function>(() => super.loginPressed,
               name: '_LoginStore.loginPressed'))
           .value;
+  Computed<Function> _$recoverPasswordComputed;
+
+  @override
+  Function get recoverPassword => (_$recoverPasswordComputed ??=
+          Computed<Function>(() => super.recoverPassword,
+              name: '_LoginStore.recoverPassword'))
+      .value;
+  Computed<Function> _$loginFacebookComputed;
+
+  @override
+  Function get loginFacebook =>
+      (_$loginFacebookComputed ??= Computed<Function>(() => super.loginFacebook,
+              name: '_LoginStore.loginFacebook'))
+          .value;
 
   final _$emailAtom = Atom(name: '_LoginStore.email');
 
@@ -98,6 +112,20 @@ mixin _$LoginStore on _LoginStore, Store {
     return _$_loginAsyncAction.run(() => super._login());
   }
 
+  final _$_faceAsyncAction = AsyncAction('_LoginStore._face');
+
+  @override
+  Future<void> _face() {
+    return _$_faceAsyncAction.run(() => super._face());
+  }
+
+  final _$_recoverAsyncAction = AsyncAction('_LoginStore._recover');
+
+  @override
+  Future<void> _recover() {
+    return _$_recoverAsyncAction.run(() => super._recover());
+  }
+
   final _$_LoginStoreActionController = ActionController(name: '_LoginStore');
 
   @override
@@ -131,7 +159,9 @@ loading: ${loading},
 error: ${error},
 emailValid: ${emailValid},
 passwordValid: ${passwordValid},
-loginPressed: ${loginPressed}
+loginPressed: ${loginPressed},
+recoverPassword: ${recoverPassword},
+loginFacebook: ${loginFacebook}
     ''';
   }
 }

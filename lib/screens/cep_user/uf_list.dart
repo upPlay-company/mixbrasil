@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mix_brasil/common/entra_screen.dart';
 import 'package:mix_brasil/main.dart';
+import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -78,54 +80,6 @@ class _FilterLocalState extends State<FilterLocal> {
           )
       );
     else
-      return Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/Fundo mix 90.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Escolha uma localização',
-              style: TextStyle(color: Colors.black, fontSize: 16),
-            ),
-            centerTitle: true,
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          body: ListView(
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/base');
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 20),
-                      child: Text(
-                        'Ok',
-                        style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Principal'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      );
+      return FacaLoginScreen();
   }
 }

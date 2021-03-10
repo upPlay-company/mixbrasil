@@ -3,14 +3,14 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/common/error_box.dart';
 import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:mix_brasil/stores/create_store.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
-import 'package:provider/provider.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'components/category_desapego_field.dart';
 import 'components/cep_field.dart';
@@ -63,8 +63,8 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final userManager = context.watch<UserManager>();
-    if (userManager.isLoggedIn)
+    final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
+    if (userManagerStore.isLoggedIn)
       return Container(
           decoration: BoxDecoration(
             image: DecorationImage(

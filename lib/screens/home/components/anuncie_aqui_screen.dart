@@ -1,9 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/adm/adm.dart';
 import 'package:mix_brasil/model/adm/adm_manager.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:provider/provider.dart';
 
 import 'anuncie_aqui_tile.dart';
@@ -15,9 +16,9 @@ class AnuncieAquiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userManager = context.watch<UserManager>();
+    final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
 
-    if (userManager.isLoggedIn)
+    if (userManagerStore.isLoggedIn)
       return Consumer<AdmManager>(
         builder: (_, admManager, __) {
           return Container(

@@ -4,7 +4,6 @@ import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/model/desapego/user_favorite.dart';
 import 'package:mix_brasil/model/user/user.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 
 class DesapegoData extends ChangeNotifier {

@@ -15,7 +15,7 @@ class _InicialScreenState extends State<InicialScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 5)).then((_){
+    Future.delayed(Duration(seconds: 4)).then((_){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
     });
   }
@@ -38,7 +38,7 @@ class _InicialScreenState extends State<InicialScreen> {
                     )
                 ),
               ),
-              Text('DESENVOLVIDO POR:', style: TextStyle(color: Colors.black, fontSize: 8),),
+              Text('DESENVOLVIDO POR', style: TextStyle(color: Colors.black, fontSize: 8),),
               Container(
                 height: 50,
                 width: 80,

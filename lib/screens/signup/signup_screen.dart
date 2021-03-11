@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/common/error_box.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/main.dart';
 import 'package:mix_brasil/stores/signup_store.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
 
     when((_) => userManagerStore.user != null, () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => BaseScreen()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
     });
   }
 

@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/desapego/components/itens_desapego_destaque.dart';
-import 'package:mix_brasil/stores/user_manager_store.dart';
+import 'package:provider/provider.dart';
 
 
 class SectionDestaquesDesapego extends StatefulWidget {
@@ -22,7 +22,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
-    final UserManagerStore userManager = GetIt.I<UserManagerStore>();
+    final userManager = context.watch<UserManager>();
 
     Widget lojaTile() {
       return InkWell(

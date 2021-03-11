@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/lojas/loja.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/lojas/lojas_screen.dart';
-import 'package:mix_brasil/stores/user_manager_store.dart';
+import 'package:provider/provider.dart';
 
 class LojasTile extends StatefulWidget {
   final String type;
@@ -19,7 +19,7 @@ class LojasTile extends StatefulWidget {
 class _LojasTileState extends State<LojasTile> {
   @override
   Widget build(BuildContext context) {
-    final UserManagerStore userManager = GetIt.I<UserManagerStore>();
+    final userManager = context.watch<UserManager>();
 
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
 

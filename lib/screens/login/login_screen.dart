@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/common/error_box.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
+import 'package:mix_brasil/main.dart';
 import 'package:mix_brasil/screens/signup/signup_screen.dart';
 import 'package:mix_brasil/stores/login_store.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     super.initState();
 
     when((_) => userManagerStore.user != null, () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => BaseScreen()));
+      Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
     });
   }
 

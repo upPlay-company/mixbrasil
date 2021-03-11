@@ -43,6 +43,8 @@ void setupLocators() {
 
 class MyApp extends StatelessWidget {
 
+  final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -117,9 +119,14 @@ class MyApp extends StatelessWidget {
               );
             case '/inicial':
             default:
-              return MaterialPageRoute(
-                builder: (_) => InicialScreen(),
-              );
+              if(userManagerStore.isLoggedIn)
+                return MaterialPageRoute(
+                  builder: (_) => BaseScreen(),
+                );
+              else
+                return MaterialPageRoute(
+                  builder: (_) => InicialScreen(),
+                );
           }
         },
       ),

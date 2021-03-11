@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/desapego/desapego.dart';
-import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'itens_desapegos_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 
 class DesapegoCardTile extends StatefulWidget {
   final String type;
@@ -44,7 +44,7 @@ class _DesapegoCardTileState extends State<DesapegoCardTile> {
   @override
   Widget build(BuildContext context) {
 
-    final UserManagerStore userManager = GetIt.I<UserManagerStore>();
+    final userManager = context.watch<UserManager>();
 
       Widget lojaTile() {
         return InkWell(

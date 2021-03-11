@@ -98,6 +98,21 @@ mixin _$EditAccountStore on _EditAccountStore, Store {
     });
   }
 
+  final _$saveUserAtom = Atom(name: '_EditAccountStore.saveUser');
+
+  @override
+  bool get saveUser {
+    _$saveUserAtom.reportRead();
+    return super.saveUser;
+  }
+
+  @override
+  set saveUser(bool value) {
+    _$saveUserAtom.reportWrite(value, super.saveUser, () {
+      super.saveUser = value;
+    });
+  }
+
   final _$_saveAsyncAction = AsyncAction('_EditAccountStore._save');
 
   @override
@@ -148,6 +163,7 @@ name: ${name},
 email: ${email},
 phone: ${phone},
 loading: ${loading},
+saveUser: ${saveUser},
 nameValid: ${nameValid},
 phoneValid: ${phoneValid},
 isFormValid: ${isFormValid},

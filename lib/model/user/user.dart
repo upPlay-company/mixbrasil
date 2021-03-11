@@ -51,7 +51,7 @@ class UserUser extends ChangeNotifier {
       firestoreRef.collection('tokens');
 
   Future<void> saveData() async {
-    await firestoreRef.update(toMap());
+    await firestoreRef.set(toMap());
   }
 
   Map<String, dynamic> toMap(){

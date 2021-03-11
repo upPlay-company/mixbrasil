@@ -64,6 +64,7 @@ dependencies:
   plugin_platform_interface: ^2.0.0
   shared_preferences: ^2.0.3
   ntp: ^1.0.8
+  data_connection_checker: ^0.3.4
   flutter_localizations:
     sdk: flutter
 

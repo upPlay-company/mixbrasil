@@ -79,7 +79,7 @@ class AnuncieAquiTile extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.40),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.50),
           child: Container(
             height: 220,
             decoration: BoxDecoration(
@@ -89,7 +89,7 @@ class AnuncieAquiTile extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.67),
+          padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.83),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

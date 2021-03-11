@@ -57,6 +57,9 @@ abstract class _EditAccountStore with Store {
   @observable
   bool loading = false;
 
+  @observable
+  bool saveUser = false;
+
   @computed
   VoidCallback get savePressed => (isFormValid && !loading) ? _save : null;
 
@@ -70,6 +73,7 @@ abstract class _EditAccountStore with Store {
     try {
       await UserRepository().save(user);
       userManagerStore.setUser(user);
+      saveUser = true;
     } catch (e) {
       print(e);
     }

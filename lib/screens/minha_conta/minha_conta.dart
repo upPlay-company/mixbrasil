@@ -4,9 +4,42 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mix_brasil/stores/edit_account_store.dart';
+import 'package:mobx/mobx.dart';
 
-class MinhaContaScreen extends StatelessWidget {
+class MinhaContaScreen extends StatefulWidget {
+  @override
+  _MinhaContaScreenState createState() => _MinhaContaScreenState();
+}
+
+class _MinhaContaScreenState extends State<MinhaContaScreen> {
   final EditAccountStore store = EditAccountStore();
+
+  @override
+  void initState() {
+    super.initState();
+
+    when((_) => store.saveUser == true, () {
+      showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text('Dados atualizados com sucesso!'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+              child: Text('Ok', style: TextStyle(color: Theme.of(context).primaryColor),),
+            ),
+          ],
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

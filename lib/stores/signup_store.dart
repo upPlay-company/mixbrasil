@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/repositories/user_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -118,8 +120,8 @@ abstract class _SignupStore with Store {
 
     try {
       await UserRepository().signUp(user);
-    } catch (e) {
-      error = e;
+    } on FirebaseAuthException catch (e) {
+      error = getErrorString(e.code);
     }
 
     loading = false;

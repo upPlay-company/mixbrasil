@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get_it/get_it.dart';
-import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
@@ -27,7 +26,6 @@ class UserRepository {
 
   // ignore: missing_return
   Future<UserUser> signIn({String email, String password}) async {
-    try {
       final UserCredential result = await auth.signInWithEmailAndPassword(
         email: email,
         password: password,
@@ -36,14 +34,10 @@ class UserRepository {
       await loadCurrentUser(firebaseUser: result.user);
 
       GetIt.I<UserManagerStore>().setUser(user);
-    } catch (e){
-      Future.error(getErrorString((e.code)));
-    }
   }
 
   // ignore: missing_return
   Future<UserUser> signUp(UserUser user) async {
-    try {
       final UserCredential result = await auth.createUserWithEmailAndPassword(
           email: user.email, password: user.password);
 
@@ -57,10 +51,6 @@ class UserRepository {
       user.saveToken();
 
       GetIt.I<UserManagerStore>().setUser(user);
-
-    } on FirebaseAuthException catch (e) {
-      print(getErrorString(e.code));
-    }
   }
 
   // ignore: missing_return

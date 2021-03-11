@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ));
                     }),
                     Observer(builder: (_){
-                      return                     Row(
+                      return Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           TextButton(

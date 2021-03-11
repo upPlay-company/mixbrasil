@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/repositories/user_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:mix_brasil/helpers/extensions.dart';
@@ -52,8 +54,8 @@ abstract class _LoginStore with Store {
 
     try {
       await UserRepository().signIn(email: email, password: password);
-    } catch (e) {
-      error = e;
+    } on FirebaseAuthException catch (e) {
+      error = getErrorString(e.code);
     }
 
     loading = false;
@@ -66,8 +68,8 @@ abstract class _LoginStore with Store {
 
     try {
       await UserRepository().facebookLogin();
-    } catch (e) {
-      error = e;
+    } on FirebaseAuthException catch (e) {
+      error = getErrorString(e.code);
     }
 
     loading = false;
@@ -78,10 +80,10 @@ abstract class _LoginStore with Store {
     loading = true;
     error = null;
 
-    try {
+    if(email != null){
       UserRepository().recoverPass(email);
-    } catch (e) {
-      error = e;
+    } else {
+      error = 'Coloque seu email!';
     }
 
     loading = false;

@@ -1,6 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/repositories/user_repository.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 part 'filter_state_city_store.g.dart';
@@ -42,9 +42,11 @@ abstract class _FilterStateCityStore with Store {
   @action
   Future<void> _send() async {
 
-    final user = GetIt.I<UserManagerStore>().user;
+    final user = GetIt.I<UserManagerStore>();
 
-    await UserManager().saveIdState(uf, user);
+    await UserRepository().saveState(uf, user.user);
+
+    user.setUser(user.user);
 
     saveState = true;
   }

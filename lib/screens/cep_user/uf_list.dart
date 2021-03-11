@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/common/entra_screen.dart';
 import 'package:mix_brasil/main.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

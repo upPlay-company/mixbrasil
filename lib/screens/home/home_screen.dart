@@ -2,23 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
+import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/cep_user/uf_list.dart';
 import 'package:mix_brasil/screens/home/components/section_at_categorias.dart';
 import 'package:mix_brasil/screens/home/components/section_header.dart';
-import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:provider/provider.dart';
 import 'components/anuncie_aqui_screen.dart';
 import 'components/section_banner.dart';
 import 'components/section_destaques.dart';
 
 class HomeScreen extends StatelessWidget {
-
-  final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
 
   @override
   Widget build(BuildContext context) {
@@ -80,8 +76,8 @@ class HomeScreen extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20, bottom: 10, top: 10),
                       child: SizedBox(
                           width: 140,
-                          child: Observer(builder: (_){
-                            if(userManagerStore.isLoggedIn)
+                          child: Consumer<UserManager>(
+                            builder: (_, userManager, __){
                               return ElevatedButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
@@ -108,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                                       Flexible(
                                         child: Container(
                                           child: Text(
-                                            '${userManagerStore.user?.idState?.name ?? 'Brasil'}',
+                                            '${userManager.user?.idState?.name ?? 'Brasil'}',
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(color: Colors.white, fontSize: 16),
                                           ),
@@ -118,44 +114,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                               );
-                            else
-                              return ElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (_) => FilterLocal()
-                                  ));
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    primary: Theme.of(context).secondaryHeaderColor,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20),
-                                      ),
-                                    )
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(top:5),
-                                  child: Column(
-                                    children: [
-                                      Text(
-                                        'Você está em:',
-                                        style: TextStyle(color: Colors.white, fontSize: 14),
-                                      ),
-                                      Flexible(
-                                        child: Container(
-                                          child: Text(
-                                            '${userManagerStore.user?.idState?.name ?? 'Brasil'}',
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(color: Colors.white, fontSize: 16),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                          },
+                            },
                           )
                       ),
                     ),

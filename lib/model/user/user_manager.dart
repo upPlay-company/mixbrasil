@@ -5,7 +5,6 @@ import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:mix_brasil/helpers/firebase.error.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 import 'package:mix_brasil/model/cep/uf.dart';
-import 'package:mix_brasil/model/desapego/desapego.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/services/cep_aberto_services.dart';
 
@@ -116,16 +115,6 @@ class UserManager extends ChangeNotifier {
     loading = false;
   }
 
-  void signOut() {
-    auth.signOut();
-    user = null;
-    notifyListeners();
-  }
-
-  void recoverPass(String email) {
-    auth.sendPasswordResetEmail(email: email);
-  }
-
   Future<void> _loadCurrentUser({User firebaseUser}) async {
     final User currentUser = firebaseUser ?? auth.currentUser;
     if (currentUser != null) {
@@ -201,28 +190,5 @@ class UserManager extends ChangeNotifier {
   void removeAddress() {
     address = null;
     notifyListeners();
-  }
-
-  // ignore: missing_return
-  Future<List<DesapegoData>> getFavoritos(UserUser user) async {
-    final QuerySnapshot snapAnuncio = await firestore
-        .collection('users')
-        .doc(user.id)
-        .collection('favoritos').get();
-
-    snapAnuncio.docs.map((a) => DesapegoData.fromDocument(a)).toList();
-  }
-
-  // ignore: missing_return
-  Future<void> saveIdState(UF uf, UserUser user){
-    loading = true;
-    DocumentReference firestoreRef = firestore
-        .collection('users')
-        .doc(user.id);
-
-    firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
-
-    loading = false;
-
   }
 }

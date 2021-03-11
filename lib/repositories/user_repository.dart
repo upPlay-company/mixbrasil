@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/helpers/firebase.error.dart';
+import 'package:mix_brasil/model/cep/uf.dart';
 import 'package:mix_brasil/model/user/user.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 
@@ -105,5 +106,13 @@ class UserRepository {
 
   void recoverPass(String email) {
     auth.sendPasswordResetEmail(email: email);
+  }
+
+  Future<void> save(UserUser user) async {
+      await user.save();
+  }
+
+  Future<void> saveState(UF uf, UserUser user) async {
+    await user.saveState(uf, user);
   }
 }

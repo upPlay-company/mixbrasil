@@ -51,7 +51,7 @@ class UserUser extends ChangeNotifier {
       firestoreRef.collection('tokens');
 
   Future<void> saveData() async {
-    await firestoreRef.set(toMap());
+    await firestoreRef.update(toMap());
   }
 
   Map<String, dynamic> toMap(){
@@ -59,8 +59,6 @@ class UserUser extends ChangeNotifier {
       'name': name,
       'email': email,
       'phone' : phone,
-      if(address != null)
-        'address': address.toMap(),
     };
   }
 
@@ -69,6 +67,12 @@ class UserUser extends ChangeNotifier {
   set loading(bool value){
     _loading = value;
     notifyListeners();
+  }
+
+  Future<void> saveState(UF uf, UserUser user){
+
+    firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
+
   }
 
   Future<void> save() async {

@@ -69,9 +69,9 @@ class UserUser extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> saveState(UF uf, UserUser user){
+  Future<void> saveState(UF uf, UserUser user) async {
 
-    firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
+    await firestoreRef.update({'filtro_state': uf.initials, 'name_state': uf.name});
 
   }
 

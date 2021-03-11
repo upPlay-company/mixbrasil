@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
-import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/home/components/lojas_destaques_screen.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:provider/provider.dart';
 
 class SectionDestaques extends StatelessWidget {
@@ -15,7 +16,7 @@ class SectionDestaques extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final userManager = context.watch<UserManager>();
+    final UserManagerStore userManager = GetIt.I<UserManagerStore>();
 
     Widget lojaTile() {
       return InkWell(

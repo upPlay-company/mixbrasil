@@ -36,7 +36,7 @@ class AnuncieAquiScreen extends StatelessWidget {
                   style: TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 centerTitle: true,
-                backgroundColor: Color(0xfff7ad2e),
+                backgroundColor: Theme.of(context).primaryColor,
                 iconTheme: IconThemeData(color: Colors.white),
               ),
               body: ListView.builder(

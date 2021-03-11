@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mix_brasil/screens/base/base_screen.dart';
@@ -14,7 +15,7 @@ class _InicialScreenState extends State<InicialScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 4)).then((_){
+    Future.delayed(Duration(seconds: 5)).then((_){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
     });
   }
@@ -37,21 +38,16 @@ class _InicialScreenState extends State<InicialScreen> {
                     )
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text('DESENVOLVIDO POR:', style: TextStyle(color: Colors.black, fontSize: 12),),
-                  Container(
-                    height: 70,
-                    width: 120,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('images/Logo Upplay preto.png'),
-                        )
-                    ),
-                  ),
-                ],
-              ),
+              Text('DESENVOLVIDO POR:', style: TextStyle(color: Colors.black, fontSize: 8),),
+              Container(
+                height: 50,
+                width: 80,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('images/Logo Upplay preto.png'),
+                    )
+                ),
+              )
             ],
           ),
         ),

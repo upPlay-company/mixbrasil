@@ -3,6 +3,7 @@ import 'package:mix_brasil/model/categorias/categorias.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 import 'package:mix_brasil/model/criar_loja/criar_loja.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 
 import 'cep_store.dart';
@@ -266,7 +267,7 @@ abstract class _CreateLojaStore with Store {
     adLojas.imgCupons = imgCupons;
     adLojas.trabalheConosco = vagaEmprego;
     adLojas.number = whats;
-    adLojas.user = GetIt.I<UserManager>().user;
+    adLojas.user = GetIt.I<UserManagerStore>().user;
     adLojas.address = address;
     adLojas.cpfCnpj = cpfCnpjText;
 

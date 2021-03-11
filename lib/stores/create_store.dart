@@ -3,6 +3,7 @@ import 'package:mix_brasil/model/anuncio/ad.dart';
 import 'package:mix_brasil/model/cep/address.dart';
 import 'package:mix_brasil/model/desapego/desapego_category.dart';
 import 'package:mix_brasil/model/user/user_manager.dart';
+import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
 import 'cep_store.dart';
 
@@ -158,7 +159,7 @@ abstract class _CreateStore with Store {
     ad.price = price;
     ad.images = images;
     ad.address = address;
-    ad.user = GetIt.I<UserManager>().user;
+    ad.user = GetIt.I<UserManagerStore>().user;
 
     loading = true;
     try {

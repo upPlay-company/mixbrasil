@@ -107,9 +107,9 @@ class ItensDesapegosScreen extends StatelessWidget {
               dotSize: 4.0,
               dotSpacing: 15.0,
               dotBgColor: Colors.transparent,
-              dotColor: primaryColor,
-              showIndicator: false,
+              showIndicator: true,
               autoplay: false,
+              dotIncreasedColor: primaryColor,
             ),
           ),
           Container(

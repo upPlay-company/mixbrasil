@@ -26,6 +26,7 @@ class ImageSourceDialog extends StatelessWidget {
                   onPressed: getFromGallery,
                   child: Text('Galeria')
               ),
+              SizedBox(height: 50,),
             ],
           )
       );

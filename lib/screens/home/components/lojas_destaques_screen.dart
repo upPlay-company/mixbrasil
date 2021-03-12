@@ -100,8 +100,9 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                 dotSize: 4.0,
                 dotSpacing: 15.0,
                 dotBgColor: Colors.transparent,
-                showIndicator: false,
-                dotColor: primaryColor,
+                showIndicator: true,
+                dotIncreasedColor: primaryColor,
+                autoplay: false,
               ),
             ),
             Container(
@@ -217,24 +218,36 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          child: Carousel(
-            images: widget.lojasDestaque.imgCupons.map((url) {
-              return PhotoView(
-                backgroundDecoration: BoxDecoration(
-                  color: Colors.black,
-                ),
-                imageProvider: NetworkImage(url),
-              );
-            }).toList(),
-            boxFit: BoxFit.contain,
-            borderRadius: true,
-            radius: Radius.circular(30),
-            dotSize: 4.0,
-            dotSpacing: 15.0,
-            dotBgColor: Colors.transparent,
-            dotColor: primaryColor,
-            autoplayDuration: Duration(seconds: 5),
+        return Scaffold(
+          floatingActionButton: GestureDetector(
+            onTap: (){
+              Navigator.of(context).pop();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30, right: 10),
+              child: Icon(Icons.close, color: Colors.white,),
+            ),
+          ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+          body: Container(
+            child: Carousel(
+              images: widget.lojasDestaque.imgCupons.map((url) {
+                return PhotoView(
+                  backgroundDecoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  imageProvider: NetworkImage(url),
+                );
+              }).toList(),
+              boxFit: BoxFit.contain,
+              borderRadius: true,
+              radius: Radius.circular(30),
+              dotSize: 4.0,
+              dotSpacing: 15.0,
+              dotBgColor: Colors.transparent,
+              dotIncreasedColor: primaryColor,
+              autoplay: false,
+            ),
           ),
         );
       },
@@ -247,26 +260,38 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
       isScrollControlled: true,
       context: context,
       builder: (BuildContext context) {
-        return Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20)
+        return Scaffold(
+          floatingActionButton: GestureDetector(
+            onTap: (){
+              Navigator.of(context).pop();
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 30, right: 10),
+              child: Icon(Icons.close, color: Colors.white,),
+            ),
           ),
-          child: Carousel(
-            images: widget.lojasDestaque.imgOfertas.map((url) {
-              return PhotoView(
-                backgroundDecoration: BoxDecoration(
-                  color: Colors.black,
-                ),
-                imageProvider: NetworkImage(url),
-              );
-            }).toList(),
-            boxFit: BoxFit.contain,
-            radius: Radius.circular(30),
-            dotSize: 4.0,
-            dotSpacing: 15.0,
-            dotBgColor: Colors.transparent,
-            dotColor: primaryColor,
-            autoplayDuration: Duration(seconds: 5),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
+          body: Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20)
+            ),
+            child: Carousel(
+              images: widget.lojasDestaque.imgOfertas.map((url) {
+                return PhotoView(
+                  backgroundDecoration: BoxDecoration(
+                    color: Colors.black,
+                  ),
+                  imageProvider: NetworkImage(url),
+                );
+              }).toList(),
+              boxFit: BoxFit.contain,
+              radius: Radius.circular(30),
+              dotSize: 4.0,
+              dotSpacing: 15.0,
+              dotBgColor: Colors.transparent,
+              dotIncreasedColor: primaryColor,
+              autoplay: false,
+            ),
           ),
         );
       },

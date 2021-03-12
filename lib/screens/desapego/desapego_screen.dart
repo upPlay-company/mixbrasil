@@ -14,7 +14,7 @@ class DesapegoScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.grey[50],
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 50),
+          padding: const EdgeInsets.only(bottom: 55),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

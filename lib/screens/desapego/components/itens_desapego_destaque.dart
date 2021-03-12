@@ -86,9 +86,8 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
               dotSize: 4.0,
               dotSpacing: 15.0,
               dotBgColor: Colors.transparent,
-              dotColor: Colors.transparent,
-              showIndicator: false,
               autoplay: false,
+              dotIncreasedColor: primaryColor,
             ),
           ),
           Container(

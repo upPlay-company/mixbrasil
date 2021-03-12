@@ -56,10 +56,10 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             controller: tabController,
             indicatorColor: Theme.of(context).primaryColor,
             tabs: [
+              Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 10))),
               Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 10))),
               Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 10))),
               Tab(child: Text('VENDIDOS', style: TextStyle(fontSize: 10))),
-              Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 10))),
             ],
           ),
         ),
@@ -75,6 +75,21 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             return TabBarView(
               controller: tabController,
               children: [
+                Consumer<DicasMixDesapegosManager>(
+                  builder: (_, dicasDesapegosManager, __){
+                    if(dicasDesapegosManager.loading)
+                      return CircularProgressIndicator();
+
+                    return Container(
+                      child: ListView.builder(
+                        itemCount: dicasDesapegosManager.dicasMixDesapegos.length,
+                        itemBuilder: (_, index){
+                          return DicasMixDesapegosTile(dicasDesapegosManager.dicasMixDesapegos[index]);
+                        },
+                      ),
+                    );
+                  },
+                ),
                 Observer(
                   builder: (_) {
                     if (store.activeAds.isEmpty)
@@ -111,21 +126,6 @@ class _MyAdsScreenState extends State<MyAdsScreen>
                     },
                   );
                 }),
-                Consumer<DicasMixDesapegosManager>(
-                  builder: (_, dicasDesapegosManager, __){
-                    if(dicasDesapegosManager.loading)
-                      return CircularProgressIndicator();
-
-                    return Container(
-                      child: ListView.builder(
-                        itemCount: dicasDesapegosManager.dicasMixDesapegos.length,
-                        itemBuilder: (_, index){
-                          return DicasMixDesapegosTile(dicasDesapegosManager.dicasMixDesapegos[index]);
-                        },
-                      ),
-                    );
-                  },
-                )
               ],
             );
           },

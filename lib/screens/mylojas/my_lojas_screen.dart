@@ -49,9 +49,9 @@ class _MyLojasScreenState extends State<MyLojasScreen>
           controller: tabController,
           indicatorColor: Theme.of(context).primaryColor,
           tabs: [
+            Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 12))),
             Tab(child: Text('ATIVOS', style: TextStyle(fontSize: 12))),
             Tab(child: Text('DESTACADOS', style: TextStyle(fontSize: 12))),
-            Tab(child: Text('DICAS MIX', style: TextStyle(fontSize: 12))),
             ],
           )
       ),
@@ -67,6 +67,21 @@ class _MyLojasScreenState extends State<MyLojasScreen>
           return TabBarView(
             controller: tabController,
             children: [
+              Consumer<DicasMixLojasManager>(
+                builder: (_, dicasLojasManager, __){
+                  if(dicasLojasManager.loading)
+                    return CircularProgressIndicator();
+
+                  return Container(
+                    child: ListView.builder(
+                      itemCount: dicasLojasManager.dicasMixLojas.length,
+                      itemBuilder: (_, index){
+                        return DicasMixLojasTile(dicasLojasManager.dicasMixLojas[index]);
+                      },
+                    ),
+                  );
+                },
+              ),
               Observer(
                 builder: (_) {
                   if (store.activeAds.isEmpty)
@@ -92,21 +107,6 @@ class _MyLojasScreenState extends State<MyLojasScreen>
                   },
                 );
               }),
-              Consumer<DicasMixLojasManager>(
-                builder: (_, dicasLojasManager, __){
-                  if(dicasLojasManager.loading)
-                    return CircularProgressIndicator();
-
-                  return Container(
-                    child: ListView.builder(
-                      itemCount: dicasLojasManager.dicasMixLojas.length,
-                      itemBuilder: (_, index){
-                        return DicasMixLojasTile(dicasLojasManager.dicasMixLojas[index]);
-                      },
-                    ),
-                  );
-                },
-              )
             ],
           );
         },

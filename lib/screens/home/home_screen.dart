@@ -20,41 +20,44 @@ class HomeScreen extends StatelessWidget {
       onWillPop: () => Future.value(false),
       child: Scaffold(
           backgroundColor: Colors.grey[50],
-          floatingActionButton: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            Container(
-            color: Colors.transparent,
-            padding: const EdgeInsets.only(left: 35),
-            child: SizedBox(
-                width: 140,
-                height: 44,
-                // ignore: deprecated_member_use
-                child: RaisedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => AnuncieAquiScreen()
-                    ));
-                  },
-                  color: Theme.of(context).secondaryHeaderColor,
-                  child: Flexible(
-                    child: Container(
-                      child: Text(
-                        'Anunciar Loja',
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.white, fontSize: 16),
+          floatingActionButton: Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              Container(
+              color: Colors.transparent,
+              padding: const EdgeInsets.only(left: 35),
+              child: SizedBox(
+                  width: 140,
+                  height: 44,
+                  // ignore: deprecated_member_use
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => AnuncieAquiScreen()
+                      ));
+                    },
+                    color: Theme.of(context).secondaryHeaderColor,
+                    child: Flexible(
+                      child: Container(
+                        child: Text(
+                          'Anunciar Loja',
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        ),
                       ),
                     ),
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
                     ),
-                  ),
-                )
+                  )
+              ),
+            )],
             ),
-          )],
           ),
           body: CustomScrollView(slivers: [
             SliverToBoxAdapter(
@@ -217,7 +220,7 @@ class HomeScreen extends StatelessWidget {
               },
             ),
             SliverToBoxAdapter(
-              child: SizedBox(height: 60,),
+              child: SizedBox(height: 110,),
             )
           ])),
     );

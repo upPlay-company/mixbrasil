@@ -15,7 +15,7 @@ class _InicialScreenState extends State<InicialScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 1000)).then((_){
+    Future.delayed(Duration(seconds: 4)).then((_){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
     });
   }

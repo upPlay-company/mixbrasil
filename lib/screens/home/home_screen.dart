@@ -1,7 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:mix_brasil/model/home/banners_manager.dart';
 import 'package:mix_brasil/model/home/home_manager.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
@@ -13,6 +10,7 @@ import 'package:provider/provider.dart';
 import 'components/anuncie_aqui_screen.dart';
 import 'components/section_banner.dart';
 import 'components/section_destaques.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
 
@@ -71,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 12, top: 8, bottom: 14, right: 6),
+                        padding: const EdgeInsets.only(left: 3, top: 10, bottom: 14, right: 6),
                         child: Image.asset('images/Logo mix branco.png'),
                       ),
                       Padding(

@@ -50,12 +50,15 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBody: false,
+        resizeToAvoidBottomInset: false,
         bottomNavigationBar: Container(
           height: 65,
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
           ]),
           child: SafeArea(
+            maintainBottomViewPadding: false,
             child: bmnav.BottomNav(
               iconStyle: bmnav.IconStyle(color: Colors.black, onSelectColor: Theme.of(context).primaryColor),
               index: _selectedIndex,

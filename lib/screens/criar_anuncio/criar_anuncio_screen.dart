@@ -6,8 +6,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/common/error_box.dart';
 import 'package:mix_brasil/model/anuncio/ad.dart';
-import 'package:mix_brasil/screens/base/base_screen.dart';
-import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:mix_brasil/stores/create_store.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
 import 'package:mobx/mobx.dart';
@@ -42,16 +40,8 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
       if (editing)
         Navigator.of(context).pop(true);
       else {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => BaseScreen(),
-          ),
-        );
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => MyAdsScreen(),
-          ),
-        );
+        Navigator.of(context).pushNamed('/base');
+        Navigator.of(context).pushNamed('/meus_desapegos');
       }
     });
   }
@@ -72,150 +62,147 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          child: WillPopScope(
-            onWillPop: () => Future.value(true),
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: AppBar(
-                title: Text(
-                  editing ? 'EDITANDO ANÚNCIO' : 'CRIE SEU DESAPEGO',
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                ),
-                centerTitle: true,
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                iconTheme: IconThemeData(color: Colors.black),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: Text(
+                editing ? 'EDITANDO ANÚNCIO' : 'CRIE SEU DESAPEGO',
+                style: TextStyle(color: Colors.black, fontSize: 18),
               ),
-              body: Container(
-                alignment: Alignment.center,
-                child: SingleChildScrollView(
-                  child: Card(
-                    clipBehavior: Clip.antiAlias,
-                    margin: const EdgeInsets.symmetric(horizontal: 16),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    elevation: 8,
-                    child: Observer(
-                      builder: (_) {
-                        if (createStore.loading)
-                          return Padding(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Salvando Anúncio',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Theme.of(context).primaryColor),
-                                ),
-                                const SizedBox(
-                                  height: 16,
-                                ),
-                                CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation(
-                                      Theme.of(context).primaryColor),
-                                )
-                              ],
-                            ),
-                          );
-                        else
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisSize: MainAxisSize.min,
+              centerTitle: true,
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              iconTheme: IconThemeData(color: Colors.black),
+            ),
+            body: Container(
+              alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  elevation: 8,
+                  child: Observer(
+                    builder: (_) {
+                      if (createStore.loading)
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
                             children: [
-                              ImagesField(createStore),
-                              Observer(builder: (_) {
-                                return TextFormField(
-                                  initialValue: editing ? createStore.title : '',
-                                  onChanged: createStore.setTitle,
-                                  decoration: InputDecoration(
-                                      hintText: 'Ex: Celular Sansumg A50',
-                                      labelText: 'Título *',
-                                      labelStyle: labelStyle,
-                                      contentPadding: contentPadding,
-                                      errorText: createStore.titleError),
-                                );
-                              }),
-                              Observer(
-                                builder: (_) {
-                                  return TextFormField(
-                                    initialValue: createStore.description,
-                                    onChanged: createStore.setDescription,
-                                    decoration: InputDecoration(
-                                      hintText: 'Ex: Celular Sansumg A50, com todo os acessórios...',
-                                      labelText: 'Descrição *',
-                                      labelStyle: labelStyle,
-                                      contentPadding: contentPadding,
-                                      errorText: createStore.descriptionError,
-                                    ),
-                                    maxLines: null,
-                                  );
-                                },
+                              Text(
+                                'Salvando Anúncio',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Theme.of(context).primaryColor),
                               ),
-                              CategoryDesapegoField(createStore),
-                              CepField(createStore),
-                              Observer(
-                                builder: (_) {
-                                  return TextFormField(
-                                    initialValue: createStore.priceText,
-                                    onChanged: createStore.setPrice,
-                                    decoration: InputDecoration(
-                                        hintText: 'Ex: 100,00',
-                                        labelText: 'Preço *',
-                                        labelStyle: labelStyle,
-                                        contentPadding: contentPadding,
-                                        prefixText: 'R\$',
-                                        errorText: createStore.priceError),
-                                    keyboardType: TextInputType.number,
-                                    inputFormatters: [
-                                      FilteringTextInputFormatter.digitsOnly,
-                                      RealInputFormatter(centavos: true)
-                                    ],
-                                  );
-                                },
+                              const SizedBox(
+                                height: 16,
                               ),
-                              Observer(builder: (_) {
-                                return ErrorBox(
-                                  message: createStore.error,
-                                );
-                              }),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Observer(
-                                builder: (_) {
-                                  return SizedBox(
-                                    height: 50,
-                                    child: GestureDetector(
-                                      onTap: createStore.invalidSendPressed,
-                                      // ignore: deprecated_member_use
-                                      child: RaisedButton(
-                                        onPressed: createStore.sendPressed,
-                                        child: Text(
-                                          'Enviar',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 20,
-                                              fontFamily: 'Principal'),
-                                        ),
-                                        textColor: Colors.white,
-                                        color: Theme.of(context).primaryColor,
-                                        disabledColor: Theme.of(context)
-                                            .primaryColor
-                                            .withAlpha(100),
-                                        elevation: 0,
-                                        materialTapTargetSize:
-                                            MaterialTapTargetSize.shrinkWrap,
-                                      ),
-                                    ),
-                                  );
-                                },
+                              CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    Theme.of(context).primaryColor),
                               )
                             ],
-                          );
-                      },
-                    ),
+                          ),
+                        );
+                      else
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ImagesField(createStore),
+                            Observer(builder: (_) {
+                              return TextFormField(
+                                initialValue: editing ? createStore.title : '',
+                                onChanged: createStore.setTitle,
+                                decoration: InputDecoration(
+                                    hintText: 'Ex: Celular Sansumg A50',
+                                    labelText: 'Título *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createStore.titleError),
+                              );
+                            }),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createStore.description,
+                                  onChanged: createStore.setDescription,
+                                  decoration: InputDecoration(
+                                    hintText: 'Ex: Celular Sansumg A50, com todo os acessórios...',
+                                    labelText: 'Descrição *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createStore.descriptionError,
+                                  ),
+                                  maxLines: null,
+                                );
+                              },
+                            ),
+                            CategoryDesapegoField(createStore),
+                            CepField(createStore),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createStore.priceText,
+                                  onChanged: createStore.setPrice,
+                                  decoration: InputDecoration(
+                                      hintText: 'Ex: 100,00',
+                                      labelText: 'Preço *',
+                                      labelStyle: labelStyle,
+                                      contentPadding: contentPadding,
+                                      prefixText: 'R\$',
+                                      errorText: createStore.priceError),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    RealInputFormatter(centavos: true)
+                                  ],
+                                );
+                              },
+                            ),
+                            Observer(builder: (_) {
+                              return ErrorBox(
+                                message: createStore.error,
+                              );
+                            }),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Observer(
+                              builder: (_) {
+                                return SizedBox(
+                                  height: 50,
+                                  child: GestureDetector(
+                                    onTap: createStore.invalidSendPressed,
+                                    // ignore: deprecated_member_use
+                                    child: RaisedButton(
+                                      onPressed: createStore.sendPressed,
+                                      child: Text(
+                                        'Enviar',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            fontFamily: 'Principal'),
+                                      ),
+                                      textColor: Colors.white,
+                                      color: Theme.of(context).primaryColor,
+                                      disabledColor: Theme.of(context)
+                                          .primaryColor
+                                          .withAlpha(100),
+                                      elevation: 0,
+                                      materialTapTargetSize:
+                                          MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                  ),
+                                );
+                              },
+                            )
+                          ],
+                        );
+                    },
                   ),
                 ),
               ),

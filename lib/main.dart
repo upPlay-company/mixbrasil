@@ -14,6 +14,8 @@ import 'package:mix_brasil/screens/base/base_screen.dart';
 import 'package:mix_brasil/screens/inicial/inicial_screen.dart';
 import 'package:mix_brasil/screens/login/login_screen.dart';
 import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
+import 'package:mix_brasil/screens/myads/myads_screen.dart';
+import 'package:mix_brasil/screens/mylojas/my_lojas_screen.dart';
 import 'package:mix_brasil/stores/category_desapego_store.dart';
 import 'package:mix_brasil/stores/category_lojas_store.dart';
 import 'package:mix_brasil/stores/connectivity_store.dart';
@@ -116,6 +118,14 @@ class MyApp extends StatelessWidget {
             case '/base':
               return MaterialPageRoute(
                 builder: (_) => BaseScreen(),
+              );
+            case '/meus_desapegos':
+              return MaterialPageRoute(
+                builder: (_) => MyAdsScreen(),
+              );
+            case '/minha_lojas':
+              return MaterialPageRoute(
+                builder: (_) => MyLojasScreen(),
               );
             case '/inicial':
             default:

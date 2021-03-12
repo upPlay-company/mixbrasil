@@ -26,7 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
 
     when((_) => userManagerStore.user != null, () {
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => MyApp()));
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (_) => MyApp()), (Route<dynamic> route) => false,);
     });
   }
 

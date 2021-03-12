@@ -47,6 +47,7 @@ class _MyAdsScreenState extends State<MyAdsScreen>
             style: TextStyle(color: Colors.white, fontSize: 18),
           ),
           iconTheme: IconThemeData(color: Colors.white),
+          automaticallyImplyLeading: true,
           centerTitle: true,
           elevation: 0,
           bottom: TabBar(

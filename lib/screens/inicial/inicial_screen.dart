@@ -15,7 +15,7 @@ class _InicialScreenState extends State<InicialScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 4)).then((_){
+    Future.delayed(Duration(seconds: 1000)).then((_){
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BaseScreen()));
     });
   }
@@ -29,13 +29,15 @@ class _InicialScreenState extends State<InicialScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Container(
-                height: 200,
-                width: 200,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('images/Logo mix.png'),
-                    )
+              Expanded(
+                child: Container(
+                  height: 200,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage('images/Logo mix.png'),
+                      )
+                  ),
                 ),
               ),
               Text('DESENVOLVIDO POR', style: TextStyle(color: Colors.black, fontSize: 8),),
@@ -47,7 +49,8 @@ class _InicialScreenState extends State<InicialScreen> {
                       image: AssetImage('images/Logo Upplay preto.png'),
                     )
                 ),
-              )
+              ),
+              SizedBox(height: 20,)
             ],
           ),
         ),

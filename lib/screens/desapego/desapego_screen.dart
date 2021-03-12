@@ -4,7 +4,6 @@ import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_categorias.dart';
 import 'package:mix_brasil/screens/desapego/components/search_dialog.dart';
 import 'package:provider/provider.dart';
-
 import 'components/section_destaque_desapego.dart';
 
 class DesapegoScreen extends StatelessWidget {

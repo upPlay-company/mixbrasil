@@ -51,7 +51,7 @@ class _BaseScreenState extends State<BaseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: Container(
-          height: 70,
+          height: 65,
           decoration: BoxDecoration(color: Colors.white, boxShadow: [
             BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
           ]),
@@ -59,7 +59,7 @@ class _BaseScreenState extends State<BaseScreen> {
             child: bmnav.BottomNav(
               iconStyle: bmnav.IconStyle(color: Colors.black, onSelectColor: Theme.of(context).primaryColor),
               index: _selectedIndex,
-              labelStyle: bmnav.LabelStyle(textStyle: TextStyle(color: Colors.black, fontSize: 12), onSelectTextStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 14)),
+              labelStyle: bmnav.LabelStyle(textStyle: TextStyle(color: Colors.black, fontSize: 10), onSelectTextStyle: TextStyle(color: Theme.of(context).primaryColor, fontSize: 14)),
               onTap: (i){
                 setState(() {
                   _selectedIndex = i;

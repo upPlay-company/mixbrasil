@@ -18,205 +18,208 @@ class Perfil extends StatelessWidget {
 
     final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
 
-    return Container(
-      color: Colors.grey[50],
-      child: ListView(
-        children: [
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(bottom: 20, top: 10),
-                child: Text(
-                  "PERFIL",
-                  style: TextStyle(
-                    decoration: TextDecoration.none,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w800,
-                    fontSize: 18,
+    return WillPopScope(
+      onWillPop: () => Future.value(false),
+      child: Container(
+        color: Colors.grey[50],
+        child: ListView(
+          children: [
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20, top: 10),
+                  child: Text(
+                    "PERFIL",
+                    style: TextStyle(
+                      decoration: TextDecoration.none,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
-              ),
-              Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 70,
-                      bottom: 20,
-                    ),
-                    child: Center(
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * 0.22,
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(40),
-                          color: Theme.of(context).secondaryHeaderColor,
-                        ),
-                        child: Center(
-                          child: Padding(
-                              padding: const EdgeInsets.only(top: 75),
-                              child: Observer(builder: (_){
-                                return Column(
-                                  children: [
-                                    Text(
-                                      '${userManagerStore.user?.name ?? 'Olá Convidado'}',
-                                      style: TextStyle(
-                                        decoration: TextDecoration.none,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (userManagerStore.isLoggedIn) {
-                                          userManagerStore.logout();
-                                          Navigator.of(context)
-                                              .pushNamed('/base');
-                                        } else {
-                                          Navigator.of(context)
-                                              .pushNamed('/login');
-                                        }
-                                      },
-                                      child: Text(
-                                        userManagerStore.isLoggedIn
-                                            ? 'Sair'
-                                            : 'Entre Agora',
+                Stack(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 70,
+                        bottom: 20,
+                      ),
+                      child: Center(
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.22,
+                          width: MediaQuery.of(context).size.width * 0.9,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(40),
+                            color: Theme.of(context).secondaryHeaderColor,
+                          ),
+                          child: Center(
+                            child: Padding(
+                                padding: const EdgeInsets.only(top: 75),
+                                child: Observer(builder: (_){
+                                  return Column(
+                                    children: [
+                                      Text(
+                                        '${userManagerStore.user?.name ?? 'Olá Convidado'}',
                                         style: TextStyle(
                                           decoration: TextDecoration.none,
                                           color: Colors.black,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 18,
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              })),
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          if (userManagerStore.isLoggedIn) {
+                                            userManagerStore.logout();
+                                            Navigator.of(context)
+                                                .pushNamed('/base');
+                                          } else {
+                                            Navigator.of(context)
+                                                .pushNamed('/login');
+                                          }
+                                        },
+                                        child: Text(
+                                          userManagerStore.isLoggedIn
+                                              ? 'Sair'
+                                              : 'Entre Agora',
+                                          style: TextStyle(
+                                            decoration: TextDecoration.none,
+                                            color: Colors.black,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                })),
+                          ),
                         ),
                       ),
                     ),
+                    Center(
+                      child: Observer(builder: (_){
+                        if (userManagerStore.isLoggedIn && userManagerStore.user?.img?.isEmpty != null)
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: GFAvatar(
+                                size: 84,
+                                backgroundImage: NetworkImage(
+                                  userManagerStore.user.img?.first ??
+                                      'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
+                                ),
+                              ),
+                            ),
+                          );
+                        else
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5),
+                              child: GFAvatar(
+                                size: 84,
+                                backgroundImage: NetworkImage(
+                                  'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
+                                ),
+                              ),
+                            ),
+                          );
+                      })
+                    )
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if(userManagerStore.isLoggedIn)
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => MyAdsScreen()));
+                    else
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
+                  },
+                  child: rowsColumns(
+                    "Meus Desapegos",
+                    Icons.card_giftcard,
+                    Icons.arrow_forward_ios,
                   ),
-                  Center(
-                    child: Observer(builder: (_){
-                      if (userManagerStore.isLoggedIn && userManagerStore.user?.img?.isEmpty != null)
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: GFAvatar(
-                              size: 84,
-                              backgroundImage: NetworkImage(
-                                userManagerStore.user.img?.first ??
-                                    'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
-                              ),
-                            ),
-                          ),
-                        );
-                      else
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(100),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(5),
-                            child: GFAvatar(
-                              size: 84,
-                              backgroundImage: NetworkImage(
-                                'https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png',
-                              ),
-                            ),
-                          ),
-                        );
-                    })
-                  )
-                ],
-              ),
-              GestureDetector(
-                onTap: () {
-                  if(userManagerStore.isLoggedIn)
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => MyAdsScreen()));
-                  else
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
-                },
-                child: rowsColumns(
-                  "Meus Desapegos",
-                  Icons.card_giftcard,
-                  Icons.arrow_forward_ios,
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  if(userManagerStore.isLoggedIn)
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => MyLojasScreen()));
-                  else
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
-                },
-                child: rowsColumns(
-                  "Minhas Lojas",
-                  LineIcons.store,
-                  Icons.arrow_forward_ios,
+                GestureDetector(
+                  onTap: () {
+                    if(userManagerStore.isLoggedIn)
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => MyLojasScreen()));
+                    else
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => FacaLoginScreen()));
+                  },
+                  child: rowsColumns(
+                    "Minhas Lojas",
+                    LineIcons.store,
+                    Icons.arrow_forward_ios,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: (){
-                  if(userManagerStore.isLoggedIn)
+                GestureDetector(
+                  onTap: (){
+                    if(userManagerStore.isLoggedIn)
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => FavoritosScreen()),
+                      );
+                    else
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => FacaLoginScreen()),
+                      );
+                  },
+                  child: rowsColumns(
+                    "Meus Favoritos",
+                    Icons.favorite,
+                    Icons.arrow_forward_ios,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    if(userManagerStore.isLoggedIn)
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => MinhaContaScreen()),
+                      );
+                    else
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => FacaLoginScreen()),
+                      );
+                  },
+                  child: rowsColumns(
+                    "Perfil",
+                    Icons.account_circle,
+                    Icons.arrow_forward_ios,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: (){
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FavoritosScreen()),
+                      MaterialPageRoute(builder: (context) => PrivacidadeSegurancaScreen())
                     );
-                  else
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FacaLoginScreen()),
-                    );
-                },
-                child: rowsColumns(
-                  "Meus Favoritos",
-                  Icons.favorite,
-                  Icons.arrow_forward_ios,
+                  },
+                  child: rowsColumns(
+                    "Segurança e privacidade",
+                    Icons.vpn_key,
+                    Icons.arrow_forward_ios,
+                  ),
                 ),
-              ),
-              GestureDetector(
-                onTap: () {
-                  if(userManagerStore.isLoggedIn)
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => MinhaContaScreen()),
-                    );
-                  else
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => FacaLoginScreen()),
-                    );
-                },
-                child: rowsColumns(
-                  "Perfil",
-                  Icons.account_circle,
-                  Icons.arrow_forward_ios,
-                ),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => PrivacidadeSegurancaScreen())
-                  );
-                },
-                child: rowsColumns(
-                  "Segurança e privacidade",
-                  Icons.vpn_key,
-                  Icons.arrow_forward_ios,
-                ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

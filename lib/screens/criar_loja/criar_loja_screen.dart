@@ -71,203 +71,206 @@ class _CriarLojaScreenState extends State<CriarLojaScreen> {
           fit: BoxFit.cover,
         ),
       ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: Text(
-            editing ? 'EDITANDO LOJA' : 'CRIE SUA LOJA',
-            style: TextStyle(color: Colors.black, fontSize: 18),
-          ),
-          centerTitle: true,
-          elevation: 0,
+      child: WillPopScope(
+        onWillPop: () => Future.value(true),
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          iconTheme: IconThemeData(color: Colors.black),
-        ),
-        body: Container(
-          alignment: Alignment.center,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 30),
-              child: Card(
-                clipBehavior: Clip.antiAlias,
-                margin: const EdgeInsets.symmetric(horizontal: 16),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16)),
-                elevation: 8,
-                child: Observer(
-                  builder: (_) {
-                    if (createLojaStore.loading)
-                      return Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: Column(
+          appBar: AppBar(
+            title: Text(
+              editing ? 'EDITANDO LOJA' : 'CRIE SUA LOJA',
+              style: TextStyle(color: Colors.black, fontSize: 18),
+            ),
+            centerTitle: true,
+            elevation: 0,
+            backgroundColor: Colors.transparent,
+            iconTheme: IconThemeData(color: Colors.black),
+          ),
+          body: Container(
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 30),
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  elevation: 8,
+                  child: Observer(
+                    builder: (_) {
+                      if (createLojaStore.loading)
+                        return Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Salvando Loja',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation(
+                                    Theme.of(context).primaryColor),
+                              )
+                            ],
+                          ),
+                        );
+                      else
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              'Salvando Loja',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Theme.of(context).primaryColor),
+                            ImagesCapaField(createLojaStore),
+                            ImagesOfertasField(createLojaStore),
+                            ImagesStoryField(createLojaStore),
+                            ImagesCuponsField(createLojaStore),
+                            Observer(builder: (_) {
+                              return TextFormField(
+                                initialValue: editing ? createLojaStore.name : '',
+                                onChanged: createLojaStore.SetName,
+                                decoration: InputDecoration(
+                                    hintText: 'Ex: Mix Brasil',
+                                    labelText: 'Nome da loja *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createLojaStore.nameError),
+                              );
+                            }),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createLojaStore.promocao,
+                                  onChanged: createLojaStore.SetPromocao,
+                                  decoration: InputDecoration(
+                                    hintText: 'Ex: 20% de desconto em toda loja...',
+                                    labelText: 'Promoção da loja *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createLojaStore.promocaoError,
+                                  ),
+                                  maxLines: 1,
+                                );
+                              },
                             ),
-                            const SizedBox(
-                              height: 16,
+                            CategoryField(createLojaStore),
+                            CepLojasField(createLojaStore),
+                            Observer(builder: (_){
+                              return TextFormField(
+                                initialValue: createLojaStore.cpfCnpjText,
+                                onChanged: createLojaStore.setCpfCnpj,
+                                decoration: InputDecoration(
+                                    hintText: 'Ex: 123.456.789.12 ou 12.345.678/0001-12',
+                                    labelText: 'CPF/CNPJ *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createLojaStore.cpjCnpjError),
+                                keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  CpfOuCnpjFormatter()
+                                ],
+                              );
+                            }),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createLojaStore.priceText,
+                                  onChanged: createLojaStore.setPrice,
+                                  decoration: InputDecoration(
+                                      hintText: 'Ex: 100,00',
+                                      labelText: 'Preço padrão *',
+                                      labelStyle: labelStyle,
+                                      contentPadding: contentPadding,
+                                      prefixText: 'R\$',
+                                      errorText: createLojaStore.priceError),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    RealInputFormatter(centavos: true)
+                                  ],
+                                );
+                              },
                             ),
-                            CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(
-                                  Theme.of(context).primaryColor),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createLojaStore.vagaEmprego,
+                                  onChanged: createLojaStore.SetVagaEmprego,
+                                  decoration: InputDecoration(
+                                    hintText: 'Ex: vaga de vendedor...',
+                                    labelText: 'Vaga de emprego *',
+                                    labelStyle: labelStyle,
+                                    contentPadding: contentPadding,
+                                    errorText: createLojaStore.vagaError,
+                                  ),
+                                  maxLines: null,
+                                );
+                              },
+                            ),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
+                                  initialValue: createLojaStore.whats,
+                                  onChanged: createLojaStore.setWhats,
+                                  decoration: InputDecoration(
+                                      hintText: 'Ex: (99) 99999-9999',
+                                      labelText: 'WhatsApp*',
+                                      labelStyle: labelStyle,
+                                      contentPadding: contentPadding,
+                                      errorText: createLojaStore.priceError),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(15),
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    TelefoneInputFormatter()
+                                  ],
+                                );
+                              },
+                            ),
+                            Observer(builder: (_) {
+                              return ErrorBox(
+                                message: createLojaStore.error,
+                              );
+                            }),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Observer(
+                              builder: (_) {
+                                return SizedBox(
+                                  height: 50,
+                                  child: GestureDetector(
+                                    onTap: createLojaStore.invalidSendPressed,
+                                    // ignore: deprecated_member_use
+                                    child: RaisedButton(
+                                      onPressed: createLojaStore.sendPressed,
+                                      child: Text(
+                                        'Enviar',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            fontFamily: 'Principal'),
+                                      ),
+                                      textColor: Colors.white,
+                                      color: Theme.of(context).secondaryHeaderColor,
+                                      disabledColor: Theme.of(context).secondaryHeaderColor.withAlpha(100),
+                                      elevation: 0,
+                                      materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                    ),
+                                  ),
+                                );
+                              },
                             )
                           ],
-                        ),
-                      );
-                    else
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ImagesCapaField(createLojaStore),
-                          ImagesOfertasField(createLojaStore),
-                          ImagesStoryField(createLojaStore),
-                          ImagesCuponsField(createLojaStore),
-                          Observer(builder: (_) {
-                            return TextFormField(
-                              initialValue: editing ? createLojaStore.name : '',
-                              onChanged: createLojaStore.SetName,
-                              decoration: InputDecoration(
-                                  hintText: 'Ex: Mix Brasil',
-                                  labelText: 'Nome da loja *',
-                                  labelStyle: labelStyle,
-                                  contentPadding: contentPadding,
-                                  errorText: createLojaStore.nameError),
-                            );
-                          }),
-                          Observer(
-                            builder: (_) {
-                              return TextFormField(
-                                initialValue: createLojaStore.promocao,
-                                onChanged: createLojaStore.SetPromocao,
-                                decoration: InputDecoration(
-                                  hintText: 'Ex: 20% de desconto em toda loja...',
-                                  labelText: 'Promoção da loja *',
-                                  labelStyle: labelStyle,
-                                  contentPadding: contentPadding,
-                                  errorText: createLojaStore.promocaoError,
-                                ),
-                                maxLines: 1,
-                              );
-                            },
-                          ),
-                          CategoryField(createLojaStore),
-                          CepLojasField(createLojaStore),
-                          Observer(builder: (_){
-                            return TextFormField(
-                              initialValue: createLojaStore.cpfCnpjText,
-                              onChanged: createLojaStore.setCpfCnpj,
-                              decoration: InputDecoration(
-                                  hintText: 'Ex: 123.456.789.12 ou 12.345.678/0001-12',
-                                  labelText: 'CPF/CNPJ *',
-                                  labelStyle: labelStyle,
-                                  contentPadding: contentPadding,
-                                  errorText: createLojaStore.cpjCnpjError),
-                              keyboardType: TextInputType.number,
-                              inputFormatters: [
-                                FilteringTextInputFormatter.digitsOnly,
-                                CpfOuCnpjFormatter()
-                              ],
-                            );
-                          }),
-                          Observer(
-                            builder: (_) {
-                              return TextFormField(
-                                initialValue: createLojaStore.priceText,
-                                onChanged: createLojaStore.setPrice,
-                                decoration: InputDecoration(
-                                    hintText: 'Ex: 100,00',
-                                    labelText: 'Preço padrão *',
-                                    labelStyle: labelStyle,
-                                    contentPadding: contentPadding,
-                                    prefixText: 'R\$',
-                                    errorText: createLojaStore.priceError),
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  RealInputFormatter(centavos: true)
-                                ],
-                              );
-                            },
-                          ),
-                          Observer(
-                            builder: (_) {
-                              return TextFormField(
-                                initialValue: createLojaStore.vagaEmprego,
-                                onChanged: createLojaStore.SetVagaEmprego,
-                                decoration: InputDecoration(
-                                  hintText: 'Ex: vaga de vendedor...',
-                                  labelText: 'Vaga de emprego *',
-                                  labelStyle: labelStyle,
-                                  contentPadding: contentPadding,
-                                  errorText: createLojaStore.vagaError,
-                                ),
-                                maxLines: null,
-                              );
-                            },
-                          ),
-                          Observer(
-                            builder: (_) {
-                              return TextFormField(
-                                initialValue: createLojaStore.whats,
-                                onChanged: createLojaStore.setWhats,
-                                decoration: InputDecoration(
-                                    hintText: 'Ex: (99) 99999-9999',
-                                    labelText: 'WhatsApp*',
-                                    labelStyle: labelStyle,
-                                    contentPadding: contentPadding,
-                                    errorText: createLojaStore.priceError),
-                                keyboardType: TextInputType.number,
-                                inputFormatters: [
-                                  LengthLimitingTextInputFormatter(15),
-                                  FilteringTextInputFormatter.digitsOnly,
-                                  TelefoneInputFormatter()
-                                ],
-                              );
-                            },
-                          ),
-                          Observer(builder: (_) {
-                            return ErrorBox(
-                              message: createLojaStore.error,
-                            );
-                          }),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Observer(
-                            builder: (_) {
-                              return SizedBox(
-                                height: 50,
-                                child: GestureDetector(
-                                  onTap: createLojaStore.invalidSendPressed,
-                                  // ignore: deprecated_member_use
-                                  child: RaisedButton(
-                                    onPressed: createLojaStore.sendPressed,
-                                    child: Text(
-                                      'Enviar',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 20,
-                                          fontFamily: 'Principal'),
-                                    ),
-                                    textColor: Colors.white,
-                                    color: Theme.of(context).secondaryHeaderColor,
-                                    disabledColor: Theme.of(context).secondaryHeaderColor.withAlpha(100),
-                                    elevation: 0,
-                                    materialTapTargetSize:
-                                    MaterialTapTargetSize.shrinkWrap,
-                                  ),
-                                ),
-                              );
-                            },
-                          )
-                        ],
-                      );
-                  },
+                        );
+                    },
+                  ),
                 ),
               ),
             ),

@@ -205,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // ignore: deprecated_member_use
                             child: RaisedButton(
                               onPressed: loginStore.loginFacebook,
-                              color: Theme.of(context).primaryColor,
+                              color: Color(0xff166fe6),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

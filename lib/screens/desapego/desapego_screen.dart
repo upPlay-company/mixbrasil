@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:mix_brasil/model/desapego/desapego_destaque.dart';
 import 'package:mix_brasil/model/desapego/destaque_desapego_manager.dart';
 import 'package:mix_brasil/screens/criar_anuncio/criar_anuncio_screen.dart';
 import 'package:mix_brasil/screens/desapego/components/desapego_categorias.dart';
@@ -194,30 +192,22 @@ class DesapegoScreen extends StatelessWidget {
               ),
             ),
             SliverToBoxAdapter(
-                child: FutureBuilder<QuerySnapshot>(
-                  future: FirebaseFirestore.instance
-                      .collection("destaque_desapego")
-                      .orderBy('created', descending: true)
-                      .get(),
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData)
-                      return Center(
-                        child: LinearProgressIndicator(valueColor: AlwaysStoppedAnimation(Theme.of(context).primaryColor),
-                          backgroundColor: Colors.transparent,
-                        ),
-                      );
-                    else
-                      return ListView.builder(
-                          shrinkWrap: true,
-                          physics: ScrollPhysics(),
-                          itemCount: snapshot.data.docs.length,
-                          itemBuilder: (context, index) {
-                            DesapegoDestaque data = DesapegoDestaque.fromDocument(
-                                snapshot.data.docs[index]);
-                            return SectionDestaquesDesapego("list", data);
-                          });
-                  },
-                )),
+              child: Consumer<DestaqueDesapegoManager>(
+                builder: (_, destaqueDesapegoManager, __) {
+                  final filteredDesapego =
+                      destaqueDesapegoManager.filteredDesapegoDestaque;
+                  return ListView.builder(
+                    physics: ScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    itemCount: filteredDesapego.length,
+                    itemBuilder: (_, index) {
+                      return SectionDestaquesDesapego(filteredDesapego[index],);
+                    },
+                  );
+                },
+              ),
+            ),
             SliverToBoxAdapter(
               child: SizedBox(height: 115,),
             )

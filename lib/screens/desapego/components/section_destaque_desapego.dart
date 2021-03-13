@@ -9,9 +9,8 @@ import 'package:provider/provider.dart';
 
 class SectionDestaquesDesapego extends StatefulWidget {
 
-  SectionDestaquesDesapego(this.type, this.desapegoDestaque);
+  SectionDestaquesDesapego(this.desapegoDestaque);
 
-  final String type;
   final DesapegoDestaque desapegoDestaque;
 
   @override

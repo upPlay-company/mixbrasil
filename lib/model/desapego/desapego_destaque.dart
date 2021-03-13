@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 
-class DesapegoDestaque {
+class DesapegoDestaque extends ChangeNotifier {
   DesapegoDestaque.fromDocument(DocumentSnapshot document) {
     id = document.id;
     name = document.data()['name'] as String;

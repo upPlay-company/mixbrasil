@@ -146,8 +146,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
                             child: Row(
                               children: <Widget>[
                                 Text(
-                                  'R\$${widget.desapegoDestaque.price
-                                      .toStringAsFixed(2)}',
+                                  'R\$${widget.desapegoDestaque.price.toStringAsFixed(2)}',
                                   textScaleFactor: 1.2,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,

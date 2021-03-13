@@ -19,7 +19,7 @@ class AnuncieAquiTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "Anúncie agora",
+                "Anuncie agora",
                 style: TextStyle(
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
@@ -27,7 +27,7 @@ class AnuncieAquiTile extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               Text(
-                "NO MIX BRASIL",
+                "NA MIX BRASIL",
                 style: TextStyle(
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
@@ -63,7 +63,7 @@ class AnuncieAquiTile extends StatelessWidget {
                 height: 50,
               ),
               Text(
-                "Anúncie para todo Brasil o seu negocio nos banner's da Mix! Quem anuncia Vende! CLIQUE NO BOTÃO E SAIBA MAIS...",
+                "Anuncie para todo Brasil o seu negocio nos banner's da Mix! Quem anuncia Vende! CLIQUE NO BOTÃO E SAIBA MAIS...",
                 style:
                     TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold, color: Colors.white),
                 textAlign: TextAlign.center,

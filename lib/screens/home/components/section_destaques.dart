@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/model/lojas/loja_destaque_manager.dart';
@@ -6,28 +7,57 @@ import 'package:mix_brasil/model/user/user_manager.dart';
 import 'package:mix_brasil/screens/home/components/lojas_destaques_screen.dart';
 import 'package:provider/provider.dart';
 
-class SectionDestaques extends StatelessWidget {
+class SectionDestaques extends StatefulWidget {
 
+  final String type;
   final DestaqueLoja lojasDestaque;
 
-  SectionDestaques(this.lojasDestaque);
+  SectionDestaques(this.type, this.lojasDestaque);
 
+  @override
+  _SectionDestaquesState createState() => _SectionDestaquesState();
+}
+
+class _SectionDestaquesState extends State<SectionDestaques> {
   @override
   Widget build(BuildContext context) {
 
     final userManager = context.watch<UserManager>();
 
+    final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+    int counter = 0;
+
+    void saveViews() async {
+      ++counter;
+      final viewsTotal = counter + widget.lojasDestaque.views;
+
+      DocumentReference firestoreRefUser = firestore
+          .collection('users')
+          .doc(widget.lojasDestaque.idUser)
+          .collection('lojas')
+          .doc(widget.lojasDestaque.idAdsUser);
+
+      DocumentReference firestoreRefAds = firestore
+          .collection('destaque_home')
+          .doc(widget.lojasDestaque.id);
+
+      await firestoreRefAds.update({'views': viewsTotal});
+      await firestoreRefUser.update({'viewsDestaque': viewsTotal});
+    }
+
     Widget lojaTile() {
       return InkWell(
         onTap: () {
-          if (lojasDestaque.id != null) {
+          saveViews();
+          if (widget.lojasDestaque.id != null) {
             final product = context
                 .read<LojasDestaqueManager>()
-                .findProductByID(lojasDestaque.id);
+                .findProductByID(widget.lojasDestaque.id);
             if (product != null) {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => LojasDestaqueScreen(lojasDestaque)),
+                    builder: (context) => LojasDestaqueScreen(widget.lojasDestaque)),
               );
             }
           }
@@ -46,9 +76,9 @@ class SectionDestaques extends StatelessWidget {
                     height: 135,
                     width: 127,
                     child: CachedNetworkImage(
-                      imageUrl: lojasDestaque.img.isEmpty ?
+                      imageUrl: widget.lojasDestaque.img.isEmpty ?
                       'https://static.thenounproject.com/png/194055-200.png' :
-                      lojasDestaque.img.first,
+                      widget.lojasDestaque.img.first,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -63,7 +93,7 @@ class SectionDestaques extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          lojasDestaque.name,
+                          widget.lojasDestaque.name,
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w800),
                         ),
@@ -78,7 +108,7 @@ class SectionDestaques extends StatelessWidget {
                               color: Colors.grey[700],
                             ),
                             Text(
-                              '${lojasDestaque.city}',
+                              '${widget.lojasDestaque.city}',
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
@@ -92,7 +122,7 @@ class SectionDestaques extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
-                              lojasDestaque.promocao,
+                              widget.lojasDestaque.promocao,
                               style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w700,
@@ -109,7 +139,7 @@ class SectionDestaques extends StatelessWidget {
                                       color: Colors.black),
                                 ),
                                 Text(
-                                  ' R\$${lojasDestaque.price.toStringAsFixed(2)}',
+                                  ' R\$${widget.lojasDestaque.price.toStringAsFixed(2)}',
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w800,
@@ -134,11 +164,11 @@ class SectionDestaques extends StatelessWidget {
 
     final DateTime dateTime = DateTime.now();
 
-    DateTime _pickedDate = lojasDestaque.created.toDate();
+    DateTime _pickedDate = widget.lojasDestaque.created.toDate();
 
     final date = dateTime.difference(_pickedDate).inDays <= 6;
 
-    if (userManager.isLoggedIn && userManager.user.idState?.initials == lojasDestaque.state && date)
+    if (userManager.isLoggedIn && userManager.user.idState?.initials == widget.lojasDestaque.state && date)
       return lojaTile();
     else if (userManager.isLoggedIn && userManager.user.idState?.name == 'Brasil' && date)
       return lojaTile();
@@ -149,5 +179,4 @@ class SectionDestaques extends StatelessWidget {
     else
       return Container();
   }
-
 }

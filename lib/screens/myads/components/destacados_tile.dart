@@ -59,7 +59,7 @@ class DestacadoTile extends StatelessWidget {
                             fontWeight: FontWeight.w500, fontSize: 15),
                       ),
                       Text(
-                        '${ad.views} visitas',
+                        '${ad.viewsDestaque} visitas',
                         style: TextStyle(
                           fontSize: 12,
                           color: Colors.grey[800],

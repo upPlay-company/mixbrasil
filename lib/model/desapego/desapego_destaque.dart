@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 
-class DesapegoDestaque extends ChangeNotifier {
+class DesapegoDestaque {
   DesapegoDestaque.fromDocument(DocumentSnapshot document) {
     id = document.id;
     name = document.data()['name'] as String;
@@ -13,12 +12,12 @@ class DesapegoDestaque extends ChangeNotifier {
     district = document.data()['bairro'] as String;
     price = document.data()['price'] as double;
     img = List<String>.from(document.data()['img'] as List<dynamic>);
-    viewsDestaque = document.data()['viewsDestaque'];
     idCat = document.data()["idCat"];
     idUser = document.data()['user'];
     idAdsUser = document.data()['idAdsUser'];
     anunciante = document.data()['anunciante'];
     created = document.data()['created'];
+    views = document.data()['viewsDestaque'];
   }
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -42,7 +41,7 @@ class DesapegoDestaque extends ChangeNotifier {
   String anunciante;
   String estado;
   String number;
-  int viewsDestaque;
+  int views;
   String idCat;
   String idUser;
   String idAdsUser;

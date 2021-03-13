@@ -1,4 +1,5 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mix_brasil/model/lojas/destaque.dart';
 import 'package:mix_brasil/screens/lojas/components/image_dialog_lojas.dart';
@@ -28,6 +29,27 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
 
   double whiteMargin = 2.5;
   double imageMargin = 4.0;
+
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  int counter = 0;
+
+  void saveViewsWhats() async {
+    ++counter;
+    final viewsTotal = counter + widget.lojasDestaque.viewsWhats;
+
+    DocumentReference firestoreRefUser = firestore
+        .collection('users')
+        .doc(widget.lojasDestaque.idUser)
+        .collection('lojas')
+        .doc(widget.lojasDestaque.idAdsUser);
+
+    DocumentReference firestoreRefAds = firestore
+        .collection('destaque_home').doc(widget.lojasDestaque.id);
+
+    await firestoreRefAds.update({'viewsWhats': viewsTotal});
+    await firestoreRefUser.update({'viewsWhatsDestaque': viewsTotal});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,6 +81,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(16.0))),
                   onPressed: () {
+                    saveViewsWhats();
                     final clearNumber = lojasDestaque.number.replaceAll(RegExp('[^0-9]'), '');
                     _launchURL(
                         'whatsapp://send?phone=+55$clearNumber&text=Olá, vi seus anúncios na Mix Brasil. Quero comprar/saber mais!'

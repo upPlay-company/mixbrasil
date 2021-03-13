@@ -9,8 +9,9 @@ import 'package:provider/provider.dart';
 
 class SectionDestaquesDesapego extends StatefulWidget {
 
-  SectionDestaquesDesapego(this.desapegoDestaque);
+  SectionDestaquesDesapego(this.type, this.desapegoDestaque);
 
+  final String type;
   final DesapegoDestaque desapegoDestaque;
 
   @override
@@ -20,6 +21,27 @@ class SectionDestaquesDesapego extends StatefulWidget {
 class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
 
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  int counter = 0;
+
+  void saveViews() async {
+    ++counter;
+    final viewsTotal = counter + widget.desapegoDestaque.views;
+
+    DocumentReference firestoreRefUser = firestore
+        .collection('users')
+        .doc(widget.desapegoDestaque.idUser)
+        .collection('desapegos')
+        .doc(widget.desapegoDestaque.idAdsUser);
+
+    DocumentReference firestoreRefAds = firestore
+        .collection('destaque_desapego')
+        .doc(widget.desapegoDestaque.id);
+
+    await firestoreRefAds.update({'viewsDestaque': viewsTotal});
+    await firestoreRefUser.update({'viewsDestaque': viewsTotal});
+  }
+
   @override
   Widget build(BuildContext context) {
     final userManager = context.watch<UserManager>();
@@ -27,6 +49,7 @@ class _SectionDestaquesDesapegoState extends State<SectionDestaquesDesapego> {
     Widget lojaTile() {
       return InkWell(
           onTap: () {
+            saveViews();
             Navigator.of(context).push(
               MaterialPageRoute(
                   builder: (context) =>

@@ -50,21 +50,20 @@ class DestacadolojasTile extends StatelessWidget {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
-                      // TODO: PASSAR AS VISUALIZAÇÕES DE DESTAQUE LOJAS
-                      /*Text(
-                        'Cliques na Loja: ${adLojas.views}',
+                      Text(
+                        'Cliques na Loja: ${adLojas.viewsDestaque}',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey[800],
                         ),
                       ),
                       Text(
-                        'Cliques WhatsApp: ${adLojas.viewsWhats}',
+                        'Cliques WhatsApp: ${adLojas.viewsWhatsDestaque}',
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.grey[800],
                         ),
-                      ),*/
+                      ),
                     ],
                   ),
                 ),

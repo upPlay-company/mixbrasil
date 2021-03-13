@@ -22,8 +22,8 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
 
   final DesapegoDestaque desapegoDestaque;
 
-
   _ItensDestaqueDesapegoState(this.desapegoDestaque);
+
 
   @override
   Widget build(BuildContext context) {

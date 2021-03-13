@@ -17,28 +17,6 @@ class CategoryScreen extends StatelessWidget {
           backgroundColor: Theme.of(context).primaryColor,
           title: Text(snapshot.data()["name"], style: TextStyle(fontSize: 18),),
           iconTheme: IconThemeData(size: 10, color: Colors.white),
-          /*actions: [
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 10),
-                  child: SizedBox(
-                    width: 55,
-                    height: 100,
-                    child: GestureDetector(
-                      onTap: () {
-                        // TODO: SEARCH LOJAS
-                      },
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
-          ],*/
         ),
         body: FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance

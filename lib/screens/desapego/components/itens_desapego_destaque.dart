@@ -209,7 +209,7 @@ class _ItensDestaqueDesapegoState extends State<ItensDestaqueDesapego> {
         color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
-            "ANUCIANTE: " + desapegoDestaque.anunciante.toUpperCase(),
+            "ANUNCIANTE: " + desapegoDestaque.anunciante.toUpperCase(),
             style: TextStyle(
               fontSize: 16,
               color: Colors.white,

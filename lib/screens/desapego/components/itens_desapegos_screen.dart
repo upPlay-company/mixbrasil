@@ -233,7 +233,7 @@ class ItensDesapegosScreen extends StatelessWidget {
         color: Theme.of(context).secondaryHeaderColor,
         child: Center(
           child: Text(
-            "ANUCIANTE: " + desapego.anunciante.toUpperCase(),
+            "ANUNCIANTE: " + desapego.anunciante.toUpperCase(),
             style: TextStyle(
               fontSize: 16,
               color: Colors.white,

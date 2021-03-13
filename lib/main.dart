@@ -64,6 +64,10 @@ class MyApp extends StatelessWidget {
           lazy: false,
         ),
         ChangeNotifierProvider(
+          create: (_) => LojasDestaqueManager(),
+          lazy: false,
+        ),
+        ChangeNotifierProvider(
           create: (_) => UserManager(),
           lazy: false,
         ),

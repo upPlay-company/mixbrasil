@@ -34,6 +34,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132448934641:android:34f147597012a851822750",
+        "android_client_info": {
+          "package_name": "com.mix_brasil"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132448934641-cn2cgtb4qqnk4se8tsl0ksaunjvpgam7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgOn5IP0l7kYyljYyUKu7XA5FMpP_qe9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132448934641-cn2cgtb4qqnk4se8tsl0ksaunjvpgam7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

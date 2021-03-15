@@ -28,33 +28,29 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.transparent,
                   padding: const EdgeInsets.only(left: 35),
                   child: SizedBox(
-                      width: 140,
-                      height: 44,
-                      // ignore: deprecated_member_use
-                      child: RaisedButton(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => AnuncieAquiScreen()));
-                        },
-                        color: Theme.of(context).secondaryHeaderColor,
-                        child: Flexible(
-                          child: Container(
-                            child: Text(
-                              'Anunciar Loja',
-                              overflow: TextOverflow.ellipsis,
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 16),
-                            ),
-                          ),
+                    height: 44,
+                    width: 140,
+                    child: FloatingActionButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(20),
-                            topRight: Radius.circular(20),
-                          ),
-                        ),
-                      )),
-                )
+                      ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (_) => AnuncieAquiScreen()));
+                      },
+                      backgroundColor: Theme.of(context).secondaryHeaderColor,
+                      child: Text(
+                        'Anunciar Loja',
+                        overflow: TextOverflow.ellipsis,
+                        style:
+                        TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

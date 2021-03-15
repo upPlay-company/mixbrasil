@@ -56,6 +56,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       floatingActionButton: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -130,57 +131,34 @@ class _ProductScreenState extends State<ProductScreen> {
               autoplay: false,
             ),
           ),
-          Container(
-            color: Colors.white,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20.0,
-                    left: 20,
-                    right: 20,
-                  ),
-                  child: Center(
-                    child: Expanded(
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              story(
-                                "\nStory",
-                                showModal: _showModalOfertas,
-                              ),
-                              story(
-                                "\nCupons",
-                                showModal: _showModalCupons,
-                              ),
-                              story(
-                                "\nVagas",
-                                rota: TrabalheConosco(lojas),
-                              ),
-                            ],
-                          ),
-                          styleButton(),
-                          ListView.builder(
-                            physics: ScrollPhysics(),
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            itemCount: lojas.imgDestacadas.length,
-                            itemBuilder: (_, index){
-                              return cardOfertas(index);
-                            },
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment:
+            MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              story(
+                "\nStory",
+                showModal: _showModalOfertas,
+              ),
+              story(
+                "\nCupons",
+                showModal: _showModalCupons,
+              ),
+              story(
+                "\nVagas",
+                rota: TrabalheConosco(lojas),
+              ),
+            ],
           ),
+          styleButton(),
+          ListView.builder(
+            physics: ScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: lojas.imgDestacadas.length,
+            itemBuilder: (_, index){
+              return cardOfertas(index);
+            },
+          )
         ],
       )
       );
@@ -211,7 +189,7 @@ class _ProductScreenState extends State<ProductScreen> {
 
   Widget styleButton() {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
+      padding: const EdgeInsets.only(top: 15, right: 100, left: 100),
       child: SizedBox(
         width: 120,
         height: 50,

@@ -54,6 +54,7 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -128,57 +129,35 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
                 autoplay: false,
               ),
             ),
-            Container(
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 20.0,
-                      left: 20,
-                      right: 20,
-                    ),
-                    child: Center(
-                      child: Expanded(
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                story(
-                                  "\nStory",
-                                  showModal: _showModalOfertas,
-                                ),
-                                story(
-                                  "\nCupons",
-                                  showModal: _showModalCupons,
-                                ),
-                                story(
-                                  "\nVagas",
-                                  rota: TrabalheConoscoDestaque(lojasDestaque),
-                                ),
-                              ],
-                            ),
-                            styleButton(),
-                            ListView.builder(
-                              physics: ScrollPhysics(),
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              itemCount: lojasDestaque.imgDestacadas.length,
-                              itemBuilder: (_, index){
-                                return cardOfertas(index);
-                              },
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            Row(
+              mainAxisAlignment:
+              MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                story(
+                  "\nStory",
+                  showModal: _showModalOfertas,
+                ),
+                story(
+                  "\nCupons",
+                  showModal: _showModalCupons,
+                ),
+                story(
+                  "\nVagas",
+                  rota: TrabalheConoscoDestaque(lojasDestaque),
+                ),
+              ],
             ),
+            styleButton(),
+            ListView.builder(
+              physics: ScrollPhysics(),
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: lojasDestaque.imgDestacadas.length,
+              itemBuilder: (_, index){
+                return cardOfertas(index);
+              },
+            )
+
           ],
         )
     );
@@ -209,26 +188,23 @@ class _LojasDestaqueScreenState extends State<LojasDestaqueScreen> {
 
   Widget styleButton() {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0),
-      child: SizedBox(
-        width: 120,
+      padding: const EdgeInsets.only(top: 15, right: 100, left: 100),
+      child: Container(
         height: 50,
-        child: Container(
-          child: Center(
-            child: Text(
-              "OFERTAS",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+        child: Center(
+          child: Text(
+            "OFERTAS",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          decoration: BoxDecoration(
-            color: Theme.of(context).secondaryHeaderColor,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-            ),
+        ),
+        decoration: BoxDecoration(
+          color: Theme.of(context).secondaryHeaderColor,
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(20),
           ),
         ),
       ),

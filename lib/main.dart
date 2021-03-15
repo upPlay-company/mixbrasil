@@ -1,6 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mix_brasil/model/adm/adm_manager.dart';
 import 'package:mix_brasil/model/categorias/categorias_manager.dart';
@@ -96,14 +95,6 @@ class MyApp extends StatelessWidget {
           secondaryHeaderColor: Color(0xfffea102),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        supportedLocales: const [
-          Locale('pt', 'BR'),
-        ],
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
         initialRoute: 'inicial',
         onGenerateRoute: (settings){
           switch(settings.name){

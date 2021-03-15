@@ -22,31 +22,28 @@ class DesapegoScreen extends StatelessWidget {
                 color: Colors.transparent,
                 padding: const EdgeInsets.only(left: 35),
                 child: SizedBox(
-                    width: 160,
-                    height: 44,
-                    // ignore: deprecated_member_use
-                    child: RaisedButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => CriarAnuncioScreen()));
-                      },
-                      color: Theme.of(context).secondaryHeaderColor,
-                      child: Flexible(
-                        child: Container(
-                          child: Text(
-                            'Criar Desapego',
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: Colors.white, fontSize: 16),
-                          ),
-                        ),
+                  height: 44,
+                  width: 160,
+                  child: FloatingActionButton(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
                       ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                        ),
-                      ),
-                    )),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => CriarAnuncioScreen()));
+                    },
+                    backgroundColor: Theme.of(context).secondaryHeaderColor,
+                    child: Text(
+                      'Criar Desapego',
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                      TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
+                ),
               ),
             ],
           ),

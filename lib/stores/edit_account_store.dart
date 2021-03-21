@@ -39,7 +39,6 @@ abstract class _EditAccountStore with Store {
   @action
   void setEmail(String value) => name = value;
 
-
   @observable
   String phone;
 

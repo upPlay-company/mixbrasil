@@ -149,28 +149,31 @@ class _MinhaContaScreenState extends State<MinhaContaScreen> {
                           height: 54,
                           width: 200,
                           // ignore: deprecated_member_use
-                          child: RaisedButton(
-                            onPressed: store.savePressed,
-                            color: Theme.of(context).primaryColor,
-                            child: store.user.loading
-                                ? const CircularProgressIndicator(
-                                    valueColor:
-                                        AlwaysStoppedAnimation(Colors.white),
-                                  )
-                                : Text(
-                                    'ATUALIZAR',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        fontFamily: 'Principal'),
-                                  ),
-                            disabledColor:
-                                Theme.of(context).primaryColor.withAlpha(100),
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                          ),
+                          child: Observer(builder: (_){
+                            // ignore: deprecated_member_use
+                            return RaisedButton(
+                              onPressed: store.savePressed,
+                              color: Theme.of(context).primaryColor,
+                              child: store.user.loading
+                                  ? const CircularProgressIndicator(
+                                valueColor:
+                                AlwaysStoppedAnimation(Colors.white),
+                              )
+                                  : Text(
+                                'ATUALIZAR',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    fontFamily: 'Principal'),
+                              ),
+                              disabledColor:
+                              Theme.of(context).primaryColor.withAlpha(100),
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                            );
+                          }),
                         ),
                       ],
                     ),

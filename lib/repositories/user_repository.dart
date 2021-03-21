@@ -71,7 +71,8 @@ class UserRepository {
           user = UserUser(
               id: firebaseUser.uid,
               name: firebaseUser.displayName,
-              email: firebaseUser.email
+              email: firebaseUser.email,
+              phone: firebaseUser.phoneNumber
           );
 
           await user.saveData();

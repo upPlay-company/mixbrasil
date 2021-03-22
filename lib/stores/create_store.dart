@@ -17,7 +17,7 @@ abstract class _CreateStore with Store {
     images = ad.images.asObservable();
     category = ad.category;
     priceText = ad.price?.toStringAsFixed(2) ?? '';
-
+    whats = ad.whats ?? '';
     if (ad.address != null)
       cepStore = CepStore(ad.address.zipCode);
     else
@@ -104,6 +104,23 @@ abstract class _CreateStore with Store {
   @action
   void setPrice(String value) => priceText = value;
 
+  @observable
+  String whats = '';
+
+  @action
+  void setWhats(String value) => whats = value;
+
+  @computed
+  bool get whatsValid => whats.length >= 11;
+  String get whatsError {
+    if (!showErrors || whatsValid)
+      return null;
+    else if (whats.isEmpty)
+      return 'Campo obrigatório';
+    else
+      return 'Número inválido';
+  }
+
   @computed
   num get price {
     if (priceText.contains(',')) {
@@ -130,7 +147,8 @@ abstract class _CreateStore with Store {
           descriptionValid &&
           categoryValid &&
           addressValid &&
-          priceValid;
+          priceValid &&
+          whatsValid;
 
   @computed
   Function get sendPressed => formValid ? _send : null;
@@ -158,6 +176,7 @@ abstract class _CreateStore with Store {
     ad.price = price;
     ad.images = images;
     ad.address = address;
+    ad.whats = whats;
     ad.user = GetIt.I<UserManagerStore>().user;
 
     loading = true;

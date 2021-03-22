@@ -145,6 +145,26 @@ class _CriarAnuncioScreenState extends State<CriarAnuncioScreen> {
                             Observer(
                               builder: (_) {
                                 return TextFormField(
+                                  initialValue: createStore.whats,
+                                  onChanged: createStore.setWhats,
+                                  decoration: InputDecoration(
+                                      hintText: 'Ex: (99) 99999-9999',
+                                      labelText: 'WhatsApp*',
+                                      labelStyle: labelStyle,
+                                      contentPadding: contentPadding,
+                                      errorText: createStore.priceError),
+                                  keyboardType: TextInputType.number,
+                                  inputFormatters: [
+                                    LengthLimitingTextInputFormatter(15),
+                                    FilteringTextInputFormatter.digitsOnly,
+                                    TelefoneInputFormatter()
+                                  ],
+                                );
+                              },
+                            ),
+                            Observer(
+                              builder: (_) {
+                                return TextFormField(
                                   initialValue: createStore.priceText,
                                   onChanged: createStore.setPrice,
                                   decoration: InputDecoration(

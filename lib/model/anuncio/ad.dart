@@ -43,6 +43,7 @@ class Ad {
     idAdsDestaque = document.data()['idAdsDestaque'];
     mensagem = document.data()['mensagem'];
     solicitacao = document.data()['solicitacao'] as int;
+    whats = document.data()['number'];
   }
 
   Ad();
@@ -54,6 +55,7 @@ class Ad {
   DesapegoCategory category;
   Address address;
   num price;
+  String whats;
   AdStatus status = AdStatus.ACTIVE;
   UserUser user = GetIt.I<UserManagerStore>().user;
   int views;
@@ -85,7 +87,7 @@ class Ad {
         'bairro': ad.address.district,
         'categoria': ad.category.name,
         'anunciante': ad.user.name,
-        'number': ad.user.phone,
+        'number': ad.whats,
         'views': ad.views = 0,
         'viewsDestaque': ad.viewsDestaque = 0,
         'created': FieldValue.serverTimestamp(),

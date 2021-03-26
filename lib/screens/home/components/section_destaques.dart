@@ -64,7 +64,7 @@ class _SectionDestaquesState extends State<SectionDestaques> {
         },
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-          height: 120,
+          height: 130,
           child: Card(
             elevation: 8,
             color: Colors.cyan[50],

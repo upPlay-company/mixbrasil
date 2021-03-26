@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:mix_brasil/screens/categorias/categorias_screens.dart';
 import 'package:mix_brasil/screens/desapego/desapego_screen.dart';
 import 'package:mix_brasil/screens/home/home_screen.dart';
-import 'package:mix_brasil/screens/offline/offline_screen.dart';
 import 'package:mix_brasil/screens/perfil/perfil.dart';
 import 'package:bmnav/bmnav.dart' as bmnav;
-import 'package:mix_brasil/stores/connectivity_store.dart';
-import 'package:mobx/mobx.dart';
 
 class BaseScreen extends StatefulWidget {
 
@@ -18,8 +14,6 @@ class BaseScreen extends StatefulWidget {
 
 
 class _BaseScreenState extends State<BaseScreen> {
-
-  final ConnectivityStore connectivityStore = GetIt.I<ConnectivityStore>();
 
   int _selectedIndex = 0;
   /*static const TextStyle optionStyle =
@@ -36,15 +30,6 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   void initState() {
     super.initState();
-
-    autorun((_) {
-      print(connectivityStore.connected);
-      if (!connectivityStore.connected) {
-        Future.delayed(Duration(milliseconds: 50)).then((value) {
-          showDialog(context: context, builder: (_) => OfflineScreen());
-        });
-      }
-    });
   }
 
   @override

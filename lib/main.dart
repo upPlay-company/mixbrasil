@@ -17,7 +17,6 @@ import 'package:mix_brasil/screens/myads/myads_screen.dart';
 import 'package:mix_brasil/screens/mylojas/my_lojas_screen.dart';
 import 'package:mix_brasil/stores/category_desapego_store.dart';
 import 'package:mix_brasil/stores/category_lojas_store.dart';
-import 'package:mix_brasil/stores/connectivity_store.dart';
 import 'package:mix_brasil/stores/favorite_store.dart';
 import 'package:mix_brasil/stores/filter_state_store.dart';
 import 'package:mix_brasil/stores/user_manager_store.dart';
@@ -34,7 +33,6 @@ void main() async {
 final locate = GetIt.instance;
 
 void setupLocators() {
-  locate.registerSingleton(ConnectivityStore());
   locate.registerSingleton(CategoryDesapegoStore());
   locate.registerSingleton(UserManagerStore());
   locate.registerSingleton(FavoriteStore());
